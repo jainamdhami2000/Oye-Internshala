@@ -1,0 +1,6 @@
+<form action="/user/resetpassword" method="POST">
+  <input type="hidden" name="id" value="<%= payload.id%>" />
+  <input type="hidden" name="token" value="<%=token%>" />
+  <input type="password" name="password" value="" placeholder="Enter your new password..." />
+  <input type="submit" value="Reset Password" />
+</form>
