@@ -1,8 +1,6 @@
 //jshint esversion:6
 
-var {
-  User
-} = require('../model/user');
+const User = require('../model/user');
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
@@ -31,7 +29,6 @@ module.exports = function(app, passport) {
     res.render('signup.ejs', {
       message: req.flash('signupMessage')
     });
-    console.log(req.body);
   });
 
   app.post('/signup', passport.authenticate('local-signup', {
@@ -41,7 +38,6 @@ module.exports = function(app, passport) {
   }));
 
   app.get('/verify', function(req, res) {
-    console.log(req.user);
     User.findOne({
       'local.email': req.user.local.email
     }, function(err, user) {
@@ -59,7 +55,6 @@ module.exports = function(app, passport) {
     res.render('profile.ejs', {
       user: req.user // get the user out of session and pass to template
     });
-    console.log(req);
   });
 
   app.get('/logout', function(req, res) {
