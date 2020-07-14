@@ -3,44 +3,32 @@
 
 <head>
   <title> Login </title>
-  <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="/main/style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <script src="jquery.fittext.js"></script>
-  <style>
-    .navbar {
-      min-height: 100px;
-    }
-  </style>
+
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-light" style="background-color:grey;">
+  <nav class="navbar navbar-light" style="background-color:#DCDCDC;">
     <a class="navbar-brand" href="/">
-      <img width="200px" height="80px" src="https://media-exp1.licdn.com/dms/image/C510BAQHvIXbt2_zvUA/company-logo_200_200/0?e=2159024400&v=beta&t=QV1f4LqZOr1FbFZyDAIL7Huh955EH78rhMjluGgl4k0" alt="">
+      <img width="200px" height="30px" src="/main/internshala_logo.svg" alt="">
     </a>
   </nav>
 
-  <div class="row" style="background-color: lightblue;">
+  <div class="row">
 
-    <div class="col-md-7" ;>
-      <img src="https://scholarship-positions.com/wp-content/uploads/2013/08/Internships-1024x449.jpg" width="500px" height="400px" alt="" style="margin-left: 5%">
+    <div class="col-md-7">
+      <img src="/main/Login.svg" width="60%" height="60%" alt="" style="margin-left: 5%">
     </div>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-    <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-
     <div class="col-md-5" style="padding-top: 1%">
-      <h3 style="font-family:montserrat"> Get Started with <img width="20%" height="20%" style="padding-bottom:3%"
-          src="https://media-exp1.licdn.com/dms/image/C510BAQHvIXbt2_zvUA/company-logo_200_200/0?e=2159024400&v=beta&t=QV1f4LqZOr1FbFZyDAIL7Huh955EH78rhMjluGgl4k0"></h3>
-
-      <form method="POST" action="/login" class="form-horizontal" role="form" style="padding-top:5%">
-
+      <h3 style="font-family:montserrat"> Get Started with <img width="20%" height="20%" style="padding-bottom:3%" src="main/internshala_logo.svg"></h3>
+      <form method="POST" class="form-horizontal" role="form" style="padding-top:5%">
         <div class="form-group col-lg-8">
           <label for="id_username">Username:</label>
           <input class="form-control" type="text" name="username" autofocus="" required="" id="id_username">
@@ -56,7 +44,23 @@
         </div>
 
       </form>
+
+      <!-- <form class="form-horizontal" role="form" style="padding-top:5%">
+                    <div class="form-group col-lg-8">
+                        <label class="">Official Email ID:</label>
+                        <input class="form-control" type="text" placeholder="name@email.com">
+                    </div>
+                    <div class="form-group col-lg-8">
+                        <label>Password:</label>
+                        <input class="form-control" type="text" placeholder="minimum 6 character">
+                    </div>
+                    <div class="form-group col-lg-8">
+                        <input type="button" class="btn btn-primary" style="margin-left:40%; margin-top:5%"  value="Login">
+                    </div>
+                </form> -->
     </div>
   </div>
+
 </body>
+
 </html>

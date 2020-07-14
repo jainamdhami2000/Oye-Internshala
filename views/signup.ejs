@@ -1,3 +1,4 @@
+<!-- {% include 'main/includes/messaging.html' %} -->
 <!DOCTYPE HTML>
 <html style="width: 100%;
 height: 100%;
@@ -14,9 +15,8 @@ overflow-x: hidden; ">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="{%static 'std.css' %}">
-
-  <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="/main/std.css">
+  <link rel="stylesheet" type="text/css" href="/main/style.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -28,8 +28,7 @@ overflow-x: hidden; ">
 height: 100%;
 margin: 0px;
 padding: 0px;
-overflow-x: hidden;
-background-color: lightblue;; ">
+overflow-x: hidden; ">
   <nav class="navbar navbar navbar-light navbar-expand-lg static-top" style="background-color:#DCDCDC">
 
     <div class="container-fluid">
@@ -41,7 +40,7 @@ background-color: lightblue;; ">
         </button>
         <div style="padding-top:0px;padding-bottom:60px">
           <a class="navbar-brand" href="https://internshala.com/" target="_blank">
-            <img width="200px" height="35px" src="{% static 'main/internshala_logo.svg' %}" alt="">
+            <img width="200px" height="35px" src="main/internshala_logo.svg" alt="">
           </a>
         </div>
       </div>
@@ -49,36 +48,36 @@ background-color: lightblue;; ">
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <!-- <li><a href="/">Home</a></li>
-{% if user.is_authenticated %} -->
+          <li><a href="/">Home</a></li>
+          <%if  (typeof user !='undefined') {%>
           <!--When the user is logged in-->
           <!-- {% if user.is_student %}
-<li><a href="/student_profile">{{user.username|title}}</a></li>
-{% else %}
-<li><a href="/employer_profile">{{user.username|title}}</a></li>
-{% endif %}
-<li><a href="/logout">Logout</a></li>
-</ul>
-{% else %} -->
-          <!--When the user is not logged in-->
+          <li><a href="/student_profile">{{user.username|title}}</a></li>
+          {% else %}
+          <li><a href="/employer_profile">{{user.username|title}}</a></li>
+          {% endif %} -->
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+        <%} else {%>
+        <!--When the user is not logged in-->
 
 
-          <!--Registration Buttons-->
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="/register_as_student" class="dropdown-item"> Student </a></li>
-                <li><a href="/register_as_employer" class="dropdown-item"> Employer </a></li>
-              </ul>
-            </li>
+        <!--Registration Buttons-->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/register_as_student" class="dropdown-item"> Student </a></li>
+              <li><a href="/register_as_employer" class="dropdown-item"> Employer </a></li>
+            </ul>
+          </li>
 
-            <!--Login Button-->
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in">&nbspLogin</span></a></li>
+          <!--Login Button-->
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in">Login</span></a></li>
 
-          </ul>
-          <!-- {% endif %} -->
+        </ul>
+        <% } %>
       </div>
     </div>
   </nav>
@@ -89,7 +88,7 @@ background-color: lightblue;; ">
     <div class="row text-center">
       <div class="col-sm-4 ">
         <!-- <div class="signup-text-center"> -->
-        <img src="https://www.freeiconspng.com/uploads/sign-up-icon-20.jpg" width="50%" height="50%">
+        <img src="main/std-profile/Sign_up_icon.svg" width="50%" height="50%">
         <h4> SIGN UP </h4>
         <h5 style="font-size: 15px;color:darkgray">Get started by creating your account</h5>
         <!-- </div> -->
@@ -97,7 +96,7 @@ background-color: lightblue;; ">
       <div class="col-sm-4 ">
         <!-- <div class="signup-text-center"> -->
         <!-- style="margin-left:25%" -->
-        <img src="https://gradcollege.okstate.edu/site-files/images/apply_now.png" width="45%" height="45%">
+        <img src="main/std-profile/Apply.svg" width="45%" height="45%">
         <div class="icon-text" style="padding-top: 12px">
           <h4> APPLY </h4>
           <h5 style="font-size: 15px;color:darkgray">Apply for internships as per interest and location</h5>
@@ -108,9 +107,7 @@ background-color: lightblue;; ">
         <!-- <div class="signup-text-center"> -->
         <!-- style="margin-left:50%" -->
 
-        <img
-          src="data:image/png;base64,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"
-          width="50%" height="50%" style="padding-bottom: 5px">
+        <img src="main/std-profile/Get-hired1.svg" width="50%" height="50%" style="padding-bottom: 5px">
         <div class="icon-text">
           <h4> GET HIRED </h4>
           <h5 style="font-size: 15px;color:darkgray "> Get ahead Get Internship </h5>
@@ -126,7 +123,7 @@ background-color: lightblue;; ">
       <div class="col-md-6">
         <h3> Grab the Best for you </h3>
         <hr>
-        <img src="https://miro.medium.com/max/650/1*EZn2o1HupExZVxDouzvWjQ.jpeg" class="img-responsive" style="float:left; padding-bottom:100px;" width="85%" height="85%">
+        <img src="main/std-profile/std-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px;" width="85%" height="85%">
 
       </div>
 
@@ -144,8 +141,7 @@ background-color: lightblue;; ">
         <!--Backend wala form-->
 
         <form method="POST" action='/signup' enctype="multipart/form-data" class="form-horizontal" role="form">
-
-          <div class="form-group col-lg-8">
+          <!-- <div class="form-group col-lg-8">
             <label for="id_first_name">First name:</label>
             <input class="form-control" type="text" name="first_name" maxlength="30" id="id_first_name">
           </div>
@@ -153,7 +149,7 @@ background-color: lightblue;; ">
           <div class="form-group col-lg-8">
             <label for="id_last_name">Last name:</label>
             <input class="form-control" type="text" name="last_name" maxlength="150" id="id_last_name">
-          </div>
+          </div> -->
 
           <div class="form-group col-lg-8">
             <label for="id_username">Username:</label>
@@ -161,13 +157,13 @@ background-color: lightblue;; ">
           </div>
 
 
-          <div class="form-group col-lg-8">
+          <!-- <div class="form-group col-lg-8">
             <label for="id_is_student">Is student:</label>
             <div class="radio">
-              <label><input type="radio" name="is_student">Agree</label>
-              <!-- <input class="form-control" type="checkbox" name="is_student" required="" id="id_is_student"> -->
-            </div>
-          </div>
+              <label><input type="radio" name="is_student">Agree</label> -->
+          <!-- <input class="form-control" type="checkbox" name="is_student" required="" id="id_is_student"> -->
+          <!-- </div>
+          </div> -->
 
           <div class="form-group col-lg-8">
             <label for="id_email">Email:</label>
@@ -176,7 +172,7 @@ background-color: lightblue;; ">
 
 
 
-          <div class="form-group col-lg-8">
+          <!-- <div class="form-group col-lg-8">
             <label for="id_image">Image:</label>
             <input class="form-control" type="file" name="image" accept="image/*" required="" id="id_image">
           </div>
@@ -199,17 +195,17 @@ background-color: lightblue;; ">
           <div class="form-group col-lg-8">
             <label for="id_basic_skills">Basic skills:</label>
             <textarea class="form-control" name="basic_skills" required="" id="id_basic_skills"></textarea>
-          </div>
+          </div> -->
 
           <div class="form-group col-lg-8">
             <label for="id_password1">Password:</label>
-            <input class="form-control" type="password" name="password1" required="" id="id_password1">
+            <input class="form-control" type="password" name="password" required="" id="id_password1">
           </div>
 
-          <div class="form-group col-lg-8">
+          <!-- <div class="form-group col-lg-8">
             <label for="id_password2">Password confirmation:</label>
             <input class="form-control" type="password" name="password2" required="" id="id_password2">
-          </div>
+          </div> -->
 
           <div class="form-group col-lg-8">
             <button style="background-color:#0356fc; color:white" class="btn btn-outline-info" type="submit">Sign Up</button>
@@ -236,3 +232,83 @@ background-color: lightblue;; ">
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-group col-lg-8">
+                        <p><label for="id_first_name">First name:</label>
+                        <input type="text" name="first_name" maxlength="30" id="id_first_name"></p>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                        <p><label for="id_last_name">Last name:</label>
+                        <input type="text" name="last_name" maxlength="150" id="id_last_name"></p>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                        <p><label for="id_username">Username:</label>
+                        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"> <span class="helptext"></span></p>
+                        </div>
+
+
+                        <div class="form-group col-lg-8">
+                            <p><label for="id_is_student">Is student:</label>
+                            <input type="checkbox" name="is_student" required="" id="id_is_student"></p>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                        <p><label for="id_email">Email:</label>
+                        <input type="email" name="email" required="" id="id_email"></p>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                        <p><label for="id_image">Image:</label>
+                        <input type="file" name="image" accept="image/*" required="" id="id_image"></p>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                        <p><label for="id_password1">Password:</label>
+                        <input type="password" name="password1" required="" id="id_password1"> <span class="helptext"></span></p>
+                        </div>
+
+                        <div class="form-group col-lg-8">
+                        <p><label for="id_password2">Password confirmation:</label>
+                        <input type="password" name="password2" required="" id="id_password2"> <span class="helptext"></span></p>
+                        </div>
+
+
+
+                        <div class="form-group col-lg-8">
+                        <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                        -->
+
+
+<!--Vibhu's Form-->
+<!-- <form class="form-horizontal" role="form">
+                  <div class="form-group col-lg-8">
+                    <label class="">Email ID:</label>
+                    <input class="form-control" type="text" placeholder="name@email.com">
+
+                  </div>
+                  <div class="form-group col-lg-8">
+                      <label>Password:</label>
+                      <input class="form-control" type="text" placeholder="**********">
+
+                  </div>
+                  <div class="form-group col-lg-8">
+                      <label>Username:</label>
+                      <input class="form-control" type="text" placeholder="">
+                  </div>
+
+                  <div class="form-group col-lg-8">
+                  <input type="button" class="btn btn-primary" style="align-content: center;" value="Sign Up">
+                  </div>
+              </form> -->
