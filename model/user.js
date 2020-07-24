@@ -3,20 +3,32 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const userSchema = new mongoose.Schema({
-  UserId: String,
   local: {
     password: String,
   },
   facebook: {
     id: String,
     token: String,
-
+  },
+  linkedin: {
+    id: String,
+    token: String
+  },
+  github: {
+    id: String,
+    token: String
   },
   google: {
     id: String,
     token: String,
   },
-  Name: String,
+  FirstName: String,
+  LastName: String,
+  image:Object,
+  CollegeName:String,
+  City:String,
+  YearOfStudy:Date,
+  BasicSkills:String,
   Email: String,
   loginType: {
     type: String
