@@ -123,18 +123,15 @@ module.exports = function(passport) {
 
 
   passport.use(new GoogleStrategy({
-
       clientID: configAuth.googleAuth.clientID,
       clientSecret: configAuth.googleAuth.clientSecret,
       callbackURL: configAuth.googleAuth.callbackURL,
       passReqToCallback: true
-
     },
     function(req, token, refreshToken, profile, done) {
       // make the code asynchronous
       // User.findOne won't fire until we have all our data back from Google
       process.nextTick(function() {
-
         // try to find the user based on their google id
         User.findOne({
           'google.id': profile.id
@@ -147,7 +144,6 @@ module.exports = function(passport) {
           } else {
             // if the user isnt in our database, create a new user
             var newUser = new User();
-
             // set all of the relevant information
             newUser.google.id = profile.id;
             newUser.google.token = token;
@@ -171,8 +167,9 @@ module.exports = function(passport) {
       clientID: configAuth.githubAuth.clientID,
       clientSecret: configAuth.githubAuth.clientSecret,
       callbackURL: configAuth.githubAuth.callbackURL,
+      passReqToCallback: true
     },
-    function(accessToken, refreshToken, profile, done) {
+    function(req, accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
         User.findOne({
           'github.id': profile.id
@@ -181,7 +178,7 @@ module.exports = function(passport) {
             return done(err);
           if (user) {
             // if a user is found, log them in
-            return done(null, user);
+            return done(null, user, req.flash('message', 'Login'));
           } else {
             // if the user isnt in our database, create a new user
             var newUser = new User();
@@ -208,27 +205,58 @@ module.exports = function(passport) {
             newUser.save(function(err) {
               if (err)
                 throw err;
-              return done(null, newUser);
+              return done(null, newUser, req.flash('message', 'Signup'));
             });
           }
         });
       });
     }));
 
-  // passport.use(new LinkedInStrategy({
-  //   clientID: configAuth.githubAuth.clientID,
-  //   clientSecret: configAuth.githubAuth.clientSecret,
-  //   callbackURL: configAuth.githubAuth.callbackURL,
-  //   scope: ['r_emailaddress', 'r_basicprofile'],
-  //   state: true
-  // }, function(accessToken, refreshToken, profile, done) {
-  //   // asynchronous verification, for effect...
-  //   process.nextTick(function() {
-  //     // To keep the example simple, the user's LinkedIn profile is returned to
-  //     // represent the logged-in user. In a typical application, you would want
-  //     // to associate the LinkedIn account with a user record in your database,
-  //     // and return that user instead.
-  //     return done(null, profile);
-  //   });
-  // }));
+  passport.use(new LinkedInStrategy({
+    clientID: configAuth.linkedinAuth.clientID,
+    clientSecret: configAuth.linkedinAuth.clientSecret,
+    callbackURL: configAuth.linkedinAuth.callbackURL,
+    scope: ['r_emailaddress', 'r_liteprofile'],
+    state: true,
+    passReqToCallback: true
+  }, function(req, accessToken, refreshToken, profile, done) {
+    // asynchronous verification, for effect...
+    process.nextTick(function() {
+      // To keep the example simple, the user's LinkedIn profile is returned to
+      // represent the logged-in user. In a typical application, you would want
+      // to associate the LinkedIn account with a user record in your database,
+      // and return that user instead.
+      User.findOne({
+        'linkedin.id': profile.id
+      }, function(err, user) {
+        if (err)
+          return done(err);
+        if (user) {
+          // if a user is found, log them in
+          return done(null, user, req.flash('message', 'Login'));
+        } else {
+          // if the user isnt in our database, create a new user
+          var newUser = new User();
+          // set all of the relevant information
+          newUser.linkedin.id = profile.id;
+          newUser.linkedin.token = accessToken;
+          newUser.FirstName = profile.name.givenName;
+          newUser.LastName = profile.name.familyName;
+          if (profile.emails[0].value == null) {
+            newUser.Email = null;
+            newUser.username = profile.name.givenName + profile.name.familyName;
+          } else {
+            newUser.Email = profile.emails[0].value; // pull the first email
+            newUser.username = profile.emails[0].value.substr(0, profile.emails[0].value.indexOf('@'));
+          }
+          newUser.loginType = 'linkedin';
+          newUser.save(function(err) {
+            if (err)
+              throw err;
+            return done(null, newUser, req.flash('message', 'Signup'));
+          });
+        }
+      });
+    });
+  }));
 };

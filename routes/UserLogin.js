@@ -91,22 +91,14 @@ module.exports = function(app, passport) {
     passport.authenticate('github', {
       successRedirect: '/profile',
       failureRedirect: '/login'
-    })
+    }));
 
-    // function(req, res) {
-    //   // Successful authentication, redirect home.
-    //   res.redirect('/');
-    // }
-  );
+  app.get('/auth/linkedin', passport.authenticate('linkedin'));
 
-  // app.get('/auth/linkedin', passport.authenticate('linkedin', {
-  //   state: 'SOME STATE'
-  // }));
-  //
-  // app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  //   successRedirect: '/profile',
-  //   failureRedirect: '/login'
-  // }));
+  app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+    successRedirect: '/profile',
+    failureRedirect: '/login'
+  }));
 };
 
 function isLoggedIn(req, res, next) {
