@@ -83,7 +83,7 @@ module.exports = function(app, passport) {
     }));
 
   app.get('/auth/github', passport.authenticate('github', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'user:email']
   }));
 
   // the callback after github has authenticated the user
@@ -98,6 +98,15 @@ module.exports = function(app, passport) {
     //   res.redirect('/');
     // }
   );
+
+  // app.get('/auth/linkedin', passport.authenticate('linkedin', {
+  //   state: 'SOME STATE'
+  // }));
+  //
+  // app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+  //   successRedirect: '/profile',
+  //   failureRedirect: '/login'
+  // }));
 };
 
 function isLoggedIn(req, res, next) {
