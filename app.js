@@ -34,9 +34,9 @@ app.set('view engine', 'ejs');
 // Routes
 
 app.get('/home', function(req, res){
-    res.render('homepage')
+    res.render('homepage');
     }
-)
+);
 
 app.use(logger('dev'));
 app.use(express.json());

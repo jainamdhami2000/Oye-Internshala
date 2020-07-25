@@ -81,6 +81,23 @@ module.exports = function(app, passport) {
       successRedirect: '/profile',
       failureRedirect: '/login'
     }));
+
+  app.get('/auth/github', passport.authenticate('github', {
+    scope: ['profile', 'email']
+  }));
+
+  // the callback after github has authenticated the user
+  app.get('/auth/github/callback',
+    passport.authenticate('github', {
+      successRedirect: '/profile',
+      failureRedirect: '/login'
+    })
+
+    // function(req, res) {
+    //   // Successful authentication, redirect home.
+    //   res.redirect('/');
+    // }
+  );
 };
 
 function isLoggedIn(req, res, next) {
