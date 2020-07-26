@@ -38,7 +38,11 @@ module.exports = function(passport) {
           } else {
             var newUser = new User();
             newUser.Email = email;
-            newUser.Name = username;
+            newUser.FirstName = req.body.fname;
+            newUser.LastName = req.body.lname;
+            newUser.username = username;
+            newUser.CollegeName = req.body.college_name;
+            newUser.City = req.body.city;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
             newUser.save(function(err) {
@@ -52,7 +56,7 @@ module.exports = function(passport) {
     }));
 
   passport.use('local-login', new localStrategy({
-      usernameField: 'username',
+      usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
     },
