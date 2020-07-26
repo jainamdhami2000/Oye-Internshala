@@ -1,0 +1,207 @@
+<style>
+    body {
+  background-color:lightblue;
+  font-family: 'Open Sans', sans-serif;
+  background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHoAowMBIgACEQEDEQH/xAAZAAADAQEBAAAAAAAAAAAAAAABAgMABAf/xAAoEAACAgICAgIBBAMBAAAAAAAAAQIRITEDEkFRMmFxBCKBkROh0VL/xAAXAQEBAQEAAAAAAAAAAAAAAAABAgAD/8QAGxEBAQEBAAMBAAAAAAAAAAAAAAERAhIhMUH/2gAMAwEAAhEDEQA/APbkFi2icpNvDFz1RStv14CTWEbs/Y4PJWzWTUn5HsMXLo2ZSXvIrdGxYE4LBFYyFozNYLMYWCStEpYKt0iXV9nYxHUYwWgFIa6KKVkjXRrBLi11vAHJeGJGae3kFtsl00xjGAEnPC+wKTSEnhmUjpJEbTf5HeR4tS8kJNJgUm2qNgjpCnRLPszf2DpF009jRXtnN2ZSMnWWTitWtA7Cmo2NouQVkRmNg0erv92gyWAJ+xtoFfUzGewMpGFkntClIglHyv6HRYjNYbQ/HO8S37FksNE2OaNdZiEOSXVZCRh0eRYf0ReEdUonJO0y5R1EpYY0G07BMbjh2wteWNHM2rRna0EKSSpaQCHXMZbKE06M5t6wIX7qs4EUnySSWERu5Z9HRwxqN+WH5qf3FKNRjAQoytMIHIzQJeyZp2LYnFIjCRYWwOE5vhZBnTNXB/g5Vovlz69Uy0Yy0YzOx6Ofn+KwdFOSZLliumv5Ii64pO1/wdfqOOK6pSpfRuaNVnZCUO35LsRLjpX6iL0mU3FP2cfDF9+rOsmusuwDPRm6Ak9sD8bgXflrZ20cnGnxpvTY3+WfsqzXHyx0muiEeSb28fgpdk4qXWlIF+8GeyMpu3Tq9IVbIuK40Tj3a28BhK8Sf8maU6F7U6Yyi1pizi2rrKMafDX0cdO8aReMZvHgEuNxYyuXcCKwYZJ0YyXSpRSzJf2T5nBxw036HoSaglckiY62+nHzW2q9EWp+EdXJ1b/aqJ0dY4/a5pRl5TEXHOTwmdlMyMqOeP6b/wBSdekWhCMGqX8jAAulrAkVbobsksgg07rXv2A6ho5bX9FIkoumV+wp5+Fm7QkUthnLwLFmUtxfJ/gM+JPMcMXj+aLE1USTdVLaKJYyGldhDSVRoTk9lRJrAxPUTRgmFzafIo4WyEm5O2VnxpvGCUk1sqJtpXoUcVopILI1BijPCM2kkgR3Zm7AVnpvIW2ysPgiTVUPB4olR0Uv9pNDVaCqlwhg9QNEq2KQeUdPk44OmdiJq4xjCt5AmMKCUuqswtK07ZhbbMVjnp5fJkuRlOV0yTV1Jmgv0nXb8vYBnL0KW50Scrsc0laGCxJsaMWsmUfLHu8DquZ6B5QIeRgRX7sBVGWx6ZSEFFaC0/BGqnKfVi9e2PA7dvAUjafGB1VllpEyi0iaZ6ED2EWTyCqDlX4JOTbyFt5/0KXI59GWjGWjGCk1bJy1RUSfyQQ9ROvo3X6KGHU+BVBBpegmNqsjIIBoAqMlfgNL0EwLxgBMYWFcfKFHBP4imlsbtgmjLY4iVTsBmMB0stCIpL4kyoKZaMYwM//Z);
+}
+
+.container {
+  position: relative;
+  height: 300px;
+  width: 600px;
+  top: 60px;
+  left: calc(50% - 300px);
+  display: flex;
+}
+
+.card {
+  display: flex;
+  height: 240px;
+  width: 200px;
+  background-color: #17141d;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+/*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.card:not(:first-child) {
+    margin-left: -50px;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.card:hover ~ .card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.title {
+  color: white;
+  font-weight: 300;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.bar {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  height: 5px;
+  width: 150px;
+}
+
+.emptybar {
+  background-color: #2e3033;
+  width: 100%;
+  height: 100%;
+}
+
+.filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 0px;
+  height: 100%;
+  background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
+  transition: 0.6s ease-out;
+}
+
+.card:hover .filledbar {
+  width: 120px;
+  transition: 0.4s ease-out;
+}
+
+.circle {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 60px);
+}
+
+.stroke {
+  stroke: white;
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  transition: 0.6s ease-out;
+}
+
+svg {
+  fill: #17141d;
+  stroke-width: 2px;
+}
+
+.card:hover .stroke {
+  stroke-dashoffset: 100;
+  transition: 0.6s ease-out;
+}
+
+
+</style>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+</head>
+<body>
+<h3 id="in-head"  style="text-align: center";> INTERNSHIP IN TOP CITIES </h3>
+<div class="container">
+  <div class="card">
+    <h3 class="title">MUMBAI</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+        <img height=80px src=https://tse1.mm.bing.net/th?id=OIP.zPFxTxZrssFZ3ER25CzhtwHaHa&pid=Api&rs=1&c=1&qlt=95&w=100&h=100>
+
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="title">DELHI</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+      <img height=80px src="https://tse3.mm.bing.net/th?id=OIP.9Zz2dx-CH2XE9rOd7I-1UQAAAA&pid=Api&P=0&w=300&h=300">
+    
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="title">CHENNAI</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+        <img height=80px src="https://tse2.mm.bing.net/th?id=OIP.NhCC4t2Zy4txkosD2o09XgAAAA&pid=Api&P=0&w=300&h=300">
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="title">KOLKATA</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+        <img height=80px width=140px src="https://tse3.mm.bing.net/th?id=OIP.egS3EpzBd9UPb_JwJ_x6swAAAA&pid=Api&P=0&w=250&h=121">
+    </div>
+  </div>
+</div>
+
+<div>
+<h3 id="in-head"  style="text-align: center" > INTERNSHIP BY DURATION</h3>
+<div class="container">
+  <div class="card">
+    <h3 class="title">FEW WEEKS</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+
+      <p style="color:white">Internships for few weeks</p>
+    
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="title">FEW MONTHS</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+      
+        <p style="color:white">Internships for few months </p>
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="title">ONE YEAR</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+        <p style="color:white">Internships for a year</p>
+    
+    </div>
+  </div>
+  <div class="card">
+    <h3 class="title">FEW YEARS</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <div class="circle">
+        <p style="color:white">Internships for few years </p>
+    </div>
+  </div>
+</div>
+</div>
+</body>
