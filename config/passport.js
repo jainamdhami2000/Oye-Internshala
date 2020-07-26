@@ -72,55 +72,62 @@ module.exports = function(passport) {
       });
     }));
 
-  // passport.use(new FacebookStrategy({
-  //
-  //     // pull in our app id and secret from our auth.js file
-  //     clientID: configAuth.facebookAuth.clientID,
-  //     clientSecret: configAuth.facebookAuth.clientSecret,
-  //     callbackURL: configAuth.facebookAuth.callbackURL,
-  //       passReqToCallback: true
-  //
-  //   },
-  //   function(req,token, refreshToken, profile, done) {
-  //     process.nextTick(function() {
-  //
-  //       // find the user in the database based on their facebook id
-  //       User.findOne({
-  //         'facebook.id': profile.id
-  //       }, function(err, user) {
-  //
-  //         // if there is an error, stop everything and return that
-  //         // ie an error connecting to the database
-  //         if (err)
-  //           return done(err);
-  //
-  //         // if the user is found, then log them in
-  //         if (user) {
-  //           return done(null, user,req.flash('message','Login')); // user found, return that user
-  //         } else {
-  //           // if there is no user found with that facebook id, create them
-  //           var newUser = new User();
-  //
-  //           // set all of the facebook information in our user model
-  //           newUser.facebook.id = profile.id; // set the users facebook id
-  //           newUser.facebook.token = token; // we will save the token that facebook provides to the user
-  //           newUser.Name = profile.displayName; // look at the passport user profile to see how names are returned
-  //           newUser.loginType = 'facebook';
-  //           newUser.IsActive = true;
-  //           // save our user to the database
-  //           newUser.save(function(err) {
-  //             if (err)
-  //               throw err;
-  //
-  //             // if successful, return the new user
-  //             return done(null, newUser,req.flash('message','Signup'));
-  //           });
-  //         }
-  //
-  //       });
-  //     });
-  //   }));
+  passport.use(new FacebookStrategy({
 
+      // pull in our app id and secret from our auth.js file
+      clientID: configAuth.facebookAuth.clientID,
+      clientSecret: configAuth.facebookAuth.clientSecret,
+      callbackURL: configAuth.facebookAuth.callbackURL,
+      passReqToCallback: true
+    },
+    function(req, token, refreshToken, profile, done) {
+      process.nextTick(function() {
+        // find the user in the database based on their facebook id
+        User.findOne({
+          'facebook.id': profile.id
+        }, function(err, user) {
+          // if there is an error, stop everything and return that
+          // ie an error connecting to the database
+          if (err)
+            return done(err);
+          // if the user is found, then log them in
+          if (user) {
+            return done(null, user, req.flash('message', 'Login')); // user found, return that user
+          } else {
+            // if there is no user found with that facebook id, create them
+            var newUser = new User();
+            // set all of the facebook information in our user model
+            newUser.facebook.id = profile.id; // set the users facebook id
+            newUser.facebook.token = token; // we will save the token that facebook provides to the user
+            newUser.loginType = 'facebook';
+            // newUser.IsActive = true;
+            name = profile.displayName.split(' ', 2);
+            fname = name[0];
+            lname = name[1];
+            newUser.FirstName = fname;
+            newUser.LastName = lname;
+            if (profile.username == null) {
+              newUser.username = fname + lname;
+            }
+            newUser.username = profile.username; // look at the passport user profile to see how names are returned
+            if (profile.hasOwnProperty('email')) {
+              newUser.Email = profile.email;
+            } else {
+              newUser.Email = '';
+            }
+            // newUser.Email = profile.emails[0].value; // pull the first email
+            // newUser.username = profile.emails[0].value.substr(0, profile.emails[0].value.indexOf('@'));
+            // save our user to the database
+            newUser.save(function(err) {
+              if (err)
+                throw err;
+              // if successful, return the new user
+              return done(null, newUser, req.flash('message', 'Signup'));
+            });
+          }
+        });
+      });
+    }));
 
   passport.use(new GoogleStrategy({
       clientID: configAuth.googleAuth.clientID,
