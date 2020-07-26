@@ -110,10 +110,11 @@ module.exports = function(passport) {
             lname = name[1];
             newUser.FirstName = fname;
             newUser.LastName = lname;
-            if (profile.username == null) {
+            if (typeof(profile.username) == 'undefined') {
               newUser.username = fname + lname;
+            } else {
+              newUser.username = profile.username; // look at the passport user profile to see how names are returned
             }
-            newUser.username = profile.username; // look at the passport user profile to see how names are returned
             if (profile.hasOwnProperty('email')) {
               newUser.Email = profile.email;
             } else {

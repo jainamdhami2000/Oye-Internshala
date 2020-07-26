@@ -9,6 +9,12 @@ module.exports = function(app, passport) {
     });
   });
 
+  app.get('/signup2',function (req,res){
+    res.render('signup2', {
+      message: req.flash('loginMessage')
+    });
+  })
+
   app.get('/login', function(req, res) {
 
     // render the page and pass in any flash data if it exists
