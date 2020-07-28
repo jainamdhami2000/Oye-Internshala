@@ -15,9 +15,6 @@ const session = require('express-session');
 const http = require('http');
 const configDB = require('./config/database');
 
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-
 mongoose.connect(configDB.url, {
   useNewUrlParser: true,
   useUnifiedTopology: true

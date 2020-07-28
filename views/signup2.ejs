@@ -39,7 +39,8 @@
                                         <h4> or be classical </h4>
                                     </div> -->
                   <h4 class="card-title"> Please fill in the following fields </h4>
-                  <form class="form" method="" action="">
+                  <form class="form" method="POST" action="/signup2">
+                    <%if (user.Email == null){%>
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -47,7 +48,18 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Email...">
+                        <input name='email' type="text" class="form-control" placeholder="Email...">
+                      </div>
+                    </div>
+                    <%} else {}%>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">mail</i>
+                          </span>
+                        </div>
+                        <input name='college_name' type="text" class="form-control" placeholder="College Name...">
                       </div>
                     </div>
 
@@ -58,18 +70,7 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
-                        <input type="text" class="form-control" placeholder="College Name...">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">mail</i>
-                          </span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="City...">
+                        <input name='city' type="text" class="form-control" placeholder="City...">
                       </div>
                     </div>
                     <!-- <div class="form-check">
@@ -82,7 +83,7 @@
                       </label>
                     </div> -->
                     <div class="text-center">
-                      <a href="#pablo" class="btn btn-info btn-round">Get Started</a>
+                      <button type="submit" class="btn btn-info btn-round">Get Started</a>
                     </div>
                   </form>
                 </div>
@@ -128,4 +129,4 @@
             </div>
         </footer> -->
   </div>
-<%-include('partials/footer')%>
+  <%-include('partials/footer')%>

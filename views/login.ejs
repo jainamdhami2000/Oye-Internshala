@@ -28,6 +28,9 @@
 
     <div class="col-md-5" style="padding-top: 1%">
       <h3 style="font-family:montserrat"> Get Started with <img width="20%" height="20%" style="padding-bottom:3%" src="main/internshala_logo.svg"></h3>
+      <% if (message.length > 0) { %>
+      <div class="alert alert-danger"><%= message %></div>
+      <% } %>
       <form method="POST" class="form-horizontal" role="form" style="padding-top:5%">
         <div class="form-group col-lg-8">
           <label for="id_username">Username:</label>

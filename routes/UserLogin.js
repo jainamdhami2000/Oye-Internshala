@@ -9,11 +9,24 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/signup2',function (req,res){
+  app.get('/signup2', function(req, res) {
     res.render('signup2', {
-      message: req.flash('loginMessage')
+      user:req.user,
+      message: req.flash('signupMessage')
     });
-  })
+  });
+
+  app.post('/signup2', function(req, res) {
+    User.findOne({_id:req.user._id},function (err,newUser){
+      newUser.CollegeName = req.body.college_name;
+      if (req.user.Email == null){
+        newUser.Email = req.body.email;
+      }
+      newUser.City = req.body.city;
+      newUser.save();
+    });
+    res.redirect('/profile');
+  });
 
   app.get('/login', function(req, res) {
 
@@ -69,14 +82,22 @@ module.exports = function(app, passport) {
   });
 
   app.get('/auth/facebook', passport.authenticate('facebook', {
-      scope: ['email','public_profile']
+    scope: ['email', 'public_profile']
   }));
 
   app.get('/auth/facebook/callback',
-      passport.authenticate('facebook', {
-          successRedirect: '/profile',
-          failureRedirect: '/login'
-      }));
+    passport.authenticate('facebook', {
+      // successRedirect: '/profile',
+      failureRedirect: '/login'
+    }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      if (req.flash('message') == 'Login') {
+        res.redirect('/profile');
+      } else {
+        res.redirect('/signup2');
+      }
+    });
 
   app.get('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
@@ -85,9 +106,17 @@ module.exports = function(app, passport) {
   // the callback after google has authenticated the user
   app.get('/auth/google/oye-internshala',
     passport.authenticate('google', {
-      successRedirect: '/profile',
+      // successRedirect: '/profile',
       failureRedirect: '/login'
-    }));
+    }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      if (req.flash('message') == 'Login') {
+        res.redirect('/profile');
+      } else {
+        res.redirect('/signup2');
+      }
+    });
 
   app.get('/auth/github', passport.authenticate('github', {
     scope: ['profile', 'user:email']
@@ -96,16 +125,31 @@ module.exports = function(app, passport) {
   // the callback after github has authenticated the user
   app.get('/auth/github/callback',
     passport.authenticate('github', {
-      successRedirect: '/profile',
+      // successRedirect: '/profile',
       failureRedirect: '/login'
-    }));
+    }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      if (req.flash('message') == 'Login') {
+        res.redirect('/profile');
+      } else {
+        res.redirect('/signup2');
+      }
+    });
 
   app.get('/auth/linkedin', passport.authenticate('linkedin'));
 
   app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-    successRedirect: '/profile',
+    // successRedirect: '/profile',
     failureRedirect: '/login'
-  }));
+  }), function(req, res) {
+    // Successful authentication, redirect home.
+    if (req.flash('message') == 'Login') {
+      res.redirect('/profile');
+    } else {
+      res.redirect('/signup2');
+    }
+  });
 };
 
 function isLoggedIn(req, res, next) {
