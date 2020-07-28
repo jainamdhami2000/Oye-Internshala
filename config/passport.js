@@ -1,6 +1,8 @@
 //jshint esversion:6
 
-const localStrategy = require('passport-local').Strategy;
+const localStrategy_stud = require('passport-local').Strategy;
+const localStrategy_ngo = require('passport-local').Strategy;
+const localStrategy_emp = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
@@ -19,7 +21,7 @@ module.exports = function(passport) {
     });
   });
 
-  passport.use('local-signup', new localStrategy({
+  passport.use('local-signup-ngo', new localStrategy_ngo({
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
@@ -29,7 +31,8 @@ module.exports = function(passport) {
       process.nextTick(function() {
         const username = req.body.username;
         User.findOne({
-          'Email': email
+          'Email': email,
+          isNgo:true
         }, function(err, user) {
           if (err)
             return done(err);
@@ -41,6 +44,7 @@ module.exports = function(passport) {
             newUser.FirstName = req.body.fname;
             newUser.LastName = req.body.lname;
             newUser.username = username;
+            newUser.isNgo = true;
             newUser.CollegeName = req.body.college_name;
             newUser.City = req.body.city;
             newUser.local.password = newUser.generateHash(password);
@@ -55,14 +59,135 @@ module.exports = function(passport) {
       });
     }));
 
-  passport.use('local-login', new localStrategy({
+  passport.use('local-signup-stud', new localStrategy_stud({
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    function(req, email, password, done) {
+
+      process.nextTick(function() {
+        const username = req.body.username;
+        User.findOne({
+          'Email': email,
+          isStudent:true
+        }, function(err, user) {
+          if (err)
+            return done(err);
+          if (user) {
+            return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+          } else {
+            var newUser = new User();
+            newUser.Email = email;
+            newUser.FirstName = req.body.fname;
+            newUser.LastName = req.body.lname;
+            newUser.username = username;
+            newUser.CollegeName = req.body.college_name;
+            newUser.City = req.body.city;
+            newUser.isStudent = true;
+            newUser.local.password = newUser.generateHash(password);
+            newUser.loginType = 'local';
+            newUser.save(function(err) {
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
+          }
+        });
+      });
+    }));
+
+  passport.use('local-signup-emp', new localStrategy_emp({
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    function(req, email, password, done) {
+
+      process.nextTick(function() {
+        const username = req.body.username;
+        User.findOne({
+          'Email': email,
+          isEmployer:true
+        }, function(err, user) {
+          if (err)
+            return done(err);
+          if (user) {
+            return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+          } else {
+            var newUser = new User();
+            newUser.Email = email;
+            newUser.FirstName = req.body.fname;
+            newUser.LastName = req.body.lname;
+            newUser.username = username;
+            newUser.isEmployer = true;
+            newUser.CollegeName = req.body.college_name;
+            newUser.City = req.body.city;
+            newUser.local.password = newUser.generateHash(password);
+            newUser.loginType = 'local';
+            newUser.save(function(err) {
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
+          }
+        });
+      });
+    }));
+
+  passport.use('local-login-ngo', new localStrategy_ngo({
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
     },
     function(req, username, password, done) {
       User.findOne({
-        'Email': username
+        'Email': username,
+        isNgo: true
+      }, function(err, user) {
+        if (err)
+          return done(err);
+
+        if (!user)
+          return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+
+        if (!user.validPassword(password))
+          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+        return done(null, user);
+      });
+    }));
+
+  passport.use('local-login-stud', new localStrategy_stud({
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    function(req, username, password, done) {
+      User.findOne({
+        'Email': username,
+        isStudent: true
+      }, function(err, user) {
+        if (err)
+          return done(err);
+
+        if (!user)
+          return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+
+        if (!user.validPassword(password))
+          return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+        return done(null, user);
+      });
+    }));
+
+  passport.use('local-login-emp', new localStrategy_emp({
+      usernameField: 'email',
+      passwordField: 'password',
+      passReqToCallback: true
+    },
+    function(req, username, password, done) {
+      User.findOne({
+        'Email': username,
+        isEmployer: true
       }, function(err, user) {
         if (err)
           return done(err);
@@ -110,6 +235,8 @@ module.exports = function(passport) {
             lname = name[1];
             newUser.FirstName = fname;
             newUser.LastName = lname;
+            newUser.isVerified = true;
+            newUser.isStudent = true;
             if (typeof(profile.username) == 'undefined') {
               newUser.username = fname + lname;
             } else {
@@ -118,7 +245,7 @@ module.exports = function(passport) {
             if (profile.hasOwnProperty('email')) {
               newUser.Email = profile.email;
             } else {
-              newUser.Email = '';
+              newUser.Email = null;
             }
             // newUser.Email = profile.emails[0].value; // pull the first email
             // newUser.username = profile.emails[0].value.substr(0, profile.emails[0].value.indexOf('@'));
@@ -161,6 +288,8 @@ module.exports = function(passport) {
             newUser.google.token = token;
             newUser.FirstName = profile.name.givenName;
             newUser.LastName = profile.name.familyName;
+            newUser.isVerified = true;
+            newUser.isStudent = true;
             newUser.Email = profile.emails[0].value; // pull the first email
             newUser.username = profile.emails[0].value.substr(0, profile.emails[0].value.indexOf('@'));
             newUser.loginType = 'google';
@@ -207,6 +336,8 @@ module.exports = function(passport) {
               newUser.FirstName = fname;
               newUser.LastName = lname;
             }
+            newUser.isVerified = true;
+            newUser.isStudent = true;
             if (profile._json.email == null) {
               newUser.Email = null;
             } else {
@@ -254,6 +385,8 @@ module.exports = function(passport) {
           newUser.linkedin.token = accessToken;
           newUser.FirstName = profile.name.givenName;
           newUser.LastName = profile.name.familyName;
+          newUser.isVerified = true;
+          newUser.isStudent = true;
           if (profile.emails[0].value == null) {
             newUser.Email = null;
             newUser.username = profile.name.givenName + profile.name.familyName;

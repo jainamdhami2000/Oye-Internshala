@@ -22,18 +22,37 @@ const userSchema = new mongoose.Schema({
     id: String,
     token: String,
   },
-  username:String,
+  username: String,
   FirstName: String,
   LastName: String,
-  image:Object,
-  CollegeName:String,
-  City:String,
-  YearOfStudy:Date,
-  BasicSkills:String,
+  image: Object,
+  CollegeName: String,
+  City: String,
+  YearOfStudy: Date,
+  BasicSkills: String,
   Email: String,
   loginType: {
     type: String
   },
+  CompanyName: String,
+  MainOfficeLocation: String,
+  isStudent: {
+    default: false,
+    type: Boolean
+  },
+  isEmployer: {
+    default: false,
+    type: Boolean
+  },
+  isNgo: {
+    default: false,
+    type: Boolean
+  },
+  isVerified: {
+    default: false,
+    type: Boolean
+  },
+  phoneNumber: Number
 });
 
 userSchema.methods.generateHash = function(password) {

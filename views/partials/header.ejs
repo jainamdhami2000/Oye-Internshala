@@ -27,8 +27,8 @@
     height: 100px;
   }
 
-  .btn{
-    margin:0px 10px
+  .btn {
+    margin: 0px 10px
   }
 </style>
 
@@ -54,12 +54,36 @@
               <i class="material-icons">apps</i> Template
             </a>
           </li> -->
-          <li class="nav-item">
-            <a href='/login' class="btn btn-outline-info">Login</a>
+          <!-- <li class="nav-item">
+            <a href='/login-stud' class="btn btn-outline-info">Login</a>
+          </li> -->
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle btn btn-outline-info" data-toggle="dropdown" aria-expanded="true">Login<div class="ripple-container"></div></a>
+            <div class="dropdown-menu">
+              <a href="/login-stud" class="dropdown-item">Login as Student</a>
+              <a href="/login-emp" class="dropdown-item">Login as Employer</a>
+              <a href="/login-ngo" class="dropdown-item">Login as NGO</a>
+              <!-- <div class="dropdown-divider"></div>
+              <a href="#pablo" class="dropdown-item">Separated link</a>
+              <div class="dropdown-divider"></div>
+              <a href="#pablo" class="dropdown-item">One more separated link</a> -->
+            </div>
           </li>
-          <li class="nav-item">
-            <a href="/signup" class="btn btn-info">Register</a>
+          <!-- <li class="nav-item"> -->
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle btn btn-info" data-toggle="dropdown" aria-expanded="true">Register<div class="ripple-container"></div></a>
+            <div class="dropdown-menu">
+              <a href="/signup-stud" class="dropdown-item">Register as Student</a>
+              <a href="/signup-emp" class="dropdown-item">Register as Employer</a>
+              <a href="/signup-ngo" class="dropdown-item">Register as NGO</a>
+              <!-- <div class="dropdown-divider"></div>
+              <a href="#pablo" class="dropdown-item">Separated link</a>
+              <div class="dropdown-divider"></div>
+              <a href="#pablo" class="dropdown-item">One more separated link</a> -->
+            </div>
           </li>
+          <!-- <a href="/signup-stud" class="btn btn-info">Register</a> -->
+          <!-- </li> -->
         </ul>
       </div>
     </div>
@@ -108,6 +132,6 @@
   <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <!-- <script src="assets/js/material-kit.js?v=2.2.0" type="text/javascript"></script> -->
-<!-- </body> -->
+  <!-- </body> -->
 
-<!-- </html> -->
+  <!-- </html> -->
