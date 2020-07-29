@@ -57,25 +57,11 @@
                 <div class="col-md-5 ml-auto">
                   <img src="main/std-profile/std-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
                 </div>
-                <div class="col-md-5 mr-auto">
-                  <div class="social text-center">
-                    <a href="/auth/github"><button class="btn btn-just-icon btn-round btn-github">
-                        <i class="fa fa-github"></i>
-                      </button></a>
-                    <a href="/auth/google"><button class="btn btn-just-icon btn-round btn-google">
-                        <i class="fa fa-google"></i>
-                      </button></a>
-                    <a href="/auth/facebook"><button class="btn btn-just-icon btn-round btn-facebook">
-                        <i class="fa fa-facebook"> </i>
-                      </button></a>
-                    <a href="/auth/linkedin"><button class="btn btn-just-icon btn-round btn-linkedin">
-                        <i class="fa fa-linkedin"> </i>
-                      </button></a>
-                    <h4> or be classical </h4>
-                  </div>
+              
                   <% if (message.length > 0) { %>
                   <div class="alert alert-danger"><%= message %></div>
                   <% } %>
+                <div class="col-md-5 ml-auto">
                   <form class="form" method="POST" action="/signup-emp">
                     <div class="form-group">
                       <div class="input-group">
@@ -106,6 +92,17 @@
                           </span>
                         </div>
                         <input name='username' type="text" class="form-control" placeholder="Username...">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">phone</i>
+                          </span>
+                        </div>
+                        <input name='phoneno' type="number" class="form-control" placeholder="Phone No...">
                       </div>
                     </div>
 
@@ -184,5 +181,6 @@
       </div>
     </div>
   </div>
+</div>
 </body>
 <%-include('partials/footer')%>
