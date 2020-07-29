@@ -8396,7 +8396,7 @@ label {
   padding: 3px 7px;
   font-size: 8px;
   line-height: 9px;
-  background-color: #9c27b0; }
+  background-color: #00B7FF; }
 
 .bd-docs .bd-content .bd-title .btn {
   padding: 7px 20px;
@@ -8703,7 +8703,7 @@ label {
       background-position: -100%; }
       .switch label input:checked + .bmd-switch-track::after {
         left: calc(100% - 1.25rem);
-        background-color: #9c27b0; }
+        background-color: #00B7FF; }
     .switch label input:disabled + .bmd-switch-track:active::after {
       -webkit-transform: translateY(-50%);
               transform: translateY(-50%); }
@@ -8740,7 +8740,7 @@ label {
       height: 15px;
       width: 15px;
       border-radius: 100%;
-      background-color: #9c27b0;
+      background-color: #00B7FF;
       -webkit-transform: scale3d(0,0,0);
       transform: scale3d(0,0,0); }
 
@@ -8753,9 +8753,9 @@ label {
   .form-check .form-check-input:checked ~ .circle {
     opacity: 1; }
   .form-check .form-check-input:checked ~ .check {
-    background-color: #9c27b0; }
+    background-color: #00B7FF; }
   .form-check .form-check-input:checked ~ .circle {
-    border-color: #9c27b0; }
+    border-color: #00B7FF; }
   .form-check .form-check-input:checked .check:before {
     -webkit-animation: checkboxOn .5s forwards;
             animation: checkboxOn .5s forwards; }
@@ -10914,8 +10914,8 @@ footer {
   .pagination > .page-item.active > span,
   .pagination > .page-item.active > span:focus,
   .pagination > .page-item.active > span:hover {
-    background-color: #9c27b0;
-    border-color: #9c27b0;
+    background-color: #00B7FF;
+    border-color: #00B7FF;
     color: #fff;
     box-shadow: 0 4px 5px 0 rgba(156, 39, 176, 0.14), 0 1px 10px 0 rgba(156, 39, 176, 0.12), 0 2px 4px -1px rgba(156, 39, 176, 0.2); }
 
@@ -11564,7 +11564,7 @@ h2.title {
   .dropdown-menu a:focus,
   .dropdown-menu a:active {
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
-    background-color: #9c27b0 !important;
+    background-color: #00B7FF !important;
     color: #ffffff !important; }
 
 .dropdown-toggle.bmd-btn-icon::after, .dropdown-toggle.bmd-btn-fab::after {
@@ -14056,14 +14056,14 @@ thead.thead-inverse th,
         content: '';
         display: inline-block;
         border: 0 0 7px 7px solid transparent;
-        border-bottom-color: #9c27b0;
+        border-bottom-color: #00B7FF;
         border-top-color: rgba(0, 0, 0, 0.2);
         position: absolute;
         bottom: 4px;
         right: 4px; }
     .bootstrap-datetimepicker-widget table td.active > div,
     .bootstrap-datetimepicker-widget table td.active:hover > div {
-      background-color: #9c27b0;
+      background-color: #00B7FF;
       color: #fff;
       box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4); }
     .bootstrap-datetimepicker-widget table td.active.today:before > div {
@@ -14085,7 +14085,7 @@ thead.thead-inverse th,
       .bootstrap-datetimepicker-widget table td span:hover {
         background: #eee; }
       .bootstrap-datetimepicker-widget table td span.active {
-        background-color: #9c27b0;
+        background-color: #00B7FF;
         color: #fff; }
       .bootstrap-datetimepicker-widget table td span.old {
         color: #999; }

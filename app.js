@@ -14,6 +14,7 @@ const morgan = require('morgan');
 const session = require('express-session');
 const http = require('http');
 const configDB = require('./config/database');
+const verifymail = require('./routes/verifymail');
 
 mongoose.connect(configDB.url, {
   useNewUrlParser: true,
@@ -50,6 +51,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 require('./routes/UserLogin')(app, passport);
+
+app.use('/verify', verifymail);
 
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);

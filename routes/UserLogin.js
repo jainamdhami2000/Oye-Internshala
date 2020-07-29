@@ -36,12 +36,16 @@ module.exports = function(app, passport) {
     }, function(err, newUser) {
       newUser.CollegeName = req.body.college_name;
       if (req.user.Email == null) {
+        newUser.isVerified = false;
         newUser.Email = req.body.email;
       }
       newUser.City = req.body.city;
       newUser.save();
+      if (newUser.isVerified == false)
+        res.redirect('/verify');
+      else
+        res.redirect('/profile');
     });
-    res.redirect('/profile');
   });
 
   app.post('/signup2-emp', function(req, res) {
@@ -50,12 +54,16 @@ module.exports = function(app, passport) {
     }, function(err, newUser) {
       newUser.CollegeName = req.body.college_name;
       if (req.user.Email == null) {
+        newUser.isVerified = false;
         newUser.Email = req.body.email;
       }
       newUser.City = req.body.city;
       newUser.save();
     });
-    res.redirect('/profile');
+    if (req.user.isVerified == false)
+      res.redirect('/verify');
+    else
+      res.redirect('/profile');
   });
 
   app.post('/signup2-ngo', function(req, res) {
@@ -64,12 +72,16 @@ module.exports = function(app, passport) {
     }, function(err, newUser) {
       newUser.CollegeName = req.body.college_name;
       if (req.user.Email == null) {
+        newUser.isVerified = false;
         newUser.Email = req.body.email;
       }
       newUser.City = req.body.city;
       newUser.save();
     });
-    res.redirect('/profile');
+    if (req.user.isVerified == false)
+      res.redirect('/verify');
+    else
+      res.redirect('/profile');
   });
 
   app.get('/login-stud', function(req, res) {
@@ -97,19 +109,19 @@ module.exports = function(app, passport) {
   });
 
   app.post('/login-stud', passport.authenticate('local-login-stud', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/login-stud', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
   app.post('/login-emp', passport.authenticate('local-login-emp', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/login-emp', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
   app.post('/login-ngo', passport.authenticate('local-login-ngo', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/login-ngo', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
@@ -140,36 +152,36 @@ module.exports = function(app, passport) {
 
 
   app.post('/signup-stud', passport.authenticate('local-signup-stud', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/signup-stud', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
   app.post('/signup-emp', passport.authenticate('local-signup-emp', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/signup-emp', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
   app.post('/signup-ngo', passport.authenticate('local-signup-ngo', {
-    successRedirect: '/profile', // redirect to the secure profile section
+    successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/signup-ngo', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
-  // app.get('/verify', function(req, res) {
-  //   User.findOne({
-  //     'local.email': req.user.local.email
-  //   }, function(err, user) {
-  //     if (user.local.isVerified) {
-  //       res.redirect('/');
-  //     } else {
-  //       res.render('verify.ejs', {
-  //         user: req.user // get the user out of session and pass to template
-  //       });
-  //     }
-  //   });
-  // });
+  app.get('/verify', function(req, res) {
+    User.findOne({
+      Email: req.user.Email
+    }, function(err, user) {
+      if (user.isVerified) {
+        res.redirect('/profile');
+      } else {
+        res.render('verify', {
+          user: req.user // get the user out of session and pass to template
+        });
+      }
+    });
+  });
 
   app.get('/profile', isLoggedIn, function(req, res) {
     res.render('profile.ejs', {
