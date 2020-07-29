@@ -12,13 +12,45 @@
   <!-- Material Kit CSS -->
   <link href="assets/css/material-kit.css" rel="stylesheet" />
 </head>
-
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="card card-signup">
+            <div class="row text-center">
+              <div class="col-sm-4 ">
+                <div style='margin-top:8%'>
+                  <img src="main/std-profile/Sign_up_icon.svg" width="30%" height="25%">
+                  <h4> SIGN UP </h4>
+                  <h5 style="font-size: 15px;color:darkgray">Get started by creating your account</h5>
+                </div>
+
+              </div>
+              <div class="col-sm-4 ">
+                <!-- <div class="signup-text-center"> -->
+                <!-- style="margin-left:25%" -->
+                <img src="main/std-profile/Apply.svg" width="35%" height="45%">
+                <div class="icon-text" style="padding-top: 12px">
+                  <h4> APPLY </h4>
+                  <h5 style="font-size: 15px;color:darkgray">Apply for internships, Jobs and Volunteering Services as per interest and location</h5>
+                </div>
+                <!-- </div> -->
+              </div>
+              <div class="col-sm-4 ">
+                <!-- <div class="signup-text-center"> -->
+                <!-- style="margin-left:50%" -->
+                <div style='margin-top:8%'>
+                  <img src="main/std-profile/Get-hired1.svg" width="30%" height="25%" style="padding-bottom: 5px">
+                  <div class="icon-text">
+                    <h4> HIRE SOMEONE </h4>
+                    <h5 style="font-size: 15px;color:darkgray "> Recruit new people! </h5>
+                  </div>
+                </div>
+                <!-- </div> -->
+              </div>
+
+            </div>
             <h2 class="card-title text-center">Register</h2>
             <div class="card-body">
               <div class="row">
@@ -26,21 +58,57 @@
                   <img src="main/std-profile/std-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
                 </div>
                 <div class="col-md-5 mr-auto">
-                  <!-- <div class="social text-center">
-                                        <button class="btn btn-just-icon btn-round btn-twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button class="btn btn-just-icon btn-round btn-dribbble">
-                                            <i class="fa fa-dribbble"></i>
-                                        </button>
-                                        <button class="btn btn-just-icon btn-round btn-facebook">
-                                            <i class="fa fa-facebook"> </i>
-                                        </button>
-                                        <h4> or be classical </h4>
-                                    </div> -->
-                  <h4 class="card-title"> Please fill in the following fields </h4>
-                  <form class="form" method="POST" action="/signup2-ngo">
-                    <%if (user.Email == null){%>
+                  <div class="social text-center">
+                    <a href="/auth/github"><button class="btn btn-just-icon btn-round btn-github">
+                        <i class="fa fa-github"></i>
+                      </button></a>
+                    <a href="/auth/google"><button class="btn btn-just-icon btn-round btn-google">
+                        <i class="fa fa-google"></i>
+                      </button></a>
+                    <a href="/auth/facebook"><button class="btn btn-just-icon btn-round btn-facebook">
+                        <i class="fa fa-facebook"> </i>
+                      </button></a>
+                    <a href="/auth/linkedin"><button class="btn btn-just-icon btn-round btn-linkedin">
+                        <i class="fa fa-linkedin"> </i>
+                      </button></a>
+                    <h4> or be classical </h4>
+                  </div>
+                  <% if (message.length > 0) { %>
+                  <div class="alert alert-danger"><%= message %></div>
+                  <% } %>
+                  <form class="form" method="POST" action="/signup-ngo">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input name="fname" type="text" class="form-control" placeholder="First Name...">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input name='lname' type="text" class="form-control" placeholder="Last Name...">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">face</i>
+                          </span>
+                        </div>
+                        <input name='username' type="text" class="form-control" placeholder="Username...">
+                      </div>
+                    </div>
+
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -51,17 +119,6 @@
                         <input name='email' type="text" class="form-control" placeholder="Email...">
                       </div>
                     </div>
-                    <%} else {}%>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">mail</i>
-                          </span>
-                        </div>
-                        <input name='college_name' type="text" class="form-control" placeholder="College Name...">
-                      </div>
-                    </div>
 
                     <div class="form-group">
                       <div class="input-group">
@@ -70,7 +127,40 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
+                        <input name='college_name' type="text" class="form-control" placeholder="NGO Name...">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <span class="material-icons">
+                              location_city
+                            </span>
+                          </span>
+                        </div>
                         <input name='city' type="text" class="form-control" placeholder="City...">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input name='password' type="password" placeholder="Password..." class="form-control" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="material-icons">lock_outline</i>
+                          </span>
+                        </div>
+                        <input type="password" placeholder="Password Confirmation..." class="form-control" />
                       </div>
                     </div>
                     <!-- <div class="form-check">
@@ -83,7 +173,7 @@
                       </label>
                     </div> -->
                     <div class="text-center">
-                      <button type="submit" class="btn btn-info btn-round">Get Started</a>
+                      <button type='submit' class="btn btn-info btn-round">Get Started</button>
                     </div>
                   </form>
                 </div>
@@ -93,40 +183,6 @@
         </div>
       </div>
     </div>
-    <!-- <footer class="footer">
-            <div class="container">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://creative-tim.com/presentation">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright float-right">
-                    &copy;
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>, made with <i class="material-icons">favorite</i> by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-                </div>
-            </div>
-        </footer> -->
   </div>
-  <%-include('partials/footer')%>
+</body>
+<%-include('partials/footer')%>
