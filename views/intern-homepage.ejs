@@ -1,78 +1,96 @@
 <%-include('partials/header')%>
 
 <head>
-    <title>Signup</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- Material Kit CSS -->
-    <link href="assets/css/material-kit.css" rel="stylesheet" />
+  <title>Signup</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="assets/css/material-kit.css" rel="stylesheet" />
 
-    <style media="screen">
-        .Card1 {
-            border-radius: 6px;
-            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-            background-color: white;
-            color: black;
-            margin-bottom: 100px;
-            padding: 20px 10px;
-        }
-    </style>
+  <style media="screen">
+    .Card1 {
+      border-radius: 6px;
+      box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+      background-color: white;
+      color: black;
+      margin-bottom: 100px;
+      padding: 20px 10px;
+    }
+  </style>
 
 </head>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="Card1">
+              <img src="/main/home-page.svg" alt="">
+            <h2 style="text-align:center"> Select the One Which Suits you Best </h2>
+
             <div class="row">
-                <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
-                    <div class="Card1">
-
-                        <img src="/main/home-page.svg" alt="">
-
-                        <h2 style="text-align:center"> Select the One Which Suits you Best </h2>
-
-                        <div class="row">
-                            <div class="column ml-auto" style="margin-right:80px">
-                                <h4 id="in-head"> INTERNSHIP IN TOP CITIES </h4>
-                                <div class="card" style="padding: 25px 10px;">
-                                    <center>
-                                    <a href="/jobs_in_Delhi"><img src="/main/home-img/Delhi-Internships.svg" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Delhi/NCR </h5>
-                                    <a href="/jobs_in_Mumbai"><img src="/main/home-img/Mumbai-Internships.svg" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Mumbai </h5>
-                                    <a href="/jobs_in_Chennai"><img src="/main/home-img/Chennai-Internships.svg" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Chennai </h5>
-                                    <a href="/jobs_in_Bangalore"><img src="/main/home-img/Bangalore-Internships.svg" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Bangalore </h5>
-                                    </center>
-                                </div>
-                            </div>
-
-                            <div class="column mr-auto" style="margin-left:80px">
-                                <h4> INTERNSHIP BY INTEREST </h4>
-                                <div class="card" style="padding: 25px 10px;">
-                                    <center>
-                                    <a href="/web_developer_internship"><img src="/main/home-img/it-internships.png" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Web Development </h5>
-                                    <a href="/video_editor_internship"><img src="/main/home-img/eng-internships.png" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Video Editing </h5>
-                                    <a href="/photographer_internship"><img src="/main/home-img/design-internships.png" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Photography </h5>
-                                    <a href="/android_developer_internship"><img src="/main/home-img/teaching.png" width="50px" alt="" class="clip-circle"></a>
-                                    <h5> Android Development </h5>
-                                    </center>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              <div class="column ml-auto" style="margin-right:80px">
+                <center><h4 id="in-head"> INTERNSHIP IN TOP CITIES </h4></center>
+                <div class="card" style="padding: 25px 140px;">
+                  <center>
+                    <a href="/jobs_in_Delhi"><img src="/main/home-img/work_from_home.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Work from home </h5>
+                    <a href="/jobs_in_Delhi"><img src="/main/home-img/Delhi-Internships.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Delhi/NCR </h5>
+                    <a href="/jobs_in_Bangalore"><img src="/main/home-img/Bangalore-Internships.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Bangalore </h5>
+                    <a href="/jobs_in_Mumbai"><img src="/main/home-img/Mumbai-Internships.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Mumbai </h5>
+                    <a href="/jobs_in_Bangalore"><img src="/main/home-img/hyderabad.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Hyderabad </h5>
+                    <a href="/jobs_in_Chennai"><img src="/main/home-img/Chennai-Internships.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Chennai </h5>
+                    <a href="/jobs_in_Bangalore"><img src="/main/home-img/kolkata.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Kolkata </h5>
+                    <a href="/jobs_in_Bangalore"><img src="/main/home-img/international.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> International </h5>
+                  </center>
                 </div>
+              </div>
+
+              <div class="column mr-auto" style="margin-left:80px">
+                <center><h4> INTERNSHIP BY INTEREST </h4></center>
+                <div class="card" style="padding: 25px 150px;">
+                  <center>
+                    <a href="/web_developer_internship"><img src="/main/home-img/part_time.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Part-time </h5>
+                    <%# <a href="/web_developer_internship"><img src="/main/home-img/it-internships.png" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Web Development </h5> %>
+                    <a href="/video_editor_internship"><img src="/main/home-img/eng-internships.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Engineering </h5>
+                    <a href="/photographer_internship"><img src="/main/home-img/ngo.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> NGO </h5>
+                    <a href="/photographer_internship"><img src="/main/home-img/mba.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> MBA </h5>
+                    <a href="/photographer_internship"><img src="/main/home-img/design-internships.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Design </h5>
+                    <a href="/web_developer_internship"><img src="/main/home-img/science.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Science </h5>
+                    <a href="/photographer_internship"><img src="/main/home-img/media.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Media </h5>
+                    <%# <a href="/android_developer_internship"><img src="/main/home-img/teaching.png" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Android Development </h5> %>
+                    <a href="/android_developer_internship"><img src="/main/home-img/humanities.svg" width="100px" alt="" class="clip-circle"></a>
+                    <h5> Humanities </h5>
+                  </center>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </body>
 <%-include('partials/footer')%>

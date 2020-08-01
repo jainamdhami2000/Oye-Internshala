@@ -12,6 +12,7 @@
   <!-- Material Kit CSS -->
   <link href="assets/css/material-kit.css" rel="stylesheet" />
 </head>
+
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -58,9 +59,9 @@
                   <img src="/main/emp-profile/emp-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
                 </div>
 
-                  <% if (message.length > 0) { %>
-                  <div class="alert alert-danger"><%= message %></div>
-                  <% } %>
+                <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+                <% } %>
                 <div class="col-md-5 mr-auto">
                   <form class="form" method="POST" action="/signup-emp">
                     <div class="form-group">
@@ -181,6 +182,6 @@
       </div>
     </div>
   </div>
-</div>
+  </div>
 </body>
 <%-include('partials/footer')%>

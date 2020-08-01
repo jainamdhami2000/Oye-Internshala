@@ -40,6 +40,10 @@ app.get('/intern-home', function(req, res){
     res.render('intern-homepage');
     }
 );
+app.get('/courses', function(req, res){
+    res.render('courses');
+    }
+);
 
 app.use(logger('dev'));
 app.use(express.json());
