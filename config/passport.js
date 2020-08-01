@@ -124,7 +124,7 @@ module.exports = function(passport) {
             newUser.isEmployer = true;
             newUser.CompanyName = req.body.company_name;
             newUser.phoneNumber = req.body.phoneno;
-            newUser.City = req.body.city;
+            newUser.MainOfficeLocation = req.body.city;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
             newUser.save(function(err) {
