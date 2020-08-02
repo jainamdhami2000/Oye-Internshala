@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 const internSchema = new mongoose.Schema({
   intern_name: String,
   intern_college: String,
-  image: Object,
+  resume: Object,
   intern_skills: String,
   intern_city: String,
   intern_study_year: Date,

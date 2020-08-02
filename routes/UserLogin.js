@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require("dotenv").config();
 const User = require('../model/user');
 
 module.exports = function(app, passport) {
@@ -106,6 +106,21 @@ module.exports = function(app, passport) {
     res.render('login-ngo', {
       message: req.flash('loginMessage')
     });
+  });
+
+  app.get('/admin', function(req, res) {
+
+    // render the page and pass in any flash data if it exists
+    res.render('login-admin', {
+      message: req.flash('loginMessage')
+    });
+  });
+
+  app.post('/admin', function(req, res) {
+    if (req.body.username == process.env.admin_username && req.body.password == process.env.admin_password)
+      res.redirect('/admin-home');
+    else
+      res.redirect('/admin');
   });
 
   app.post('/login-stud', passport.authenticate('local-login-stud', {
