@@ -1,0 +1,252 @@
+<style>
+    .row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+  width: 200px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+.container1{
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  
+  width: 50%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 200%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+.float-container1{
+    height:200px;
+    padding: 10px;
+}
+.float-child {
+    width: 20%;
+    float: left;
+    padding: 20px;
+    
+}  
+.float-child2{
+    width: 70%;
+    float: left;
+    padding: 10px;
+    
+}  
+.float-child3{
+    width: 25%;
+    float: left;
+    padding: 20px;
+    
+}  
+.div{
+    color:blue;
+}
+</style>
+<div class="float-container">
+
+    <div class="float-child">
+    <div class="container">
+      <form action="/action_page.php">
+
+        <div class="row">
+          <div class="col-50">
+            <h3>FILTERS</h3>
+            <label for="category"><i class="fa fa-user"></i>Category</label>
+            <input type="text" id="category" name="category" placeholder="Eg:-Part time">
+            <label for="location"><i class="fa fa-user"></i>Location</label>
+            <input type="text" id="category" name="location" placeholder="Eg:-Delhi">
+
+    
+          </div>
+
+          <div class="col-50">
+            
+            <label for="work"><i class="fa fa-user"></i>Work from Home</label>
+            <input type="checkbox" >
+
+            <label for="part-time"><i class="fa fa-user"></i>Part-time</label>
+            <input type="checkbox"  >
+            
+            <label for="date"><i class="fa fa-user"></i>Starting Date(or after)</label>
+            <input type="date" id="category" name="date" placeholder="Choose date" >
+            
+            <label for="months"><i class="fa fa-user"></i>Duration</label>
+            <input type="text" id="category" name="months" placeholder="State duration(in months)">
+            
+            <label for="work"><i class="fa fa-user"></i>Internship for women</label>
+            <input type="checkbox" >
+
+            <label for="work"><i class="fa fa-user"></i>Internship with job</label>
+            <input type="checkbox" >
+          </div>
+
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  
+    <div class="float-child2"> 
+        <h3>INTERNSHIPS</h3>
+        <div class="container1">
+            <form action="/action_page.php">
+                   <h4>Title</h4>
+                   <h5>Company Name</h5>
+                <div class="float-container1">
+                    <h5>Work from Home</h5>
+
+                    <div class="float-child3">
+                      <h4>Start Date</h5>
+                      <div>Immediately</div>
+                    </div>
+                    
+                    <div class="float-child3">
+                       <h4>Start Date</h5>
+                      <div>Months</div>
+                    </div>
+
+                    <div class="float-child3">
+                        <h4>Stipend</h5>
+                        <div>Rs7999</div>
+                    </div>
+                      
+                    <div class="float-child3">
+                        <h4>Apply By</h5>
+                        <div>Date</div>
+                    </div>
+
+                    <div class="div">View details ></div>
+                    
+                </div>
+
+
+        </form>
+    </div>
+  </div>
+  
+
+  
+</div>
