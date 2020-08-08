@@ -108,21 +108,6 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/admin', function(req, res) {
-
-    // render the page and pass in any flash data if it exists
-    res.render('login-admin', {
-      message: req.flash('loginMessage')
-    });
-  });
-
-  app.post('/admin', function(req, res) {
-    if (req.body.username == process.env.admin_username && req.body.password == process.env.admin_password)
-      res.redirect('/admin-home');
-    else
-      res.redirect('/admin');
-  });
-
   app.post('/login-stud', passport.authenticate('local-login-stud', {
     successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/login-stud', // redirect back to the signup page if there is an error

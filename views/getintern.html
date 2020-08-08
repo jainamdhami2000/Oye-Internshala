@@ -1,252 +1,131 @@
 <style>
-    .row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  margin: 0 -16px;
-  width: 200px;
-}
-
-.col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
-}
-
-.col-50 {
-  -ms-flex: 50%; /* IE10 */
-  flex: 50%;
-}
-
-.col-75 {
-  -ms-flex: 75%; /* IE10 */
-  flex: 75%;
-}
-
-.col-25,
-.col-50,
-.col-75 {
-  padding: 0 16px;
-}
-
-.container {
-  background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-}
-
-.container1{
-  background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-}
-
-input[type=text] {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-label {
-  margin-bottom: 10px;
-  display: block;
-}
-
-.icon-container {
-  margin-bottom: 20px;
-  padding: 7px 0;
-  font-size: 24px;
-}
-
-.btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  width: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-}
-
-.btn:hover {
-  background-color: #45a049;
-}
-
-span.price {
-  float: right;
-  color: grey;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
-@media (max-width: 800px) {
-  .row {
-    flex-direction: column-reverse;
+  .MainCard {
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    color: black;
+    margin-bottom: 100px;
+    padding: 20px 20px;
   }
-  .col-25 {
-    margin-bottom: 20px;
-  }
-}
-* {
-  box-sizing: border-box;
-}
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Float four columns side by side */
-.column {
-  
-  width: 50%;
-  padding: 0 10px;
-}
-
-/* Remove extra left and right margins, due to padding in columns */
-.row {margin: 0 -5px;}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the counter cards */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-  
-}
-
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 200%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-.float-container {
-    border: 3px solid #fff;
-    padding: 20px;
-}
-.float-container1{
-    height:200px;
-    padding: 10px;
-}
-.float-child {
+  .float-child {
     width: 20%;
     float: left;
     padding: 20px;
-    
-}  
-.float-child2{
+
+  }
+
+  .float-child2 {
     width: 70%;
     float: left;
     padding: 10px;
-    
-}  
-.float-child3{
+
+  }
+
+  .float-child3 {
     width: 25%;
     float: left;
     padding: 20px;
-    
-}  
-.div{
-    color:blue;
-}
+
+  }
+
+  label {
+    margin-bottom: 15px;
+  }
+
+  input {
+    margin-bottom: 10px
+  }
 </style>
-<div class="float-container">
-
-    <div class="float-child">
+<%-include('partials/header.ejs')%>
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
-      <form action="/action_page.php">
-
-        <div class="row">
-          <div class="col-50">
-            <h3>FILTERS</h3>
-            <label for="category"><i class="fa fa-user"></i>Category</label>
-            <input type="text" id="category" name="category" placeholder="Eg:-Part time">
-            <label for="location"><i class="fa fa-user"></i>Location</label>
-            <input type="text" id="category" name="location" placeholder="Eg:-Delhi">
-
-    
-          </div>
-
-          <div class="col-50">
-            
-            <label for="work"><i class="fa fa-user"></i>Work from Home</label>
-            <input type="checkbox" >
-
-            <label for="part-time"><i class="fa fa-user"></i>Part-time</label>
-            <input type="checkbox"  >
-            
-            <label for="date"><i class="fa fa-user"></i>Starting Date(or after)</label>
-            <input type="date" id="category" name="date" placeholder="Choose date" >
-            
-            <label for="months"><i class="fa fa-user"></i>Duration</label>
-            <input type="text" id="category" name="months" placeholder="State duration(in months)">
-            
-            <label for="work"><i class="fa fa-user"></i>Internship for women</label>
-            <input type="checkbox" >
-
-            <label for="work"><i class="fa fa-user"></i>Internship with job</label>
-            <input type="checkbox" >
-          </div>
-
-        </div>
-        
-      </form>
-    </div>
-  </div>
-
-  
-    <div class="float-child2"> 
-        <h3>INTERNSHIPS</h3>
-        <div class="container1">
-            <form action="/action_page.php">
-                   <h4>Title</h4>
-                   <h5>Company Name</h5>
-                <div class="float-container1">
-                    <h5>Work from Home</h5>
-
-                    <div class="float-child3">
-                      <h4>Start Date</h5>
-                      <div>Immediately</div>
-                    </div>
-                    
-                    <div class="float-child3">
-                       <h4>Start Date</h5>
-                      <div>Months</div>
-                    </div>
-
-                    <div class="float-child3">
-                        <h4>Stipend</h5>
-                        <div>Rs7999</div>
-                    </div>
-                      
-                    <div class="float-child3">
-                        <h4>Apply By</h5>
-                        <div>Date</div>
-                    </div>
-
-                    <div class="div">View details ></div>
-                    
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="MainCard">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <form action="/action_page.php">
+                      <div class="row">
+                        <div>
+                          <h5 class="card-title text-center">FILTERS</h5>
+                          <label for="category">Category</label>
+                          <input type="text" id="category" name="category" placeholder="Eg:-Engineering...">
+                          <label for="location">Location</label>
+                          <input type="text" id="category" name="location" placeholder="Eg:-Delhi...">
+                        </div>
+                        <div>
+                          <div>
+                            <label for="work">Work from Home</label>
+                            <input type="checkbox">
+                          </div>
+                          <div>
+                            <label for="part-time">Part-time</label>
+                            <input type="checkbox">
+                          </div>
+                          <div>
+                            <label for="date">Starting Date(or after)</label>
+                            <input type="date" id="category" name="date" placeholder="Choose date">
+                          </div>
+                          <div>
+                            <label for="months">Duration</label>
+                            <input type="text" id="category" name="months" placeholder="State duration(in months)">
+                          </div>
+                          <div>
+                            <label for="work">Internship with job</label>
+                            <input type="checkbox">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
+              </div>
+              <div class="col-md-9">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">INTERNSHIPS</h5>
+                    <div class="container1">
+                      <form action="/action_page.php">
+                        <h4>Title</h4>
+                        <h5>Company Name</h5>
+                        <div class="float-container1">
+                          <h5>Work from Home</h5>
 
+                          <div class="float-child3">
+                            <h4>Start Date</h5>
+                              <div>Immediately</div>
+                          </div>
 
-        </form>
+                          <div class="float-child3">
+                            <h4>Start Date</h5>
+                              <div>Months</div>
+                          </div>
+
+                          <div class="float-child3">
+                            <h4>Stipend</h5>
+                              <div>Rs7999</div>
+                          </div>
+
+                          <div class="float-child3">
+                            <h4>Apply By</h5>
+                              <div>Date</div>
+                          </div>
+
+                          <div class="div"><a href='#'>View details ></a></div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  
-
-  
-</div>
+</body>
+<%-include('partials/footer')%>
