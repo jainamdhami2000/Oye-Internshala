@@ -1,43 +1,5 @@
-<style>
-  .MainCard {
-    border-radius: 6px;
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-    background-color: white;
-    color: black;
-    margin-bottom: 100px;
-    padding: 20px 20px;
-  }
-
-  .float-child {
-    width: 20%;
-    float: left;
-    padding: 20px;
-
-  }
-
-  .float-child2 {
-    width: 70%;
-    float: left;
-    padding: 10px;
-
-  }
-
-  .float-child3 {
-    width: 25%;
-    float: left;
-    padding: 20px;
-
-  }
-
-  label {
-    margin-bottom: 15px;
-  }
-
-  input {
-    margin-bottom: 10px
-  }
-</style>
-<%-include('partials/header.ejs')%>
+<%-include('partials/header')%>
+<link rel="stylesheet" href="/css/getintern.css">
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -127,5 +89,6 @@
         </div>
       </div>
     </div>
+  </div>
 </body>
 <%-include('partials/footer')%>

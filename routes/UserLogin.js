@@ -16,20 +16,6 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/signup2-emp', function(req, res) {
-    res.render('signup2-emp', {
-      user: req.user,
-      message: req.flash('signupMessage')
-    });
-  });
-
-  app.get('/signup2-ngo', function(req, res) {
-    res.render('signup2-ngo', {
-      user: req.user,
-      message: req.flash('signupMessage')
-    });
-  });
-
   app.post('/signup2-stud', function(req, res) {
     User.findOne({
       _id: req.user._id
@@ -46,42 +32,6 @@ module.exports = function(app, passport) {
       else
         res.redirect('/profile');
     });
-  });
-
-  app.post('/signup2-emp', function(req, res) {
-    User.findOne({
-      _id: req.user._id
-    }, function(err, newUser) {
-      newUser.CollegeName = req.body.college_name;
-      if (req.user.Email == null) {
-        newUser.isVerified = false;
-        newUser.Email = req.body.email;
-      }
-      newUser.City = req.body.city;
-      newUser.save();
-    });
-    if (req.user.isVerified == false)
-      res.redirect('/verify');
-    else
-      res.redirect('/profile');
-  });
-
-  app.post('/signup2-ngo', function(req, res) {
-    User.findOne({
-      _id: req.user._id
-    }, function(err, newUser) {
-      newUser.CollegeName = req.body.college_name;
-      if (req.user.Email == null) {
-        newUser.isVerified = false;
-        newUser.Email = req.body.email;
-      }
-      newUser.City = req.body.city;
-      newUser.save();
-    });
-    if (req.user.isVerified == false)
-      res.redirect('/verify');
-    else
-      res.redirect('/profile');
   });
 
   app.get('/login-stud', function(req, res) {

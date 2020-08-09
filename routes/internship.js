@@ -7,4 +7,10 @@ router.get('/', function(req, res) {
   res.render('intern-homepage');
 });
 
+router.get('/searchintern',function (req,res){
+  res.render('getintern',{
+    user: req.user
+  });
+});
+
 module.exports = router;

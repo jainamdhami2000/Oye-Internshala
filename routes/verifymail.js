@@ -1,5 +1,5 @@
 //jshint esversion:6
-//requiring express,router,jet and mail
+
 require("dotenv").config();
 const express = require('express');
 const router = express.Router();

@@ -1,18 +1,5 @@
 <%-include('partials/header')%>
 
-<head>
-  <title>Signup</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- Material Kit CSS -->
-  <link href="assets/css/material-kit.css" rel="stylesheet" />
-</head>
-
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -26,18 +13,6 @@
                   <img src="main/std-profile/std-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
                 </div>
                 <div class="col-md-5 mr-auto">
-                  <!-- <div class="social text-center">
-                                        <button class="btn btn-just-icon btn-round btn-twitter">
-                                            <i class="fa fa-twitter"></i>
-                                        </button>
-                                        <button class="btn btn-just-icon btn-round btn-dribbble">
-                                            <i class="fa fa-dribbble"></i>
-                                        </button>
-                                        <button class="btn btn-just-icon btn-round btn-facebook">
-                                            <i class="fa fa-facebook"> </i>
-                                        </button>
-                                        <h4> or be classical </h4>
-                                    </div> -->
                   <h4 class="card-title"> Please fill in the following fields </h4>
                   <form class="form" method="POST" action="/signup2-stud">
                     <%if (user.Email == null){%>
@@ -51,7 +26,7 @@
                         <input name='email' type="text" class="form-control" placeholder="Email...">
                       </div>
                     </div>
-                    <%} else {}%>
+                    <%}%>
 
                     <div class="form-group">
                       <div class="input-group">

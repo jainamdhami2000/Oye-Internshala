@@ -1,6 +1,7 @@
 //jshint esversion:6
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
 
 router.get('/', function(req, res) {
@@ -13,7 +14,7 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   if (req.body.username == process.env.admin_username && req.body.password == process.env.admin_password)
-    res.redirect('/home');
+    res.redirect('/admin/home');
   else
     res.redirect('/admin');
 });
