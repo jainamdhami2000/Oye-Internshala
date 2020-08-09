@@ -25,6 +25,7 @@ module.exports = function(app, passport) {
         newUser.isVerified = false;
         newUser.Email = req.body.email;
       }
+      newUser.BasicSkills = req.body.skills;
       newUser.City = req.body.city;
       newUser.save();
       if (newUser.isVerified == false)

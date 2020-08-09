@@ -1,99 +1,104 @@
 <%-include('partials/header')%>
-
-<head>
-    <title>Add Internship</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- Material Kit CSS -->
-    <link href="assets/css/material-kit.css" rel="stylesheet" />
-    <style media="screen">
-        .form-item {
-            margin-top: 40px;
-        }
-    </style>
-</head>
+<style media="screen">
+  /* .form-item {
+    margin-top: 40px;
+  } */
+</style>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10 ml-auto mr-auto">
-                    <div class="card card-signup">
-
-                        <h2 class="card-title text-center">Add an internship</h2>
-                        <div class="card-body">
-                            <!-- <div class="row"> -->
-                            <div style="padding: 0 20%;">
-                                <form class="form" method="POST" action="/signup-emp">
-                                    <div class="form-group form-item">
-                                        <h3>Internship name</h3>
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3>Description</h3>
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3 style="margin-bottom:0;">Duration</h3>
-                                        (in months)
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3>Start Date</h3>
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3>Last date to apply</h3>
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3>Requirements</h3>
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3>Intake</h3>
-                                        <div class="input-group ">
-                                            <input name="fname" required type="text" class="form-control ">
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-item">
-                                        <h3>Type</h3>
-                                          <select class="selectpicker" data-style="select-with-transition" title="Select an option" data-size="7">
-                                            <option value="2">Unpaid</option>
-                                            <option value="3">Paid</option>
-                                          </select>
-
-                                    </div>
-                                    <div class="text-center">
-                                        <button type='submit' class="btn btn-info btn-round">ADD</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- </div> -->
-                        </div>
-                    </div>
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">Add an internship</h2>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5 ml-auto">
+                  <img src="/main/postintern.png" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 400px;margin-top: 10%;">
                 </div>
+
+                <div class="col-md-5 mr-auto">
+                  <%# <div style="padding: 0 20%;"> %>
+                    <form class="form" method="POST" action="/internship/postintern">
+
+                      <%# <div class="form-group">
+
+                        <div class="input-group">
+
+                          <div class="input-group-prepend">
+
+                            <span class="input-group-text"> %>
+                              <%# <i class="material-icons">face</i> %>
+                              <%# <h for="">Internship name</label>
+                            </span>
+                          </div>
+                          <input name="fname" required type="text" class="form-control" placeholder="Internship name  ...">
+                        </div>
+                      </div> %>
+                      <div class="form-group form-item">
+                        <h3>Internship name</h3>
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3>Description</h3>
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3 style="margin-bottom:0;">Duration</h3>
+                        (in months)
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3>Start Date</h3>
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3>Last date to apply</h3>
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3>Requirements</h3>
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3>Intake</h3>
+                        <div class="input-group ">
+                          <input name="fname" required type="text" class="form-control ">
+                        </div>
+                      </div>
+                      <div class="form-group form-item">
+                        <h3>Type</h3>
+                        <select class="selectpicker" data-style="select-with-transition" title="Select an option" data-size="7">
+                          <option value="2">Unpaid</option>
+                          <option value="3">Paid</option>
+                        </select>
+                      </div>
+                      <div class="text-center">
+                        <button type='submit' class="btn btn-info btn-round">ADD</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+        <%# </div> %>
+      </div>
     </div>
-    </div>
+  </div>
 </body>
 
 <%-include('partials/footer')%>

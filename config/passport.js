@@ -83,6 +83,7 @@ module.exports = function(passport) {
             newUser.FirstName = req.body.fname;
             newUser.LastName = req.body.lname;
             newUser.username = username;
+            newUser.BasicSkills = req.body.skills;
             newUser.CollegeName = req.body.college_name;
             newUser.City = req.body.city;
             newUser.isStudent = true;
