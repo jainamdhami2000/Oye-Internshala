@@ -17,6 +17,7 @@
     "express-session": "^1.17.1",
     "http": "0.0.1-security",
     "http-errors": "^1.6.3",
+    "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
     "mongoose": "^5.9.22",
     "morgan": "^1.10.0",

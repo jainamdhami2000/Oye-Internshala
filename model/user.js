@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
     default: false,
     type: Boolean
   },
-  isNgo: {
+  isTrainer: {
     default: false,
     type: Boolean
   },
@@ -52,7 +52,9 @@ const userSchema = new mongoose.Schema({
     default: false,
     type: Boolean
   },
-  phoneNumber: Number
+  phoneNumber: Number,
+  admin_accept: Boolean,
+  admin_reject: Boolean,
 });
 
 userSchema.methods.generateHash = function(password) {

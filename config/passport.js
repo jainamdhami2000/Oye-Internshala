@@ -1,7 +1,7 @@
 //jshint esversion:6
 
 const localStrategy_stud = require('passport-local').Strategy;
-const localStrategy_ngo = require('passport-local').Strategy;
+const localStrategy_trainer = require('passport-local').Strategy;
 const localStrategy_emp = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -21,7 +21,7 @@ module.exports = function(passport) {
     });
   });
 
-  passport.use('local-signup-ngo', new localStrategy_ngo({
+  passport.use('local-signup-trainer', new localStrategy_trainer({
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
@@ -32,22 +32,26 @@ module.exports = function(passport) {
         const username = req.body.username;
         User.findOne({
           'Email': email,
-          isNgo:true
+          isTrainer: true
         }, function(err, user) {
           if (err)
             return done(err);
           if (user) {
             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
           } else {
+            admin_accept = false;
+            admin_reject = false;
             var newUser = new User();
             newUser.Email = email;
             newUser.FirstName = req.body.fname;
             newUser.LastName = req.body.lname;
             newUser.username = username;
-            newUser.isNgo = true;
+            newUser.isTrainer = true;
             newUser.CompanyName = req.body.company_name;
             newUser.phoneNumber = req.body.phoneno;
             newUser.City = req.body.city;
+            newUser.admin_accept = admin_accept;
+            newUser.admin_reject = admin_reject;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
             newUser.save(function(err) {
@@ -71,7 +75,7 @@ module.exports = function(passport) {
         const username = req.body.username;
         User.findOne({
           'Email': email,
-          isStudent:true
+          isStudent: true
         }, function(err, user) {
           if (err)
             return done(err);
@@ -110,13 +114,15 @@ module.exports = function(passport) {
         const username = req.body.username;
         User.findOne({
           'Email': email,
-          isEmployer:true
+          isEmployer: true
         }, function(err, user) {
           if (err)
             return done(err);
           if (user) {
             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
           } else {
+            admin_accept = false;
+            admin_reject = false;
             var newUser = new User();
             newUser.Email = email;
             newUser.FirstName = req.body.fname;
@@ -125,6 +131,8 @@ module.exports = function(passport) {
             newUser.isEmployer = true;
             newUser.CompanyName = req.body.company_name;
             newUser.phoneNumber = req.body.phoneno;
+            newUser.admin_accept = admin_accept;
+            newUser.admin_reject = admin_reject;
             newUser.MainOfficeLocation = req.body.city;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
@@ -138,7 +146,7 @@ module.exports = function(passport) {
       });
     }));
 
-  passport.use('local-login-ngo', new localStrategy_ngo({
+  passport.use('local-login-trainer', new localStrategy_trainer({
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
@@ -146,7 +154,7 @@ module.exports = function(passport) {
     function(req, username, password, done) {
       User.findOne({
         'Email': username,
-        isNgo: true
+        isTrainer: true
       }, function(err, user) {
         if (err)
           return done(err);

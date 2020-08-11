@@ -51,10 +51,10 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/login-ngo', function(req, res) {
+  app.get('/login-trainer', function(req, res) {
 
     // render the page and pass in any flash data if it exists
-    res.render('login-ngo', {
+    res.render('login-trainer', {
       message: req.flash('loginMessage')
     });
   });
@@ -71,9 +71,9 @@ module.exports = function(app, passport) {
     failureFlash: true // allow flash messages
   }));
 
-  app.post('/login-ngo', passport.authenticate('local-login-ngo', {
+  app.post('/login-trainer', passport.authenticate('local-login-trainer', {
     successRedirect: '/verify', // redirect to the secure profile section
-    failureRedirect: '/login-ngo', // redirect back to the signup page if there is an error
+    failureRedirect: '/login-trainer', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
@@ -93,10 +93,10 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.get('/signup-ngo', function(req, res) {
+  app.get('/signup-trainer', function(req, res) {
 
     // render the page and pass in any flash data if it exists
-    res.render('signup-ngo', {
+    res.render('signup-trainer', {
       message: req.flash('signupMessage')
     });
   });
@@ -114,9 +114,9 @@ module.exports = function(app, passport) {
     failureFlash: true // allow flash messages
   }));
 
-  app.post('/signup-ngo', passport.authenticate('local-signup-ngo', {
+  app.post('/signup-trainer', passport.authenticate('local-signup-trainer', {
     successRedirect: '/verify', // redirect to the secure profile section
-    failureRedirect: '/signup-ngo', // redirect back to the signup page if there is an error
+    failureRedirect: '/signup-trainer', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 

@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
-const internSchema = new mongoose.Schema({
+const jobSchema = new mongoose.Schema({
   job_title: String,
   job_duration: String,
   image: Object,
@@ -50,4 +50,4 @@ const internSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Intern", internSchema);
+module.exports = mongoose.model("Job", jobSchema);

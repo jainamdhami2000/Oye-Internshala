@@ -1,8 +1,16 @@
 <%-include('partials/header')%>
 <style media="screen">
-  /* .form-item {
-    margin-top: 40px;
-  } */
+  .bmd-form-group {
+    padding-top: 10px
+  }
+
+  .form-group {
+    margin-bottom: 10px
+  }
+
+  h4 {
+    margin: auto 0px;
+  }
 </style>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
@@ -15,86 +23,139 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-5 ml-auto">
-                  <img src="/main/postintern.png" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 400px;margin-top: 10%;">
+                  <img src="/main/postintern.png" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
                 </div>
 
                 <div class="col-md-5 mr-auto">
                   <%# <div style="padding: 0 20%;"> %>
-                    <form class="form" method="POST" action="/internship/postintern">
-
-                      <%# <div class="form-group">
-
-                        <div class="input-group">
-
-                          <div class="input-group-prepend">
-
-                            <span class="input-group-text"> %>
-                              <%# <i class="material-icons">face</i> %>
-                              <%# <h for="">Internship name</label>
-                            </span>
-                          </div>
-                          <input name="fname" required type="text" class="form-control" placeholder="Internship name  ...">
-                        </div>
-                      </div> %>
-                      <div class="form-group form-item">
-                        <h3>Internship name</h3>
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
+                  <form class="form" method="POST" action="/internship/postintern">
+                    <div class="form-group form-item">
+                      <h4>Internship name</h4>
+                      <div class="input-group ">
+                        <input name="job_title" required type="text" class="form-control ">
                       </div>
-                      <div class="form-group form-item">
-                        <h3>Description</h3>
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Description</h4>
+                      <div class="input-group ">
+                        <input name="job_content" required type="text" class="form-control ">
                       </div>
-                      <div class="form-group form-item">
-                        <h3 style="margin-bottom:0;">Duration</h3>
-                        (in months)
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4 style="margin-bottom:0;">Duration</h4>
+                      (in months)
+                      <div class="input-group ">
+                        <input name="job_duration" required type="text" class="form-control ">
                       </div>
-                      <div class="form-group form-item">
-                        <h3>Start Date</h3>
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Start Date</h4>
+                      <div class="input-group ">
+                        <input name="start_date" type="text" class="form-control datepicker">
                       </div>
-                      <div class="form-group form-item">
-                        <h3>Last date to apply</h3>
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Last date to apply</h4>
+                      <div class="input-group ">
+                        <input name="apply_last" type="text" class="form-control datepicker">
                       </div>
-                      <div class="form-group form-item">
-                        <h3>Requirements</h3>
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
-                      </div>
-                      <div class="form-group form-item">
-                        <h3>Intake</h3>
-                        <div class="input-group ">
-                          <input name="fname" required type="text" class="form-control ">
-                        </div>
-                      </div>
-                      <div class="form-group form-item">
-                        <h3>Type</h3>
-                        <select class="selectpicker" data-style="select-with-transition" title="Select an option" data-size="7">
-                          <option value="2">Unpaid</option>
-                          <option value="3">Paid</option>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Requirements</h4>
+                      <div class="input-group ">
+                        <select name='requirements' class="selectpicker form-control" data-style="select-with-transition" multiple title="Choose Skill" data-size="7">
+                          <option disabled> Choose Skill</option>
+                          <option value="2">Paris </option>
+                          <option value="3">Bucharest</option>
+                          <option value="4">Rome</option>
+                          <option value="5">New York</option>
+                          <option value="6">Miami </option>
+                          <option value="7">Piatra Neamt</option>
+                          <option value="8">Paris </option>
+                          <option value="9">Bucharest</option>
+                          <option value="10">Rome</option>
+                          <option value="11">New York</option>
+                          <option value="12">Miami </option>
+                          <option value="13">Piatra Neamt</option>
+                          <option value="14">Paris </option>
+                          <option value="15">Bucharest</option>
+                          <option value="16">Rome</option>
+                          <option value="17">New York</option>
+                          <option value="18">Miami </option>
+                          <option value="19">Piatra Neamt</option>
                         </select>
                       </div>
-                      <div class="text-center">
-                        <button type='submit' class="btn btn-info btn-round">ADD</button>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Intake</h4>
+                      <div class="input-group ">
+                        <input name="intake" required type="number" class="form-control ">
                       </div>
-                    </form>
-                  </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Type</h4>
+                      <div class="togglebutton">
+                        <label>
+                          UnPaid
+                          <input name='paid' type="checkbox">
+                          <span class="toggle"></span>
+                          Paid
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Stipened</h4>
+                      <div class="input-group ">
+                        <input name="job_stipened" required type="number" class="form-control ">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Location</h4>
+                      <div class="togglebutton">
+                        <label>
+                          Work From Home
+                          <input name='onsite' type="checkbox">
+                          <span class="toggle"></span>
+                          Onsite
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Select Location</h4>
+                      <div class="input-group ">
+                        <select name='job_location' class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                          <option disabled> Choose City</option>
+                          <option value="2">Paris </option>
+                          <option value="3">Bucharest</option>
+                          <option value="4">Rome</option>
+                          <option value="5">New York</option>
+                          <option value="6">Miami </option>
+                          <option value="7">Piatra Neamt</option>
+                          <option value="8">Paris </option>
+                          <option value="9">Bucharest</option>
+                          <option value="10">Rome</option>
+                          <option value="11">New York</option>
+                          <option value="12">Miami </option>
+                          <option value="13">Piatra Neamt</option>
+                          <option value="14">Paris </option>
+                          <option value="15">Bucharest</option>
+                          <option value="16">Rome</option>
+                          <option value="17">New York</option>
+                          <option value="18">Miami </option>
+                          <option value="19">Piatra Neamt</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type='submit' class="btn btn-info btn-round">ADD</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         <%# </div> %>
       </div>
     </div>
