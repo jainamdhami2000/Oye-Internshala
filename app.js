@@ -55,6 +55,10 @@ app.use('/admin', admin);
 app.use('/internship', internship);
 app.use('/courses', courses);
 
+app.get('/profile-emp', function(req, res) {
+  res.render('profile_emp');
+});
+
 app.listen(3000, function(err) {
   console.log('Server started on 3000');
 });
