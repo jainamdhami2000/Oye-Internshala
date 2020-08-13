@@ -38,11 +38,11 @@ router.post('/postintern', (req, res) => {
       company_name: req.user.CompanyName,
       job_published: Date.now(),
     });
-    if (req.body.paid == true) {
+    if (req.body.paid == 'on') {
       job.paid = true;
       job.job_stipened = req.body.job_stipened;
     }
-    if (req.body.onsite == true) {
+    if (req.body.onsite == 'on') {
       job.onsite = true;
       job.job_location = req.body.job_location;
     }
