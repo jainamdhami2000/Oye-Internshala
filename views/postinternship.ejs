@@ -11,6 +11,12 @@
   h4 {
     margin: auto 0px;
   }
+  .viewSite{
+      display: none;
+  }
+  .viewPaid{
+      display: none;
+  }
 </style>
 <%# <script src="/js/cities.js"></script>
 <select onchange="print_city('state', this.selectedIndex);" id="sts" name="stt" class="form-control selectpicker" required data-style="select-with-transition" title="Single Select" data-size="7"></select>
@@ -102,12 +108,12 @@
                         <label>
                           UnPaid
                           <input name='paid' type="checkbox">
-                          <span class="toggle"></span>
+                          <span class="toggle" id="PaidToggle"></span>
                           Paid
                         </label>
                       </div>
                     </div>
-                    <div class="form-group form-item">
+                    <div class="form-group form-item viewPaid">
                       <h4>Stipened</h4>
                       <div class="input-group ">
                         <input name="job_stipened" required type="number" class="form-control ">
@@ -119,12 +125,12 @@
                         <label>
                           Work From Home
                           <input name='onsite' type="checkbox">
-                          <span class="toggle"></span>
+                          <span class="toggle" id="SiteToggle"></span>
                           Onsite
                         </label>
                       </div>
                     </div>
-                    <div class="form-group form-item">
+                    <div class="form-group form-item viewSite">
                       <h4>Select Location</h4>
                       <div class="input-group ">
                         <select name='job_location' class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
@@ -166,4 +172,14 @@
   </div>
 </body>
 
+
+<script type="text/javascript">
+
+    $('#PaidToggle').click(function(){
+        $('.viewPaid').toggle();
+    })
+    $('#SiteToggle').click(function(){
+        $('.viewSite').toggle();
+    })
+</script>
 <%-include('partials/footer')%>
