@@ -1,0 +1,17 @@
+.bmd-form-group {
+  padding-top: 20px
+}
+
+.form-group {
+  margin-bottom: 10px
+}
+
+h4 {
+  margin: auto 0px;
+}
+.viewSite{
+    display: none;
+}
+.viewPaid{
+    display: none;
+}

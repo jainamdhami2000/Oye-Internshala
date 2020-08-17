@@ -1,7 +1,7 @@
 <%-include('partials/header')%>
 <style media="screen">
   .bmd-form-group {
-    padding-top: 10px
+    padding-top: 20px
   }
 
   .form-group {
@@ -18,10 +18,8 @@
       display: none;
   }
 </style>
-<%# <script src="/js/cities.js"></script>
-<select onchange="print_city('state', this.selectedIndex);" id="sts" name="stt" class="form-control selectpicker" required data-style="select-with-transition" title="Single Select" data-size="7"></select>
-<script language="javascript">print_state("sts");</script>
-<select id ="state" name='job_location' class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7" required></select> %>
+
+<%# <link rel="stylesheet" type="text/css" href="css/postintern.css"> %>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
@@ -172,14 +170,6 @@
   </div>
 </body>
 
+<script src="/js/postintern.js" charset="utf-8"></script>
 
-<script type="text/javascript">
-
-    $('#PaidToggle').click(function(){
-        $('.viewPaid').toggle();
-    })
-    $('#SiteToggle').click(function(){
-        $('.viewSite').toggle();
-    })
-</script>
 <%-include('partials/footer')%>

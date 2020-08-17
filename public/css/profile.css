@@ -4,7 +4,7 @@ margin-top: 50px;
 
 }
 .profile-main{
-width: 900px;
+width: 100%;
 margin: 0 auto;
 border: 1px solid #aed5e2;
 padding-bottom: 10px;
@@ -12,7 +12,7 @@ background-color: white;
 }
 .profile-header{
 height: 200px;
-width: 100%;
+width: 900px;
 background-color: #EBF6FA;
 border-bottom: 2px solid #E2F3FB;
 }
@@ -222,6 +222,7 @@ border-right: none;
 padding: 2px 1px 2px 5px;
 }
 .bio-box .desc{
+
 padding: 10px 10px 10px 10px;
 text-align: justify;
 color: #838383;
@@ -230,6 +231,7 @@ font-size: 13px;
 .detail-box{
 padding: 10px;
 font-size: 13px;
+width:300px
 }
 .detail-box p{
 font-weight: 600;
@@ -464,4 +466,9 @@ text-align: right;
 padding-right: 20px;
 color:red;
 text-decoration: underline;
+}
+.main-bg{
+background-image: url(https://select.adp.com/nslogin/images/adp-bg-background01-opt.jpg);
+background-size: cover;
+overflow: hidden;
 }
