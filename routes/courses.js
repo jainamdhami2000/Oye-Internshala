@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const sanitize = require('mongo-sanitize');
 const router = express.Router();
 
 router.get('/', function(req, res) {
@@ -9,5 +10,17 @@ router.get('/', function(req, res) {
     user: req.user
   });
 });
+
+function isLoggedIn(req, res, next) {
+  try {
+    if (req.isAuthenticated()) {
+      req.isLogged = true;
+      return next();
+    }
+    res.redirect('/');
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 module.exports = router;

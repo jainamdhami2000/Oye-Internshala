@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 const morgan = require('morgan');
 const session = require('express-session');
 const http = require('http');
+const sanitize = require('mongo-sanitize');
 const configDB = require('./config/database');
 const verifymail = require('./routes/verifymail');
 const admin = require('./routes/admin');

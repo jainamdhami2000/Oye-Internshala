@@ -1,5 +1,6 @@
 <%-include('partials/header')%>
 <link rel="stylesheet" href="/css/getintern.css">
+
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -47,48 +48,62 @@
                 </div>
               </div>
               <div class="col-md-9">
+                <%jobs.forEach(job=>{%>
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">INTERNSHIPS</h5>
                     <div class="container1">
-                      <form action="/action_page.php">
-                        <h4>Title</h4>
-                        <h5>Company Name</h5>
+                      <form id="job<%=job._id%>" method='POST' action="/internship/view">
+                        <input name='job_id' style='display:none' value='<%=job._id%>'>
+                        <h4>Title: <%=job.job_title%></h4>
+                        <h5>Company Name: <%=job.company_name%></h5>
                         <div class="float-container1">
+                          <%if (job.onsite==false){%>
                           <h5>Work from Home</h5>
+                          <%} else {%>
+                          <h5>Location: <%=job.job_location%></h5>
+                          <%}%>
+                            <div class="float-child3">
+                              <h4>Start Date</h4>
+                                <div><%=job.start_date.toDateString()%></div>
+                    </div>
+                    <div class="float-child3">
+                      <h4>Duration</h4>
+                      <div><%=job.job_duration%></div>
+                    </div>
 
-                          <div class="float-child3">
-                            <h4>Start Date</h5>
-                              <div>Immediately</div>
-                          </div>
+                    <div class="float-child3">
+                      <h4>Stipend</h4>
+                      <%if (job.paid==true){%>
+                      <div><%=job.job_stipened%></div>
+                      <%} else {%>
+                      <div>Unpaid</div>
+                      <%}%>
+                            </div>
 
-                          <div class="float-child3">
-                            <h4>Start Date</h5>
-                              <div>Months</div>
-                          </div>
-
-                          <div class="float-child3">
-                            <h4>Stipend</h5>
-                              <div>Rs7999</div>
-                          </div>
-
-                          <div class="float-child3">
-                            <h4>Apply By</h5>
-                              <div>Date</div>
-                          </div>
-
-                          <div class="div"><a href='#'>View details ></a></div>
-                        </div>
-                      </form>
+                            <div class="float-child3">
+                              <h4>Apply By</h4>
+                                <div><%=job.apply_last.toDateString()%>
                     </div>
                   </div>
+                  <div class="div" id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
                 </div>
+                </form>
               </div>
             </div>
           </div>
+          <%})%>
         </div>
       </div>
     </div>
   </div>
+  </div>
+  </div>
+  </div>
 </body>
 <%-include('partials/footer')%>
+<script>
+  function details(input) {
+    document.getElementById("job" + input.id).submit();
+  }
+</script>

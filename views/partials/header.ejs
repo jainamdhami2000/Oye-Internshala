@@ -45,6 +45,11 @@
                 <%=user.Email%>
               </div>
               <div class="dropdown-divider"></div>
+              <%if (user.isEmployer){%>
+                <a href='/internship/postintern' class="dropdown-item">Post Intern</a>
+              <%} else if (user.isStudent) {%>
+                <a href='/internship/searchintern' class="dropdown-item">Search Intern</a>
+              <%}%>
               <a href="/logout" class="dropdown-item">Logout</a>
             </div>
           </li>

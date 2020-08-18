@@ -7,6 +7,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GitHubStrategy = require('passport-github2').Strategy;
 const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+const sanitize = require('mongo-sanitize');
 const User = require('../model/user');
 const configAuth = require('./auth');
 
@@ -29,7 +30,7 @@ module.exports = function(passport) {
     function(req, email, password, done) {
 
       process.nextTick(function() {
-        const username = req.body.username;
+        const username = sanitize(req.body.username);
         User.findOne({
           'Email': email,
           isTrainer: true
@@ -43,13 +44,13 @@ module.exports = function(passport) {
             admin_reject = false;
             var newUser = new User();
             newUser.Email = email;
-            newUser.FirstName = req.body.fname;
-            newUser.LastName = req.body.lname;
+            newUser.FirstName = sanitize(req.body.fname);
+            newUser.LastName = sanitize(req.body.lname);
             newUser.username = username;
             newUser.isTrainer = true;
-            newUser.CompanyName = req.body.company_name;
-            newUser.phoneNumber = req.body.phoneno;
-            newUser.City = req.body.city;
+            newUser.CompanyName = sanitize(req.body.company_name);
+            newUser.phoneNumber = sanitize(req.body.phoneno);
+            newUser.City = sanitize(req.body.city);
             newUser.admin_accept = admin_accept;
             newUser.admin_reject = admin_reject;
             newUser.local.password = newUser.generateHash(password);
@@ -72,7 +73,7 @@ module.exports = function(passport) {
     function(req, email, password, done) {
 
       process.nextTick(function() {
-        const username = req.body.username;
+        const username = sanitize(req.body.username);
         User.findOne({
           'Email': email,
           isStudent: true
@@ -84,12 +85,12 @@ module.exports = function(passport) {
           } else {
             var newUser = new User();
             newUser.Email = email;
-            newUser.FirstName = req.body.fname;
-            newUser.LastName = req.body.lname;
+            newUser.FirstName = sanitize(req.body.fname);
+            newUser.LastName = sanitize(req.body.lname);
             newUser.username = username;
-            newUser.BasicSkills = req.body.skills;
-            newUser.CollegeName = req.body.college_name;
-            newUser.City = req.body.city;
+            newUser.BasicSkills = sanitize(req.body.skills);
+            newUser.CollegeName = sanitize(req.body.college_name);
+            newUser.City = sanitize(req.body.city);
             newUser.isStudent = true;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
@@ -111,7 +112,7 @@ module.exports = function(passport) {
     function(req, email, password, done) {
 
       process.nextTick(function() {
-        const username = req.body.username;
+        const username = sanitize(req.body.username);
         User.findOne({
           'Email': email,
           isEmployer: true
@@ -125,15 +126,16 @@ module.exports = function(passport) {
             admin_reject = false;
             var newUser = new User();
             newUser.Email = email;
-            newUser.FirstName = req.body.fname;
-            newUser.LastName = req.body.lname;
+            newUser.FirstName = sanitize(req.body.fname);
+            newUser.LastName = sanitize(req.body.lname);
             newUser.username = username;
             newUser.isEmployer = true;
-            newUser.CompanyName = req.body.company_name;
-            newUser.phoneNumber = req.body.phoneno;
+            newUser.CompanyDescription = sanitize(req.body.company_description);
+            newUser.CompanyName = sanitize(req.body.company_name);
+            newUser.phoneNumber = sanitize(req.body.phoneno);
             newUser.admin_accept = admin_accept;
             newUser.admin_reject = admin_reject;
-            newUser.MainOfficeLocation = req.body.city;
+            newUser.MainOfficeLocation = sanitize(req.body.city);
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
             newUser.save(function(err) {

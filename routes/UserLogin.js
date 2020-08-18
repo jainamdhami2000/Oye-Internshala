@@ -1,5 +1,6 @@
 //jshint esversion:6
 require("dotenv").config();
+const sanitize = require('mongo-sanitize');
 const User = require('../model/user');
 
 module.exports = function(app, passport) {
@@ -20,13 +21,13 @@ module.exports = function(app, passport) {
     User.findOne({
       _id: req.user._id
     }, function(err, newUser) {
-      newUser.CollegeName = req.body.college_name;
+      newUser.CollegeName = sanitize(req.body.college_name);
       if (req.user.Email == null) {
         newUser.isVerified = false;
-        newUser.Email = req.body.email;
+        newUser.Email = sanitize(req.body.email);
       }
-      newUser.BasicSkills = req.body.skills;
-      newUser.City = req.body.city;
+      newUser.BasicSkills = sanitize(req.body.skills);
+      newUser.City = sanitize(req.body.city);
       newUser.save();
       if (newUser.isVerified == false)
         res.redirect('/verify');
@@ -217,9 +218,13 @@ module.exports = function(app, passport) {
 };
 
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    req.isLogged = true;
-    return next();
+  try {
+    if (req.isAuthenticated()) {
+      req.isLogged = true;
+      return next();
+    }
+    res.redirect('/');
+  } catch (e) {
+    console.log(e);
   }
-  res.redirect('/');
 }

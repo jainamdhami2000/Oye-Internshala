@@ -55,6 +55,7 @@ const userSchema = new mongoose.Schema({
   phoneNumber: Number,
   admin_accept: Boolean,
   admin_reject: Boolean,
+  CompanyDescription: String,
 });
 
 userSchema.methods.generateHash = function(password) {
