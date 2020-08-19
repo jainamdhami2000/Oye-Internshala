@@ -5,6 +5,7 @@ const sanitize = require('mongo-sanitize');
 const router = express.Router();
 const User = require('../model/user');
 const Job = require('../model/job');
+const Applicant = require('../model/applicant');
 
 router.get('/', function(req, res) {
   res.render('intern-homepage', {
@@ -14,7 +15,9 @@ router.get('/', function(req, res) {
 
 router.get('/searchintern', isLoggedIn, function(req, res) {
   if (req.user.isStudent) {
-    Job.find({}, (err, jobs) => {
+    Job.find({
+      admin_accept: true
+    }, (err, jobs) => {
       res.render('getintern', {
         user: req.user,
         jobs: jobs
@@ -58,6 +61,15 @@ router.post('/postintern', isLoggedIn, (req, res) => {
       job.onsite = true;
       job.job_location = sanitize(req.body.job_location);
     }
+    if (req.body.question1 != "") {
+      job.Question1 = sanitize(req.body.question1);
+    }
+    if (req.body.question2 != "") {
+      job.Question2 = sanitize(req.body.question2);
+    }
+    if (req.body.question3 != "") {
+      job.Question3 = sanitize(req.body.question3);
+    }
     job.save();
     res.redirect('/');
   } catch (e) {
@@ -66,13 +78,16 @@ router.post('/postintern', isLoggedIn, (req, res) => {
 });
 
 router.post('/view', isLoggedIn, (req, res) => {
+  console.log(req.body.job_id);
   if (req.user.isStudent) {
     Job.find({
       _id: sanitize(req.body.job_id)
     }, (err, job) => {
+      console.log(job);
       if (job) {
-        res.json({
-          job: job
+        res.render('internship-details', {
+          user: req.user,
+          job: job[0]
         });
       } else {
         res.send("Error");
@@ -82,6 +97,78 @@ router.post('/view', isLoggedIn, (req, res) => {
     res.send('Login as Student');
   }
 });
+
+router.post('/apply', (req, res) => {
+  var job_id = sanitize(req.body.job_id);
+  console.log(job_id)
+  Job.find({
+    _id: job_id
+  }, (err, job) => {
+    console.log(job);
+    var application = new Applicant({
+      name: req.user.FirstName + ' ' + req.user.LastName,
+      college: req.user.CollegeName,
+      // resume: Object,
+      skills: req.user.BasicSkills,
+      is_accept: false,
+      is_reject: false,
+      user_id: req.user._id,
+      company_name: job[0].company_name,
+      job_id: job[0]._id,
+    });
+    if (job[0].onsite == true) {
+      application.city = job[0].job_location;
+    }
+    if (typeof(job[0].Question1) != "undefined") {
+      application.Question1 = sanitize(req.body.question1);
+    }
+    if (typeof(job[0].Question2) != "undefined") {
+      application.Question2 = sanitize(req.body.question2);
+    }
+    if (typeof(job[0].Question3) != "undefined") {
+      application.Question3 = sanitize(req.body.question3);
+    }
+    application.save();
+    res.redirect('/');
+  });
+});
+
+router.post('/intern-details', (req, res) => {
+  var job_id = sanitize(req.body.job_id);
+  console.log(job_id);
+  Job.find({
+    _id: job_id
+  }, (err, job) => {
+    console.log(job);
+    if (typeof(job[0].Question1) != 'undefined' || typeof(job[0].Question2) != 'undefined' || typeof(job[0].Question3) != 'undefined') {
+      res.render('apply', {
+        user: req.user,
+        job: job[0]
+      });
+    } else {
+      var application = new Applicant({
+        name: req.user.FirstName + ' ' + req.user.LastName,
+        college: req.user.CollegeName,
+        // resume: Object,
+        skills: req.user.BasicSkills,
+        is_accept: false,
+        is_reject: false,
+        user_id: req.user._id,
+        company_name: job[0].company_name,
+        job_id: job[0]._id,
+      });
+      if (job[0].onsite == true) {
+        application.city = job[0].job_location;
+      }
+      application.save();
+      res.redirect('/'); //MAKE APPLICATION POSTED FOR INTERNSHIP PAGE
+    }
+  });
+});
+
+// router.get('/intern-details', function(req, res) {
+//   res.render('internship-details');
+// });
 
 function isLoggedIn(req, res, next) {
   try {

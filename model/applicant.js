@@ -2,14 +2,14 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
-const internSchema = new mongoose.Schema({
-  intern_name: String,
-  intern_college: String,
+const applicantSchema = new mongoose.Schema({
+  name: String,
+  college: String,
   resume: Object,
-  intern_skills: String,
-  intern_city: String,
-  intern_study_year: Date,
-  job_title_id: mongoose.Types.ObjectId,
+  skills: String,
+  city: String,
+  // study_year: Date,
+  job_id: mongoose.Types.ObjectId,
   user_id: mongoose.Types.ObjectId,
   is_accept: {
     type: Boolean,
@@ -20,6 +20,9 @@ const internSchema = new mongoose.Schema({
     default: false
   },
   company_name: String,
+  Question1: String,
+  Question2: String,
+  Question3: String,
 });
 
-module.exports = mongoose.model("Intern", internSchema);
+module.exports = mongoose.model("Applicant", applicantSchema);

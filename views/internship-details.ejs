@@ -2,66 +2,77 @@
 <link rel="stylesheet" href="/css/internship-details.css">
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
-                    <div class="MainCard">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 style="text-align:center" class="card-title">Details</h3>
-                                <div class="container1">
-                                    <form id="" method='POST' action="/internship/view">
-                                        <input name='job_id' style='display:none' value=''>
-                                        <h4>Title:</h4>
-                                        <h5>Company Name: </h5>
-                                        <div class="float-container1">
-                                            <h5>Work from Home</h5>
-                                            <h5>Location: </h5>
-                                            <div class="float-child3">
-                                                <h4>Start Date</h4>
-                                                <div>Start Date</div>
-                                            </div>
-                                            <div class="float-child3">
-                                                <h4>Duration</h4>
-                                                <div>Duration</div>
-                                            </div>
-
-                                            <div class="float-child3">
-                                                <h4>Stipend</h4>
-                                                <div>Stipend</div>
-                                            </div>
-
-                                            <div class="float-child3">
-                                                <h4>Apply By</h4>
-                                                <div>Apply by</div>
-                                            </div>
-                                            <%# <div class="div" id='' onclick='details(this)'><a href="#">View details ></a></div> %>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding: 20px;"class="">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis enim. Laoreet id donec ultrices tincidunt arcu. Justo donec enim diam vulputate ut pharetra sit amet. Mauris augue neque gravida in fermentum et sollicitudin. Euismod nisi porta lorem mollis aliquam ut. At erat pellentesque adipiscing commodo elit. Etiam sit amet nisl purus in mollis nunc. Sed viverra ipsum nunc aliquet bibendum. Proin nibh nisl condimentum id.</p>
-                            <h3>About OYE India</h3>
-                            <p>
-                                <a href="/">Homepage</a><br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna duis convallis convallis. Aliquam faucibus purus in massa. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor.
-                            </p>
-                            <h3>About the internship</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna duis convallis convallis. Aliquam faucibus purus in massa.
-                            </p>
-                            <center>
-                                <button style="margin-top: 30px" type="button" class="btn btn-info mx-auto">APPLY NOW</button>
-                            </center>
-
-                        </div>
-                    </div>
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="MainCard">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">INTERNSHIPS</h5>
+                <div class="container1">
+                  <input name='job_id' style='display:none' value='<%=job._id%>'>
+                  <h4>Title: <%=job.job_title%></h4>
+                  <h5>Company Name: <%=job.company_name%></h5>
+                  <div class="float-container1">
+                    <%if (job.onsite==false){%>
+                    <h5>Work from Home</h5>
+                    <%} else {%>
+                    <h5>Location: <%=job.job_location%></h5>
+                    <%}%>
+                        <div class="float-child3">
+                          <h4>Start Date</h4>
+                            <div><%=job.start_date.toDateString()%></div>
                 </div>
+                <div class="float-child3">
+                  <h4>Duration</h4>
+                  <div><%=job.job_duration%></div>
+                </div>
+
+                <div class="float-child3">
+                  <h4>Stipend</h4>
+                  <%if (job.paid==true){%>
+                  <div><%=job.job_stipened%></div>
+                  <%} else {%>
+                  <div>Unpaid</div>
+                  <%}%>
+                        </div>
+
+                        <div class="float-child3">
+                          <h4>Apply By</h4>
+                            <div><%=job.apply_last.toDateString()%>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div style="padding: 20px;" class="">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc non blandit massa enim nec dui nunc mattis enim. Laoreet id donec ultrices tincidunt arcu. Justo donec
+          enim diam vulputate ut pharetra sit amet. Mauris augue neque gravida in fermentum et sollicitudin. Euismod nisi porta lorem mollis aliquam ut. At erat pellentesque adipiscing commodo elit. Etiam sit amet nisl purus in mollis nunc. Sed
+          viverra ipsum nunc aliquet bibendum. Proin nibh nisl condimentum id.</p>
+        <h3>About OYE India</h3>
+        <p>
+          <a href="/">Homepage</a><br>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna duis
+          convallis convallis. Aliquam faucibus purus in massa. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor.
+        </p>
+        <h3>About the internship</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Platea dictumst quisque sagittis purus sit amet volutpat consequat. Consectetur a erat nam at lectus urna duis
+          convallis convallis. Aliquam faucibus purus in massa.
+        </p>
+        <form class="form" method='POST' action="/internship/intern-details">
+          <input style="display:none" name="job_id" value="<%=job._id%>">
+          <center>
+            <button style="margin-top: 30px" type="submit" class="btn btn-info mx-auto">APPLY NOW</button>
+          </center>
+        </form>
+      </div>
     </div>
+  </div>
+  </div>
+  </div>
+  </div>
 </body>
 <%-include('partials/footer')%>

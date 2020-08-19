@@ -7,7 +7,7 @@ const jobSchema = new mongoose.Schema({
   job_duration: String,
   image: Object,
   job_content: String,
-  job_stipened: String,
+  job_stipened: Number,
   user_id: {
     type: mongoose.Types.ObjectId,
     ref: 'User'
@@ -29,13 +29,13 @@ const jobSchema = new mongoose.Schema({
     default: false
   },
   company_name: String,
-  job_category: String,
+  // job_category: String,
   job_location: String,
   job_published: {
     type: Date,
     default: Date.now()
   },
-  jobtype: String,
+  // jobtype: String,
   intake: Number,
   start_date: Date,
   apply_last: Date,
@@ -48,6 +48,9 @@ const jobSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  Question1: String,
+  Question2: String,
+  Question3: String,
 });
 
 module.exports = mongoose.model("Job", jobSchema);

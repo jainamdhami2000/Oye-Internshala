@@ -9,9 +9,11 @@
 h4 {
   margin: auto 0px;
 }
-.viewSite{
-    display: none;
+
+.viewSite {
+  display: none;
 }
-.viewPaid{
-    display: none;
+
+.viewPaid {
+  display: none;
 }
