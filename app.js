@@ -60,6 +60,14 @@ app.get('/profile-emp', function(req, res) {
   res.render('profile_emp');
 });
 
+app.get('/profile-ngo', function(req, res) {
+  res.render('profile_ngo');
+});
+
+app.get('/profile-stud', function(req, res) {
+  res.render('profile_stud');
+});
+
 app.listen(3000, function(err) {
   console.log('Server started on 3000');
 });

@@ -129,7 +129,7 @@ router.post('/apply', (req, res) => {
       application.Question3 = sanitize(req.body.question3);
     }
     application.save();
-    res.redirect('/');
+    res.redirect('/internship/confirm');
   });
 });
 
@@ -161,14 +161,14 @@ router.post('/intern-details', (req, res) => {
         application.city = job[0].job_location;
       }
       application.save();
-      res.redirect('/'); //MAKE APPLICATION POSTED FOR INTERNSHIP PAGE
+      res.redirect('/internship/confirm'); //MAKE APPLICATION POSTED FOR INTERNSHIP PAGE
     }
   });
 });
 
-// router.get('/intern-details', function(req, res) {
-//   res.render('internship-details');
-// });
+router.get('/confirm', function(req, res) {
+  res.render('application-confirm');
+});
 
 function isLoggedIn(req, res, next) {
   try {
