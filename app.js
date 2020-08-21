@@ -68,6 +68,25 @@ app.get('/profile-stud', function(req, res) {
   res.render('profile_stud');
 });
 
+// app.get('/hi', function(req, res) {
+//     if (req.user.isStudent) {
+//       Job.find({
+//         admin_accept: false,
+//       }, (err, jobs) => {
+//         res.render('getintern', {
+//           user: req.user,
+//           jobs: jobs
+//         });
+//       });
+//     } else {
+//       res.send('Login as Student');
+//     };
+// });
+
+app.get('/hi', function(req, res) {
+  res.render('admin/internship-details');
+});
+
 app.listen(3000, function(err) {
   console.log('Server started on 3000');
 });
