@@ -35,7 +35,7 @@ const jobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  // jobtype: String,
+  jobtype: String,
   intake: Number,
   start_date: Date,
   apply_last: Date,
@@ -47,6 +47,10 @@ const jobSchema = new mongoose.Schema({
   paid: {
     type: Boolean,
     default: false
+  },
+  no_of_applicants: {
+    type: Number,
+    default: 0
   },
   Question1: String,
   Question2: String,
