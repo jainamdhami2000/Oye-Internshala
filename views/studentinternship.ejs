@@ -1,0 +1,89 @@
+<%-include('partials/header')%>
+
+<style>
+  .hi {
+    text-align: left;
+    color: blue;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+
+  .h10 {
+    size: 70px;
+    /* font-family: 'Courier New', Courier, monospace; */
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  table {
+    /* font-family: arial, sans-serif; */
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border-collapse: collapse;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .h4 {
+    size: 100px;
+    background-color: lightblue;
+  }
+
+  .h5 {
+    size: 50px;
+  }
+</style>
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <div class="card-body">
+                <h2 class="card-title text-center">Applied Internships</h2>
+                <div class="h3">
+                  <table>
+                    <tr class="h4">
+                      <th>Company</th>
+                      <th>Profile</th>
+                      <th>Employment Type</th>
+                      <th>Applied On</th>
+                      <th>No of Applicants</th>
+                      <th>Application Status</th>
+                      <th>Review Application</th>
+                    </tr>
+                    <% applications.forEach(application=>{%>
+                      <tr class="h5">
+                        <td><%=application.company_name%></td>
+                        <td><%=application.job_title%></td>
+                        <td><%=application.job_type%></td>
+                        <td><%=application.applied_on.toDateString()%></td>
+                        <td><%=application.no_of_applicants%></td>
+                        <%if (application.is_accept){%>
+                          <td>Accepted</td>
+                        <%} else if (application.is_reject){%>
+                          <td>Rejected</td>
+                        <%} else if (!application.is_accept && !application.is_reject) {%>
+                          <td>Pending</td>
+                        <%}%>
+
+                        <td style="text-decoration: underline;
+                                      color:red;">Click here</td>
+                      </tr>
+                    <%})%>
+                  </table>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<%-include('partials/footer')%>
