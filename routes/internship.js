@@ -78,7 +78,7 @@ router.post('/postintern', isLoggedIn, (req, res) => {
 });
 
 router.post('/view', isLoggedIn, (req, res) => {
-  console.log(req.body.job_id);
+
   if (req.user.isStudent) {
     Job.find({
       _id: sanitize(req.body.job_id)
@@ -179,83 +179,105 @@ router.get('/confirm', function(req, res) {
 });
 
 router.get('/appliedinternship', isLoggedIn, (req, res) => {
-  Applicant.find({
-      user_id: req.user._id
-    }, {
-      job_id: 1,
-      is_accept: 1,
-      is_reject: 1,
-      company_name: 1,
-      job_title: 1,
-      applied_on: 1
-    },
-    async (err, applications) => {
-      var result = [];
-      var jobids = [];
-      var jobs = [];
-      var apps = [];
-      applications.forEach((application) => {
-        apps.push({
-          _id: application._id,
-          job_id: application.job_id,
-          is_accept: application.is_accept,
-          is_reject: application.is_reject,
-          company_name: application.company_name,
-          job_title: application.job_title,
-          applied_on: application.applied_on,
-        });
-        jobids.push(application.job_id);
-      });
-      await Job.findOne({
-        _id: {
-          $in: jobids
-        }
+  if (req.user.isStudent){
+    Applicant.find({
+        user_id: req.user._id
       }, {
-        _id: 1,
-        no_of_applicants: 1,
-        jobtype: 1
-      }, (err, job) => {
-        jobs.push({
-          job_type: job.jobtype,
-          _id: job._id,
-          no_of_applicants: job.no_of_applicants
+        job_id: 1,
+        is_accept: 1,
+        is_reject: 1,
+        company_name: 1,
+        job_title: 1,
+        applied_on: 1
+      },
+      async (err, applications) => {
+        var result = [];
+        var jobids = [];
+        var jobs = [];
+        var apps = [];
+        applications.forEach((application) => {
+          apps.push({
+            _id: application._id,
+            job_id: application.job_id,
+            is_accept: application.is_accept,
+            is_reject: application.is_reject,
+            company_name: application.company_name,
+            job_title: application.job_title,
+            applied_on: application.applied_on,
+          });
+          jobids.push(application.job_id);
+        });
+        await Job.findOne({
+          _id: {
+            $in: jobids
+          }
+        }, {
+          _id: 1,
+          no_of_applicants: 1,
+          jobtype: 1
+        }, (err, job) => {
+          jobs.push({
+            job_type: job.jobtype,
+            _id: job._id,
+            no_of_applicants: job.no_of_applicants
+          });
+        });
+        var foundjob;
+        await apps.forEach(app => {
+          foundjob = jobs.filter((job) => {
+            return String(app.job_id) == String(job._id);
+          });
+          result.push({
+            _id: app._id,
+            job_id: app.job_id,
+            is_accept: app.is_accept,
+            is_reject: app.is_reject,
+            company_name: app.company_name,
+            job_title: app.job_title,
+            applied_on: app.applied_on,
+            job_type: foundjob[0].job_type,
+            no_of_applicants: foundjob[0].no_of_applicants
+          });
+        });
+        res.render('studentinternship', {
+          user: req.user,
+          applications: result,
         });
       });
-      var foundjob;
-      await apps.forEach(app => {
-        foundjob = jobs.filter((job) => {
-          return String(app.job_id) == String(job._id);
-        });
-        result.push({
-          _id: app._id,
-          job_id: app.job_id,
-          is_accept: app.is_accept,
-          is_reject: app.is_reject,
-          company_name: app.company_name,
-          job_title: app.job_title,
-          applied_on: app.applied_on,
-          job_type: foundjob[0].job_type,
-          no_of_applicants: foundjob[0].no_of_applicants
-        });
-      });
-      res.render('studentinternship', {
-        user: req.user,
-        applications: result,
-      });
-    });
+  } else {
+    res.send('Login as Student');
+  }
 });
 
-router.get('/applications', isLoggedIn, (req, res) => {
-  Job.find({
-    user_id: req.user._id
-  },{job_title:1,jobtype:1,job_published:1,applicants_accepted:1,intake:1}, (err, jobs) => {
-    // res.json(jobs)
-    res.render('employerinternship', {
-      user: req.user,
-      jobs:jobs
+router.get('/postedjobs', isLoggedIn, (req, res) => {
+  if (req.user.isEmployer) {
+    Job.find({
+      user_id: req.user._id
+    }, {
+      job_title: 1,
+      jobtype: 1,
+      job_published: 1,
+      applicants_accepted: 1,
+      intake: 1
+    }, (err, jobs) => {
+      // res.json(jobs)
+      res.render('postedjobs', {
+        user: req.user,
+        jobs: jobs
+      });
     });
-  });
+  } else {
+    res.send('Login as employer');
+  }
 });
+
+// router.get('/applications',isLoggedIn, (req,res)=>{
+//   if (req.user.isEmployer){
+//
+//   } else {
+//     res.send('Login as Employer')
+//   }
+// })
 
 function isLoggedIn(req, res, next) {
   try {
