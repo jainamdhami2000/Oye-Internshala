@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 const jobSchema = new mongoose.Schema({
   job_title: String,
   job_duration: String,
-  image: Object,
+  // image: Object,
   job_content: String,
   job_stipened: Number,
   user_id: {
@@ -49,6 +49,10 @@ const jobSchema = new mongoose.Schema({
     default: false
   },
   no_of_applicants: {
+    type: Number,
+    default: 0
+  },
+  applicants_accepted: {
     type: Number,
     default: 0
   },

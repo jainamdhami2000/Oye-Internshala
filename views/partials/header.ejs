@@ -48,9 +48,11 @@
                             <%if (user.isEmployer){%>
                             <a href='/profile-emp' class="dropdown-item">Employer Profile</a>
                             <a href='/internship/postintern' class="dropdown-item">Post an Internship</a>
+                            <a href='/internship/applications' class="dropdown-item">Applications</a>
                             <%} else if (user.isStudent) {%>
                             <a href='/profile-stud' class="dropdown-item">Student Profile</a>
                             <a href='/internship/searchintern' class="dropdown-item">Search Internships</a>
+                            <a href='/internship/appliedinternship' class="dropdown-item">Appied Internships</a>
                             <%}%>
               <a href="/logout" class="dropdown-item">Logout</a>
             </div>

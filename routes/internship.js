@@ -1,4 +1,4 @@
-//jshint esversion:6
+//jshint esversion:8
 
 const express = require('express');
 const sanitize = require('mongo-sanitize');
@@ -100,67 +100,75 @@ router.post('/view', isLoggedIn, (req, res) => {
 
 router.post('/apply', (req, res) => {
   var job_id = sanitize(req.body.job_id);
-  console.log(job_id)
-  Job.find({
+  Job.findOne({
     _id: job_id
   }, (err, job) => {
-    console.log(job);
-    var application = new Applicant({
-      name: req.user.FirstName + ' ' + req.user.LastName,
-      college: req.user.CollegeName,
-      // resume: Object,
-      skills: req.user.BasicSkills,
-      is_accept: false,
-      is_reject: false,
-      user_id: req.user._id,
-      company_name: job[0].company_name,
-      job_id: job[0]._id,
-    });
-    if (job[0].onsite == true) {
-      application.city = job[0].job_location;
+    if (job.no_of_applicants > job.intake) {
+      console.log(job);
+      var application = new Applicant({
+        name: req.user.FirstName + ' ' + req.user.LastName,
+        college: req.user.CollegeName,
+        job_title: job.job_title,
+        // resume: Object,
+        skills: req.user.BasicSkills,
+        is_accept: false,
+        is_reject: false,
+        user_id: req.user._id,
+        company_name: job.company_name,
+        job_id: job._id,
+      });
+      if (job.onsite == true) {
+        application.city = job.job_location;
+      }
+      if (typeof(job.Question1) != "undefined") {
+        application.Question1 = sanitize(req.body.question1);
+      }
+      if (typeof(job.Question2) != "undefined") {
+        application.Question2 = sanitize(req.body.question2);
+      }
+      if (typeof(job.Question3) != "undefined") {
+        application.Question3 = sanitize(req.body.question3);
+      }
+      application.save();
+      job.no_of_applicants += 1;
+      job.save();
+      res.redirect('/internship/confirm');
     }
-    if (typeof(job[0].Question1) != "undefined") {
-      application.Question1 = sanitize(req.body.question1);
-    }
-    if (typeof(job[0].Question2) != "undefined") {
-      application.Question2 = sanitize(req.body.question2);
-    }
-    if (typeof(job[0].Question3) != "undefined") {
-      application.Question3 = sanitize(req.body.question3);
-    }
-    application.save();
-    res.redirect('/internship/confirm');
+    res.send('Maximum applicants reached');
   });
 });
 
 router.post('/intern-details', (req, res) => {
   var job_id = sanitize(req.body.job_id);
   console.log(job_id);
-  Job.find({
+  Job.findOne({
     _id: job_id
   }, (err, job) => {
     console.log(job);
-    if (typeof(job[0].Question1) != 'undefined' || typeof(job[0].Question2) != 'undefined' || typeof(job[0].Question3) != 'undefined') {
+    if (typeof(job.Question1) != 'undefined' || typeof(job.Question2) != 'undefined' || typeof(job.Question3) != 'undefined') {
       res.render('apply', {
         user: req.user,
-        job: job[0]
+        job: job
       });
     } else {
       var application = new Applicant({
         name: req.user.FirstName + ' ' + req.user.LastName,
         college: req.user.CollegeName,
+        job_title: job.job_title,
         // resume: Object,
         skills: req.user.BasicSkills,
         is_accept: false,
         is_reject: false,
         user_id: req.user._id,
-        company_name: job[0].company_name,
-        job_id: job[0]._id,
+        company_name: job.company_name,
+        job_id: job._id,
       });
-      if (job[0].onsite == true) {
-        application.city = job[0].job_location;
+      if (job.onsite == true) {
+        application.city = job.job_location;
       }
       application.save();
+      job.no_of_applicants += 1;
+      job.save();
       res.redirect('/internship/confirm'); //MAKE APPLICATION POSTED FOR INTERNSHIP PAGE
     }
   });
@@ -168,6 +176,85 @@ router.post('/intern-details', (req, res) => {
 
 router.get('/confirm', function(req, res) {
   res.render('application-confirm');
+});
+
+router.get('/appliedinternship', isLoggedIn, (req, res) => {
+  Applicant.find({
+      user_id: req.user._id
+    }, {
+      job_id: 1,
+      is_accept: 1,
+      is_reject: 1,
+      company_name: 1,
+      job_title: 1,
+      applied_on: 1
+    },
+    async (err, applications) => {
+      var result = [];
+      var jobids = [];
+      var jobs = [];
+      var apps = [];
+      applications.forEach((application) => {
+        apps.push({
+          _id: application._id,
+          job_id: application.job_id,
+          is_accept: application.is_accept,
+          is_reject: application.is_reject,
+          company_name: application.company_name,
+          job_title: application.job_title,
+          applied_on: application.applied_on,
+        });
+        jobids.push(application.job_id);
+      });
+      await Job.findOne({
+        _id: {
+          $in: jobids
+        }
+      }, {
+        _id: 1,
+        no_of_applicants: 1,
+        jobtype: 1
+      }, (err, job) => {
+        jobs.push({
+          job_type: job.jobtype,
+          _id: job._id,
+          no_of_applicants: job.no_of_applicants
+        });
+      });
+      var foundjob;
+      await apps.forEach(app => {
+        foundjob = jobs.filter((job) => {
+          return String(app.job_id) == String(job._id);
+        });
+        result.push({
+          _id: app._id,
+          job_id: app.job_id,
+          is_accept: app.is_accept,
+          is_reject: app.is_reject,
+          company_name: app.company_name,
+          job_title: app.job_title,
+          applied_on: app.applied_on,
+          job_type: foundjob[0].job_type,
+          no_of_applicants: foundjob[0].no_of_applicants
+        });
+      });
+      res.render('studentinternship', {
+        user: req.user,
+        applications: result,
+      });
+    });
+});
+
+router.get('/applications', isLoggedIn, (req, res) => {
+  Job.find({
+    user_id: req.user._id
+  },{job_title:1,jobtype:1,job_published:1,applicants_accepted:1,intake:1}, (err, jobs) => {
+    // res.json(jobs)
+    res.render('employerinternship', {
+      user: req.user,
+      jobs:jobs
+    });
+  });
 });
 
 function isLoggedIn(req, res, next) {
