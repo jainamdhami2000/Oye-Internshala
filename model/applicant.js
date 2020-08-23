@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const applicantSchema = new mongoose.Schema({
   name: String,
+  job_title: String,
   college: String,
   resume: Object,
   skills: String,
@@ -18,6 +19,10 @@ const applicantSchema = new mongoose.Schema({
   is_reject: {
     type: Boolean,
     default: false
+  },
+  applied_on: {
+    type: Date,
+    default: Date.now()
   },
   company_name: String,
   Question1: String,
