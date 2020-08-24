@@ -87,6 +87,7 @@ app.get('/hi', function(req, res) {
   res.render('admin/internship-details');
 });
 
+
 app.listen(3000, function(err) {
   console.log('Server started on 3000');
 });

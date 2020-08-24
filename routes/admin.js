@@ -54,7 +54,10 @@ router.get('/unverifiedemployers', (req, res) => {
         admin_accept: false,
         admin_reject: false
     }, (err, employers) => {
-        res.json({
+        // res.json({
+        //     unverifiedemployers: employers
+        // });
+        res.render('admin/employer-verify', {
             unverifiedemployers: employers
         });
     });
@@ -65,7 +68,10 @@ router.post('/unverifiedemployer', (req, res) => {
     User.find({
         _id: employer_id
     }, (err, employer) => {
-        res.json({
+        // res.json({
+        //     unverifiedemployer: employer[0]
+        // });
+        res.render('admin/emp-details', {
             unverifiedemployer: employer[0]
         });
     });
@@ -95,7 +101,7 @@ router.get('/unverifiedinternships', (req, res) => {
     }, (err, internships) => {
         res.render('admin/internships', {
             jobs: internships
-        })
+        });
     });
 });
 
@@ -104,8 +110,16 @@ router.post('/unverifiedinternship', (req, res) => {
     Job.find({
         _id: job_id
     }, (err, internship) => {
-        res.json({
-            unverifiedinternship: internship[0]
+        User.findOne({
+            _id: internship[0].user_id
+        }, (err, user) => {
+            // res.json({
+            //     unverifiedinternship: internship[0]
+            // });
+            res.render('admin/internship-details', {
+                job: internship[0],
+                user: user
+            });
         });
     });
 });

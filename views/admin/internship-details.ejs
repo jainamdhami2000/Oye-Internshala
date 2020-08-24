@@ -1,50 +1,76 @@
 <%-include('../partials/admin-header')%>
-<link rel="stylesheet" href="css/internship-details(admin).css">
+<link rel="stylesheet" href="/css/internship-details.css">
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
-                    <div class="MainCard">
-                        <div class="row spacing">
-                            <div class="col-md-3">
-                                <span class="Heading">EDUCATION</span>
-                            </div>
-                            <div class="col-md-9">
-                                Bachelor of Engineering (B.E), Information Technology <br>
-                                Dwarkadas Jivanlal Sanghvi College of Engineering
-                            </div>
-                        </div>
-                        <div class="row spacing">
-                            <div class="col-md-3">
-                                <span class="Heading">SKILLS</span>
-                            </div>
-                            <div class="col-md-3">
-                                JavaScript <br>
-                                Intermediate
-                            </div>
-                            <div class="col-md-3">
-                                HTML <br>
-                                Intermediate
-                            </div>
-                        </div>
-                        <div class="row" style="text-align: center">
-                            <center>
-                                <button type="button" class="btn btn-success">ACCEPT</button>
-                                <button type="button" class="btn btn-danger">REJECT</button>
-                            </center>
-
-                        </div>
-                    </div>
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="MainCard">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">INTERNSHIPS</h5>
+                <div class="container1">
+                  <input name='job_id' style='display:none' value='<%=job._id%>'>
+                  <h4>Title: <%=job.job_title%></h4>
+                  <h5>Company Name: <%=job.company_name%></h5>
+                  <div class="float-container1">
+                    <%if (job.onsite==false){%>
+                    <h5>Work from Home</h5>
+                    <%} else {%>
+                    <h5>Location: <%=job.job_location%></h5>
+                    <%}%>
+                        <div class="float-child3">
+                          <h4>Start Date</h4>
+                            <div><%=job.start_date.toDateString()%></div>
                 </div>
+                <div class="float-child3">
+                  <h4>Duration</h4>
+                  <div><%=job.job_duration%></div>
+                </div>
+
+                <div class="float-child3">
+                  <h4>Stipend</h4>
+                  <%if (job.paid==true){%>
+                  <div><%=job.job_stipened%></div>
+                  <%} else {%>
+                  <div>Unpaid</div>
+                  <%}%>
+                        </div>
+
+                        <div class="float-child3">
+                          <h4>Apply By</h4>
+                            <div><%=job.apply_last.toDateString()%>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <div style="padding: 20px;" class="">
+        <h3>About OYE India</h3>
+        <p>
+          <a href="/">Homepage</a><br>
+          <%=user.CompanyDescription%>
+        </p>
+        <h3>About the internship</h3>
+        <p>
+          <%=job.job_content%>
+        </p>
+
+
+
+              <center>
+                  <button type="button" class="btn btn-success">ACCEPT</button>
+                  <button type="button" class="btn btn-danger">REJECT</button>
+              </center>
+        
+
+      </div>
     </div>
+  </div>
+  </div>
+  </div>
+  </div>
 </body>
 <%-include('../partials/footer')%>
-<script>
-    function details(input) {
-        document.getElementById("job" + input.id).submit();
-    }
-</script>

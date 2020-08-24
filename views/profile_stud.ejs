@@ -23,12 +23,17 @@
                       <figcaption style="text-align:center">Click to Upload </figcaption>
                     </div>
                     <div class="user-data">
-                      <h2>Smith Alexander</h2>
-                      <span class="post-label">Employee</span>
-                      <span class="post-label">College Name</span>
+                      <h2><%=user.FirstName%> <%=user.LastName%></h2>
+                      <span class="post-label">Student</span>
+                      <span class="post-label"><%=user.CollegeName%></span>
+                      <%if (user.isVerified){%>
+                      <span class="post-label">Verified</span>
+                      <%} else {%>
+                      <span class="post-label">UnVerified</span>
+                      <%}%>
                       <br>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>  Mumbai, India <br>
-                      <i class="fa fa-location-arrow" aria-hidden="true"></i> Email Id : djsce@gmail.com
+                      <i class="fa fa-map-marker" aria-hidden="true"></i><%=user.City%>, India <br>
+                      <i class="fa fa-location-arrow" aria-hidden="true"></i> Email Id : <%=user.Email%>
                     </div>
                   </div>
                   <div class="tab-panel-main">
@@ -39,9 +44,12 @@
                       <div class="skill-box">
                         <ul>
                           <li><strong>Basic Skills:</strong></li>
-                          <li>CODING<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></li>
+                          <%# <li>CODING<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></li>
                           <li>TEAM SPIRIT<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></li>
-                          <li>GROWTH MARKETING<i class="fa fa-star" aria-hidden="true"></i></li>
+                          <li>GROWTH MARKETING<i class="fa fa-star" aria-hidden="true"></i></li> %>
+                          <li>
+                              <%=user.BasicSkills%>
+                          </li>
                         </ul>
                       </div>
                       <div class="detail-box">
@@ -50,19 +58,13 @@
                           <li>Username</li>
                           <li>Birth date</li>
                           <li>City</li>
-                          <li>Country</li>
                           <li>College Name</li>
-                          <li>College Location</li>
-                          <li>Year Of Study</li>
                         </ul>
                         <ul class="ul-second">
-                          <l1>Smith</l1>
+                          <l1><%=user.username%></l1>
                           <li>8 March 1997</li>
-                          <li>Jamanagar</li>
-                          <li>California</li>
-                          <li>DJ Sanghavi</li>
-                          <li>Mumbai</li>
-                          <li>2018</li>
+                          <li><%=user.City%></li>
+                          <li><%=user.CollegeName%></li>
                         </ul>
                       </div>
                     </div>

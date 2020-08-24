@@ -195,6 +195,7 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
         var jobids = [];
         var jobs = [];
         var apps = [];
+        if(applications.length>0){
         applications.forEach((application) => {
           apps.push({
             _id: application._id,
@@ -216,6 +217,7 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
           no_of_applicants: 1,
           jobtype: 1
         }, (err, job) => {
+            console.log(job)
           jobs.push({
             job_type: job.jobtype,
             _id: job._id,
@@ -243,7 +245,13 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
           user: req.user,
           applications: result,
         });
-      });
+    } else {
+        res.render('studentinternship', {
+          user: req.user,
+          applications: applications,
+        });
+    }
+});
   } else {
     res.send('Login as Student');
   }

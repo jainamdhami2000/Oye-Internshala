@@ -38,36 +38,57 @@
   .h5 {
     size: 50px;
   }
+
+  .options{
+      margin: 0 7px;
+      cursor: pointer;
+  }
+
+  .cen{
+      text-align: center;
+  }
+
 </style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
       <div class="row">
         <div class="ml-auto mr-auto">
+            <a href="#"></a>
           <div class="card card-signup">
             <div class="card-body">
               <h2 class="card-title text-center">Applied Internships</h2>
               <div class="h3">
                 <table>
                   <tr class="h4">
-                    <th style="background-color: lightblue;">Profile</th>
-                    <th style="background-color: lightblue;">Employment Type</th>
-                    <th style="background-color: lightblue;">Posted On</th>
-                    <th style="background-color: lightblue;">No of Applicants Recruited</th>
-                    <th style="background-color: lightblue;">Vacancy</th>
-                    <th style="background-color: lightblue;">Review Internship</th>
+                    <th style="background-color: lightblue;" class="cen">Profile</th>
+                    <th style="background-color: lightblue;" class="cen">Employment Type</th>
+                    <th style="background-color: lightblue;" class="cen">Posted On</th>
+                    <th style="background-color: lightblue;" class="cen">No of Applicants Recruited</th>
+                    <th style="background-color: lightblue;" class="cen">Vacancy</th>
+                    <th style="background-color: lightblue;" class="cen">Review Internship</th>
                   </tr>
                   <%jobs.forEach(job => {%>
                   <tr class="h5">
-                    <td><%=job.job_title%></td>
-                      <td><%=job.jobtype%></td>
-                      <td><%=job.job_published.toDateString()%></td>
-                      <td><%=job.applicants_accepted%></td>
-                      <td><%=job.intake-job.applicants_accepted%></td>
-                      <td style="text-decoration: underline;
-                  color:red;">Click here</td>
-                    </tr>
+                      <td class="cen"><%=job.job_title%></td>
+                      <td class="cen"><%=job.jobtype%></td>
+                      <td class="cen"><%=job.job_published.toDateString()%></td>
+                      <td class="cen"><%=job.applicants_accepted%></td>
+                      <td class="cen"><%=job.intake-job.applicants_accepted%></td>
+                      <td class="cen">
+                        <a href="#">
+                          <i style="color:black" class="far fa-eye options"></i>
+                        </a>
+                        <a href="#">
+                          <i style="color:blue" class="far fa-edit options"></i>
+                        </a>
+                        <a href="#">
+                          <i style="color:red" class="far fa-trash-alt options"></i>
+                        </a>
+                      </td>
+                  </tr>
                   <%})%>
                   </tr>
                 </table>
