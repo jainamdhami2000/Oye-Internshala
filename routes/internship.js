@@ -80,14 +80,14 @@ router.post('/postintern', isLoggedIn, (req, res) => {
 router.post('/view', isLoggedIn, (req, res) => {
 
   if (req.user.isStudent) {
-    Job.find({
+    Job.findOne({
       _id: sanitize(req.body.job_id)
     }, (err, job) => {
       console.log(job);
       if (job) {
         res.render('internship-details', {
           user: req.user,
-          job: job[0]
+          job: job
         });
       } else {
         res.send("Error");
@@ -103,7 +103,7 @@ router.post('/apply', (req, res) => {
   Job.findOne({
     _id: job_id
   }, (err, job) => {
-    if (job.no_of_applicants > job.intake) {
+    if (job.applicants_accepted > job.intake) {
       console.log(job);
       var application = new Applicant({
         name: req.user.FirstName + ' ' + req.user.LastName,
@@ -133,8 +133,9 @@ router.post('/apply', (req, res) => {
       job.no_of_applicants += 1;
       job.save();
       res.redirect('/internship/confirm');
+    } else {
+      res.send('Maximum applicants reached');
     }
-    res.send('Maximum applicants reached');
   });
 });
 
@@ -179,7 +180,7 @@ router.get('/confirm', function(req, res) {
 });
 
 router.get('/appliedinternship', isLoggedIn, (req, res) => {
-  if (req.user.isStudent){
+  if (req.user.isStudent) {
     Applicant.find({
         user_id: req.user._id
       }, {
@@ -195,63 +196,63 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
         var jobids = [];
         var jobs = [];
         var apps = [];
-        if(applications.length>0){
-        applications.forEach((application) => {
-          apps.push({
-            _id: application._id,
-            job_id: application.job_id,
-            is_accept: application.is_accept,
-            is_reject: application.is_reject,
-            company_name: application.company_name,
-            job_title: application.job_title,
-            applied_on: application.applied_on,
+        if (applications.length > 0) {
+          applications.forEach((application) => {
+            apps.push({
+              _id: application._id,
+              job_id: application.job_id,
+              is_accept: application.is_accept,
+              is_reject: application.is_reject,
+              company_name: application.company_name,
+              job_title: application.job_title,
+              applied_on: application.applied_on,
+            });
+            jobids.push(application.job_id);
           });
-          jobids.push(application.job_id);
-        });
-        await Job.findOne({
-          _id: {
-            $in: jobids
-          }
-        }, {
-          _id: 1,
-          no_of_applicants: 1,
-          jobtype: 1
-        }, (err, job) => {
+          await Job.find({
+            _id: {
+              $in: jobids
+            }
+          }, {
+            _id: 1,
+            no_of_applicants: 1,
+            jobtype: 1
+          }, (err, job) => {
             console.log(job)
-          jobs.push({
-            job_type: job.jobtype,
-            _id: job._id,
-            no_of_applicants: job.no_of_applicants
+            jobs = job
           });
-        });
-        var foundjob;
-        await apps.forEach(app => {
-          foundjob = jobs.filter((job) => {
-            return String(app.job_id) == String(job._id);
+          var foundjob;
+          await apps.forEach(app => {
+            foundjob = jobs.filter((job) => {
+              console.log(String(app.job_id) == String(job._id))
+              return String(app.job_id) == String(job._id);
+            });
+            console.log('Hello', result)
+            result.push({
+              _id: app._id,
+              job_id: app.job_id,
+              is_accept: app.is_accept,
+              is_reject: app.is_reject,
+              company_name: app.company_name,
+              job_title: app.job_title,
+              applied_on: app.applied_on,
+              job_type: foundjob[0].jobtype,
+              no_of_applicants: foundjob[0].no_of_applicants
+            });
+            console.log('Hi', result)
           });
-          result.push({
-            _id: app._id,
-            job_id: app.job_id,
-            is_accept: app.is_accept,
-            is_reject: app.is_reject,
-            company_name: app.company_name,
-            job_title: app.job_title,
-            applied_on: app.applied_on,
-            job_type: foundjob[0].job_type,
-            no_of_applicants: foundjob[0].no_of_applicants
+
+          res.render('studentinternship', {
+            user: req.user,
+            applications: result,
           });
-        });
-        res.render('studentinternship', {
-          user: req.user,
-          applications: result,
-        });
-    } else {
-        res.render('studentinternship', {
-          user: req.user,
-          applications: applications,
-        });
-    }
-});
+        } else {
+          res.render('studentinternship', {
+            user: req.user,
+            applications: applications,
+          });
+        }
+      });
   } else {
     res.send('Login as Student');
   }

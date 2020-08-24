@@ -56,6 +56,22 @@ const userSchema = new mongoose.Schema({
   admin_accept: Boolean,
   admin_reject: Boolean,
   CompanyDescription: String,
+  // internapplications:{
+  //   typeof:[mongoose.Types.ObjectId],
+  //   ref:'Applicant',
+  // },
+  // jobapplications:{
+  //   typeof:[mongoose.Types.ObjectId],
+  //   ref:'Applicant',
+  // },
+  // acceptedinternships:{
+  //   typeof:[mongoose.Types.ObjectId],
+  //   ref:'Applicant',
+  // },
+  // acceptedjobs:{
+  //   typeof:[mongoose.Types.ObjectId],
+  //   ref:'Applicant',
+  // }
 });
 
 userSchema.methods.generateHash = function(password) {

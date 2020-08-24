@@ -65,14 +65,14 @@ router.get('/unverifiedemployers', (req, res) => {
 
 router.post('/unverifiedemployer', (req, res) => {
     var employer_id = req.body.employer_id;
-    User.find({
+    User.findOne({
         _id: employer_id
     }, (err, employer) => {
         // res.json({
         //     unverifiedemployer: employer[0]
         // });
         res.render('admin/emp-details', {
-            unverifiedemployer: employer[0]
+            unverifiedemployer: employer
         });
     });
 });
@@ -84,12 +84,13 @@ router.post('/employerverification', (req, res) => {
     User.findOne({
         _id: employer_id
     }, (err, employer) => {
-        if (accept) {
+        if (accept == 'Accept') {
             employer.admin_accept = true;
         } else {
             employer.admin_reject = true;
         }
         employer.save();
+        res.redirect('/admin/home');
     });
 });
 
@@ -107,17 +108,17 @@ router.get('/unverifiedinternships', (req, res) => {
 
 router.post('/unverifiedinternship', (req, res) => {
     var job_id = req.body.job_id;
-    Job.find({
+    Job.findOne({
         _id: job_id
     }, (err, internship) => {
         User.findOne({
-            _id: internship[0].user_id
+            _id: internship.user_id
         }, (err, user) => {
             // res.json({
             //     unverifiedinternship: internship[0]
             // });
             res.render('admin/internship-details', {
-                job: internship[0],
+                job: internship,
                 user: user
             });
         });
@@ -131,12 +132,13 @@ router.post('/internshipverification', (req, res) => {
     Job.findOne({
         _id: job_id
     }, (err, job) => {
-        if (accept) {
+        if (accept == 'Accept') {
             job.admin_accept = true;
         } else {
             job.admin_reject = true;
         }
         job.save();
+        res.redirect('/admin/home');
     });
 });
 
@@ -154,11 +156,11 @@ router.get('/unverifiedjobs', (req, res) => {
 
 router.post('/unverifiedjob', (req, res) => {
     var job_id = req.body.job_id;
-    Job.find({
+    Job.findOne({
         _id: job_id
     }, (err, job) => {
         res.json({
-            unverifiedjob: job[0]
+            unverifiedjob: job
         });
     });
 });
@@ -176,6 +178,7 @@ router.post('/jobverification', (req, res) => {
             job.admin_reject = true;
         }
         job.save();
+        res.redirect('/admin/home');
     });
 });
 
