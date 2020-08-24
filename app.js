@@ -19,6 +19,7 @@ const verifymail = require('./routes/verifymail');
 const admin = require('./routes/admin');
 const internship = require('./routes/internship');
 const courses = require('./routes/courses');
+const profile = require('./routes/profile');
 
 mongoose.connect(configDB.url, {
   useNewUrlParser: true,
@@ -55,18 +56,19 @@ app.use('/verify', verifymail);
 app.use('/admin', admin);
 app.use('/internship', internship);
 app.use('/courses', courses);
+app.use('/profile', profile);
 
-app.get('/profile-emp', function(req, res) {
-  res.render('profile_emp');
-});
+// app.get('/profile-emp', function(req, res) {
+//   res.render('profile_emp');
+// });
+//
+// app.get('/profile-ngo', function(req, res) {
+//   res.render('profile_ngo');
+// });
 
-app.get('/profile-ngo', function(req, res) {
-  res.render('profile_ngo');
-});
-
-app.get('/profile-stud', function(req, res) {
-  res.render('profile_stud');
-});
+// app.get('/profile-stud', function(req, res) {
+//   res.render('profile_stud');
+// });
 
 // app.get('/hi', function(req, res) {
 //     if (req.user.isStudent) {

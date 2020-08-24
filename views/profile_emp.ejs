@@ -1,88 +1,86 @@
 <%-include('partials/header')%>
 
-
-<link rel="stylesheet" type="text/css" href="css/profile.css">
+<link rel="stylesheet" type="text/css" href="/css/profile.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="assets/css/material-kit.css" rel="stylesheet" />
+<link href="/assets/css/material-kit.css" rel="stylesheet" />
 
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="ml-auto mr-auto">
-                    <div class="card card-signup">
-                        <h2 class="card-title text-center">Profile</h2>
-                        <div class="card-body">
-                            <div class="profile-main">
-                                <div class="profile-header">
-                                    <div class="user-detail">
-                                        <div class="user-image">
-                                            <img
-                                                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHkAeQMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAYBAwUCB//EADkQAAICAQEFBAYHCQEAAAAAAAABAgMEEQUSITFBE1FhcUJSYpGx0RQyMzShweEiQ1RjcnOSk/Ej/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APuIAAAGJSUU23ol1AyDmZW1q4Pdx12j73wX6nNuzci7Xftkl3R4ICwzurr+0nCP9Ukjx9Mxv4ir/NFZAFphfVP6lkJeUkzYVI3U5V9OnZ2yS7uaAs4OVjbXT0WRHT2o/I6cJxnFShJSi+TQHoAAAAAAMSaSbfBLmB4uthTW52PSKODm5tmVLT6tfSOvPzG0Mt5Vv7P2Ufqp9fEiAZMAn4Gz5ZMVbKW7XvaadWBABZ6sWilaQqivHTVmJ4eNN6ypg35AVkFiu2fjWVuMa4wfSUVxRAy9ldlU7KZuW6tWn+QHMJGJl2Y09YPWL5xfJkcAWfFyK8mtTrfmnzTNxWcTJljXb8dWvSXeiyVWRtrjOD1jJaoD0AABzNtZG5UqI858X5HTK1n29tl2S6J6LyQEcAAC0Ytaqx6616MV7ysLmi1rkBkAADE1vRaT01XPuMgCq2wdds4N6uMmjwbst65Vz9t/E0gDq7FyGpPHk+D4x/M5R7psdNsLI84vUC1AxGSklJcmtUZA8XT7Omc/Vi37irFlzvuV/wDbl8CtAYAAAtGNJyx65STTcVqmVfXTiWiNjcFJLgwNoNe/4BTfcBsBpb1+tx0fQ9b705cQKza9bZtrTWTfHzPBtyZqeTbJdZv4moAAALJs6W/hUv2dPdwJJD2R9wr85fFkwDXkR36LIetFr8CrFtKxmVdjk2Q04KXDyA0gAAdvY+TK2Eqp/u0tH3o4hN2Ra68yK6TW6wLAAABC2nkyxqE4Jb0non3eJNOLtyzW6FXSK19//AOYAAAB6rg7LIwjzk9EBYdmx3MGpPqtfe9SUeYRUIRiuUVoj0AOVtvH1jG+K5cJeXQ6p5nGM4OElrFrRrvAqpgmz2dYsrsYyik+MXLqiZTsetcbrHLwjwQHHJuzsW/6TXb2UlCL4t8Ds041NK/864xff1NwAAADjbWxr7Ml2wrlKG6lrHidkAVNpp6NNPxMFptoquWltcZeaIN2yKZcapyr8OaA4h0ti4+/a72v2YcF5mqzZ10MiFO9CTny06LvZ3MemNFUa4cor3gbAAAAAGrIpjdDSWqaesZLnF96NdV8oTVOVpGfozXKfyfgSTxZXC2DjZFSi+jA9gi9nfj/AGMu1rXoTfFeT+ZmOZVru271Uu6xafjyAkgxGSktYtNd6ZkADDaS1bSXiaJ5lKe7GTsl6ta3mBII9+Q4y7KmPaXPp0j4tnjTJv4N/R4eHGb/ACRvpprpju1x0XN+PmB5x6OyTlKTnbLjKb6/obgAAAAAAAAABiUVJaSSa7mZAEeWFjNt9lFN+rw+Bj6DT/N/2y+ZJAEZYOMnq6lJ+03L4m+EIwWkIqK7ktD0AAAAAAAAAP/Z">
-                                            <figcaption style="text-align:center">Click to Upload </figcaption>
-                                        </div>
-                                        <div class="user-data">
-                                            <h2><%=user.FirstName%> <%=user.LastName%></h2>
-                                            <span class="post-label">Employee</span>
-                                            <span class="post-label"><%=user.CompanyName%></span>
-                                            <%if (user.isVerified){%>
-                                            <span class="post-label">Verified</span>
-                                            <%} else {%>
-                                            <span class="post-label">UnVerified</span>
-                                            <%}%>
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">Profile</h2>
+            <div class="card-body">
+              <div class="profile-main">
+                <div class="profile-header">
+                  <div class="user-detail">
+                    <div class="user-image">
+                      <img
+                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHkAeQMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAYBAwUCB//EADkQAAICAQEFBAYHCQEAAAAAAAABAgMEEQUSITFBE1FhcUJSYpGx0RQyMzShweEiQ1RjcnOSk/Ej/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APuIAAAGJSUU23ol1AyDmZW1q4Pdx12j73wX6nNuzci7Xftkl3R4ICwzurr+0nCP9Ukjx9Mxv4ir/NFZAFphfVP6lkJeUkzYVI3U5V9OnZ2yS7uaAs4OVjbXT0WRHT2o/I6cJxnFShJSi+TQHoAAAAAAMSaSbfBLmB4uthTW52PSKODm5tmVLT6tfSOvPzG0Mt5Vv7P2Ufqp9fEiAZMAn4Gz5ZMVbKW7XvaadWBABZ6sWilaQqivHTVmJ4eNN6ypg35AVkFiu2fjWVuMa4wfSUVxRAy9ldlU7KZuW6tWn+QHMJGJl2Y09YPWL5xfJkcAWfFyK8mtTrfmnzTNxWcTJljXb8dWvSXeiyVWRtrjOD1jJaoD0AABzNtZG5UqI858X5HTK1n29tl2S6J6LyQEcAAC0Ytaqx6616MV7ysLmi1rkBkAADE1vRaT01XPuMgCq2wdds4N6uMmjwbst65Vz9t/E0gDq7FyGpPHk+D4x/M5R7psdNsLI84vUC1AxGSklJcmtUZA8XT7Omc/Vi37irFlzvuV/wDbl8CtAYAAAtGNJyx65STTcVqmVfXTiWiNjcFJLgwNoNe/4BTfcBsBpb1+tx0fQ9b705cQKza9bZtrTWTfHzPBtyZqeTbJdZv4moAAALJs6W/hUv2dPdwJJD2R9wr85fFkwDXkR36LIetFr8CrFtKxmVdjk2Q04KXDyA0gAAdvY+TK2Eqp/u0tH3o4hN2Ra68yK6TW6wLAAABC2nkyxqE4Jb0non3eJNOLtyzW6FXSK19//AOYAAAB6rg7LIwjzk9EBYdmx3MGpPqtfe9SUeYRUIRiuUVoj0AOVtvH1jG+K5cJeXQ6p5nGM4OElrFrRrvAqpgmz2dYsrsYyik+MXLqiZTsetcbrHLwjwQHHJuzsW/6TXb2UlCL4t8Ds041NK/864xff1NwAAADjbWxr7Ml2wrlKG6lrHidkAVNpp6NNPxMFptoquWltcZeaIN2yKZcapyr8OaA4h0ti4+/a72v2YcF5mqzZ10MiFO9CTny06LvZ3MemNFUa4cor3gbAAAAAGrIpjdDSWqaesZLnF96NdV8oTVOVpGfozXKfyfgSTxZXC2DjZFSi+jA9gi9nfj/AGMu1rXoTfFeT+ZmOZVru271Uu6xafjyAkgxGSktYtNd6ZkADDaS1bSXiaJ5lKe7GTsl6ta3mBII9+Q4y7KmPaXPp0j4tnjTJv4N/R4eHGb/ACRvpprpju1x0XN+PmB5x6OyTlKTnbLjKb6/obgAAAAAAAAABiUVJaSSa7mZAEeWFjNt9lFN+rw+Bj6DT/N/2y+ZJAEZYOMnq6lJ+03L4m+EIwWkIqK7ktD0AAAAAAAAAP/Z">
+                      <figcaption style="text-align:center">Click to Upload </figcaption>
+                    </div>
+                    <div class="user-data">
+                      <h2><%=user.FirstName%> <%=user.LastName%></h2>
+                      <span class="post-label">Employee</span>
+                      <span class="post-label"><%=user.CompanyName%></span>
+                      <%if (user.isVerified){%>
+                      <span class="post-label">Verified</span>
+                      <%} else {%>
+                      <span class="post-label">UnVerified</span>
+                      <%}%>
 	            					<br>
 	                                <i class="fa fa-map-marker" aria-hidden="true"></i>  <%=user.MainOfficeLocation%>, India <br>
-	                                <i class="fa fa-location-arrow" aria-hidden="true"></i>    Email Id : <%=user.Email%>
-	            				</div>
-	            			</div>
-	            			<div class="tab-panel-main">
-	            				<ul class="tabs">
-	            					<li class="tab-link current" data-tab="Basic-detail">Basic Detail</li>
-	            				</ul>
-	            				<div id="Basic-detail" class="tab-content current">
-	            					<div class="detail-box">
-	            						<p>Detail</p>
-	            						<ul class="ul-first">
-	                                        <li>Username</li>
-	            							<li>Birth date</li>
-	                                        <li>Company Name</li>
-	                                        <li>Company Location</li>
-	            						</ul>
-	            						<ul class="ul-second">
-	                                        <l1><%=user.username%></l1>
-	            							<li>8 March 1997</li>
-	                                        <li><%=user.CompanyName%></li>
-	                                        <li><%=user.MainOfficeLocation%></li>
-	            						</ul>
-	            					</div>
-	                            </div>
-	            			</div>
-	            		</div>
-	            		<div style="clear: both;"></div>
+                      <i class="fa fa-location-arrow" aria-hidden="true"></i> Email Id : <%=user.Email%>
+                    </div>
+                  </div>
+                  <div class="tab-panel-main">
+                    <ul class="tabs">
+                      <li class="tab-link current" data-tab="Basic-detail">Basic Detail</li>
+                    </ul>
+                    <div id="Basic-detail" class="tab-content current">
+                      <div class="detail-box">
+                        <p>Detail</p>
+                        <ul class="ul-first">
+                          <li>Username</li>
+                          <li>Birth date</li>
+                          <li>Company Name</li>
+                          <li>Company Location</li>
+                        </ul>
+                        <ul class="ul-second">
+                          <l1><%=user.username%></l1>
+                          <li>8 March 1997</li>
+                          <li><%=user.CompanyName%></li>
+                          <li><%=user.MainOfficeLocation%></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="clear: both;"></div>
 
-	                    <p class="line">EDIT DETAILS</p>
-	            	</div>
-	          </div>
-	        </div>
+                <p class="line"><a href='/profile/updateemployer'>EDIT DETAILS</a></p>
+              </div>
+            </div>
+          </div>
 
-	      </div>
-	    </div>
-	  </div>
-	</body>
+        </div>
+      </div>
+    </div>
+</body>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('ul.tabs li').click(function(){
-			var tab_id = $(this).attr('data-tab');
+  $(document).ready(function() {
+    $('ul.tabs li').click(function() {
+      var tab_id = $(this).attr('data-tab');
 
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
+      $('ul.tabs li').removeClass('current');
+      $('.tab-content').removeClass('current');
 
-			$(this).addClass('current');
-			$("#"+tab_id).addClass('current');
-		});
-	});
-
+      $(this).addClass('current');
+      $("#" + tab_id).addClass('current');
+    });
+  });
 </script>
 <%-include('partials/footer')%>
