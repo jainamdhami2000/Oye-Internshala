@@ -1,0 +1,94 @@
+<%-include('partials/header')%>
+<style>
+  .card-signup {
+    padding-top: 20px
+  }
+
+  .hi {
+    text-align: left;
+    color: blue;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+
+  .h10 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border-collapse: collapse;
+    text-align: left;
+    padding: 8px;
+  }
+
+  .h4 {
+    size: 100px;
+    background-color: lightblue;
+  }
+
+  .h5 {
+    size: 50px;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="assets/css/material-kit.css" rel="stylesheet" />
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <div class="card-body">
+              <h3 class="card-title text-center">Applicant Details</h3>
+              <div class="h3">
+                <table>
+                  <tr class="h4">
+                    <th style="background-color: lightblue;">Student Name</th>
+
+                    <th style="background-color: lightblue;">College </th>
+                    <th style="background-color: lightblue;">City</th>
+                    <th style="background-color: lightblue;">Applied On</th>
+                    <th style="background-color: lightblue;">More Info.</th>
+
+                  </tr>
+                  <%applicants.forEach(applicant=>{%>
+                  <tr class="h5">
+                    <td><%=applicant.name%> </td>
+
+                    <td><%=applicant.college%></td>
+                    <td><%=applicant.city%></td>
+                    <td><%=applicant.applied_on.toDateString()%></td>
+                    <form id="applicant<%=applicant._id%>" method='POST' action="/internship/studentapplicationdetails">
+                      <input name='applicant_id' style='display:none' value='<%=applicant._id%>'>
+                      <td style="text-decoration: underline;
+        color:red;" id='<%=applicant._id%>' onclick='details(this)'><a href="#">View Details</a></td>
+                    </form>
+                  </tr>
+                  <%})%>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function details(input) {
+      document.getElementById("applicant" + input.id).submit();
+    }
+  </script>
+</body>
+<%-include('partials/footer')%>

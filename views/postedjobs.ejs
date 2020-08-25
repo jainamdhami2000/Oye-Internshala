@@ -39,15 +39,14 @@
     size: 50px;
   }
 
-  .options{
-      margin: 0 7px;
-      cursor: pointer;
+  .options {
+    margin: 0 7px;
+    cursor: pointer;
   }
 
-  .cen{
-      text-align: center;
+  .cen {
+    text-align: center;
   }
-
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
@@ -56,7 +55,7 @@
     <div class="container">
       <div class="row">
         <div class="ml-auto mr-auto">
-            <a href="#"></a>
+          <a href="#"></a>
           <div class="card card-signup">
             <div class="card-body">
               <h2 class="card-title text-center">Applied Internships</h2>
@@ -73,26 +72,30 @@
                   </tr>
                   <%jobs.forEach(job => {%>
                   <tr class="h5">
-                      <td class="cen"><%=job.job_title%></td>
-                      <td class="cen"><%=job.jobtype%></td>
-                      <td class="cen"><%=job.job_published.toDateString()%></td>
-                      <td class="cen"><%=job.applicants_accepted%></td>
-                      <td class="cen"><%=job.intake-job.applicants_accepted%></td>
-                      <td class="cen"><a href="#">View</a></td>
-                      <td class="cen">
-                        <a href="#">
-                          <i style="color:black" class="far fa-eye options"></i>
-                        </a>
-                        <a href="#">
-                          <i style="color:blue" class="far fa-edit options"></i>
-                        </a>
-                        <a href="#">
-                          <i style="color:red" class="far fa-trash-alt options"></i>
-                        </a>
-                      </td>                      
+                    <td class="cen"><%=job.job_title%></td>
+                    <td class="cen"><%=job.jobtype%></td>
+                    <td class="cen"><%=job.job_published.toDateString()%></td>
+                    <td class="cen"><%=job.applicants_accepted%></td>
+                    <td class="cen"><%=job.intake-job.applicants_accepted%></td>
+                    <!-- <td class="cen"><a href="#">View</a></td> -->
+                    <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
+                      <input name='job_id' style='display:none' value='<%=job._id%>'>
+                      <td style="text-decoration: underline;
+      color:red;" id='<%=job._id%>' onclick='details(this)'><a href="#">View</a></td>
+                    </form>
+                    <td class="cen">
+                      <a href="#">
+                        <i style="color:black" class="far fa-eye options"></i>
+                      </a>
+                      <a href="#">
+                        <i style="color:blue" class="far fa-edit options"></i>
+                      </a>
+                      <a href="#">
+                        <i style="color:red" class="far fa-trash-alt options"></i>
+                      </a>
+                    </td>
                   </tr>
                   <%})%>
-                  </tr>
                 </table>
               </div>
             </div>
@@ -101,7 +104,11 @@
       </div>
     </div>
   </div>
-  </div>
+  <script>
+    function details(input) {
+      document.getElementById("job" + input.id).submit();
+    }
+  </script>
 </body>
 
 <%-include('partials/footer')%>

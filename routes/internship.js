@@ -280,6 +280,50 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
   }
 });
 
+router.post('/jobapplications', (req, res) => {
+  var job_id = req.body.job_id;
+  Applicant.find({
+    job_id: job_id
+  }, (err, applicants) => {
+    res.render('studentapplications', {
+      user: req.user,
+      applicants: applicants
+    });
+  });
+});
+
+router.post('/studentapplicationdetails', (req, res) => {
+  var applicant_id = req.body.applicant_id;
+  Applicant.findOne({
+    _id: applicant_id
+  }, (err, applicant) => {
+    Job.findOne({
+      _id: applicant.job_id
+    }, (err, job) => {
+      res.render('studentapplicationdetails', {
+        user: req.user,
+        applicant: applicant,
+        job: job
+      });
+    });
+  });
+});
+
+router.post('/studentapplicationreview',(req,res)=>{
+  var accept = req.body.accept;
+  var reject = req.body.reject;
+  var applicant_id = req.body.applicant_id;
+  Applicant.findOne({_id:applicant_id},(err,applicant)=>{
+    if (accept == 'Accept') {
+        applicant.is_accept = true;
+    } else {
+        applicant.is_reject = true;
+    }
+    applicant.save();
+    res.redirect('/profile/employer');
+  });
+});
+
 // router.get('/applications',isLoggedIn, (req,res)=>{
 //   if (req.user.isEmployer){
 //
