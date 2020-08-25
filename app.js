@@ -88,7 +88,12 @@ app.use('/profile', profile);
 app.get('/hi', function(req, res) {
   res.render('admin/internship-details');
 });
-
+app.get('/hi2', function(req, res) {
+  res.render('studentsApplied');
+});
+app.get('/hi3', function(req, res) {
+  res.render('studAppliedDetails');
+});
 
 app.listen(3000, function(err) {
   console.log('Server started on 3000');

@@ -68,6 +68,7 @@
                     <th style="background-color: lightblue;" class="cen">Posted On</th>
                     <th style="background-color: lightblue;" class="cen">No of Applicants Recruited</th>
                     <th style="background-color: lightblue;" class="cen">Vacancy</th>
+                    <th style="background-color: lightblue;" class="cen">Applications</th>
                     <th style="background-color: lightblue;" class="cen">Review Internship</th>
                   </tr>
                   <%jobs.forEach(job => {%>
@@ -77,6 +78,7 @@
                       <td class="cen"><%=job.job_published.toDateString()%></td>
                       <td class="cen"><%=job.applicants_accepted%></td>
                       <td class="cen"><%=job.intake-job.applicants_accepted%></td>
+                      <td class="cen"><a href="#">View</a></td>
                       <td class="cen">
                         <a href="#">
                           <i style="color:black" class="far fa-eye options"></i>
@@ -87,7 +89,7 @@
                         <a href="#">
                           <i style="color:red" class="far fa-trash-alt options"></i>
                         </a>
-                      </td>
+                      </td>                      
                   </tr>
                   <%})%>
                   </tr>
