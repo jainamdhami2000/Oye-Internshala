@@ -94,6 +94,10 @@ module.exports = function(passport) {
             newUser.isStudent = true;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
+            // newUser.internapplications=[];
+            // newUser.jobapplications=[];
+            // newUser.acceptedinternships=[];
+            // newUser.acceptedjobs=[];
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -138,6 +142,8 @@ module.exports = function(passport) {
             newUser.MainOfficeLocation = sanitize(req.body.city);
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
+            // newUser.postedinternships=[],
+            // newUser.postedjobs=[],
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -250,6 +256,10 @@ module.exports = function(passport) {
             newUser.LastName = lname;
             newUser.isVerified = true;
             newUser.isStudent = true;
+            // newUser.internapplications=[];
+            // newUser.jobapplications=[];
+            // newUser.acceptedinternships=[];
+            // newUser.acceptedjobs=[];
             if (typeof(profile.username) == 'undefined') {
               newUser.username = fname + lname;
             } else {
@@ -303,6 +313,10 @@ module.exports = function(passport) {
             newUser.LastName = profile.name.familyName;
             newUser.isVerified = true;
             newUser.isStudent = true;
+            // newUser.internapplications=[];
+            // newUser.jobapplications=[];
+            // newUser.acceptedinternships=[];
+            // newUser.acceptedjobs=[];
             newUser.Email = profile.emails[0].value; // pull the first email
             newUser.username = profile.emails[0].value.substr(0, profile.emails[0].value.indexOf('@'));
             newUser.loginType = 'google';
@@ -358,6 +372,10 @@ module.exports = function(passport) {
             }
             newUser.username = profile.username;
             newUser.loginType = 'github';
+            // newUser.internapplications=[];
+            // newUser.jobapplications=[];
+            // newUser.acceptedinternships=[];
+            // newUser.acceptedjobs=[];
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -399,6 +417,10 @@ module.exports = function(passport) {
           newUser.FirstName = profile.name.givenName;
           newUser.LastName = profile.name.familyName;
           newUser.isVerified = true;
+          // newUser.internapplications=[];
+          // newUser.jobapplications=[];
+          // newUser.acceptedinternships=[];
+          // newUser.acceptedjobs=[];
           newUser.isStudent = true;
           if (profile.emails[0].value == null) {
             newUser.Email = null;

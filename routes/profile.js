@@ -32,8 +32,8 @@ router.post('/updatestudent', (req, res) => {
   }, {
     "$set": {
       'username': req.body.username,
-      'FirstName':req.body.fname,
-      'LastName':req.body.lname,
+      'FirstName': req.body.fname,
+      'LastName': req.body.lname,
       'CollegeName': req.body.college_name,
       'BasicSkills': req.body.skills,
       'City': req.body.city,
@@ -62,9 +62,9 @@ router.post('/updateemployer', (req, res) => {
   }, {
     "$set": {
       'username': req.body.username,
-      'FirstName':req.body.fname,
-      'LastName':req.body.lname,
-      'phoneNumber':req.body.phoneno,
+      'FirstName': req.body.fname,
+      'LastName': req.body.lname,
+      'phoneNumber': req.body.phoneno,
       'CompanyName': req.body.company_name,
       'CompanyDescription': req.body.company_description,
       'MainOfficeLocation': req.body.city,

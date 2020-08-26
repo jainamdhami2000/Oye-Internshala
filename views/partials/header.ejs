@@ -46,11 +46,11 @@
                             </div>
                             <div class="dropdown-divider"></div>
                             <%if (user.isEmployer){%>
-                            <a href='/profile-emp' class="dropdown-item">Employer Profile</a>
+                            <a href='/profile/employer' class="dropdown-item">Employer Profile</a>
                             <a href='/internship/postintern' class="dropdown-item">Post an Internship</a>
                             <a href='/internship/postedjobs' class="dropdown-item">Posted Jobs</a>
                             <%} else if (user.isStudent) {%>
-                            <a href='/profile-stud' class="dropdown-item">Student Profile</a>
+                            <a href='/profile/student' class="dropdown-item">Student Profile</a>
                             <a href='/internship/searchintern' class="dropdown-item">Search Internships</a>
                             <a href='/internship/appliedinternship' class="dropdown-item">Appied Internships</a>
                             <%}%>

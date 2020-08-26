@@ -126,11 +126,11 @@ module.exports = function(app, passport) {
       Email: req.user.Email
     }, function(err, user) {
       if (user.isVerified) {
-          if(req.user.isEmployer){
-              res.redirect('/profile/employer');
-          } else if(req.user.isStudent){
-              res.redirect('/profile/student');
-          }
+        if (req.user.isEmployer) {
+          res.redirect('/profile/employer');
+        } else if (req.user.isStudent) {
+          res.redirect('/profile/student');
+        }
       } else {
         res.render('verify', {
           user: req.user // get the user out of session and pass to template
@@ -156,11 +156,11 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-          if(req.user.isEmployer){
-              res.redirect('/profile/employer');
-          } else if(req.user.isStudent){
-              res.redirect('/profile/student');
-          }
+        if (req.user.isEmployer) {
+          res.redirect('/profile/employer');
+        } else if (req.user.isStudent) {
+          res.redirect('/profile/student');
+        }
       } else {
         res.redirect('/signup2-stud');
       }
@@ -179,11 +179,11 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-          if(req.user.isEmployer){
-              res.redirect('/profile/employer');
-          } else if(req.user.isStudent){
-              res.redirect('/profile/student');
-          }
+        if (req.user.isEmployer) {
+          res.redirect('/profile/employer');
+        } else if (req.user.isStudent) {
+          res.redirect('/profile/student');
+        }
       } else {
         res.redirect('/signup2-stud');
       }
@@ -202,11 +202,11 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-          if(req.user.isEmployer){
-              res.redirect('/profile/employer');
-          } else if(req.user.isStudent){
-              res.redirect('/profile/student');
-          }
+        if (req.user.isEmployer) {
+          res.redirect('/profile/employer');
+        } else if (req.user.isStudent) {
+          res.redirect('/profile/student');
+        }
       } else {
         res.redirect('/signup2-stud');
       }
@@ -220,11 +220,11 @@ module.exports = function(app, passport) {
   }), function(req, res) {
     // Successful authentication, redirect home.
     if (req.flash('message') == 'Login') {
-        if(req.user.isEmployer){
-            res.redirect('/profile/employer');
-        } else if(req.user.isStudent){
-            res.redirect('/profile/student');
-        }
+      if (req.user.isEmployer) {
+        res.redirect('/profile/employer');
+      } else if (req.user.isStudent) {
+        res.redirect('/profile/student');
+      }
     } else {
       res.redirect('/signup2-stud');
     }

@@ -56,22 +56,12 @@ const userSchema = new mongoose.Schema({
   admin_accept: Boolean,
   admin_reject: Boolean,
   CompanyDescription: String,
-  // internapplications:{
-  //   typeof:[mongoose.Types.ObjectId],
-  //   ref:'Applicant',
-  // },
-  // jobapplications:{
-  //   typeof:[mongoose.Types.ObjectId],
-  //   ref:'Applicant',
-  // },
-  // acceptedinternships:{
-  //   typeof:[mongoose.Types.ObjectId],
-  //   ref:'Applicant',
-  // },
-  // acceptedjobs:{
-  //   typeof:[mongoose.Types.ObjectId],
-  //   ref:'Applicant',
-  // }
+  // internapplications:[mongoose.Types.ObjectId],
+  // jobapplications:[mongoose.Types.ObjectId],
+  // acceptedinternships:[mongoose.Types.ObjectId],
+  // acceptedjobs:[mongoose.Types.ObjectId],
+  // postedinternships:[mongoose.Types.ObjectId],
+  // postedjobs:[mongoose.Types.ObjectId]
 });
 
 userSchema.methods.generateHash = function(password) {

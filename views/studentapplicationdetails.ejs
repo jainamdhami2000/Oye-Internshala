@@ -105,17 +105,23 @@
             <%}%>
             <div class="row" style="text-align: center;padding-left:40%">
               <center>
-                <form class="form-control" action="/internship/studentapplicationreview" method="post">
-                  <input style='display:none' type="text" name="applicant_id" value="<%=applicant._id%>">
-                  <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
-                  <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
-                </form>
-              </center>
-            </div>
+                <%if (user.isEmployer){%>
+                  <form class="form-control" action="/internship/studentapplicationreview" method="post">
+                    <input style='display:none' type="text" name="applicant_id" value="<%=applicant._id%>">
+              <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
+              <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
+              </form>
+            <%} else if (user.isStudent){%>
+
+            <%} else {%>
+            <%}%>
+
+            </center>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </body>
 <%-include('partials/footer')%>

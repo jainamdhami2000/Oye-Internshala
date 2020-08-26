@@ -84,9 +84,16 @@
       color:red;" id='<%=job._id%>' onclick='details(this)'><a href="#">View</a></td>
                     </form>
                     <td class="cen">
+                                              <div>
                       <a href="#">
-                        <i style="color:black" class="far fa-eye options"></i>
+
+                        <form id="view<%=job._id%>" method='POST' action="/internship/viewinternship">
+                          <input name='job_id' style='display:none' value='<%=job._id%>'>
+                          <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
+                        </form>
+
                       </a>
+                                              </div>
                       <a href="#">
                         <i style="color:blue" class="far fa-edit options"></i>
                       </a>
@@ -107,6 +114,9 @@
   <script>
     function details(input) {
       document.getElementById("job" + input.id).submit();
+    }
+    function view(input) {
+      document.getElementById("view" + input.id).submit();
     }
   </script>
 </body>
