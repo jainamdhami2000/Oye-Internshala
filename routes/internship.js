@@ -144,7 +144,7 @@ router.post('/apply', (req, res) => {
   Job.findOne({
     _id: job_id
   }, (err, job) => {
-    if (job.applicants_accepted > job.intake) {
+    if (job.applicants_accepted < job.intake) {
       console.log(job);
       var application = new Applicant({
         name: req.user.FirstName + ' ' + req.user.LastName,
@@ -217,7 +217,9 @@ router.post('/intern-details', (req, res) => {
 });
 
 router.get('/confirm', function(req, res) {
-  res.render('application-confirm');
+  res.render('application-confirm', {
+    user: req.user
+  });
 });
 
 router.get('/appliedinternship', isLoggedIn, (req, res) => {

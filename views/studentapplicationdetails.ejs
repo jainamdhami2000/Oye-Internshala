@@ -47,7 +47,11 @@
                 <span class="Heading">City</span>
               </div>
               <div class="col-md-9">
+                <%if (applicant.city){%>
                 <%=applicant.city%>
+                <%} else {%>
+                  Work from Home
+                <%}%>
               </div>
             </div>
             <div class="row spacing">
@@ -55,7 +59,7 @@
                 <span class="Heading">SKILLS</span>
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-3">        
                 <%=applicant.skills%> <br>
                 <!-- Intermediate -->
               </div>
