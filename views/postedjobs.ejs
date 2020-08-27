@@ -92,8 +92,14 @@
                                                     <input name='job_id' style='display:none' value='<%=job._id%>'>
                                                     <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
                                                 </form>
-                                                <i style="color:blue" class="far fa-edit options"></i>
-                                                <i style="color:red" class="far fa-trash-alt options"></i>
+                                                <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
+                                                    <input name='job_id' style='display:none' value='<%=job._id%>'>
+                                                    <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
+                                                </form>
+                                                <form id="delete<%=job._id%>" method='POST' action="/internship/deleteintership">
+                                                    <input name='job_id' style='display:none' value='<%=job._id%>'>
+                                                    <i id='<%=job._id%>' onclick='delete(this)' style="color:red" class="far fa-trash-alt options"></i>
+                                                </form>
                                         </td>
                                     </tr>
                                     <%})%>
@@ -109,10 +115,15 @@
         function details(input) {
             document.getElementById("job" + input.id).submit();
         }
-
         function view(input) {
             document.getElementById("view" + input.id).submit();
         }
+        function edit(input) {
+            document.getElementById("edit" + input.id).submit();
+        }
+        // function delete(input) {
+        //     document.getElementById("delete" + input.id).submit();
+        // }
     </script>
 </body>
 

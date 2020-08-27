@@ -31,6 +31,13 @@
                       <%} else {%>
                       <span class="post-label">UnVerified</span>
                       <%}%>
+                      <%if (user.admin_accept){%>
+                      <span class="post-label">Accepted</span>
+                      <%} else if (user.admin_reject) {%>
+                      <span class="post-label">Rejected</span>
+                      <%} else {%>
+                        <span class="post-label">Pending</span>
+                        <%}%>
 	            					<br>
 	                                <i class="fa fa-map-marker" aria-hidden="true"></i>  <%=user.MainOfficeLocation%>, India <br>
                       <i class="fa fa-location-arrow" aria-hidden="true"></i> Email Id : <%=user.Email%>

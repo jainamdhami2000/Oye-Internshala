@@ -12,10 +12,8 @@
     margin: auto 0px;
   }
 
-  
-</style>
 
-<%# <link rel="stylesheet" type="text/css" href="css/postintern.css"> %>
+</style>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
@@ -31,8 +29,8 @@
                 </div>
 
                 <div class="col-md-5 mr-auto">
-                  <%# <div style="padding: 0 20%;"> %>
-                  <form class="form" method="POST" action="/internship/postintern">
+                  <form class="form" method="POST" action="/internship/editintership">
+                    <input name='job_id' style='display:none' value='<%=internship._id%>'>
                     <div class="form-group form-item">
                       <h4>Internship name</h4>
                       <div class="input-group ">
@@ -55,13 +53,13 @@
                     <div class="form-group form-item">
                       <h4>Start Date</h4>
                       <div class="input-group ">
-                        <input name="start_date" type="text" class="form-control datepicker">
+                        <input name="start_date" type="text" class="form-control datepicker" value="<%= internship.start_date %>">
                       </div>
                     </div>
                     <div class="form-group form-item">
                       <h4>Last date to apply</h4>
                       <div class="input-group ">
-                        <input name="apply_last" type="text" class="form-control datepicker">
+                        <input name="apply_last" type="text" class="form-control datepicker" value="<%= internship.apply_last %>">
                       </div>
                     </div>
                     <div class="form-group form-item">
@@ -76,34 +74,12 @@
                         <input name="intake" required type="number" class="form-control" value="<%= internship.intake %>">
                       </div>
                     </div>
-                    <%# <div class="form-group form-item">
-                      <h4>Type</h4>
-                      <div class="togglebutton">
-                        <label>
-                          UnPaid
-                          <input name='paid' type="checkbox">
-                          <span class="toggle" id="PaidToggle"></span>
-                          Paid
-                        </label>
-                      </div>
-                    </div> %>
                     <div class="form-group form-item">
                       <h4>Stipened</h4>
                       <div class="input-group ">
                         <input name="job_stipened" type="number" class="form-control" value="<%= internship.job_stipened %>">
                       </div>
                     </div>
-                    <%# <div class="form-group form-item">
-                      <h4>Location</h4>
-                      <div class="togglebutton">
-                        <label>
-                          Work From Home
-                          <input name='onsite' type="checkbox">
-                          <span class="toggle" id="SiteToggle"></span>
-                          Onsite
-                        </label>
-                      </div>
-                    </div> %>
                     <div class="form-group form-item">
                       <h4>Select Location</h4>
                       <div class="input-group ">
@@ -157,7 +133,6 @@
             </div>
           </div>
         </div>
-        <%# </div> %>
       </div>
     </div>
   </div>

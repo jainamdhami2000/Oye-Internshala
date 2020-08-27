@@ -390,6 +390,42 @@ router.post('/viewinternship', (req, res) => {
       user: req.user
     });
   });
+});
+
+router.post('/editintershipview', (req, res) => {
+  var job_id = req.body.job_id;
+  Job.findOne({
+    _id: job_id
+  }, (err, internship) => {
+    res.render('editinternship.ejs', {
+      internship: internship,
+      user: req.user
+    });
+  });
+});
+
+router.post('/editintership',(req,res)=>{
+  Job.findOneAndUpdate({
+    _id: req.body.job_id
+  }, {
+    "$set": {
+      'job_title': req.body.job_title,
+      'job_content': req.body.job_content,
+      'job_duration': req.body.job_duration,
+      'start_date': req.body.start_date,
+      'apply_last': req.body.apply_last,
+      'requirements': req.body.requirements,
+      'intake': req.body.intake,
+    }
+  }, {
+    new: true
+  }, function(err, doc) {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  res.redirect('/profile/employer');
 })
 
 function isLoggedIn(req, res, next) {
