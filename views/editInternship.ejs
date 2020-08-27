@@ -1,0 +1,168 @@
+<%-include('partials/header')%>
+<style media="screen">
+  .bmd-form-group {
+    padding-top: 20px
+  }
+
+  .form-group {
+    margin-bottom: 10px
+  }
+
+  h4 {
+    margin: auto 0px;
+  }
+
+  
+</style>
+
+<%# <link rel="stylesheet" type="text/css" href="css/postintern.css"> %>
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">Edit Internship</h2>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5 ml-auto">
+                  <img src="/main/postintern.png" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
+                </div>
+
+                <div class="col-md-5 mr-auto">
+                  <%# <div style="padding: 0 20%;"> %>
+                  <form class="form" method="POST" action="/internship/postintern">
+                    <div class="form-group form-item">
+                      <h4>Internship name</h4>
+                      <div class="input-group ">
+                        <input name="job_title" required type="text" class="form-control" value="<%= internship.job_title %>">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Description</h4>
+                      <div class="input-group ">
+                        <input name="job_content" required type="text" class="form-control" value="<%= internship.job_content %>">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4 style="margin-bottom:0;">Duration</h4>
+                      (in months)
+                      <div class="input-group ">
+                        <input name="job_duration" required type="text" class="form-control" value="<%= internship.job_duration %>">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Start Date</h4>
+                      <div class="input-group ">
+                        <input name="start_date" type="text" class="form-control datepicker">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Last date to apply</h4>
+                      <div class="input-group ">
+                        <input name="apply_last" type="text" class="form-control datepicker">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Requirements</h4>
+                      <div class="input-group ">
+                        <textarea required name='requirements' type="text" class="form-control" rows="4" id="exampleInputTextarea" value="<%= internship.requirements %>"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Intake</h4>
+                      <div class="input-group ">
+                        <input name="intake" required type="number" class="form-control" value="<%= internship.intake %>">
+                      </div>
+                    </div>
+                    <%# <div class="form-group form-item">
+                      <h4>Type</h4>
+                      <div class="togglebutton">
+                        <label>
+                          UnPaid
+                          <input name='paid' type="checkbox">
+                          <span class="toggle" id="PaidToggle"></span>
+                          Paid
+                        </label>
+                      </div>
+                    </div> %>
+                    <div class="form-group form-item">
+                      <h4>Stipened</h4>
+                      <div class="input-group ">
+                        <input name="job_stipened" type="number" class="form-control" value="<%= internship.job_stipened %>">
+                      </div>
+                    </div>
+                    <%# <div class="form-group form-item">
+                      <h4>Location</h4>
+                      <div class="togglebutton">
+                        <label>
+                          Work From Home
+                          <input name='onsite' type="checkbox">
+                          <span class="toggle" id="SiteToggle"></span>
+                          Onsite
+                        </label>
+                      </div>
+                    </div> %>
+                    <div class="form-group form-item">
+                      <h4>Select Location</h4>
+                      <div class="input-group ">
+                        <select name='job_location' class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                          <option disabled> Choose City</option>
+                          <option value="2">Paris </option>
+                          <option value="3">Bucharest</option>
+                          <option value="4">Rome</option>
+                          <option value="5">New York</option>
+                          <option value="6">Miami </option>
+                          <option value="7">Piatra Neamt</option>
+                          <option value="8">Paris </option>
+                          <option value="9">Bucharest</option>
+                          <option value="10">Rome</option>
+                          <option value="11">New York</option>
+                          <option value="12">Miami </option>
+                          <option value="13">Piatra Neamt</option>
+                          <option value="14">Paris </option>
+                          <option value="15">Bucharest</option>
+                          <option value="16">Rome</option>
+                          <option value="17">New York</option>
+                          <option value="18">Miami </option>
+                          <option value="19">Piatra Neamt</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Question 1</h4>
+                      <div class="input-group ">
+                        <input name="question1" type="text" class="form-control" value="<%= internship.Question1 %>">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Question 2</h4>
+                      <div class="input-group ">
+                        <input name="question2" type="text" class="form-control" value="<%= internship.Question2 %>">
+                      </div>
+                    </div>
+                    <div class="form-group form-item">
+                      <h4>Question 3</h4>
+                      <div class="input-group ">
+                        <input name="question3" type="text" class="form-control" value="<%= internship.Question3 %>">
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type='submit' class="btn btn-info btn-round">ADD</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%# </div> %>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+<%-include('partials/footer')%>

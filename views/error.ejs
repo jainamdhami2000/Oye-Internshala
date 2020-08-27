@@ -1,3 +1,13 @@
+<%-include('partials/header')%>
 <h1><%= message %></h1>
 <h2><%= error.status %></h2>
 <pre><%= error.stack %></pre>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-4">Oops!</h1>
+    <p class="lead">You aren't yet verified, please wait or contact the owner.</p>
+  </div>
+</div>
+
+<%-include('partials/footer')%>
