@@ -330,7 +330,8 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
 router.post('/jobapplications', (req, res) => {
   var job_id = req.body.job_id;
   Applicant.find({
-    job_id: job_id
+    job_id: job_id,
+    is_accept:false
   }, (err, applicants) => {
     res.render('studentapplications', {
       user: req.user,
