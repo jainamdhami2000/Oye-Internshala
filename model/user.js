@@ -52,6 +52,7 @@ const userSchema = new mongoose.Schema({
     default: false,
     type: Boolean
   },
+  DateofBirth:Date,
   phoneNumber: Number,
   admin_accept: Boolean,
   admin_reject: Boolean,

@@ -26,6 +26,7 @@ module.exports = function(app, passport) {
         newUser.isVerified = false;
         newUser.Email = sanitize(req.body.email);
       }
+      newUser.DateofBirth = sanitize(req.body.birthdate);
       newUser.BasicSkills = sanitize(req.body.skills);
       newUser.City = sanitize(req.body.city);
       newUser.save();

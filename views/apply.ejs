@@ -15,33 +15,8 @@
                   <img src="/main/apply.svg" width="300px" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
                 </div>
                 <div class="col-md-5 mr-auto">
-                  <%# <div style="padding: 0 20%;"> %>
                   <form class="form" method="POST" action="/internship/apply">
                     <input name='job_id' style='display:none' value='<%=job._id%>'>
-                    <%# <div class="form-group form-item">
-                      <h4>Name</h4>
-                      <div class="input-group ">
-                        <input name="name" required type="text" class="form-control" value="">
-                      </div>
-                    </div>
-                    <div class="form-group form-item">
-                      <h4>College Name</h4>
-                      <div class="input-group ">
-                        <input name="college_name" required type="text" class="form-control" value="">
-                      </div>
-                    </div>
-                    <div class="form-group form-item">
-                      <h4 style="margin-bottom:0;">Skills</h4>
-                      <div class="input-group ">
-                        <textarea required name='skill' type="text" class="form-control" rows="4" id="exampleInputTextarea">Skills</textarea>
-                      </div>
-                    </div>
-                    <div class="form-group form-item">
-                      <h4>City</h4>
-                      <div class="input-group ">
-                        <input name="city" type="text" class="form-control" value="">
-                      </div>
-                    </div> %>
                     <%if (typeof(job.Question1) != 'undefined'){%>
                     <div class="form-group form-item">
                       <h4><%=job.Question1%></h4>
@@ -75,12 +50,10 @@
             </div>
           </div>
         </div>
-        <%# </div> %>
-                </div>
-              </div>
-            </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/postintern.js" charset="utf-8"></script>
 </body>
-
-<script src="/js/postintern.js" charset="utf-8"></script>
 
 <%-include('partials/footer')%>

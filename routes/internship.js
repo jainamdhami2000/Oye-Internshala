@@ -13,28 +13,13 @@ router.get('/', function(req, res) {
   });
 });
 
-// router.get('/searchintern', isLoggedIn, function(req, res) {
-//   if (req.user.isStudent) {
-//     Job.find({
-//       admin_accept: true
-//     }, (err, jobs) => {
-//       res.render('getintern', {
-//         user: req.user,
-//         jobs: jobs
-//       });
-//     });
-//   } else {
-//     res.send('Login as Student');
-//   }
-// });
-
 router.get('/searchintern', isLoggedIn, function(req, res) {
   if (req.user.isStudent) {
     Applicant.find({
       user_id: req.user._id
     }, (err, applicants) => {
-      var appids = []
-      var unappliedjobs = []
+      var appids = [];
+      var unappliedjobs = [];
       applicants.forEach((applicant) => {
         appids.push(String(applicant.job_id));
       });
@@ -45,9 +30,9 @@ router.get('/searchintern', isLoggedIn, function(req, res) {
           if (appids.includes(String(job._id))) {
 
           } else {
-            unappliedjobs.push(job)
+            unappliedjobs.push(job);
           }
-        })
+        });
         console.log(unappliedjobs);
         res.render('getintern', {
           user: req.user,
@@ -56,7 +41,10 @@ router.get('/searchintern', isLoggedIn, function(req, res) {
       });
     });
   } else {
-    res.send('Login as Student');
+    res.render('error', {
+      user: req.user,
+      message: 'Login as Student'
+    });
   }
 });
 
@@ -66,11 +54,20 @@ router.get('/postintern', isLoggedIn, (req, res) => {
       user: req.user
     });
   } else if (req.user.admin_reject) {
-    res.send('You are rejected')
+    res.render('error', {
+      user: req.user,
+      message: 'You are rejected'
+    });
   } else if (!req.user.admin_accept && !req.user.admin_reject) {
-    res.send('You are unverified')
+    res.render('error', {
+      user: req.user,
+      message: 'You are unverified'
+    });
   } else {
-    res.send('Login as Employer')
+    res.render('error', {
+      user: req.user,
+      message: 'Login as Employer'
+    });
   }
 });
 
@@ -132,10 +129,13 @@ router.post('/view', isLoggedIn, (req, res) => {
         } else {
           res.send("Error");
         }
-      })
+      });
     });
   } else {
-    res.send('Login as Student');
+    res.render('error', {
+      user: req.user,
+      message: 'Login as Student'
+    });
   }
 });
 
@@ -175,7 +175,10 @@ router.post('/apply', (req, res) => {
       job.save();
       res.redirect('/internship/confirm');
     } else {
-      res.send('Maximum applicants reached');
+      res.render('error', {
+        user: req.user,
+        message: 'Maximum applicants reached'
+      });
     }
   });
 });
@@ -261,16 +264,13 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
             no_of_applicants: 1,
             jobtype: 1
           }, (err, job) => {
-            console.log(job)
-            jobs = job
+            jobs = job;
           });
           var foundjob;
           await apps.forEach(app => {
             foundjob = jobs.filter((job) => {
-              console.log(String(app.job_id) == String(job._id))
               return String(app.job_id) == String(job._id);
             });
-            console.log('Hello', result)
             result.push({
               _id: app._id,
               job_id: app.job_id,
@@ -282,9 +282,7 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
               job_type: foundjob[0].jobtype,
               no_of_applicants: foundjob[0].no_of_applicants
             });
-            console.log('Hi', result)
           });
-
           res.render('studentinternship', {
             user: req.user,
             applications: result,
@@ -297,7 +295,10 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
         }
       });
   } else {
-    res.send('Login as Student');
+    res.render('error', {
+      user: req.user,
+      message: 'Login as Student'
+    });
   }
 });
 
@@ -312,18 +313,26 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
       applicants_accepted: 1,
       intake: 1
     }, (err, jobs) => {
-      // res.json(jobs)
       res.render('postedjobs', {
         user: req.user,
         jobs: jobs
       });
     });
   } else if (req.user.admin_reject) {
-    res.send('You are rejected')
+    res.render('error', {
+      user: req.user,
+      message: 'You are rejected'
+    });
   } else if (!req.user.admin_accept && !req.user.admin_reject) {
-    res.send('You are unverified')
+    res.render('error', {
+      user: req.user,
+      message: 'You are unverified'
+    });
   } else {
-    res.send('Login as Employer')
+    res.render('error', {
+      user: req.user,
+      message: 'Login as Employer'
+    });
   }
 });
 
@@ -331,7 +340,7 @@ router.post('/jobapplications', (req, res) => {
   var job_id = req.body.job_id;
   Applicant.find({
     job_id: job_id,
-    is_accept:false
+    is_accept: false
   }, (err, applicants) => {
     res.render('studentapplications', {
       user: req.user,
@@ -371,7 +380,7 @@ router.post('/studentapplicationreview', (req, res) => {
       }, (err, job) => {
         job.applicants_accepted += 1;
         job.save();
-      })
+      });
     } else {
       applicant.is_reject = true;
     }
@@ -397,14 +406,14 @@ router.post('/editintershipview', (req, res) => {
   Job.findOne({
     _id: job_id
   }, (err, internship) => {
-    res.render('editinternship.ejs', {
+    res.render('editinternship', {
       internship: internship,
       user: req.user
     });
   });
 });
 
-router.post('/editintership',(req,res)=>{
+router.post('/editintership', (req, res) => {
   Job.findOneAndUpdate({
     _id: req.body.job_id
   }, {
@@ -416,6 +425,11 @@ router.post('/editintership',(req,res)=>{
       'apply_last': req.body.apply_last,
       'requirements': req.body.requirements,
       'intake': req.body.intake,
+      'job_stipened': req.body.job_stipened,
+      'job_location': req.body.job_location,
+      'Question1': req.body.question1,
+      'Question2': req.body.question2,
+      'Question3': req.body.question3,
     }
   }, {
     new: true
@@ -426,7 +440,27 @@ router.post('/editintership',(req,res)=>{
     }
   });
   res.redirect('/profile/employer');
-})
+});
+
+router.post('/deleteinternship', (req, res) => {
+  Applicant.deleteMany({
+    job_id: req.body.job_id
+  }, (err, doc) => {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  Job.deleteMany({
+    _id: req.body.job_id
+  }, (err, doc) => {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  res.redirect('/profile/employer');
+});
 
 function isLoggedIn(req, res, next) {
   try {

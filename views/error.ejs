@@ -1,13 +1,24 @@
 <%-include('partials/header')%>
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
 
-<div class="jumbotron">
-  <div class="container">
-    <h1 class="display-4">Oops!</h1>
-    <p class="lead">You aren't yet verified, please wait or contact the owner.</p>
-  </div>
-</div>
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <%# <h2 class="card-title text-center">Title</h2> %>
+            <div class="card-body">
+              <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
+                <center>
+                  <h1 class="display-4">Oops!</h1>
+                  <p class="lead"><%=message%></p>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
 
 <%-include('partials/footer')%>

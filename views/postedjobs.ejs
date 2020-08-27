@@ -96,9 +96,9 @@
                                                     <input name='job_id' style='display:none' value='<%=job._id%>'>
                                                     <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
                                                 </form>
-                                                <form id="delete<%=job._id%>" method='POST' action="/internship/deleteintership">
+                                                <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
                                                     <input name='job_id' style='display:none' value='<%=job._id%>'>
-                                                    <i id='<%=job._id%>' onclick='delete(this)' style="color:red" class="far fa-trash-alt options"></i>
+                                                    <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
                                                 </form>
                                         </td>
                                     </tr>
@@ -121,9 +121,9 @@
         function edit(input) {
             document.getElementById("edit" + input.id).submit();
         }
-        // function delete(input) {
-        //     document.getElementById("delete" + input.id).submit();
-        // }
+        function del(input) {
+            document.getElementById("delete" + input.id).submit();
+        }
     </script>
 </body>
 

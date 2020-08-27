@@ -55,6 +55,7 @@ module.exports = function(passport) {
             newUser.admin_reject = admin_reject;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
+            newUser.DateofBirth = sanitize(req.body.birthdate);
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -94,6 +95,7 @@ module.exports = function(passport) {
             newUser.isStudent = true;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
+            newUser.DateofBirth = sanitize(req.body.birthdate);
             // newUser.internapplications=[];
             // newUser.jobapplications=[];
             // newUser.acceptedinternships=[];
@@ -141,6 +143,7 @@ module.exports = function(passport) {
             newUser.admin_reject = admin_reject;
             newUser.MainOfficeLocation = sanitize(req.body.city);
             newUser.local.password = newUser.generateHash(password);
+            newUser.DateofBirth = sanitize(req.body.birthdate);
             newUser.loginType = 'local';
             // newUser.postedinternships=[],
             // newUser.postedjobs=[],
@@ -256,6 +259,7 @@ module.exports = function(passport) {
             newUser.LastName = lname;
             newUser.isVerified = true;
             newUser.isStudent = true;
+            newUser.DateofBirth = sanitize(req.body.birthdate);
             // newUser.internapplications=[];
             // newUser.jobapplications=[];
             // newUser.acceptedinternships=[];
@@ -313,6 +317,7 @@ module.exports = function(passport) {
             newUser.LastName = profile.name.familyName;
             newUser.isVerified = true;
             newUser.isStudent = true;
+            newUser.DateofBirth = sanitize(req.body.birthdate);
             // newUser.internapplications=[];
             // newUser.jobapplications=[];
             // newUser.acceptedinternships=[];
@@ -365,6 +370,7 @@ module.exports = function(passport) {
             }
             newUser.isVerified = true;
             newUser.isStudent = true;
+            newUser.DateofBirth = sanitize(req.body.birthdate);
             if (profile._json.email == null) {
               newUser.Email = null;
             } else {
@@ -417,6 +423,7 @@ module.exports = function(passport) {
           newUser.FirstName = profile.name.givenName;
           newUser.LastName = profile.name.familyName;
           newUser.isVerified = true;
+          newUser.DateofBirth = sanitize(req.body.birthdate);
           // newUser.internapplications=[];
           // newUser.jobapplications=[];
           // newUser.acceptedinternships=[];
