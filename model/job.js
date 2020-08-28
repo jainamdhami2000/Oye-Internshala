@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const jobSchema = new mongoose.Schema({
   job_title: String,
-  job_duration: String,
+  job_duration: Number,
   // image: Object,
   job_content: String,
   job_stipened: Number,

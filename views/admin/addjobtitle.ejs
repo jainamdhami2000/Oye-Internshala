@@ -1,0 +1,41 @@
+<%-include('../partials/admin-header')%>
+
+<link rel="stylesheet" href="css/internship-details(admin).css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="assets/css/material-kit.css" rel="stylesheet" />
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">ADMIN</h2>
+            <div class="row">
+              <div class="col-md-5 ml-auto mr-auto">
+                <form action="/admin/addjobtitle" method="POST">
+                  <div class="form-group form-item">
+                    <h4>Job Category :</h4>
+                    <div class="input-group ">
+                      <input name="job_category" required type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="form-group form-item">
+                    <h4>Job Title :</h4>
+                    <div class="input-group ">
+                      <input name="job_title" required type="text" class="form-control">
+                    </div>
+                  </div>
+                  <center><input type="submit" class="btn btn-info" value="Submit"></center>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<%-include('../partials/footer')%>

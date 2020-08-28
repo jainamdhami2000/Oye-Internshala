@@ -185,16 +185,31 @@ router.post('/jobverification', (req, res) => {
   });
 });
 
-router.get('addjobtitle',(req,res)=>{
+router.get('/addjobtitle', (req, res) => {
   res.render('admin/addjobtitle');
 });
 
-router.post('/addjobtitle',(req,res)=>{
-  var job = new Jobtitle({
-    name:sanitize(req.body.job_title)
+router.post('/addjobtitle', (req, res) => {
+  Jobtitle.findOne({
+    job_category: req.body.job_category
+  }, (err, job) => {
+    var result;
+    if (job == null) {
+      result = [];
+      var jobtitle = new Jobtitle({
+        job_category: req.body.job_category,
+      });
+      result.push(req.body.job_title);
+      jobtitle.job_title = result;
+      jobtitle.save();
+    } else {
+      result = job.job_title;
+      result.push(req.body.job_title);
+      job.jobtitle = result;
+      job.save();
+    }
+    res.send('Done');
   });
-  job.save();
-  res.send('Done');
 });
 
 router.get('/logout', function(req, res) {
