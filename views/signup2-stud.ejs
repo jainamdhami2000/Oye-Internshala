@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-5 mr-auto">
                   <h4 class="card-title"> Please fill in the following fields </h4>
-                  <form class="form" method="POST" action="/signup2-stud">
+                  <form class="form" enctype="multipart/form-data" method="POST" action="/signup2-stud">
                     <%if (user.Email == null){%>
                     <div class="form-group">
                       <div class="input-group">
@@ -39,6 +39,19 @@
                       </div>
                     </div>
 
+                    <div class="form-group form-file-upload form-file-multiple">
+                      <input name="resume" type="file" multiple="" class="inputFileHidden">
+                      <div class="input-group">
+                        <span class="input-group-text">
+                          <i class="material-icons">attach_file</i>
+                        </span>
+                        <input type="text" class="form-control inputFileVisible" placeholder="Upload Resume(PDF Only)...">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-link btn-fab btn-primary"></button>
+                        </span>
+                      </div>
+                    </div>
+
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -57,7 +70,7 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
-                        <input name='college_name' type="text" class="form-control" placeholder="College Name...">
+                        <input required name='college_name' type="text" class="form-control" placeholder="College Name...">
                       </div>
                     </div>
 
@@ -68,7 +81,7 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
-                        <input name='city' type="text" class="form-control" placeholder="City...">
+                        <input required name='city' type="text" class="form-control" placeholder="City...">
                       </div>
                     </div>
                     <!-- <div class="form-check">

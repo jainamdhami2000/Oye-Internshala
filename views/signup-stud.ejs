@@ -64,7 +64,7 @@
                   <% if (message.length > 0) { %>
                   <div class="alert alert-danger"><%= message %></div>
                   <% } %>
-                  <form class="form" method="POST" action="/signup-stud">
+                  <form class="form" enctype="multipart/form-data" method="POST" action="/signup-stud">
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -150,9 +150,22 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
-                      <input required placeholder="Date of Birth..." name="birthdate" type="text" class="form-control datepicker">
+                        <input required placeholder="Date of Birth..." name="birthdate" type="text" class="form-control datepicker">
+                      </div>
                     </div>
-                  </div>
+
+                    <div class="form-group form-file-upload form-file-multiple">
+                      <input name="resume" type="file" multiple="" class="inputFileHidden">
+                      <div class="input-group">
+                        <span class="input-group-text">
+                          <i class="material-icons">attach_file</i>
+                        </span>
+                        <input type="text" class="form-control inputFileVisible" placeholder="Upload Resume(PDF Only)...">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-link btn-fab btn-primary"></button>
+                        </span>
+                      </div>
+                    </div>
 
                     <div class="form-group">
                       <div class="input-group">

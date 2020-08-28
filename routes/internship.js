@@ -33,7 +33,6 @@ router.get('/searchintern', isLoggedIn, function(req, res) {
             unappliedjobs.push(job);
           }
         });
-        console.log(unappliedjobs);
         res.render('getintern', {
           user: req.user,
           jobs: unappliedjobs
@@ -145,12 +144,11 @@ router.post('/apply', (req, res) => {
     _id: job_id
   }, (err, job) => {
     if (job.applicants_accepted < job.intake) {
-      console.log(job);
       var application = new Applicant({
         name: req.user.FirstName + ' ' + req.user.LastName,
         college: req.user.CollegeName,
         job_title: job.job_title,
-        // resume: Object,
+        resume: req.user.resume,
         skills: req.user.BasicSkills,
         is_accept: false,
         is_reject: false,
@@ -200,7 +198,7 @@ router.post('/intern-details', (req, res) => {
         name: req.user.FirstName + ' ' + req.user.LastName,
         college: req.user.CollegeName,
         job_title: job.job_title,
-        // resume: Object,
+        resume: req.user.resume,
         skills: req.user.BasicSkills,
         is_accept: false,
         is_reject: false,
@@ -360,7 +358,8 @@ router.post('/studentapplicationdetails', (req, res) => {
       res.render('studentapplicationdetails', {
         user: req.user,
         applicant: applicant,
-        job: job
+        job: job,
+        currentdirectory: __dirname.split('ro')[0]
       });
     });
   });

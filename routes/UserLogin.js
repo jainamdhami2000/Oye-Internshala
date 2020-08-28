@@ -2,6 +2,27 @@
 require("dotenv").config();
 const sanitize = require('mongo-sanitize');
 const User = require('../model/user');
+const multer = require('multer');
+
+var storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    if (file.mimetype === 'application/pdf') {
+      callback(null, './uploads');
+    } else {
+      callback(new Error('file type not supported'), false);
+    }
+  },
+  filename: function(req, file, callback) {
+    if (file.mimetype === 'application/pdf') {
+      callback(null, file.fieldname + '-' + Date.now());
+    } else {
+      callback(new Error('file type not supported'), false);
+    }
+  }
+});
+var upload = multer({
+  storage: storage
+});
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
@@ -17,7 +38,13 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.post('/signup2-stud', function(req, res) {
+  app.post('/signup2-stud', upload.single('resume'), function(req, res) {
+    const file = req.file;
+    if (!file) {
+      const error = new Error('Please upload a file');
+      error.httpStatusCode = 400;
+      return next(error);
+    }
     User.findOne({
       _id: req.user._id
     }, function(err, newUser) {
@@ -29,6 +56,7 @@ module.exports = function(app, passport) {
       newUser.DateofBirth = sanitize(req.body.birthdate);
       newUser.BasicSkills = sanitize(req.body.skills);
       newUser.City = sanitize(req.body.city);
+      newUser.resume = file;
       newUser.save();
       if (newUser.isVerified == false)
         res.redirect('/verify');
@@ -104,7 +132,7 @@ module.exports = function(app, passport) {
   });
 
 
-  app.post('/signup-stud', passport.authenticate('local-signup-stud', {
+  app.post('/signup-stud',upload.single('resume'), passport.authenticate('local-signup-stud', {
     successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/signup-stud', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages

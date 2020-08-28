@@ -10,6 +10,27 @@ const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 const sanitize = require('mongo-sanitize');
 const User = require('../model/user');
 const configAuth = require('./auth');
+const multer = require('multer');
+
+var storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    if (file.mimetype === 'application/pdf') {
+      callback(null, './uploads');
+    } else {
+      callback(new Error('file type not supported'), false);
+    }
+  },
+  filename: function(req, file, callback) {
+    if (file.mimetype === 'application/pdf') {
+      callback(null, file.fieldname + '-' + Date.now());
+    } else {
+      callback(new Error('file type not supported'), false);
+    }
+  }
+});
+var upload = multer({
+  storage: storage
+});
 
 module.exports = function(passport) {
 
@@ -84,6 +105,12 @@ module.exports = function(passport) {
           if (user) {
             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
           } else {
+            const file = req.file;
+            if (!file) {
+              const error = new Error('Please upload a file');
+              error.httpStatusCode = 400;
+              return next(error);
+            }
             var newUser = new User();
             newUser.Email = email;
             newUser.FirstName = sanitize(req.body.fname);
@@ -96,15 +123,16 @@ module.exports = function(passport) {
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
             newUser.DateofBirth = sanitize(req.body.birthdate);
-            // newUser.internapplications=[];
-            // newUser.jobapplications=[];
-            // newUser.acceptedinternships=[];
-            // newUser.acceptedjobs=[];
-            newUser.save(function(err) {
-              if (err)
-                throw err;
-              return done(null, newUser);
-            });
+            newUser.resume = file;
+              // newUser.internapplications=[];
+              // newUser.jobapplications=[];
+              // newUser.acceptedinternships=[];
+              // newUser.acceptedjobs=[];
+              newUser.save(function(err) {
+                if (err)
+                  throw err;
+                return done(null, newUser);
+              });
           }
         });
       });

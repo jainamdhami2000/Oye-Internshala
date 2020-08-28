@@ -50,7 +50,7 @@
                 <%if (applicant.city){%>
                 <%=applicant.city%>
                 <%} else {%>
-                  Work from Home
+                Work from Home
                 <%}%>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 <span class="Heading">SKILLS</span>
               </div>
 
-              <div class="col-md-3">        
+              <div class="col-md-3">
                 <%=applicant.skills%> <br>
                 <!-- Intermediate -->
               </div>
@@ -69,6 +69,19 @@
                 Intermediate
               </div> -->
             </div>
+
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">RESUME</span>
+              </div>
+
+              <div class="col-md-3">
+
+                <iframe id="myFrame" style="display:none" width="600" height="300"></iframe>
+                <input id='<%=applicant.resume.path%>' type="button" value="Open Resume" onclick="openPdf(this)" />
+              </div>
+            </div>
+
             <div class="row spacing">
               <div class="col-md-3">
                 <span class="Heading">APPLIED ON</span>
@@ -110,14 +123,15 @@
             <div class="row" style="text-align: center;padding-left:40%">
               <center>
                 <%if (user.isEmployer){%>
-                  <form class="form-control" action="/internship/studentapplicationreview" method="post">
-                    <input style='display:none' type="text" name="applicant_id" value="<%=applicant._id%>">
+            <form class="form-control" action="/internship/studentapplicationreview" method="post">
+              <input style='display:none' type="text" name="applicant_id" value="<%=applicant._id%>">
               <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
               <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
-              </form>
+            </form>
             <%} else if (user.isStudent){%>
 
             <%} else {%>
+
             <%}%>
 
             </center>
@@ -127,5 +141,19 @@
     </div>
   </div>
   </div>
+  <script>
+    function openTab(input)
+    {
+      // var directory = '';
+      //       window.open(directory+input.id+'.pdf','_blank');
+      //       }
+            function openPdf(input)
+            {
+            var omyFrame = document.getElementById("myFrame");
+            omyFrame.style.display="block";
+            omyFrame.src = "<%=currentdirectory%>"+input.id+'.pdf';
+            }
+
+            </script>
 </body>
 <%-include('partials/footer')%>

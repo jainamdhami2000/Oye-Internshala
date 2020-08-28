@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema({
   admin_accept: Boolean,
   admin_reject: Boolean,
   CompanyDescription: String,
+  resume:Object
   // internapplications:[mongoose.Types.ObjectId],
   // jobapplications:[mongoose.Types.ObjectId],
   // acceptedinternships:[mongoose.Types.ObjectId],
