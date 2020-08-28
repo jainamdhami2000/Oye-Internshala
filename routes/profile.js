@@ -1,4 +1,4 @@
-//jshint esvesion:6
+//jshint esversion:8
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -23,7 +23,7 @@ router.get('/employer', isLoggedIn, function(req, res) {
 router.get('/updatestudent', isLoggedIn, (req, res) => {
   res.render('editstudent', {
     user: req.user
-  })
+  });
 });
 
 router.post('/updatestudent', (req, res) => {
@@ -53,7 +53,7 @@ router.post('/updatestudent', (req, res) => {
 router.get('/updateemployer', isLoggedIn, (req, res) => {
   res.render('editemployer', {
     user: req.user
-  })
+  });
 });
 
 router.post('/updateemployer', (req, res) => {

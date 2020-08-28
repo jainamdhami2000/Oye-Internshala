@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 const applicantSchema = new mongoose.Schema({
   name: String,
   job_title: String,
+  job_category: String,
   college: String,
   resume: Object,
   skills: String,

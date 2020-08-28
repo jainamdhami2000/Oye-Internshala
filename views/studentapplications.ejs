@@ -68,7 +68,11 @@
                     <td><%=applicant.name%> </td>
 
                     <td><%=applicant.college%></td>
+                    <%if (applicant.city){%>
                     <td><%=applicant.city%></td>
+                    <%} else {%>
+                      <td>Work from Home</td>
+                      <%}%>
                     <td><%=applicant.applied_on.toDateString()%></td>
                     <form id="applicant<%=applicant._id%>" method='POST' action="/internship/studentapplicationdetails">
                       <input name='applicant_id' style='display:none' value='<%=applicant._id%>'>

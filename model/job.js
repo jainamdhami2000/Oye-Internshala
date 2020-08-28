@@ -12,14 +12,14 @@ const jobSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User'
   },
-  is_accept: {
-    type: Boolean,
-    default: false
-  },
-  is_reject: {
-    type: Boolean,
-    default: false
-  },
+  // is_accept: {
+  //   type: Boolean,
+  //   default: false
+  // },
+  // is_reject: {
+  //   type: Boolean,
+  //   default: false
+  // },
   admin_accept: {
     type: Boolean,
     default: false
@@ -29,7 +29,7 @@ const jobSchema = new mongoose.Schema({
     default: false
   },
   company_name: String,
-  // job_category: String,
+  job_category: String,
   job_location: String,
   job_published: {
     type: Date,

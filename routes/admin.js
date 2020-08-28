@@ -2,10 +2,12 @@
 require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
+const sanitize = require('mongo-sanitize');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const Job = require('../model/job');
 const User = require('../model/user');
+const Jobtitle = require('../model/jobtitle');
 
 const secret = process.env.jwt_secret;
 const authenticateJWT = (req, res, next) => {
@@ -181,6 +183,18 @@ router.post('/jobverification', (req, res) => {
     job.save();
     res.redirect('/admin/home');
   });
+});
+
+router.get('addjobtitle',(req,res)=>{
+  res.render('admin/addjobtitle');
+});
+
+router.post('/addjobtitle',(req,res)=>{
+  var job = new Jobtitle({
+    name:sanitize(req.body.job_title)
+  });
+  job.save();
+  res.send('Done');
 });
 
 router.get('/logout', function(req, res) {

@@ -29,18 +29,28 @@
                 <div class="col-md-5 mr-auto">
                   <form class="form" method="POST" action="/internship/editintership">
                     <input name='job_id' style='display:none' value='<%=internship._id%>'>
+
+                    <div class="form-group form-item">
+                      <h4>Internship Category</h4>
+                      <div class="input-group ">
+                        <input name="job_category" required type="text" class="form-control" value="<%= internship.job_category %>">
+                      </div>
+                    </div>
+
                     <div class="form-group form-item">
                       <h4>Internship name</h4>
                       <div class="input-group ">
                         <input name="job_title" required type="text" class="form-control" value="<%= internship.job_title %>">
                       </div>
                     </div>
+
                     <div class="form-group form-item">
                       <h4>Description</h4>
                       <div class="input-group ">
                         <input name="job_content" required type="text" class="form-control" value="<%= internship.job_content %>">
                       </div>
                     </div>
+
                     <div class="form-group form-item">
                       <h4 style="margin-bottom:0;">Duration</h4>
                       (in months)
@@ -48,39 +58,48 @@
                         <input name="job_duration" required type="text" class="form-control" value="<%= internship.job_duration %>">
                       </div>
                     </div>
+
                     <div class="form-group form-item">
                       <h4>Start Date</h4>
                       <div class="input-group ">
                         <input name="start_date" type="text" class="form-control datepicker" value="<%= internship.start_date.getUTCMonth()+1%>/<%= internship.start_date.getUTCDate()%>/<%= internship.start_date.getUTCFullYear()%>">
                       </div>
                     </div>
+
                     <div class="form-group form-item">
                       <h4>Last date to apply</h4>
                       <div class="input-group ">
                         <input name="apply_last" type="text" class="form-control datepicker" value="<%= internship.apply_last.getUTCMonth()+1%>/<%= internship.apply_last.getUTCDate()%>/<%= internship.apply_last.getUTCFullYear()%>">
                       </div>
                     </div>
+
                     <div class="form-group form-item">
                       <h4>Requirements</h4>
                       <div class="input-group ">
                         <textarea required name='requirements' type="text" class="form-control" rows="4"><%= internship.requirements %></textarea>
                       </div>
                     </div>
+
                     <div class="form-group form-item">
                       <h4>Intake</h4>
                       <div class="input-group ">
                         <input name="intake" required type="number" class="form-control" value="<%= internship.intake %>">
                       </div>
                     </div>
+
                     <%if (internship.paid){%>
+
                     <div class="form-group form-item">
                       <h4>Stipened</h4>
                       <div class="input-group ">
                         <input name="job_stipened" type="number" class="form-control" value="<%= internship.job_stipened %>">
                       </div>
                     </div>
+
                     <%}%>
+
                     <%if (internship.onsite){%>
+
                     <div class="form-group form-item">
                       <h4>Select Location</h4>
                       <div class="input-group ">
@@ -107,28 +126,46 @@
                         </select>
                       </div>
                     </div>
+
                     <%}%>
+
+                    <%if (typeof(job.Question1) != 'undefined'){%>
+
                     <div class="form-group form-item">
                       <h4>Question 1</h4>
                       <div class="input-group ">
                         <input name="question1" type="text" class="form-control" value="<%= internship.Question1 %>">
-                </div>
-              </div>
-              <div class="form-group form-item">
-                <h4>Question 2</h4>
-                <div class="input-group ">
-                  <input name="question2" type="text" class="form-control" value="<%= internship.Question2 %>">
-                </div>
-              </div>
-              <div class="form-group form-item">
-                <h4>Question 3</h4>
-                <div class="input-group ">
-                  <input name="question3" type="text" class="form-control" value="<%= internship.Question3 %>">
-                </div>
-              </div>
+                      </div>
+                    </div>
+
+                    <%}%>
+
+                <%if (typeof(job.Question2) != 'undefined'){%>
+
+                    <div class="form-group form-item">
+                      <h4>Question 2</h4>
+                      <div class="input-group ">
+                        <input name="question2" type="text" class="form-control" value="<%= internship.Question2 %>">
+                      </div>
+                    </div>
+
+                    <%}%>
+
+                <%if (typeof(job.Question3) != 'undefined'){%>
+
+                    <div class="form-group form-item">
+                      <h4>Question 3</h4>
+                      <div class="input-group ">
+                        <input name="question3" type="text" class="form-control" value="<%= internship.Question3 %>">
+                      </div>
+                    </div>
+
+                    <%}%>
+
               <div class="text-center">
                 <button type='submit' class="btn btn-info btn-round">EDIT</button>
               </div>
+              
               </form>
             </div>
           </div>

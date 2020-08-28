@@ -3,7 +3,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const jobtitleSchema = new mongoose.Schema({
-  name: String
+  job_title: [String],
+  job_category: String
 });
 
 module.exports = mongoose.model("Jobtitle", jobtitleSchema);

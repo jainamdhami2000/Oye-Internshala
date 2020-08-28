@@ -74,6 +74,7 @@ router.post('/postintern', isLoggedIn, (req, res) => {
   try {
     var job = new Job({
       job_title: sanitize(req.body.job_title),
+      job_category: sanitize(req.body.job_category),
       job_content: sanitize(req.body.job_content),
       job_duration: sanitize(req.body.job_duration),
       start_date: sanitize(req.body.start_date),
@@ -147,6 +148,7 @@ router.post('/apply', (req, res) => {
       var application = new Applicant({
         name: req.user.FirstName + ' ' + req.user.LastName,
         college: req.user.CollegeName,
+        job_category: req.body.job_category,
         job_title: job.job_title,
         resume: req.user.resume,
         skills: req.user.BasicSkills,
@@ -197,6 +199,7 @@ router.post('/intern-details', (req, res) => {
       var application = new Applicant({
         name: req.user.FirstName + ' ' + req.user.LastName,
         college: req.user.CollegeName,
+        job_category: req.body.job_category,
         job_title: job.job_title,
         resume: req.user.resume,
         skills: req.user.BasicSkills,
@@ -417,6 +420,7 @@ router.post('/editintership', (req, res) => {
     _id: req.body.job_id
   }, {
     "$set": {
+      'job_category': req.body.job_category,
       'job_title': req.body.job_title,
       'job_content': req.body.job_content,
       'job_duration': req.body.job_duration,
