@@ -14,7 +14,7 @@ var storage = multer.diskStorage({
   },
   filename: function(req, file, callback) {
     if (file.mimetype === 'application/pdf') {
-      callback(null, file.fieldname + '-' + Date.now());
+      callback(null, file.fieldname + '-' + Date.now() + '.pdf');
     } else {
       callback(new Error('file type not supported'), false);
     }
@@ -132,7 +132,7 @@ module.exports = function(app, passport) {
   });
 
 
-  app.post('/signup-stud',upload.single('resume'), passport.authenticate('local-signup-stud', {
+  app.post('/signup-stud', upload.single('resume'), passport.authenticate('local-signup-stud', {
     successRedirect: '/verify', // redirect to the secure profile section
     failureRedirect: '/signup-stud', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages

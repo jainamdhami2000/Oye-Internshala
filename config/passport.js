@@ -22,7 +22,7 @@ var storage = multer.diskStorage({
   },
   filename: function(req, file, callback) {
     if (file.mimetype === 'application/pdf') {
-      callback(null, file.fieldname + '-' + Date.now());
+      callback(null, file.fieldname + '-' + Date.now() + '.pdf');
     } else {
       callback(new Error('file type not supported'), false);
     }
@@ -124,15 +124,15 @@ module.exports = function(passport) {
             newUser.loginType = 'local';
             newUser.DateofBirth = sanitize(req.body.birthdate);
             newUser.resume = file;
-              // newUser.internapplications=[];
-              // newUser.jobapplications=[];
-              // newUser.acceptedinternships=[];
-              // newUser.acceptedjobs=[];
-              newUser.save(function(err) {
-                if (err)
-                  throw err;
-                return done(null, newUser);
-              });
+            // newUser.internapplications=[];
+            // newUser.jobapplications=[];
+            // newUser.acceptedinternships=[];
+            // newUser.acceptedjobs=[];
+            newUser.save(function(err) {
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
           }
         });
       });

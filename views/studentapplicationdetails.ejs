@@ -56,7 +56,7 @@
             </div>
             <div class="row spacing">
               <div class="col-md-3">
-                <span class="Heading">SKILLS</span>
+                <span class="Heading">Skills</span>
               </div>
 
               <div class="col-md-3">
@@ -72,19 +72,19 @@
 
             <div class="row spacing">
               <div class="col-md-3">
-                <span class="Heading">RESUME</span>
+                <span class="Heading">Resume</span>
               </div>
 
               <div class="col-md-3">
 
                 <iframe id="myFrame" style="display:none" width="600" height="300"></iframe>
-                <input id='<%=applicant.resume.path%>' type="button" value="Open Resume" onclick="openPdf(this)" />
+                <input id='<%=applicant.resume.filename%>' type="button" value="Open Resume" onclick="openPdf(this)" />
               </div>
             </div>
 
             <div class="row spacing">
               <div class="col-md-3">
-                <span class="Heading">APPLIED ON</span>
+                <span class="Heading">Applied on</span>
               </div>
               <div class="col-md-9">
                 <%=applicant.applied_on.toDateString()%>
@@ -151,7 +151,7 @@
             {
             var omyFrame = document.getElementById("myFrame");
             omyFrame.style.display="block";
-            omyFrame.src = "../"+input.id+'.pdf';
+            omyFrame.src = '../'+input.id+'.pdf';
             }
 
             </script>
