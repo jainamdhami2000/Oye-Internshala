@@ -1,10 +1,7 @@
 <%-include('partials/header')%>
 
 <link rel="stylesheet" type="text/css" href="/css/profile.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="/assets/css/material-kit.css" rel="stylesheet" />
-
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
@@ -67,7 +64,6 @@
                   </div>
                 </div>
                 <div style="clear: both;"></div>
-
                 <p class="line"><a href='/profile/updateemployer'>EDIT DETAILS</a></p>
               </div>
             </div>
@@ -76,18 +72,18 @@
       </div>
     </div>
   </div>
-</body>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('ul.tabs li').click(function() {
-      var tab_id = $(this).attr('data-tab');
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('ul.tabs li').click(function() {
+        var tab_id = $(this).attr('data-tab');
 
-      $('ul.tabs li').removeClass('current');
-      $('.tab-content').removeClass('current');
+        $('ul.tabs li').removeClass('current');
+        $('.tab-content').removeClass('current');
 
-      $(this).addClass('current');
-      $("#" + tab_id).addClass('current');
+        $(this).addClass('current');
+        $("#" + tab_id).addClass('current');
+      });
     });
-  });
-</script>
+  </script>
+</body>
 <%-include('partials/footer')%>

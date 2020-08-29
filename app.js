@@ -20,6 +20,7 @@ const admin = require('./routes/admin');
 const internship = require('./routes/internship');
 const courses = require('./routes/courses');
 const profile = require('./routes/profile');
+const search = require('./routes/searchRoute');
 
 mongoose.connect(configDB.url, {
   useNewUrlParser: true,
@@ -58,6 +59,7 @@ app.use('/admin', admin);
 app.use('/internship', internship);
 app.use('/courses', courses);
 app.use('/profile', profile);
+app.use('/search', search);
 
 // app.get('/profile-emp', function(req, res) {
 //   res.render('profile_emp');

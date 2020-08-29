@@ -11,7 +11,7 @@
               <div class="col-md-3">
                 <div class="card">
                   <div class="card-body">
-                    <form action="/action_page.php">
+                    <form action="/search/main">
                       <div class="row">
                         <div>
                           <h5 class="card-title text-center">FILTERS</h5>
@@ -105,10 +105,10 @@
   </div>
   </div>
   </div>
+  <script>
+    function details(input) {
+      document.getElementById("job" + input.id).submit();
+    }
+  </script>
 </body>
 <%-include('partials/footer')%>
-<script>
-  function details(input) {
-    document.getElementById("job" + input.id).submit();
-  }
-</script>

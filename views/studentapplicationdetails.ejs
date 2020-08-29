@@ -63,7 +63,6 @@
                 <%=applicant.skills%> <br>
                 <!-- Intermediate -->
               </div>
-
               <!-- <div class="col-md-3">
                 HTML <br>
                 Intermediate
@@ -142,14 +141,11 @@
   </div>
   </div>
   <script>
-
-            function openPdf(input)
-            {
-            var omyFrame = document.getElementById("myFrame");
-            omyFrame.style.display="block";
-            omyFrame.src = '../'+input.id;
-            }
-
-            </script>
+  function openPdf(input){
+    let omyFrame = document.getElementById("myFrame");
+    omyFrame.style.display="block";
+    omyFrame.src = '../'+input.id;
+  }
+  </script>
 </body>
 <%-include('partials/footer')%>

@@ -1,15 +1,15 @@
 <%-include('partials/header')%>
 <style media="screen">
-  .bmd-form-group {
-    padding-top: 20px
-  }
+  /*.bmd-form-group {*/
+  /*  padding-top: 20px*/
+  /*}*/
 
   .form-group {
     margin-bottom: 10px
   }
 
   h4 {
-    margin: auto 0px;
+    margin: auto 0;
   }
 </style>
 
@@ -23,7 +23,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-5 ml-auto">
-                  <img src="/main/postintern.png" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
+                  <img src="/main/postintern.png" alt="Post Internship" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
                 </div>
 
                 <div class="col-md-5 mr-auto">
@@ -129,7 +129,7 @@
 
                     <%}%>
 
-                    <%if (typeof(job.Question1) != 'undefined'){%>
+                    <%if (typeof(internship.Question1) != 'undefined'){%>
 
                     <div class="form-group form-item">
                       <h4>Question 1</h4>
@@ -140,7 +140,7 @@
 
                     <%}%>
 
-                <%if (typeof(job.Question2) != 'undefined'){%>
+                <%if (typeof(internship.Question2) != 'undefined'){%>
 
                     <div class="form-group form-item">
                       <h4>Question 2</h4>
@@ -151,7 +151,7 @@
 
                     <%}%>
 
-                <%if (typeof(job.Question3) != 'undefined'){%>
+                <%if (typeof(internship.Question3) != 'undefined'){%>
 
                     <div class="form-group form-item">
                       <h4>Question 3</h4>
