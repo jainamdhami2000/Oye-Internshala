@@ -124,10 +124,6 @@ module.exports = function(passport) {
             newUser.loginType = 'local';
             newUser.DateofBirth = sanitize(req.body.birthdate);
             newUser.resume = file;
-            // newUser.internapplications=[];
-            // newUser.jobapplications=[];
-            // newUser.acceptedinternships=[];
-            // newUser.acceptedjobs=[];
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -173,8 +169,6 @@ module.exports = function(passport) {
             newUser.local.password = newUser.generateHash(password);
             newUser.DateofBirth = sanitize(req.body.birthdate);
             newUser.loginType = 'local';
-            // newUser.postedinternships=[],
-            // newUser.postedjobs=[],
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -257,6 +251,7 @@ module.exports = function(passport) {
       clientID: configAuth.facebookAuth.clientID,
       clientSecret: configAuth.facebookAuth.clientSecret,
       callbackURL: configAuth.facebookAuth.callbackURL,
+      profileFields:configAuth.facebookAuth.profileFields,
       passReqToCallback: true
     },
     function(req, token, refreshToken, profile, done) {
@@ -280,25 +275,22 @@ module.exports = function(passport) {
             newUser.facebook.token = token; // we will save the token that facebook provides to the user
             newUser.loginType = 'facebook';
             // newUser.IsActive = true;
-            name = profile.displayName.split(' ', 2);
-            fname = name[0];
-            lname = name[1];
-            newUser.FirstName = fname;
-            newUser.LastName = lname;
+            // console.log(profile)
+            // name = profile.displayName.split(' ', 2);
+            // fname = name[0];
+            // lname = name[1];
+            newUser.FirstName = profile.name.givenName;
+            newUser.LastName = profile.name.familyName;
             newUser.isVerified = true;
             newUser.isStudent = true;
-            newUser.DateofBirth = sanitize(req.body.birthdate);
-            // newUser.internapplications=[];
-            // newUser.jobapplications=[];
-            // newUser.acceptedinternships=[];
-            // newUser.acceptedjobs=[];
+            newUser.DateofBirth = req.body.birthdate;
             if (typeof(profile.username) == 'undefined') {
-              newUser.username = fname + lname;
+              newUser.username = profile.name.givenName + profile.name.familyName;
             } else {
               newUser.username = profile.username; // look at the passport user profile to see how names are returned
             }
-            if (profile.hasOwnProperty('email')) {
-              newUser.Email = profile.email;
+            if (profile.hasOwnProperty('emails')) {
+              newUser.Email = profile.emails[0].value;
             } else {
               newUser.Email = null;
             }
@@ -346,10 +338,6 @@ module.exports = function(passport) {
             newUser.isVerified = true;
             newUser.isStudent = true;
             newUser.DateofBirth = sanitize(req.body.birthdate);
-            // newUser.internapplications=[];
-            // newUser.jobapplications=[];
-            // newUser.acceptedinternships=[];
-            // newUser.acceptedjobs=[];
             newUser.Email = profile.emails[0].value; // pull the first email
             newUser.username = profile.emails[0].value.substr(0, profile.emails[0].value.indexOf('@'));
             newUser.loginType = 'google';
@@ -406,10 +394,6 @@ module.exports = function(passport) {
             }
             newUser.username = profile.username;
             newUser.loginType = 'github';
-            // newUser.internapplications=[];
-            // newUser.jobapplications=[];
-            // newUser.acceptedinternships=[];
-            // newUser.acceptedjobs=[];
             newUser.save(function(err) {
               if (err)
                 throw err;
@@ -452,10 +436,6 @@ module.exports = function(passport) {
           newUser.LastName = profile.name.familyName;
           newUser.isVerified = true;
           newUser.DateofBirth = sanitize(req.body.birthdate);
-          // newUser.internapplications=[];
-          // newUser.jobapplications=[];
-          // newUser.acceptedinternships=[];
-          // newUser.acceptedjobs=[];
           newUser.isStudent = true;
           if (profile.emails[0].value == null) {
             newUser.Email = null;
