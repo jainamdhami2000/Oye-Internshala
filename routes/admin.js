@@ -212,6 +212,12 @@ router.post('/addjobtitle', (req, res) => {
   });
 });
 
+router.get('/jobtitles', (req, res) => {
+  Jobtitle.find({}, (err, jobtitles) => {
+    res.send(jobtitles);
+  });
+});
+
 router.get('/logout', function(req, res) {
   req.session.token = null;
   res.redirect('/admin/');

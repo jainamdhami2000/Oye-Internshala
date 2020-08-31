@@ -35,7 +35,8 @@ router.get('/searchintern', isLoggedIn, function(req, res) {
         });
         res.render('getintern', {
           user: req.user,
-          jobs: unappliedjobs
+          jobs: unappliedjobs,
+          parameters: []
         });
       });
     });
@@ -72,38 +73,69 @@ router.get('/postintern', isLoggedIn, (req, res) => {
 
 router.post('/postintern', isLoggedIn, (req, res) => {
   try {
-    var job = new Job({
-      job_title: sanitize(req.body.job_title),
-      job_category: sanitize(req.body.job_category),
-      job_content: sanitize(req.body.job_content),
-      job_duration: sanitize(req.body.job_duration),
-      start_date: sanitize(req.body.start_date),
-      apply_last: sanitize(req.body.apply_last),
-      requirements: sanitize(req.body.requirements),
-      intake: sanitize(req.body.intake),
-      jobtype: 'Internship',
-      user_id: req.user._id,
-      company_name: req.user.CompanyName,
-      job_published: Date.now(),
-    });
-    if (req.body.paid == 'on') {
-      job.paid = true;
-      job.job_stipened = sanitize(req.body.job_stipened);
+    var job;
+    console.log(req.body.job_type)
+    if (req.body.job_type == 'Job') {
+      job = new Job({
+        job_title: sanitize(req.body.job_title),
+        job_category: sanitize(req.body.job_category),
+        job_content: sanitize(req.body.job_content),
+        job_duration: sanitize(req.body.job_duration),
+        start_date: sanitize(req.body.start_date),
+        apply_last: sanitize(req.body.apply_last),
+        requirements: sanitize(req.body.requirements),
+        intake: sanitize(req.body.intake),
+        job_stipened: sanitize(req.body.job_stipened),
+        jobtype: 'Job',
+        user_id: req.user._id,
+        company_name: req.user.CompanyName,
+        job_published: Date.now(),
+      });
+      console.log(req.body.start_date)
+      if (req.body.question1 != "") {
+        job.Question1 = sanitize(req.body.question1);
+      }
+      if (req.body.question2 != "") {
+        job.Question2 = sanitize(req.body.question2);
+      }
+      if (req.body.question3 != "") {
+        job.Question3 = sanitize(req.body.question3);
+      }
+      job.save();
+    } else {
+      job = new Job({
+        job_title: sanitize(req.body.job_title),
+        job_category: sanitize(req.body.job_category),
+        job_content: sanitize(req.body.job_content),
+        job_duration: sanitize(req.body.job_duration),
+        start_date: sanitize(req.body.start_date),
+        apply_last: sanitize(req.body.apply_last),
+        requirements: sanitize(req.body.requirements),
+        intake: sanitize(req.body.intake),
+        jobtype: 'Internship',
+        user_id: req.user._id,
+        company_name: req.user.CompanyName,
+        job_published: Date.now(),
+      });
+      if (req.body.paid == 'on') {
+        job.paid = true;
+        job.job_stipened = sanitize(req.body.job_stipened);
+      }
+      if (req.body.onsite == 'on') {
+        job.onsite = true;
+        job.job_location = sanitize(req.body.job_location);
+      }
+      if (req.body.question1 != "") {
+        job.Question1 = sanitize(req.body.question1);
+      }
+      if (req.body.question2 != "") {
+        job.Question2 = sanitize(req.body.question2);
+      }
+      if (req.body.question3 != "") {
+        job.Question3 = sanitize(req.body.question3);
+      }
+      job.save();
     }
-    if (req.body.onsite == 'on') {
-      job.onsite = true;
-      job.job_location = sanitize(req.body.job_location);
-    }
-    if (req.body.question1 != "") {
-      job.Question1 = sanitize(req.body.question1);
-    }
-    if (req.body.question2 != "") {
-      job.Question2 = sanitize(req.body.question2);
-    }
-    if (req.body.question3 != "") {
-      job.Question3 = sanitize(req.body.question3);
-    }
-    job.save();
     res.redirect('/');
   } catch (e) {
     console.log(e);
@@ -139,7 +171,7 @@ router.post('/view', isLoggedIn, (req, res) => {
   }
 });
 
-router.post('/apply', (req, res) => {
+router.post('/apply', isLoggedIn, (req, res) => {
   var job_id = sanitize(req.body.job_id);
   Job.findOne({
     _id: job_id
@@ -183,7 +215,7 @@ router.post('/apply', (req, res) => {
   });
 });
 
-router.post('/intern-details', (req, res) => {
+router.post('/intern-details', isLoggedIn, (req, res) => {
   var job_id = sanitize(req.body.job_id);
   console.log(job_id);
   Job.findOne({
@@ -220,13 +252,13 @@ router.post('/intern-details', (req, res) => {
   });
 });
 
-router.get('/confirm', function(req, res) {
+router.get('/confirm', isLoggedIn, function(req, res) {
   res.render('application-confirm', {
     user: req.user
   });
 });
 
-router.get('/appliedinternship', isLoggedIn, (req, res) => {
+router.get('/appliedinternship', isLoggedIn, isLoggedIn, (req, res) => {
   if (req.user.isStudent) {
     Applicant.find({
         user_id: req.user._id
@@ -337,7 +369,7 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
   }
 });
 
-router.post('/jobapplications', (req, res) => {
+router.post('/jobapplications', isLoggedIn, (req, res) => {
   var job_id = req.body.job_id;
   Applicant.find({
     job_id: job_id,
@@ -350,7 +382,7 @@ router.post('/jobapplications', (req, res) => {
   });
 });
 
-router.post('/studentapplicationdetails', (req, res) => {
+router.post('/studentapplicationdetails', isLoggedIn, (req, res) => {
   var applicant_id = req.body.applicant_id;
   Applicant.findOne({
     _id: applicant_id
@@ -368,7 +400,7 @@ router.post('/studentapplicationdetails', (req, res) => {
   });
 });
 
-router.post('/studentapplicationreview', (req, res) => {
+router.post('/studentapplicationreview', isLoggedIn, (req, res) => {
   var accept = req.body.accept;
   var reject = req.body.reject;
   var applicant_id = req.body.applicant_id;
@@ -391,7 +423,7 @@ router.post('/studentapplicationreview', (req, res) => {
   });
 });
 
-router.post('/viewinternship', (req, res) => {
+router.post('/viewinternship', isLoggedIn, (req, res) => {
   var job_id = req.body.job_id;
   Job.findOne({
     _id: job_id
@@ -403,7 +435,7 @@ router.post('/viewinternship', (req, res) => {
   });
 });
 
-router.post('/editintershipview', (req, res) => {
+router.post('/editintershipview', isLoggedIn, (req, res) => {
   var job_id = req.body.job_id;
   Job.findOne({
     _id: job_id
@@ -415,7 +447,7 @@ router.post('/editintershipview', (req, res) => {
   });
 });
 
-router.post('/editintership', (req, res) => {
+router.post('/editintership', isLoggedIn, (req, res) => {
   Job.findOneAndUpdate({
     _id: req.body.job_id
   }, {
@@ -461,7 +493,7 @@ router.post('/editintership', (req, res) => {
   res.redirect('/profile/employer');
 });
 
-router.post('/deleteinternship', (req, res) => {
+router.post('/deleteinternship', isLoggedIn, (req, res) => {
   Applicant.deleteMany({
     job_id: req.body.job_id
   }, (err, doc) => {
