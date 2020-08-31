@@ -47,6 +47,23 @@ router.post('/updatestudent', (req, res) => {
     }
     req.user = doc;
   });
+  Applicant.findOneAndUpdate({
+    user_id: req.user._id
+  }, {
+    '$set': {
+      'name': req.body.fname + ' ' + req.body.lname,
+      'college': req.body.college_name,
+      'skills': req.body.skills,
+      'city': req.body.city,
+    }
+  }, {
+    new: true
+  }, function(err, doc) {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
   res.redirect('/profile/student');
 });
 

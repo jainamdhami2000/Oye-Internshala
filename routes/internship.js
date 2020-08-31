@@ -442,6 +442,22 @@ router.post('/editintership', (req, res) => {
       // return returnErr(res, "Error", "Our server ran into an error please try again")
     }
   });
+  Applicant.findOneAndUpdate({
+    user_id: req.user._id
+  }, {
+    '$set': {
+      'job_category': req.body.job_category,
+      'job_title': req.body.job_title,
+      'city': req.body.job_location,
+    }
+  }, {
+    new: true
+  }, function(err, doc) {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
   res.redirect('/profile/employer');
 });
 
