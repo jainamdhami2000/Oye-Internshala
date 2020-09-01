@@ -89,7 +89,7 @@ app.use('/search', search);
 // });
 
 app.get('/hi', function(req, res) {
-  res.render('admin/internship-details');
+  res.render('homepage');
 });
 app.get('/hi2', function(req, res) {
   res.render('studentsApplied');
@@ -97,6 +97,7 @@ app.get('/hi2', function(req, res) {
 app.get('/hi3', function(req, res) {
   res.render('studAppliedDetails');
 });
+
 
 app.listen(3000, function(err) {
   console.log('Server started on 3000');
