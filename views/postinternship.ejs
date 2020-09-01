@@ -22,12 +22,15 @@
   .noDisplay{
       display: none;
   }
-  .Display{
-      display:
+  .togglebutton label{
+      cursor: default;
+  }
+  .toggle{
+      cursor: pointer;
   }
 </style>
 
-<%# <link rel="stylesheet" type="text/css" href="css/postintern.css"> %>
+<link rel="stylesheet" type="text/css" href="css/postintern.css">
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
@@ -35,9 +38,9 @@
       <div class="row">
         <div class="col-md-10 ml-auto mr-auto">
           <div class="card card-signup">
-              <div class="togglebutton">
+              <div class="togglebutton hi">
                   <center>
-                      <label>
+                      <label class="hi" style="">
                         Internship
                         <input name='paid' type="checkbox">
                         <span class="toggle" id="MainToggle"></span>
@@ -147,26 +150,9 @@
                           <div class="form-group form-item viewSite">
                             <h4>Select Location</h4>
                             <div class="input-group ">
-                              <select name='job_location' class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                              <select name='job_location' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
                                 <option disabled> Choose City</option>
-                                <option value="2">Paris </option>
-                                <option value="3">Bucharest</option>
-                                <option value="4">Rome</option>
-                                <option value="5">New York</option>
-                                <option value="6">Miami </option>
-                                <option value="7">Piatra Neamt</option>
-                                <option value="8">Paris </option>
-                                <option value="9">Bucharest</option>
-                                <option value="10">Rome</option>
-                                <option value="11">New York</option>
-                                <option value="12">Miami </option>
-                                <option value="13">Piatra Neamt</option>
-                                <option value="14">Paris </option>
-                                <option value="15">Bucharest</option>
-                                <option value="16">Rome</option>
-                                <option value="17">New York</option>
-                                <option value="18">Miami </option>
-                                <option value="19">Piatra Neamt</option>
+
                               </select>
                             </div>
                           </div>
@@ -282,26 +268,9 @@
                         <div class="form-group form-item viewSite">
                           <h4>Select Location</h4>
                           <div class="input-group ">
-                            <select name='job_location' class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                            <select name='job_location' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
                               <option disabled> Choose City</option>
-                              <option value="2">Paris </option>
-                              <option value="3">Bucharest</option>
-                              <option value="4">Rome</option>
-                              <option value="5">New York</option>
-                              <option value="6">Miami </option>
-                              <option value="7">Piatra Neamt</option>
-                              <option value="8">Paris </option>
-                              <option value="9">Bucharest</option>
-                              <option value="10">Rome</option>
-                              <option value="11">New York</option>
-                              <option value="12">Miami </option>
-                              <option value="13">Piatra Neamt</option>
-                              <option value="14">Paris </option>
-                              <option value="15">Bucharest</option>
-                              <option value="16">Rome</option>
-                              <option value="17">New York</option>
-                              <option value="18">Miami </option>
-                              <option value="19">Piatra Neamt</option>
+
                             </select>
                           </div>
                         </div>
@@ -348,7 +317,9 @@
         $(".dispIntern").toggle();
         $(".dispJob").toggle();
     })
+    $(".togglebutton").off("click","**");
 </script>
 <script src="/js/postintern.js" charset="utf-8"></script>
+<script src="/js/cities.js" charset="utf-8"></script>
 
 <%-include('partials/footer')%>

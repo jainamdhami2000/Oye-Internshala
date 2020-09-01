@@ -10,6 +10,9 @@
                         <div class="row">
                             <div class="col-md-9 ml-auto mr-auto">
                                 <h5 class="card-title" style="text-align:center">INTERNSHIPS TO BE VERIFIED</h5>
+                                <% if (jobs.length== 0) {%>
+
+                                <%} else {%>
                                 <%jobs.forEach(job=>{%>
                                 <div class="card">
                                     <div class="card-body">
@@ -39,7 +42,7 @@
                                             <div><%=job.job_stipened%></div>
                                             <%} else {%>
                                             <div>Unpaid</div>
-                                            <%}%>
+                                            <%}}%>
                             </div>
 
                             <div class="float-child3">
