@@ -1,0 +1,127 @@
+<%-include('partials/header')%>
+<style media="screen">
+  /*.bmd-form-group {*/
+  /*  padding-top: 20px*/
+  /*}*/
+
+  .form-group {
+    margin-bottom: 10px
+  }
+
+  h4 {
+    margin: auto 0;
+  }
+
+  .viewSite {
+    display: none;
+  }
+
+  .viewPaid {
+    display: none;
+  }
+  .noDisplay{
+      display: none;
+  }
+  .togglebutton label{
+      cursor: default;
+  }
+  .toggle{
+      cursor: pointer;
+  }
+</style>
+
+<link rel="stylesheet" type="text/css" href="css/postintern.css">
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+                  <h2 class="card-title text-center">Add an Course</h2>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-5 ml-auto">
+                        <form class="form" method="POST" action="/courses/postcourse">
+                          <input type="text" name="job_type" value="Course" style="display:none">
+
+                          <div class="form-group form-item" style="margin-top:20px;">
+                            <h4>Course Type</h4>
+                            <div class="input-group ">
+                              <select name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7">
+                                <option disabled> Choose Category</option>
+
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group form-item">
+                            <h4>Course name</h4>
+                            <div class="input-group ">
+                              <input name="job_title" required type="text" class="form-control ">
+                            </div>
+                          </div>
+
+                          <div class="form-group form-item">
+                            <h4>Description</h4>
+                            <div class="input-group ">
+                              <input name="job_content" required type="text" class="form-control ">
+                            </div>
+                          </div>
+
+                          <div class="form-group form-item">
+                            <h4 style="margin-bottom:0;">Duration</h4>
+                            (in months)
+                            <div class="input-group ">
+                              <input name="job_duration" required type="number" class="form-control ">
+                            </div>
+                          </div>
+
+                          <div class="form-group form-item">
+                            <h4>Start Date</h4>
+                            <div class="input-group ">
+                              <input name="start_date" type="text" class="form-control datepicker">
+                            </div>
+                          </div>
+
+                          <div class="form-group form-item">
+                            <h4>Last date to apply</h4>
+                            <div class="input-group ">
+                              <input name="apply_last" type="text" class="form-control datepicker">
+                            </div>
+                          </div>
+
+                          <div class="form-group form-item">
+                            <h4>Prerequisite</h4>
+                            <div class="input-group ">
+                              <textarea required name='requirements' type="text" class="form-control" rows="4" id="exampleInputTextarea"></textarea>
+                            </div>
+                          </div>
+
+                          <div class="form-group form-item">
+                            <h4>Course link</h4>
+                            <div class="input-group ">
+                              <input name="job_link" required type="text" class="form-control ">
+                            </div>
+                          </div>
+                          <div class="text-center">
+                              <br>
+                            <button type='submit' class="btn btn-info btn-round">ADD</button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div class="col-md-5 mr-auto">
+                          <img src="/main/postintern.png" alt="Post Internship" class="img-responsive" style="float:right; padding-bottom:100px;padding-top: 100px;margin-top: 40%;">
+                      </div>
+                    </div>
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="/js/courseType.js" charset="utf-8"></script>
+
+<%-include('partials/footer')%>

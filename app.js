@@ -88,11 +88,11 @@ app.use('/search', search);
 //     };
 // });
 
-app.get('/hi', function(req, res) {
+app.get('/test', function(req, res) {
   res.render('homepage');
 });
-app.get('/hi2', function(req, res) {
-  res.render('studentsApplied');
+app.get('/test2', function(req, res) {
+  res.render('postcourse');
 });
 app.get('/hi3', function(req, res) {
   res.render('studAppliedDetails');

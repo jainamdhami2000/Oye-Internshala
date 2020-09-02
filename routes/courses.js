@@ -4,6 +4,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const sanitize = require('mongo-sanitize');
 const router = express.Router();
+const User = require('../model/user');
+const Job = require('../model/job');
+const Applicant = require('../model/applicant');
 
 router.get('/', function(req, res) {
   res.render('courses', {
@@ -33,7 +36,7 @@ router.get('/postcourse', isLoggedIn, (req, res) => {
   }
 });
 
-router.post('/postcourses', isLoggedIn, (req, res) => {
+router.post('/postcourse', isLoggedIn, (req, res) => {
   job = new Job({
     job_title: sanitize(req.body.job_title),
     job_category: sanitize(req.body.job_category),
@@ -55,9 +58,10 @@ router.post('/postcourses', isLoggedIn, (req, res) => {
 router.get('/postedcourses', isLoggedIn, (req, res) => {
   if (req.user.isTrainer && req.user.admin_accept) {
     Job.find({
-      user_id: req.user._id
+      user_id: req.user._id,
+      jobtype:'Course'
     }, (err, jobs) => {
-      res.render('postedjobs', {
+      res.render('postedCourses', {
         user: req.user,
         jobs: jobs
       });
