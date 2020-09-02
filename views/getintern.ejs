@@ -60,20 +60,19 @@
                           <%}%>
                           </div>
                           <div>
-                            <label for="date">Starting Date(or after)</label>
-                            <%if (typeof(parameters.duration) !='undefined'){%>
-                          <% if (!parameters.apply_last){%>
-                          <input type="date" id="date" name="start_date" placeholder="Choose date" value='<%=parameters.apply_last.getUTCDate()%>/<%= parameters.apply_last.getUTCMonth()+1%>/<%= parameters.apply_last.getUTCFullYear()%>'>
-                          <%}} else {%>
-                          <input type="date" id="date" name="start_date" placeholder="Choose date">
-                          <%}%>
-                          </div>
-                          <div>
                             <label for="months">Duration</label>
                             <%if (typeof(parameters.duration) !='undefined'){%>
                           <input type="text" id="duration" name="duration" placeholder="State duration(in months)" value='<%=parameters.duration%>'>
                           <%} else {%>
                           <input type="text" id="duration" name="duration" placeholder="State duration(in months)">
+                          <%}%>
+                          </div>
+                          <div>
+                            <label for="date">Starting Date(or after)</label>
+                            <%if (typeof(parameters.start_date) !='undefined' && parameters.start_date){%>
+                          <input type="date" id="date" name="start_date" placeholder="Choose date" value='<%=parameters.start_date%>'>
+                          <%} else {%>
+                          <input type="date" id="date" name="start_date" placeholder="Choose date">
                           <%}%>
                           </div>
                           <div>

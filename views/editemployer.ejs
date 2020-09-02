@@ -99,7 +99,8 @@
                             </span>
                           </span>
                         </div>
-                        <input value='<%=user.MainOfficeLocation%>' name='city' required type="text" class="form-control" placeholder="City...">
+                        <select name='city' id="loc" class="form-control selectpicker" data-style="select-with-transition" data-size="7" required value='<%=user.MainOfficeLocation%>' selected readonly>
+                        </select>
                       </div>
                     </div>
                     <div class="text-center">
@@ -114,5 +115,9 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+      var city = '<%=user.MainOfficeLocation%>';
+  </script>
+  <script src="/js/editinternship.js" charset="utf-8"></script>
 </body>
 <%-include('partials/footer')%>

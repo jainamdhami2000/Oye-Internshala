@@ -74,7 +74,6 @@ router.get('/postintern', isLoggedIn, (req, res) => {
 router.post('/postintern', isLoggedIn, (req, res) => {
   try {
     var job;
-    console.log(req.body.job_type)
     if (req.body.job_type == 'Job') {
       job = new Job({
         job_title: sanitize(req.body.job_title),
@@ -91,7 +90,6 @@ router.post('/postintern', isLoggedIn, (req, res) => {
         company_name: req.user.CompanyName,
         job_published: Date.now(),
       });
-      console.log(req.body.start_date)
       if (req.body.question1 != "") {
         job.Question1 = sanitize(req.body.question1);
       }
