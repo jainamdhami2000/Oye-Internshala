@@ -20,6 +20,41 @@ router.get('/employer', isLoggedIn, function(req, res) {
   });
 });
 
+router.get('/trainer', isLoggedIn, function(req, res) {
+  res.render('profile_trainer', {
+    user: req.user
+  });
+});
+
+router.get('/updatetrainer', isLoggedIn, function(req, res) {
+  res.render('edittrainer', {
+    user: req.user
+  });
+});
+
+router.post('/updatetrainer', (req, res) => {
+  User.findOneAndUpdate({
+    _id: req.user._id
+  }, {
+    "$set": {
+      'username': req.body.username,
+      'FirstName': req.body.fname,
+      'LastName': req.body.lname,
+      'CompanyName': req.body.company_name,
+      'phoneNumber': req.body.phoneno
+    }
+  }, {
+    new: true
+  }, function(err, doc) {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+    req.user = doc;
+  });
+  res.redirect('/profile/trainer');
+});
+
 router.get('/updatestudent', isLoggedIn, (req, res) => {
   res.render('editstudent', {
     user: req.user

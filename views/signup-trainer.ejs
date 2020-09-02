@@ -13,7 +13,6 @@
                   <h4> SIGN UP </h4>
                   <h5 style="font-size: 15px;color:darkgray">Get started by creating your account</h5>
                 </div>
-
               </div>
               <div class="col-sm-4 ">
                 <img alt="Apply" src="main/std-profile/Apply.svg" width="35%" height="45%">
@@ -36,14 +35,14 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-5 ml-auto">
-                  <img src="/main/emp-profile/emp-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
+                  <img alt="Employer Signup" src="/main/emp-profile/emp-sign.svg" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
                 </div>
 
                 <% if (message.length > 0) { %>
                 <div class="alert alert-danger"><%= message %></div>
                 <% } %>
                 <div class="col-md-5 mr-auto">
-                  <form class="form" method="POST" action="/signup-emp">
+                  <form class="form" method="POST" action="/signup-trainer">
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -105,22 +104,7 @@
                             <i class="material-icons">mail</i>
                           </span>
                         </div>
-                        <input name='company_name' required type="text" class="form-control" placeholder="Company Name...">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <span class="material-icons">
-                              location_city
-                            </span>
-                          </span>
-                        </div>
-                        <select name='city' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Choose City" data-size="7">
-                          <option disabled> Choose City</option>
-                        </select>
+                        <input name='company_name' required type="text" class="form-control" placeholder="University Name...">
                       </div>
                     </div>
 
@@ -145,7 +129,7 @@
                         <input name='password' required type="password" placeholder="Password..." class="form-control" />
                       </div>
                     </div>
-
+                    
                     <div class="form-group">
                       <div class="input-group">
                         <div class="input-group-prepend">
@@ -167,7 +151,6 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 </body>
 <script src="/js/cities.js" charset="utf-8"></script>

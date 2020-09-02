@@ -71,12 +71,10 @@ module.exports = function(passport) {
             newUser.isTrainer = true;
             newUser.CompanyName = sanitize(req.body.company_name);
             newUser.phoneNumber = sanitize(req.body.phoneno);
-            newUser.City = sanitize(req.body.city);
             newUser.admin_accept = admin_accept;
             newUser.admin_reject = admin_reject;
             newUser.local.password = newUser.generateHash(password);
             newUser.loginType = 'local';
-            newUser.DateofBirth = sanitize(req.body.birthdate);
             newUser.save(function(err) {
               if (err)
                 throw err;

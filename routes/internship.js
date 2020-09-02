@@ -256,7 +256,7 @@ router.get('/confirm', isLoggedIn, function(req, res) {
   });
 });
 
-router.get('/appliedinternship', isLoggedIn, isLoggedIn, (req, res) => {
+router.get('/appliedinternship', isLoggedIn, (req, res) => {
   if (req.user.isStudent) {
     Applicant.find({
         user_id: req.user._id

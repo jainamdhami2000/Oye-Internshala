@@ -44,6 +44,11 @@ searchRouter.post('/internship',isLoggedIn, function(req, res, next) {
     query.$and.push({
       jobtype: 'Job'
     });
+  } else if (req.body.course == 'on') {
+    param.course = req.body.course;
+    query.$and.push({
+      jobtype: 'Course'
+    });
   }
   if (req.body.start_date !== '') {
     param.start_date = req.body.start_date;

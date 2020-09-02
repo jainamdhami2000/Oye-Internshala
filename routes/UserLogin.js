@@ -152,13 +152,15 @@ module.exports = function(app, passport) {
 
   app.get('/verify', function(req, res) {
     User.findOne({
-      Email: req.user.Email
+      Email: req.user.Email,
     }, function(err, user) {
       if (user.isVerified) {
-        if (req.user.isEmployer) {
+        if (user.isEmployer) {
           res.redirect('/profile/employer');
-        } else if (req.user.isStudent) {
+        } else if (user.isStudent) {
           res.redirect('/profile/student');
+        } else if (user.isTrainer) {
+          res.redirect('/profile/trainer');
         }
       } else {
         res.render('verify', {

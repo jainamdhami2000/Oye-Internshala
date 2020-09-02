@@ -59,6 +59,7 @@ const jobSchema = new mongoose.Schema({
   Question1: String,
   Question2: String,
   Question3: String,
+  course_link: String,
 });
 
 module.exports = mongoose.model("Job", jobSchema);
