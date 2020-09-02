@@ -55,7 +55,8 @@ router.get('/unverifiedemployers', (req, res) => {
   User.find({
     admin_accept: false,
     admin_reject: false,
-    isVerified: true
+    isVerified: true,
+    isEmployer:true
   }, (err, employers) => {
     // res.json({
     //     unverifiedemployers: employers
@@ -215,6 +216,50 @@ router.post('/addjobtitle', (req, res) => {
 router.get('/jobtitles', (req, res) => {
   Jobtitle.find({}, (err, jobtitles) => {
     res.send(jobtitles);
+  });
+});
+
+router.get('/unverifiedtrainers', (req, res) => {
+  User.find({
+    admin_accept: false,
+    admin_reject: false,
+    isVerified: true,
+    isTrainer:true
+  }, (err, trainers) => {
+    res.render('admin/trainer-verify', {
+      unverifiedtrainers: trainers
+    });
+  });
+});
+
+router.post('/unverifiedtrainer', (req, res) => {
+  var trainer_id = req.body.trainer_id;
+  User.findOne({
+    _id: trainer_id
+  }, (err, trainer) => {
+    // res.json({
+    //     unverifiedemployer: employer[0]
+    // });
+    res.render('admin/trainer-details', {
+      unverifiedtrainer: trainer
+    });
+  });
+});
+
+router.post('/trainerverification', (req, res) => {
+  var accept = req.body.accept;
+  var reject = req.body.reject;
+  var trainer_id = req.body.trainer_id;
+  User.findOne({
+    _id: trainer_id
+  }, (err, trainer) => {
+    if (accept == 'Accept') {
+      trainer.admin_accept = true;
+    } else {
+      trainer.admin_reject = true;
+    }
+    trainer.save();
+    res.redirect('/admin/home');
   });
 });
 
