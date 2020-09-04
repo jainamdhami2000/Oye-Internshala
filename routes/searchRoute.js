@@ -6,7 +6,7 @@ const searchRouter = express.Router();
 const Job = require('../model/job');
 const Applicant = require('../model/applicant');
 
-searchRouter.post('/internship',isLoggedIn, function(req, res, next) {
+searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
   var q = req.body.searchInput;
   var query = {};
   query.$and = [];
@@ -90,7 +90,51 @@ searchRouter.post('/internship',isLoggedIn, function(req, res, next) {
         res.render('getintern', {
           user: req.user,
           jobs: unappliedjobs,
-          parameters:param
+          parameters: param
+        });
+      }
+    });
+  });
+});
+
+searchRouter.post('/course', isLoggedIn, function(req, res, next) {
+  var q = req.body.searchInput;
+  var query = {};
+  query.$and = [];
+  param = {};
+  if (req.body.job_category !== '') {
+    param.job_category = req.body.job_category;
+    query.$and.push({
+      job_category: req.body.job_category
+    });
+  }
+  query.$and.push({
+    admin_accept: true,
+    jobtype: 'Course'
+  });
+  Applicant.find({
+    user_id: req.user._id
+  }, (err, applicants) => {
+    var appids = [];
+    var unappliedjobs = [];
+    applicants.forEach((applicant) => {
+      appids.push(String(applicant.job_id));
+    });
+    Job.find(query, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        result.forEach(job => {
+          if (appids.includes(String(job._id))) {
+
+          } else {
+            unappliedjobs.push(job);
+          }
+        });
+        res.render('getintern', {
+          user: req.user,
+          jobs: unappliedjobs,
+          parameters: param
         });
       }
     });

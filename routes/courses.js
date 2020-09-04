@@ -13,6 +13,43 @@ router.get('/', function(req, res) {
     user: req.user
   });
 });
+
+router.get('/searchcourse', isLoggedIn, function(req, res) {
+  if (req.user.isStudent) {
+    Applicant.find({
+      user_id: req.user._id
+    }, (err, applicants) => {
+      var appids = [];
+      var unappliedjobs = [];
+      applicants.forEach((applicant) => {
+        appids.push(String(applicant.job_id));
+      });
+      Job.find({
+        admin_accept: true,
+        jobtype:'Course'
+      }, (err, jobs) => {
+        jobs.forEach(job => {
+          if (appids.includes(String(job._id))) {
+
+          } else {
+            unappliedjobs.push(job);
+          }
+        });
+        res.render('getintern', {
+          user: req.user,
+          jobs: unappliedjobs,
+          parameters: []
+        });
+      });
+    });
+  } else {
+    res.render('error', {
+      user: req.user,
+      message: 'Login as Student'
+    });
+  }
+});
+
 router.get('/postcourse', isLoggedIn, (req, res) => {
   if (req.user.isTrainer && req.user.admin_accept) {
     res.render('postcourse', {
@@ -134,7 +171,7 @@ router.post('/apply', isLoggedIn, (req, res) => {
   });
 });
 
-router.get('/appliedinternship', isLoggedIn, (req, res) => {
+router.get('/appliedcourse', isLoggedIn, (req, res) => {
   if (req.user.isStudent) {
     Applicant.find({
         user_id: req.user._id
@@ -160,7 +197,11 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
             no_of_applicants: 1,
             jobtype: 1
           }, (err, job) => {
-            jobs = job;
+            job.forEach(j=>{
+              if (j.jobtype=='Course'){
+                jobs.push(j);
+              }
+            });
           });
           var foundjob;
           await apps.forEach(app => {
