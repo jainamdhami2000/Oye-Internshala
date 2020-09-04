@@ -109,9 +109,9 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
     });
   }
   query.$and.push({
-    admin_accept: true,
     jobtype: 'Course'
   });
+  console.log(param);
   Applicant.find({
     user_id: req.user._id
   }, (err, applicants) => {
