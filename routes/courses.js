@@ -25,7 +25,6 @@ router.get('/searchcourse', isLoggedIn, function(req, res) {
         appids.push(String(applicant.job_id));
       });
       Job.find({
-        admin_accept: true,
         jobtype:'Course'
       }, (err, jobs) => {
         jobs.forEach(job => {
@@ -35,7 +34,7 @@ router.get('/searchcourse', isLoggedIn, function(req, res) {
             unappliedjobs.push(job);
           }
         });
-        res.render('getintern', {
+        res.render('getcourse', {
           user: req.user,
           jobs: unappliedjobs,
           parameters: []

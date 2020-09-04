@@ -1,0 +1,103 @@
+<%-include('../partials/admin-header')%>
+
+<style media="screen">
+  .MainCard {
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    color: black;
+    margin-bottom: 100px;
+    padding: 20px 20px;
+  }
+
+  .Heading {
+    font-size: 1.2rem
+  }
+
+  .spacing {
+    margin: 20px 0;
+  }
+</style>
+<link rel="stylesheet" href="css/internship-details(admin).css">
+<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="assets/css/material-kit.css" rel="stylesheet" />
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="MainCard">
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">First Name</span>
+              </div>
+              <div class="col-md-9">
+                <%=unverifiedemployer.FirstName%>
+              </div>
+            </div>
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">Last Name</span>
+              </div>
+              <div class="col-md-9">
+                <%=unverifiedemployer.LastName%>
+              </div>
+            </div>
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">Username</span>
+              </div>
+              <div class="col-md-9">
+
+                <%=unverifiedemployer.username%>
+              </div>
+            </div>
+
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">Email</span>
+              </div>
+              <div class="col-md-9">
+                <%=unverifiedemployer.Email%>
+              </div>
+            </div>
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">Company name</span>
+              </div>
+              <div class="col-md-3">
+                <%=unverifiedemployer.CompanyName%>
+              </div>
+
+            </div>
+
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">Phone number</span>
+              </div>
+              <div class="col-md-9">
+                <%=unverifiedemployer.phoneNumber%>
+              </div>
+            </div>
+
+            <div class="row" style="text-align: center;
+                        padding-left: 40%;">
+              <center>
+                <form class="form-control" action="/admin/trainerverification" method="post">
+                  <input style='display:none' type="text" name="employer_id" value="<%=unverifiedemployer._id%>">
+                  <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
+                  <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
+                </form>
+              </center>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<%-include('../partials/footer')%>

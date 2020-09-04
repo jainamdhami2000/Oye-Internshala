@@ -86,10 +86,16 @@
                 </div>
               </div>
               <div class="col-md-9">
+
                 <%jobs.forEach(job=>{%>
+
                           <div class="card">
                             <div class="card-body">
+                            <% if (job.jobtype=='Internship'){%>
                               <h5 class="card-title">INTERNSHIPS</h5>
+                              <%} else if (job.jobtype=='Job') {%>
+                                  <h5 class="card-title">JOBS</h5>
+                              <%}%>
                               <div class="container1">
                                 <form id="job<%=job._id%>" method='POST' action="/internship/view">
                                   <input name='job_id' style='display:none' value='<%=job._id%>'>
@@ -126,11 +132,15 @@
                             </div>
                             <div class="div" id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
                           </div>
+
                       </form>
                     </div>
                   </div>
                 </div>
+
                 <%})%>
+                
+
               </div>
             </div>
           </div>

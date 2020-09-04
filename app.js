@@ -94,8 +94,8 @@ app.get('/test', function(req, res) {
 app.get('/test2', function(req, res) {
   res.render('postcourse');
 });
-app.get('/hi3', function(req, res) {
-  res.render('studAppliedDetails');
+app.get('/test3', function(req, res) {
+  res.render('getcourse');
 });
 
 

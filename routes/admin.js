@@ -152,21 +152,29 @@ router.get('/unverifiedjobs', (req, res) => {
     admin_reject: false,
     jobtype: 'Job'
   }, (err, jobs) => {
-    res.json({
-      unverifiedjobs: jobs
+    res.render('admin/jobs',{
+      jobs: jobs
     });
   });
 });
 
 router.post('/unverifiedjob', (req, res) => {
-  var job_id = req.body.job_id;
-  Job.findOne({
-    _id: job_id
-  }, (err, job) => {
-    res.json({
-      unverifiedjob: job
+    var job_id = req.body.job_id;
+    Job.findOne({
+      _id: job_id
+    }, (err, internship) => {
+      User.findOne({
+        _id: internship.user_id
+      }, (err, user) => {
+        // res.json({
+        //     unverifiedinternship: internship[0]
+        // });
+        res.render('admin/jobdetails', {
+          job: internship,
+          user: user
+        });
+      });
     });
-  });
 });
 
 router.post('/jobverification', (req, res) => {
@@ -185,6 +193,55 @@ router.post('/jobverification', (req, res) => {
     res.redirect('/admin/home');
   });
 });
+
+// Trainer
+router.get('/unverifiedtrainers', (req, res) => {
+  User.find({
+    admin_accept: false,
+    admin_reject: false,
+    isVerified: true,
+    isTrainer:true
+  }, (err, employers) => {
+    // res.json({
+    //     unverifiedemployers: employers
+    // });
+    res.render('admin/trainer-verify', {
+      unverifiedemployers: employers
+    });
+  });
+});
+
+router.post('/unverifiedtrainer', (req, res) => {
+  var employer_id = req.body.employer_id;
+  User.findOne({
+    _id: employer_id
+  }, (err, employer) => {
+    // res.json({
+    //     unverifiedemployer: employer[0]
+    // });
+    res.render('admin/emp-details', {
+      unverifiedemployer: employer
+    });
+  });
+});
+
+router.post('/trainerverification', (req, res) => {
+  var accept = req.body.accept;
+  var reject = req.body.reject;
+  var employer_id = req.body.employer_id;
+  User.findOne({
+    _id: employer_id
+  }, (err, employer) => {
+    if (accept == 'Accept') {
+      employer.admin_accept = true;
+    } else {
+      employer.admin_reject = true;
+    }
+    employer.save();
+    res.redirect('/admin/home');
+  });
+});
+
 
 router.get('/addjobtitle', (req, res) => {
   res.render('admin/addjobtitle');

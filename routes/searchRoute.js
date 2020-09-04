@@ -131,7 +131,7 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
             unappliedjobs.push(job);
           }
         });
-        res.render('getintern', {
+        res.render('getcourse', {
           user: req.user,
           jobs: unappliedjobs,
           parameters: param
