@@ -263,7 +263,7 @@ router.post('/editcourseview', isLoggedIn, (req, res) => {
   });
 });
 
-router.post('/editintership', isLoggedIn, (req, res) => {
+router.post('/editcourse', isLoggedIn, (req, res) => {
   Job.findOneAndUpdate({
     _id: req.body.job_id
   }, {
