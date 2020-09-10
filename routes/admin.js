@@ -146,6 +146,51 @@ router.post('/internshipverification', (req, res) => {
   });
 });
 
+router.get('/unverifiedcourses', (req, res) => {
+  Job.find({
+    admin_accept: false,
+    admin_reject: false,
+    jobtype: 'Course'
+  }, (err, internships) => {
+    res.render('admin/courses', {
+      jobs: internships
+    });
+  });
+});
+
+router.post('/unverifiedcourse', (req, res) => {
+  var job_id = req.body.job_id;
+  Job.findOne({
+    _id: job_id
+  }, (err, internship) => {
+    User.findOne({
+      _id: internship.user_id
+    }, (err, user) => {
+      res.render('admin/course-details', {
+        job: internship,
+        user: user
+      });
+    });
+  });
+});
+
+router.post('/courseverification', (req, res) => {
+  var accept = req.body.accept;
+  var reject = req.body.reject;
+  var job_id = req.body.job_id;
+  Job.findOne({
+    _id: job_id
+  }, (err, job) => {
+    if (accept == 'Accept') {
+      job.admin_accept = true;
+    } else {
+      job.admin_reject = true;
+    }
+    job.save();
+    res.redirect('/admin/home');
+  });
+});
+
 router.get('/unverifiedjobs', (req, res) => {
   Job.find({
     admin_accept: false,
