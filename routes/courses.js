@@ -25,6 +25,7 @@ router.get('/searchcourse', isLoggedIn, function(req, res) {
         appids.push(String(applicant.job_id));
       });
       Job.find({
+        admin_accept: true,
         jobtype:'Course'
       }, (err, jobs) => {
         jobs.forEach(job => {
@@ -120,8 +121,8 @@ router.get('/postedcourses', isLoggedIn, (req, res) => {
   }
 });
 
-router.post('/view', isLoggedIn, (req, res) => {
-  if (req.user.isTrainer) {
+router.post('/view', isLoggedIn, (req, res) => {  //
+  if (req.user.isStudent) {
     Job.findOne({
       _id: sanitize(req.body.job_id)
     }, (err, job) => {
@@ -143,7 +144,7 @@ router.post('/view', isLoggedIn, (req, res) => {
   } else {
     res.render('error', {
       user: req.user,
-      message: 'Login as Trainer'
+      message: 'Login as Student'
     });
   }
 });
@@ -237,6 +238,90 @@ router.get('/appliedcourse', isLoggedIn, (req, res) => {
     });
   }
 });
+
+router.post('/viewcourse', isLoggedIn, (req, res) => {  //trainer side se view posted courses
+  var job_id = req.body.job_id;
+  Job.findOne({
+    _id: job_id,
+  }, (err, internship) => {
+    res.render('viewcourse-e', {
+      job: internship,
+      user: req.user
+    });
+  });
+});
+
+router.post('/editcourseview', isLoggedIn, (req, res) => {
+  var job_id = req.body.job_id;
+  Job.findOne({
+    _id: job_id
+  }, (err, course) => {
+    res.render('editcourse', {
+      internship: course,
+      user: req.user
+    });
+  });
+});
+
+router.post('/editintership', isLoggedIn, (req, res) => {
+  Job.findOneAndUpdate({
+    _id: req.body.job_id
+  }, {
+    "$set": {
+      'job_category': req.body.job_category,
+      'job_title': req.body.job_title,
+      'job_content': req.body.job_content,
+      'job_duration': req.body.job_duration,
+      'start_date': req.body.start_date,
+      'apply_last': req.body.apply_last,
+      'requirements': req.body.requirements,
+    }
+  }, {
+    new: true
+  }, function(err, doc) {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  Applicant.findOneAndUpdate({
+    user_id: req.user._id
+  }, {
+    '$set': {
+      'job_category': req.body.job_category,
+      'job_title': req.body.job_title,
+    }
+  }, {
+    new: true
+  }, function(err, doc) {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  res.redirect('/profile/trainer');
+});
+
+router.post('/deletecourse', isLoggedIn, (req, res) => {
+  Applicant.deleteMany({
+    job_id: req.body.job_id
+  }, (err, doc) => {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  Job.deleteMany({
+    _id: req.body.job_id
+  }, (err, doc) => {
+    if (err) {
+      console.log(err);
+      // return returnErr(res, "Error", "Our server ran into an error please try again")
+    }
+  });
+  res.redirect('/profile/trainer');
+});
+
 
 function isLoggedIn(req, res, next) {
   try {

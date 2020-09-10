@@ -420,7 +420,7 @@ router.post('/studentapplicationreview', isLoggedIn, (req, res) => {
   });
 });
 
-router.post('/viewinternship', isLoggedIn, (req, res) => {
+router.post('/viewinternship', isLoggedIn, (req, res) => {  //employer side se view posted internship
   var job_id = req.body.job_id;
   Job.findOne({
     _id: job_id

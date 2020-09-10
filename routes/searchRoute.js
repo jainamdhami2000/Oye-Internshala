@@ -109,6 +109,7 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
     });
   }
   query.$and.push({
+    admin_accept: true,
     jobtype: 'Course'
   });
   console.log(param);
