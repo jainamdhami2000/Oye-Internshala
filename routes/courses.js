@@ -322,6 +322,17 @@ router.post('/deletecourse', isLoggedIn, (req, res) => {
   res.redirect('/profile/trainer');
 });
 
+router.post('/courseapplications', isLoggedIn, (req, res) => {
+  var job_id = req.body.job_id;
+  Applicant.find({
+    job_id: job_id,
+  }, (err, applicants) => {
+    res.render('studentapplications', {
+      user: req.user,
+      applicants: applicants
+    });
+  });
+});
 
 function isLoggedIn(req, res, next) {
   try {

@@ -58,7 +58,7 @@
           <%=job.job_content%>
         </p>
         <center>
-          <form class="form-control" action="/admin/internshipverification" method="post">
+          <form action="/admin/internshipverification" method="post">
             <input style='display:none' type="text" name="job_id" value="<%=job._id%>">
             <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
             <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>

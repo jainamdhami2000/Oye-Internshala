@@ -21,12 +21,12 @@
                                       </center>
                                     </div>
                                 <%} else {%>
-                                    <h5 class="card-title" style="text-align:center">INTERNSHIPS TO BE VERIFIED</h5>
+                                    <h5 class="card-title" style="text-align:center">JOBS TO BE VERIFIED</h5>
                                 <%jobs.forEach(job=>{%>
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="container1">
-                                            <form id="job<%=job._id%>" method='POST' action="/admin/unverifiedinternship">
+                                            <form id="job<%=job._id%>" method='POST' action="/admin/unverifiedjob">
                                                 <input name='job_id' style='display:none' value='<%=job._id%>'>
                                                 <h4>Title: <%=job.job_title%></h4>
                                                 <h5>Company Name: <%=job.company_name%></h5>

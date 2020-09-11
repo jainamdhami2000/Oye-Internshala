@@ -51,6 +51,9 @@ router.get('/home', authenticateJWT, function(req, res) {
   res.render('admin/home.ejs');
 });
 
+
+//               <-------------------------Employee Verification------------------------->
+
 router.get('/unverifiedemployers', (req, res) => {
   User.find({
     admin_accept: false,
@@ -97,6 +100,8 @@ router.post('/employerverification', (req, res) => {
     res.redirect('/admin/home');
   });
 });
+
+//                     <-------------------------Internships------------------------->
 
 router.get('/unverifiedinternships', (req, res) => {
   Job.find({
@@ -146,6 +151,8 @@ router.post('/internshipverification', (req, res) => {
   });
 });
 
+//                     <-------------------------Courses------------------------->
+
 router.get('/unverifiedcourses', (req, res) => {
   Job.find({
     admin_accept: false,
@@ -191,6 +198,8 @@ router.post('/courseverification', (req, res) => {
   });
 });
 
+//                     <-------------------------Jobs------------------------->
+
 router.get('/unverifiedjobs', (req, res) => {
   Job.find({
     admin_accept: false,
@@ -214,7 +223,7 @@ router.post('/unverifiedjob', (req, res) => {
         // res.json({
         //     unverifiedinternship: internship[0]
         // });
-        res.render('admin/jobdetails', {
+        res.render('admin/jobsdetails', {
           job: internship,
           user: user
         });
@@ -239,7 +248,9 @@ router.post('/jobverification', (req, res) => {
   });
 });
 
-// Trainer
+//                  <-------------------------Trainer Verification------------------------->
+
+
 router.get('/unverifiedtrainers', (req, res) => {
   User.find({
     admin_accept: false,

@@ -60,7 +60,7 @@
                                     <h5 class="card-title">COURSES</h5>
 
                                 <div class="container1">
-                                  <form id="job<%=job._id%>" method='POST' action="/internship/view">
+                                  <form id="job<%=job._id%>" method='POST' action="/courses/view">
                                     <input name='job_id' style='display:none' value='<%=job._id%>'>
                                     <h4>Title: <%=job.job_title%></h4>
                                     <h5>Company Name: <%=job.company_name%></h5>
@@ -84,7 +84,7 @@
                                 </div>
                               </div>
                               <div class="float-child3" >
-                                
+
                               </div>
                               <div  id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
                             </div>

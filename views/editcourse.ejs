@@ -1,0 +1,104 @@
+<%-include('partials/header')%>
+<style media="screen">
+  /*.bmd-form-group {*/
+  /*  padding-top: 20px*/
+  /*}*/
+
+  .form-group {
+    margin-bottom: 10px
+  }
+
+  h4 {
+    margin: auto 0;
+  }
+</style>
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 ml-auto mr-auto">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">Edit Course</h2>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5 ml-auto">
+                  <img src="/main/postintern.png" alt="Post Internship" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
+                </div>
+
+                <div class="col-md-5 mr-auto">
+                  <form class="form" method="POST" action="/internship/editintership">
+                    <input name='job_id' style='display:none' value='<%=internship._id%>'>
+
+                    <div class="form-group form-item">
+                      <h4>Course Category</h4>
+                      <div class="input-group ">
+                        <input name="job_category" required type="text" class="form-control" value="<%= internship.job_category %>" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-item">
+                      <h4>Course name</h4>
+                      <div class="input-group ">
+                        <input name="job_title" required type="text" class="form-control" value="<%= internship.job_title %>" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-item">
+                      <h4>Description</h4>
+                      <div class="input-group ">
+                        <input name="job_content" required type="text" class="form-control" value="<%= internship.job_content %>" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-item">
+                      <h4 style="margin-bottom:0;">Duration</h4>
+                      (in months)
+                      <div class="input-group ">
+                        <input name="job_duration" required type="number" class="form-control" value="<%= internship.job_duration %>" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-item">
+                      <h4>Start Date</h4>
+                      <div class="input-group ">
+                        <input name="start_date" type="text" class="form-control datepicker" value="<%= internship.start_date.getUTCMonth()+1%>/<%= internship.start_date.getUTCDate()%>/<%= internship.start_date.getUTCFullYear()%>" readonly>
+                      </div>
+                    </div>
+
+                    <div class="form-group form-item">
+                      <h4>Last date to apply</h4>
+                      <div class="input-group ">
+                        <input name="apply_last" type="text" class="form-control datepicker" value="<%= internship.apply_last.getUTCMonth()+1%>/<%= internship.apply_last.getUTCDate()%>/<%= internship.apply_last.getUTCFullYear()%>" readonly>
+                      </div>
+
+                    <div class="form-group form-item">
+                      <h4>Requirements</h4>
+                      <div class="input-group ">
+                        <textarea required name='requirements' type="text" class="form-control" rows="4" readonly><%= internship.requirements %></textarea>
+                      </div>
+                    </div>
+
+                    
+
+
+              <div class="text-center">
+                <button type='submit' class="btn btn-info btn-round">EDIT</button>
+              </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+    var city = '<%=internship.job_location%>';
+</script>
+<script src="/js/editinternship.js" charset="utf-8"></script>
+<%-include('partials/footer')%>

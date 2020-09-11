@@ -66,7 +66,7 @@
                     <td class="cen"><%=job.job_title%></td>
                     <td class="cen"><%=job.job_category%></td>
                     <td class="cen"><%=job.job_published.toDateString()%></td>
-                    <td class="cen"><%=job.applicants_accepted%></td>
+                    <td class="cen"><%=job.no_of_applicants%></td>
 
                     <!-- <td class="cen"><a href="#">View</a></td> -->
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
@@ -76,15 +76,15 @@
                       </td>
                     </form>
                     <td class="cen">
-                      <form id="view<%=job._id%>" method='POST' action="/internship/viewinternship">
+                      <form id="view<%=job._id%>" method='POST' action="/courses/viewcourse">
                         <input name='job_id' style='display:none' value='<%=job._id%>'>
                         <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
                       </form>
-                      <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
+                      <form id="edit<%=job._id%>" method='POST' action="/courses/editcourseview">
                         <input name='job_id' style='display:none' value='<%=job._id%>'>
                         <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
                       </form>
-                      <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
+                      <form id="delete<%=job._id%>" method='POST' action="/internship/deletecourse">
                         <input name='job_id' style='display:none' value='<%=job._id%>'>
                         <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
                       </form>
