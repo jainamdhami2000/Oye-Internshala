@@ -15,19 +15,31 @@
                       <form action="/search/internship" method="post">
                         <div>
                           <h5 class="card-title text-center">FILTERS</h5>
-                          <label for="category">Category</label>
+                          <label for="category">Category</label> <br>
                           <%if (typeof(parameters.job_category) !='undefined'){%>
-                          <input type="text" id="category" name="job_category" value='<%=parameters.job_category%>' placeholder="Eg:-Engineering...">
+                              <select id="category" name="job_category">
+                                <option value='none'>-------------</option>
+                              </select>
+
                           <%} else {%>
-                          <input type="text" id="category" name="job_category" placeholder="Eg:-Engineering...">
+
+                          <select id="category" name="job_category">
+                            <option value='none'>-------------</option>
+                          </select>
                           <%}%>
-                          <label for="title">Title</label>
+                          <br><label for="title">Title</label><br>
                           <%if (typeof(parameters.job_title) !='undefined'){%>
-                          <input type="text" id="title" name="job_title" value='<%=parameters.job_title%>' placeholder="Eg:-Web Development...">
+
+                          <select id="title" name="job_category">
+                            <option>
+                          </select>
                           <%} else {%>
-                          <input type="text" id="title" name="job_title" placeholder="Eg:-Web Development...">
+
+                          <select id="title" name="job_category">
+
+                          </select>
                           <%}%>
-                          <label for="location">Location</label>
+                          <br><label for="location">Location</label>
                           <%if (typeof(parameters.job_location) !='undefined'){%>
                           <input type="text" id="location" name="job_location" value='<%=parameters.job_location%>' placeholder="Eg:-Web Development...">
                           <%} else {%>
@@ -139,7 +151,7 @@
                 </div>
 
                 <%})%>
-                
+
 
               </div>
             </div>
@@ -152,6 +164,37 @@
     function details(input) {
       document.getElementById("job" + input.id).submit();
     }
+    const URL = "/admin/jobtitles"
+    $.ajax({
+        url: URL,
+        method: "GET"
+    }).done(function(data){
+        console.log(data);
+        window.resArray = data;
+        data.forEach((item) => {
+            $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+        });
+    });
+
+    // $(function() {
+    //   $('#category').selectpicker();
+    // });
+
+    $('#category').on('change', function() {
+      selectedcategory = $('#category').find(":selected").text();
+      $('#title option').remove();
+      if ($('#category').find(":selected").val() === 'none') {
+        $('#subcategory').append("<option value='none'>-------------</option>");
+      } else {
+        resArray.forEach(item => {
+          if (item.job_category === selectedcategory) {
+            item.job_title.forEach(titles => {
+              $('#title').append('<option value="' + titles + '">' + titles + '</option>');
+            });
+          }
+        });
+      }
+    });
   </script>
 </body>
 <%-include('partials/footer')%>
