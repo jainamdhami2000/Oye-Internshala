@@ -21,10 +21,15 @@
                       <figcaption style="text-align:center">Click to Upload </figcaption>
                     </div>
                     <div class="user-data">
-                      <h2>Sir Vivek</h2>
+                      <h2><%=user.FirstName%> <%=user.LastName%></h2>
                       <span class="post-label">Trainer</span>
-                      <span class="post-label">Company Name</span>
-                     
+                      <span class="post-label"><%=user.CompanyName%></span>
+
+                      <%if (user.isVerified){%>
+                      <span class="post-label">Verified</span>
+                      <%} else {%>
+                      <span class="post-label">UnVerified</span>
+                      <%}%>
                       <%if (user.admin_accept){%>
                       <span class="post-label">Accepted</span>
                       <%} else if (user.admin_reject) {%>
@@ -33,7 +38,7 @@
                       <span class="post-label">Pending</span>
                       <%}%>
 	            					<br>
-	                                
+
                       <i class="fa fa-location-arrow" aria-hidden="true"></i> Email Id : <%=user.Email%>
                     </div>
                   </div>
@@ -47,14 +52,13 @@
                         <ul class="ul-first">
                           <li>Username</li>
                           <li>Phone No.</li>
-                          <li>Company Name</li>
-                          
+                          <li>University Name</li>
+
                         </ul>
                         <ul class="ul-second">
                           <l1><%=user.username%></l1>
-                          <li>993283873</li>
+                          <li><%=user.phoneNumber%></li>
                           <li><%=user.CompanyName%></li>
-                        
                         </ul>
                       </div>
                     </div>
