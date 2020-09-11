@@ -22,7 +22,8 @@
   <div class="container">
     <div class="section text-center">
       <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <%# <div class="col-md-6 col-sm-12">
           <a href="/internship">
             <div class="card  mx-auto Card ">
               <div class="card-body " style="text-align: center">
@@ -57,9 +58,176 @@
               </div>
             </div>
           </a>
+        </div> %>
+          <div class="Card1">
+            <h2 style="text-align:center"> Select the One Which Suits you Best </h2>
+
+            <div class="row">
+              <div class="column ml-auto" style="margin-right:80px">
+                <center>
+                  <h4 id="in-head"> INTERNSHIP/JOB IN TOP CITIES </h4>
+                </center>
+                <div class="card" style="padding: 25px 140px;">
+                  <center>
+                    <form id='jobhome' action="/search/internship" method="post">
+                      <div id='home' onclick="job(this)"><a href="#"><img src="/main/home-img/work_from_home.svg" width="100px" alt="work_from_home" class="clip-circle"></a></div>
+                      <input id='wfh' type="checkbox" name='home' style="display:none">
+                      <h5> Work from home </h5>
+                    </form>
+                    <form id='jobdelhi' action="/search/internship" method="post">
+                      <div id='delhi' onclick="job(this)"><a href="#"><img src="/main/home-img/Delhi-Internships.svg" width="100px" alt="Delhi-Internships" class="clip-circle"></a></div>
+                      <input type="text" id="location" name="job_location" value="Delhi" style="display:none">
+                      <h5> Delhi/NCR </h5>
+                    </form>
+                    <form id='jobbangalore' action="/search/internship" method="post">
+                      <div id='bangalore' onclick="job(this)"><a href="#"><img src="/main/home-img/Bangalore-Internships.svg" width="100px" alt="Bangalore-Internships" class="clip-circle"></a></div>
+                      <input type="text" id="location" name="job_location" value="Bangalore" style="display:none">
+                      <h5> Bangalore </h5>
+                    </form>
+                    <form id='jobmumbai' action="/search/internship" method="post">
+                      <div id='mumbai' onclick="job(this)"><a href="#"><img src="/main/home-img/Mumbai-Internships.svg" width="100px" alt="Mumbai-Internships" class="clip-circle"></a></div>
+                      <input type="text" id="location" name="job_location" value="Mumbai" style="display:none">
+                      <h5> Mumbai </h5>
+                    </form>
+                    <form id='jobhyderabad' action="/search/internship" method="post">
+                      <div id='hyderabad' onclick="job(this)"><a href="#"><img src="/main/home-img/hyderabad.svg" width="100px" alt="hyderabad" class="clip-circle"></a></div>
+                      <input type="text" id="location" name="job_location" value="Hyderabad" style="display:none">
+                      <h5> Hyderabad </h5>
+                    </form>
+                    <form id='jobchennai' action="/search/internship" method="post">
+                      <div id='chennai' onclick="job(this)"><a href="#"><img src="/main/home-img/Chennai-Internships.svg" width="100px" alt="Chennai-Internships" class="clip-circle"></a></div>
+                      <input type="text" id="location" name="job_location" value="Chennai" style="display:none">
+                      <h5> Chennai </h5>
+                    </form>
+                    <form id='jobkolkata' action="/search/internship" method="post">
+                      <div id='kolkata' onclick="job(this)"><a href="#"><img src="/main/home-img/kolkata.svg" width="100px" alt="kolkata" class="clip-circle"></a></div>
+                      <input type="text" id="location" name="job_location" value="Kolkata" style="display:none">
+                      <h5> Kolkata </h5>
+                    </form>
+                  </center>
+                </div>
+              </div>
+              <div class="column mr-auto" style="margin-left:80px">
+                <center>
+                  <h4> INTERNSHIP/JOB BY INTEREST </h4>
+                </center>
+                <div class="card" style="padding: 25px 150px;">
+                  <center>
+                    <form id='jobengineering' action="/search/internship" method="post">
+                      <div id='engineering' onclick="job(this)"><a href="#"><img src="/main/home-img/eng-internships.svg" width="100px" alt="eng-internships.svg" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Engineering" style="display:none">
+                      <h5> Engineering </h5>
+                    </form>
+                    <form id='jobngo' action="/search/internship" method="post">
+                      <div id='ngo' onclick="job(this)"><a href="#"><img src="/main/home-img/ngo.svg" width="100px" alt="ngo" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="NGO" style="display:none">
+                      <h5> NGO </h5>
+                    </form>
+                    <form id='jobmba' action="/search/internship" method="post">
+                      <div id='mba' onclick="job(this)"><a href="#"><img src="/main/home-img/mba.svg" width="100px" alt="mba" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="MBA" style="display:none">
+                      <h5> MBA </h5>
+                    </form>
+                    <form id='jobdesign' action="/search/internship" method="post">
+                      <div id='design' onclick="job(this)"><a href="#"><img src="/main/home-img/design-internships.svg" width="100px" alt="design-internships" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Design" style="display:none">
+                      <h5> Design </h5>
+                    </form>
+                    <form id='jobscience' action="/search/internship" method="post">
+                      <div id='science' onclick="job(this)"><a href="#"><img src="/main/home-img/science.svg" width="100px" alt="science" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Science" style="display:none">
+                      <h5> Science </h5>
+                    </form>
+                    <form id='jobmedia' action="/search/internship" method="post">
+                      <div id='media' onclick="job(this)"><a href="#"><img src="/main/home-img/media.svg" width="100px" alt="media" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Media" style="display:none">
+                      <h5> Media </h5>
+                    </form>
+                    <form id='jobhumanities' action="/search/internship" method="post">
+                      <div id='humanities' onclick="job(this)"><a href="#"><img src="/main/home-img/humanities.svg" width="100px" alt="humanities" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Humanities" style="display:none">
+                      <h5> Humanities </h5>
+                    </form>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/internship/searchintern">View More</a>
+          <div class="Card1">
+            <h2 style="text-align:center"> Learn new-age skills on the go </h2>
+            <div class="row">
+              <div class="column ml-auto" style="margin-right:80px">
+                <div class="card" style="padding: 25px 135px;">
+                  <center>
+                    <form id='courseadvanced_excel' action="/search/course" method="post">
+                      <div id='advanced_excel' onclick="course(this)"><a href="#"><img src="/main/home-img/advanced_excel.svg" width="100px" alt="advanced_excel" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Advanced Excel" style="display:none">
+                    <h5> Advanced Excel </h5>
+                    </form>
+                    <form id='courseautocad' action="/search/course" method="post">
+                      <div id='autocad' onclick="course(this)"><a href="#"><img src="/main/home-img/autocad.svg" width="100px" alt="autocad" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Autocad" style="display:none">
+                    <h5> Autocad </h5>
+                    </form>
+                    <form id='coursecreative_writing' action="/search/course" method="post">
+                      <div id='creative_writing' onclick="course(this)"><a href="#"><img src="/main/home-img/creative_writing.svg" width="100px" alt="creative_writing" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Creative Writing" style="display:none">
+                    <h5> Creative Writing </h5>
+                    </form>
+                    <form id='coursedigital_marketing' action="/search/course" method="post">
+                      <div id='digital_marketing' onclick="course(this)"><a href="#"><img src="/main/home-img/digital_marketing.svg" width="100px" alt="digital_marketing" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Digital Marketing" style="display:none">
+                    <h5> Digital Marketing </h5>
+                    </form>
+                  </center>
+                </div>
+              </div>
+              <div class="column mr-auto" style="margin-left:80px">
+                <div class="card" style="padding: 25px 100px;">
+                  <center>
+                    <form id='courseethical_hacking' action="/search/course" method="post">
+                      <div id='ethical_hacking' onclick="course(this)"><a href="#"><img src="/main/home-img/ethical_hacking.svg" width="100px" alt="ethical_hacking" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Ethical Hacking" style="display:none">
+                    <h5> Ethical Hacking </h5>
+                    </form>
+                    <form id='coursemachine_learning' action="/search/course" method="post">
+                      <div id='machine_learning' onclick="course(this)"><a href="#"><img src="/main/home-img/machine_learning.svg" width="100px" alt="machine_learning" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Machine Learning" style="display:none">
+                    <h5> Machine Learning </h5>
+                    </form>
+                    <form id='courseprogramming_with_python' action="/search/course" method="post">
+                      <div id='programming_with_python' onclick="course(this)"><a href="#"><img src="/main/home-img/programming_with_python.svg" width="100px" alt="programming_with_python" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Programming with Python" style="display:none">
+                    <h5> Programming with Python </h5>
+                    </form>
+                    <form id='courseweb_development' action="/search/course" method="post">
+                      <div id='web_development' onclick="course(this)"><a href="#"><img src="/main/home-img/web_development.svg" width="100px" alt="web_development" class="clip-circle"></a></div>
+                      <input type="text" id="category" name="job_category" value="Web Development" style="display:none">
+                    <h5> Web Development </h5>
+                    </form>
+                  </center>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/courses/searchcourse">View More</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  function job(input) {
+    console.log(input)
+    if (input.id == 'home') {
+      document.getElementById("wfh").checked = true;
+    }
+    document.getElementById("job" + input.id).submit();
+  }
+
+  function course(input) {
+    document.getElementById("course" + input.id).submit();
+  }
+</script>
 <%-include('partials/footer')%>

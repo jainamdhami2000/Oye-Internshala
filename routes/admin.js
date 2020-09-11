@@ -258,9 +258,6 @@ router.get('/unverifiedtrainers', (req, res) => {
     isVerified: true,
     isTrainer:true
   }, (err, employers) => {
-    // res.json({
-    //     unverifiedemployers: employers
-    // });
     res.render('admin/trainer-verify', {
       unverifiedemployers: employers
     });
@@ -272,9 +269,6 @@ router.post('/unverifiedtrainer', (req, res) => {
   User.findOne({
     _id: employer_id
   }, (err, employer) => {
-    // res.json({
-    //     unverifiedemployer: employer[0]
-    // });
     res.render('admin/emp-details', {
       unverifiedemployer: employer
     });
@@ -295,40 +289,6 @@ router.post('/trainerverification', (req, res) => {
     }
     employer.save();
     res.redirect('/admin/home');
-  });
-});
-
-
-router.get('/addjobtitle', (req, res) => {
-  res.render('admin/addjobtitle');
-});
-
-router.post('/addjobtitle', (req, res) => {
-  Jobtitle.findOne({
-    job_category: req.body.job_category
-  }, (err, job) => {
-    var result;
-    if (job == null) {
-      result = [];
-      var jobtitle = new Jobtitle({
-        job_category: req.body.job_category,
-      });
-      result.push(req.body.job_title);
-      jobtitle.job_title = result;
-      jobtitle.save();
-    } else {
-      result = job.job_title;
-      result.push(req.body.job_title);
-      job.jobtitle = result;
-      job.save();
-    }
-    res.send('Done');
-  });
-});
-
-router.get('/jobtitles', (req, res) => {
-  Jobtitle.find({}, (err, jobtitles) => {
-    res.send(jobtitles);
   });
 });
 
@@ -373,6 +333,41 @@ router.post('/trainerverification', (req, res) => {
     }
     trainer.save();
     res.redirect('/admin/home');
+  });
+});
+
+
+
+router.get('/addjobtitle', (req, res) => {
+  res.render('admin/addjobtitle');
+});
+
+router.post('/addjobtitle', (req, res) => {
+  Jobtitle.findOne({
+    job_category: req.body.job_category
+  }, (err, job) => {
+    var result;
+    if (job == null) {
+      result = [];
+      var jobtitle = new Jobtitle({
+        job_category: req.body.job_category,
+      });
+      result.push(req.body.job_title);
+      jobtitle.job_title = result;
+      jobtitle.save();
+    } else {
+      result = job.job_title;
+      result.push(req.body.job_title);
+      job.jobtitle = result;
+      job.save();
+    }
+    res.send('Done');
+  });
+});
+
+router.get('/jobtitles', (req, res) => {
+  Jobtitle.find({}, (err, jobtitles) => {
+    res.send(jobtitles);
   });
 });
 

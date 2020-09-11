@@ -24,7 +24,14 @@ router.get('/searchintern', isLoggedIn, function(req, res) {
         appids.push(String(applicant.job_id));
       });
       Job.find({
-        admin_accept: true
+        admin_accept: true,
+        '$or': [{
+            jobtype: 'Job'
+          },
+          {
+            jobtype: 'Internship'
+          }
+        ]
       }, (err, jobs) => {
         jobs.forEach(job => {
           if (appids.includes(String(job._id))) {
@@ -420,7 +427,7 @@ router.post('/studentapplicationreview', isLoggedIn, (req, res) => {
   });
 });
 
-router.post('/viewinternship', isLoggedIn, (req, res) => {  //employer side se view posted internship
+router.post('/viewinternship', isLoggedIn, (req, res) => { //employer side se view posted internship
   var job_id = req.body.job_id;
   Job.findOne({
     _id: job_id

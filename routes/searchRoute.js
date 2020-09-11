@@ -11,19 +11,19 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
   var query = {};
   query.$and = [];
   param = {};
-  if (req.body.job_category !== '') {
+  if (req.body.job_category !== ''  && req.body.job_category !== undefined) {
     param.job_category = req.body.job_category;
     query.$and.push({
       job_category: req.body.job_category
     });
   }
-  if (req.body.job_title !== '') {
+  if (req.body.job_title !== '' && req.body.job_title !== undefined) {
     param.job_title = req.body.job_title;
     query.$and.push({
       job_title: req.body.job_title
     });
   }
-  if (req.body.job_location !== '') {
+  if (req.body.job_location !== '' && req.body.job_location !== undefined) {
     param.job_location = req.body.job_location;
     query.$and.push({
       job_location: req.body.job_location
@@ -50,7 +50,7 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
       jobtype: 'Course'
     });
   }
-  if (req.body.start_date !== '') {
+  if (req.body.start_date !== '' && req.body.start_date !== undefined) {
     param.start_date = req.body.start_date;
     query.$and.push({
       apply_last: {
@@ -58,7 +58,7 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
       }
     });
   }
-  if (req.body.duration !== '') {
+  if (req.body.duration !== '' && req.body.duration !== undefined) {
     param.duration = req.body.duration;
     query.$and.push({
       job_duration: req.body.duration
@@ -87,6 +87,7 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
             unappliedjobs.push(job);
           }
         });
+        console.log(unappliedjobs)
         res.render('getintern', {
           user: req.user,
           jobs: unappliedjobs,
@@ -102,7 +103,7 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
   var query = {};
   query.$and = [];
   param = {};
-  if (req.body.job_category !== '') {
+  if (req.body.job_category !== '' && req.body.job_category !== undefined) {
     param.job_category = req.body.job_category;
     query.$and.push({
       job_category: req.body.job_category
