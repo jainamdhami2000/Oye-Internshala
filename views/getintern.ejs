@@ -54,13 +54,14 @@
                             <option value='none'>-------------</option>
                           </select>
                           <%}%>
-                          <br><label for="location">Location</label>
+                          <br><label for="location">Location</label><br>
                           <script>
                             var locationc = '<%=parameters.job_location%>'
                           </script>
 
-                          <select name="job_location" id="loc" class=" selectpicker" data-style="select-with-transition" title="Choose City" data-size="7">
+                          <select name="job_location" id="loc" data-style="select-with-transition" title="Choose City" data-size="7">
                             <option disabled> Choose City</option>
+                            <option value='none'>-------------</option>
                           </select>
 
                         </div>
