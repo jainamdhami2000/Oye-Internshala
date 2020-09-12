@@ -43,12 +43,12 @@
                     <div class="row">
                       <div class="col-md-5 ml-auto">
                         <form class="form" method="POST" action="/courses/postcourse">
-                          <input type="text" name="job_type" value="Course" style="display:none">
+                          <input type="text" required name="job_type" value="Course" style="display:none">
 
                           <div class="form-group form-item" style="margin-top:20px;">
                             <h4>Course Type</h4>
                             <div class="input-group ">
-                              <select name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7">
+                              <select required name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7">
                                 <option disabled> Choose Category</option>
 
                               </select>

@@ -1,0 +1,35 @@
+<%-include('partials/header')%>
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <div class="card-body">
+              <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
+                <center>
+                  <h1 class="display-4" style="text-align: center;">Thank You!</h1><br>
+                  <p class="lead">You've successfully posted
+                  <%if (job.jobtype=='Internship'){%>
+                    an Internship
+                    <%} else if(job.jobtype=='Job'){%>
+                    a Job
+                    <%} else {%>
+                      a Course
+                    <%}%>
+                  </p>
+                  <hr class="my-4"><br>
+                  <p class="lead" style="text-align: center">
+                    <a class="btn btn-info" href="/" role="button">Home Page</a>
+                  </p>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<%-include('partials/footer')%>

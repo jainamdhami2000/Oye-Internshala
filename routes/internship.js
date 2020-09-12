@@ -141,7 +141,10 @@ router.post('/postintern', isLoggedIn, (req, res) => {
       }
       job.save();
     }
-    res.redirect('/');
+    res.render('postconfirm',{
+      user:req.user,
+      job:job
+    });
   } catch (e) {
     console.log(e);
   }

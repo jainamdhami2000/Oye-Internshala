@@ -89,7 +89,10 @@ router.post('/postcourse', isLoggedIn, (req, res) => {
     job_published: Date.now(),
   });
   job.save();
-  res.redirect('/');
+  res.render('postconfirm',{
+    user:req.user,
+    job:job
+  });
 });
 
 router.get('/postedcourses', isLoggedIn, (req, res) => {
