@@ -48,8 +48,8 @@
     display: none;
   }
 
-  #cr{
-      color:purple;
+  .Space{
+      margin:20px 0;
   }
 
 </style>
@@ -81,23 +81,31 @@
                       <div class="col-md-5 mr-auto">
                         <form class="form" method="POST" action="/internship/postintern">
                           <input type="text" name="job_type" value="Internship" style="display:none">
-                          <div class="form-group form-item">
-                            <h4>Internship category</h4>
-                            <div class="input-group ">
-
-                              <select name='job_category' id="cr" required class=" category" data-style="select-with-transition" data-size="7">
-                                <option disabled> Choose Category</option>
-
-                              </select>
-                            </div>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group form-item">
+                                    <h4>Internship category</h4>
+                                    <div class="input-group ">
+                                      <select name='job_category' required class="Space category" data-style="select-with-transition" data-size="7">
+                                        <option disabled> Choose Category</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group form-item">
+                                    <h4>Internship name</h4>
+                                    <div class="input-group ">
+                                      <select name='job_title' required class="Space Title" data-style="select-with-transition" data-size="7">
+                                        <option disabled> Choose Category</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                              </div>
                           </div>
 
-                          <div class="form-group form-item">
-                            <h4>Internship name</h4>
-                            <div class="input-group ">
-                              <input name="job_title" required type="text" class="form-control ">
-                            </div>
-                          </div>
+
+
 
                           <div class="form-group form-item">
                             <h4>Description</h4>
@@ -223,18 +231,28 @@
                     <div class="col-md-5 mr-auto">
                       <form class="form" method="POST" action="/internship/postintern">
                         <input type="text" name="job_type" value="Job" style="display:none">
-                        <div class="form-group form-item">
-                          <h4>Job category</h4>
-                          <div class="input-group ">
-                            <input name="job_category" required type="text" class="form-control ">
-                          </div>
-                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-item">
+                                  <h4>Job category</h4>
+                                  <div class="input-group ">
+                                    <select name='job_category' required class="Space Category" data-style="select-with-transition" data-size="7">
+                                      <option disabled> Choose Category</option>
+                                    </select>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-item">
+                                  <h4>Job name</h4>
+                                  <div class="input-group ">
 
-                        <div class="form-group form-item">
-                          <h4>Job name</h4>
-                          <div class="input-group ">
-                            <input name="job_title" required type="text" class="form-control ">
-                          </div>
+                                    <select name='job_title' required class="Space Title1" data-style="select-with-transition" data-size="7">
+                                      <option disabled> Choose Category</option>
+                                    </select>
+                                  </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group form-item">
@@ -361,6 +379,7 @@ loc.forEach((cities) => {
     window.resArray = data;
     data.forEach((item) => {
         $('.category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+        $('.Category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
     })
     });
 
@@ -369,14 +388,30 @@ loc.forEach((cities) => {
 
   $('.category').on('change', function() {
     selectedcategory = $('.category').find(":selected").text();
-    $('#title option').remove();
+    $('.Title option').remove();
     if ($('#category').find(":selected").val() === 'none') {
       $('#subcategory').append("<option value='none'>-------------</option>");
     } else {
       resArray.forEach(item => {
         if (item.job_category === selectedcategory) {
           item.job_title.forEach(titles => {
-            $('#title').append('<option value="' + titles + '">' + titles + '</option>');
+            $('.Title').append('<option value="' + titles + '">' + titles + '</option>');
+          });
+        }
+      });
+    }
+  });
+
+  $('.Category').on('change', function() {
+    selectedcategory = $('.Category').find(":selected").text();
+    $('.Title1 option').remove();
+    if ($('#category').find(":selected").val() === 'none') {
+      $('#subcategory').append("<option value='none'>-------------</option>");
+    } else {
+      resArray.forEach(item => {
+        if (item.job_category === selectedcategory) {
+          item.job_title.forEach(titles => {
+            $('.Title1').append('<option value="' + titles + '">' + titles + '</option>');
           });
         }
       });
