@@ -19,13 +19,13 @@
                           <label for="category">Category</label>
                           <%if (typeof(parameters.job_category) !='undefined'){%>
 
-                          <select name='job_category' value='<%=parameters.job_category%>' id="type" class="form-control selectpicker" data-style="select-with-transition" data-size="7">
+                          <select name='job_category' value='<%=parameters.job_category%>' id="type" class="selectpicker" data-style="select-with-transition" data-size="7">
 
                             <option value='<%=parameters.job_category%>' disabled> Choose Category</option>
                           </select>
                           <%} else {%>
 
-                          <select name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7" >
+                          <select name='job_category' id="type" class="selectpicker" data-style="select-with-transition" title="Select course type" data-size="7" >
                             <option disabled> Choose Category</option>
 
                           </select>

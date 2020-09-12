@@ -20,28 +20,34 @@
                         <div>
                           <h5 class="card-title text-center">FILTERS</h5>
                           <label for="category">Category</label> <br>
-                          <%if (typeof(parameters.job_category) !='undefined'){%>
-                              <select id="category" name="job_category" class="form-control selectpicker" data-style="select-with-transition" data-size="7" title="Select course type">
+                          <script>
+                              var searchCategory = '<%=parameters.job_category%>';
+                              var searchTitle = '<%=parameters.job_title%>';
+                              // console.log("first "+searchValues);
+                          </script>
+
+                              <select id="category" name='job_category' data-style="select-with-transition" title="Select course type" data-size="14" >
+                                <option disabled> Choose Category</option>
                                 <option value='none'>-------------</option>
                               </select>
 
-                          <%} else {%>
 
 
-                              <select name='job_category' id="category" class="selectpicker" data-style="select-with-transition" title="Select course type" data-size="14" >
+
+                              <%# <select id="category" name='job_category'  data-style="select-with-transition" title="Select course type" data-size="14" >
                                 <option disabled> Choose Category</option>
+                                <option value='none'>-------------</option>
+                              </select> %>
 
-                              </select>
-                          <%}%>
                           <br><label for="title">Title</label><br>
                           <%if (typeof(parameters.job_title) !='undefined'){%>
 
-                          <select id="title" name="job_category">
+                          <select id="title" name="job_title">
                             <option>
                           </select>
                           <%} else {%>
 
-                          <select id="title" name="job_category">
+                          <select id="title" name="job_title">
 
                           </select>
                           <%}%>
@@ -178,13 +184,43 @@
         console.log(data);
         window.resArray = data;
         data.forEach((item) => {
-            $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+            if (typeof(searchCategory) !='undefined') {
+
+                if (item.job_category == searchCategory){
+                    console.log("Entered the if");
+                    $('#category').append('<option value="' + item.job_category + '" selected>' + item.job_category + '</option>');
+
+                }
+                else{
+                    $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+                }
+            }
+            else{
+                $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+            }
+
         });
     });
 
-    // $(function() {
-    //   $('#category').selectpicker();
-    // });
+    $(function() {
+        console.log(searchTitle);
+        if (searchTitle != ''){
+            console.log("I entered searchTitle")
+            resArray.forEach(item => {
+              if (item.job_category === searchCategory) {
+                item.job_title.forEach(titles => {
+                    if(item.job_title == searchTitle){
+                        $('#title').append('<option value="' + titles + '"selected>' + titles + '</option>');
+                    }
+                    else {
+                        $('#title').append('<option value="' + titles + '">' + titles + '</option>');
+                    }
+                });
+              }
+            });
+        }
+    });
+
 
     $('#category').on('change', function() {
       selectedcategory = $('#category').find(":selected").text();
@@ -201,6 +237,7 @@
         });
       }
     });
+
   </script>
 </body>
 <%-include('partials/footer')%>
