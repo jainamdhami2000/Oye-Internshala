@@ -330,14 +330,32 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
               no_of_applicants: foundjob[0].no_of_applicants
             });
           });
+          var i = 0;
+          var j = 0;
+          var c = 0;
+          result.forEach(application=>{
+            if (application.job_type=='Internship'){
+              i+=1;
+            } else if (application.job_type=='Job'){
+              j+=1;
+            } else if (application.job_type=='Course'){
+              c+=1;
+            }
+          });
           res.render('studentinternship', {
             user: req.user,
             applications: result,
+            internships:i,
+            jobs:j,
+            courses:c
           });
         } else {
           res.render('studentinternship', {
             user: req.user,
             applications: applications,
+            internships:0,
+            jobs:0,
+            courses:0
           });
         }
       });
@@ -360,9 +378,21 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
       applicants_accepted: 1,
       intake: 1
     }, (err, jobs) => {
+      var i = 0;
+      var j = 0;
+      var c = 0;
+      jobs.forEach(application=>{
+        if (application.jobtype=='Internship'){
+          i+=1;
+        } else if (application.jobtype=='Job'){
+          j+=1;
+        }
+      });
       res.render('postedjobs', {
         user: req.user,
-        jobs: jobs
+        jobs: jobs,
+        internshiplength:i,
+        jobslength:j
       });
     });
   } else if (req.user.admin_reject) {

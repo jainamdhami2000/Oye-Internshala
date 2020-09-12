@@ -64,6 +64,7 @@
             <div class="card-body">
               <h2 class="card-title text-center">Posted Internships</h2>
               <div class="h3">
+                <%if (internshiplength>0){%>
                 <table>
                   <tr class="h4">
                     <th style="background-color: lightblue;" class="cen">Profile</th>
@@ -75,7 +76,7 @@
                     <th style="background-color: lightblue;" class="cen">Review Internship</th>
                   </tr>
                   <%jobs.forEach(job => {%>
-                      <% if (job.jobtype=='Internship'){%>
+                  <% if (job.jobtype=='Internship'){%>
 
                   <tr class="h5">
                     <td class="cen"><%=job.job_title%></td>
@@ -105,80 +106,87 @@
                       </form>
                     </td>
                   </tr>
-                  <%}%>
-                  <%})%>
+                  <%}})%>
                 </table>
+                <%} else {%>
+                <center>
+                  <h1 class="display-4" style="text-align: center;">You haven't posted for any internships</h1>
+                </center>
+                <%}%>
               </div>
               <br>
               <h2 class="card-title text-center">Posted Jobs</h2>
-              
-              <table>
-                <tr class="h4">
-                  <th style="background-color: lightblue;" class="cen">Profile</th>
-                  <th style="background-color: lightblue;" class="cen">Employment Type</th>
-                  <th style="background-color: lightblue;" class="cen">Posted On</th>
-                  <th style="background-color: lightblue;" class="cen">No of Applicants Recruited</th>
-                  <th style="background-color: lightblue;" class="cen">Vacancy</th>
-                  <th style="background-color: lightblue;" class="cen">Applications</th>
-                  <th style="background-color: lightblue;" class="cen">Review Job</th>
-                </tr>
-                <%jobs.forEach(job => {%>
-                    <% if (job.jobtype=='Job'){%>
-
-                <tr class="h5">
-                  <td class="cen"><%=job.job_title%></td>
-                  <td class="cen"><%=job.jobtype%></td>
-                  <td class="cen"><%=job.job_published.toDateString()%></td>
-                  <td class="cen"><%=job.applicants_accepted%></td>
-                  <td class="cen"><%=job.intake-job.applicants_accepted%></td>
-                  <!-- <td class="cen"><a href="#">View</a></td> -->
-                  <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
-                    <input name='job_id' style='display:none' value='<%=job._id%>'>
-                    <td class="cen" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
-                      View
+              <%if (jobslength>0){%>
+                <table>
+                  <tr class="h4">
+                    <th style="background-color: lightblue;" class="cen">Profile</th>
+                    <th style="background-color: lightblue;" class="cen">Employment Type</th>
+                    <th style="background-color: lightblue;" class="cen">Posted On</th>
+                    <th style="background-color: lightblue;" class="cen">No of Applicants Recruited</th>
+                    <th style="background-color: lightblue;" class="cen">Vacancy</th>
+                    <th style="background-color: lightblue;" class="cen">Applications</th>
+                    <th style="background-color: lightblue;" class="cen">Review Job</th>
+                  </tr>
+                  <%jobs.forEach(job => {%>
+                  <% if (job.jobtype=='Job'){%>
+                  <tr class="h5">
+                    <td class="cen"><%=job.job_title%></td>
+                    <td class="cen"><%=job.jobtype%></td>
+                    <td class="cen"><%=job.job_published.toDateString()%></td>
+                    <td class="cen"><%=job.applicants_accepted%></td>
+                    <td class="cen"><%=job.intake-job.applicants_accepted%></td>
+                    <!-- <td class="cen"><a href="#">View</a></td> -->
+                    <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
+                      <input name='job_id' style='display:none' value='<%=job._id%>'>
+                      <td class="cen" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
+                        View
+                      </td>
+                    </form>
+                    <td class="cen">
+                      <form id="view<%=job._id%>" method='POST' action="/internship/viewinternship">
+                        <input name='job_id' style='display:none' value='<%=job._id%>'>
+                        <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
+                      </form>
+                      <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
+                        <input name='job_id' style='display:none' value='<%=job._id%>'>
+                        <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
+                      </form>
+                      <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
+                        <input name='job_id' style='display:none' value='<%=job._id%>'>
+                        <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
+                      </form>
                     </td>
-                  </form>
-                  <td class="cen">
-                    <form id="view<%=job._id%>" method='POST' action="/internship/viewinternship">
-                      <input name='job_id' style='display:none' value='<%=job._id%>'>
-                      <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
-                    </form>
-                    <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
-                      <input name='job_id' style='display:none' value='<%=job._id%>'>
-                      <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
-                    </form>
-                    <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
-                      <input name='job_id' style='display:none' value='<%=job._id%>'>
-                      <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
-                    </form>
-                  </td>
-                </tr>
+                  </tr>
+                  <%}})%>
+                </table>
+                <%} else {%>
+                <center>
+                  <h1 class="display-4" style="text-align: center;">You haven't posted for any jobs</h1>
+                </center>
                 <%}%>
-                <%})%>
-              </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <script>
-    function details(input) {
-      document.getElementById("job" + input.id).submit();
-    }
+    <script>
+      function details(input) {
+        document.getElementById("job" + input.id).submit();
+      }
 
-    function view(input) {
-      document.getElementById("view" + input.id).submit();
-    }
+      function view(input) {
+        document.getElementById("view" + input.id).submit();
+      }
 
-    function edit(input) {
-      document.getElementById("edit" + input.id).submit();
-    }
+      function edit(input) {
+        document.getElementById("edit" + input.id).submit();
+      }
 
-    function del(input) {
-      document.getElementById("delete" + input.id).submit();
-    }
-  </script>
+      function del(input) {
+        document.getElementById("delete" + input.id).submit();
+      }
+    </script>
 </body>
 
 <%-include('partials/footer')%>
