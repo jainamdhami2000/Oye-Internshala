@@ -1,96 +1,97 @@
 <%-include('partials/header')%>
 <style media="screen">
-    .MainCard {
-        border-radius: 6px;
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-        background-color: white;
-        color: black;
-        margin-bottom: 100px;
-        padding: 20px 20px;
-    }
+  .MainCard {
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    color: black;
+    margin-bottom: 100px;
+    padding: 20px 20px;
+  }
 
-    .Heading {
-        font-size: 1.2rem
-    }
+  .Heading {
+    font-size: 1.2rem
+  }
 
-    .spacing {
-        margin: 20px 0;
-    }
+  .spacing {
+    margin: 20px 0;
+  }
 </style>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
-                    <div class="MainCard">
-                        <div class="row spacing">
-                            <div class="col-md-3">
-                                <span class="Heading">Name</span>
-                            </div>
-                            <div class="col-md-9">
-                                <%=applicant.name%>
-                            </div>
-                        </div>
-                        <div class="row spacing">
-                            <div class="col-md-3">
-                                <span class="Heading">College</span>
-                            </div>
-                            <div class="col-md-9">
-
-                                <%=applicant.college%>
-                            </div>
-                        </div>
-
-                        <div class="row spacing">
-                            <div class="col-md-3">
-                                <span class="Heading">City</span>
-                            </div>
-                            <div class="col-md-9">
-                                <%if (applicant.city){%>
-                                <%=applicant.city%>
-                                <%} else {%>
-                                Work from Home
-                                <%}%>
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="MainCard">
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading">Name</span>
+              </div>
+              <div class="col-md-9">
+                <%=applicant.name%>
               </div>
             </div>
             <div class="row spacing">
               <div class="col-md-3">
-                <span class="Heading">Skills</span>
+                <span class="Heading">College</span>
               </div>
+              <div class="col-md-9">
 
+                <%=applicant.college%>
+              </div>
+            </div>
+
+            <div class="row spacing">
               <div class="col-md-3">
-                <%=applicant.skills%> <br>
-                                <!-- Intermediate -->
-                            </div>
-                            <!-- <div class="col-md-3">
+                <span class="Heading">City</span>
+              </div>
+              <div class="col-md-9">
+                <%if (applicant.city){%>
+                <%=applicant.city%>
+                <%} else {%>
+                Work from Home
+                <%}%>
+              </div>
+            </div>
+            <%if (applicant.skills!=undefined){%>
+                <div class="row spacing">
+                  <div class="col-md-3">
+                    <span class="Heading">Skills</span>
+                  </div>
+
+                  <div class="col-md-3">
+                    <%=applicant.skills%> <br>
+                    <!-- Intermediate -->
+                  </div>
+                  <!-- <div class="col-md-3">
                 HTML <br>
                 Intermediate
               </div> -->
-                        </div>
-
+                </div>
+                <%}%>
                         <%if(job.jobtype!='Course') {%>
-                        <div class="row spacing">
-                            <div class="col-md-3">
-                                <span class="Heading">Resume</span>
-                            </div>
+                <div class="row spacing">
+                  <div class="col-md-3">
+                    <span class="Heading">Resume</span>
+                  </div>
 
-                            <div class="col-md-3">
+                  <div class="col-md-3">
 
-                                <iframe id="myFrame" style="display:none" width="600" height="300"></iframe>
-                                <input id='<%=applicant.resume.filename%>' type="button" value="Open Resume" onclick="openPdf(this)" />
-                            </div>
-                        </div>
-                        <%} else {%>
-                          <div class="row spacing">
-                              <div class="col-md-3">
-                                  <span class="Heading">Course Link</span>
-                              </div>
-                              <div class="col-md-9">
-                                  <%=applicant.course_link%>
-                              </div>
-                          </div>
-                        <%}%>
+                    <iframe id="myFrame" style="display:none" width="600" height="300"></iframe>
+                    <input id='<%=applicant.resume.filename%>' type="button" value="Open Resume" onclick="openPdf(this)" />
+                  </div>
+                </div>
+                <%} else {%>
+                <div class="row spacing">
+                  <div class="col-md-3">
+                    <span class="Heading">Course Link</span>
+                  </div>
+                  <div class="col-md-9">
+                    <%=applicant.course_link%>
+                  </div>
+                </div>
+                <%}%>
 
             <div class="row spacing">
               <div class="col-md-3">
@@ -98,51 +99,51 @@
               </div>
               <div class="col-md-9">
                 <%=applicant.applied_on.toDateString()%>
-                    </div>
-                </div>
-                <%if (typeof(job.Question1)!='undefined'){%>
-                <div class="row spacing">
-                    <div class="col-md-3">
-                        <span class="Heading"><%=job.Question1%></span>
-                    </div>
-                    <div class="col-md-9">
-                        <%=applicant.Question1%>
-                    </div>
-                </div>
-                <%}%>
+              </div>
+            </div>
+            <%if (typeof(job.Question1)!='undefined'){%>
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading"><%=job.Question1%></span>
+              </div>
+              <div class="col-md-9">
+                <%=applicant.Question1%>
+              </div>
+            </div>
+            <%}%>
             <%if (typeof(job.Question2)!='undefined'){%>
-                <div class="row spacing">
-                    <div class="col-md-3">
-                        <span class="Heading"><%=job.Question2%></span>
-                    </div>
-                    <div class="col-md-9">
-                        <%=applicant.Question2%>
-                    </div>
-                </div>
-                <%}%>
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading"><%=job.Question2%></span>
+              </div>
+              <div class="col-md-9">
+                <%=applicant.Question2%>
+              </div>
+            </div>
+            <%}%>
             <%if (typeof(job.Question3)!='undefined'){%>
-                <div class="row spacing">
-                    <div class="col-md-3">
-                        <span class="Heading"><%=job.Question3%></span>
-                    </div>
-                    <div class="col-md-9">
-                        <%=applicant.Question3%>
-                    </div>
-                </div>
-                <%}%>
+            <div class="row spacing">
+              <div class="col-md-3">
+                <span class="Heading"><%=job.Question3%></span>
+              </div>
+              <div class="col-md-9">
+                <%=applicant.Question3%>
+              </div>
+            </div>
+            <%}%>
             <div class="row" style="text-align: center;padding-left:40%">
               <center>
                 <%if (user.isEmployer){%>
-                <form class="form-control" action="/internship/studentapplicationreview" method="post">
-                    <input style='display:none' type="text" name="applicant_id" value="<%=applicant._id%>">
-                    <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
-                    <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
-                </form>
-                <%} else if (user.isStudent){%>
+            <form class="form-control" action="/internship/studentapplicationreview" method="post">
+              <input style='display:none' type="text" name="applicant_id" value="<%=applicant._id%>">
+              <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
+              <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
+            </form>
+            <%} else if (user.isStudent){%>
 
-                <%} else {%>
+            <%} else {%>
 
-                <%}%>
+            <%}%>
 
             </center>
           </div>
