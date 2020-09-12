@@ -1,6 +1,10 @@
 <%-include('partials/header')%>
 <link rel="stylesheet" href="/css/getintern.css">
-
+<%# Comments
+<select id="category" name="job_category" class="selectpicker" data-style="select-with-transition" title="Select course type"  data-size="7">
+  <option value='none'>-------------</option>
+</select>
+ %>
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -17,15 +21,17 @@
                           <h5 class="card-title text-center">FILTERS</h5>
                           <label for="category">Category</label> <br>
                           <%if (typeof(parameters.job_category) !='undefined'){%>
-                              <select id="category" name="job_category">
+                              <select id="category" name="job_category" class="form-control selectpicker" data-style="select-with-transition" data-size="7" title="Select course type">
                                 <option value='none'>-------------</option>
                               </select>
 
                           <%} else {%>
 
-                          <select id="category" name="job_category">
-                            <option value='none'>-------------</option>
-                          </select>
+
+                              <select name='job_category' id="category" class="selectpicker" data-style="select-with-transition" title="Select course type" data-size="14" >
+                                <option disabled> Choose Category</option>
+
+                              </select>
                           <%}%>
                           <br><label for="title">Title</label><br>
                           <%if (typeof(parameters.job_title) !='undefined'){%>
