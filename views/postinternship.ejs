@@ -48,6 +48,10 @@
     display: none;
   }
 
+  #cr{
+      color:purple;
+  }
+
 </style>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
@@ -80,7 +84,11 @@
                           <div class="form-group form-item">
                             <h4>Internship category</h4>
                             <div class="input-group ">
-                              <input name="job_category" required type="text" class="form-control ">
+
+                              <select name='job_category' id="cr" required class=" category" data-style="select-with-transition" data-size="7">
+                                <option disabled> Choose Category</option>
+
+                              </select>
                             </div>
                           </div>
 
@@ -326,6 +334,7 @@
   </div>
 </body>
 <script src="/js/postintern.js" charset="utf-8"></script>
+<script src="/js/cities.js" charset="utf-8"></script>
 <script type="text/javascript">
 
 var loc = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 'Kolkata'];
@@ -334,8 +343,6 @@ loc.forEach((cities) => {
 });
 
     $("#MainToggle").on('click', function() {
-        // $(".dispIntern").addClass('noDisplay');
-        // $(".dispJob").removeClass('noDisplay');
         $(".dispIntern").toggle();
         $(".dispJob").toggle();
     })
@@ -353,43 +360,15 @@ loc.forEach((cities) => {
     console.log(data);
     window.resArray = data;
     data.forEach((item) => {
-      if (typeof(searchCategory) != 'undefined') {
-        if (item.job_category == searchCategory) {
-          console.log("Entered the if");
-          $('#category').append('<option value="' + item.job_category + '" selected>' + item.job_category + '</option>');
-        } else {
-          $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
-        }
-      } else {
-        $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
-      }
+        $('.category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+    })
     });
-  });
 
-  $.ajax({
-    url: URL,
-    method: "GET"
-  }).done(function(data) {
-    console.log(searchTitle);
-    if (searchTitle != '') {
-      console.log("I entered searchTitle")
-      console.log(data)
-      data.forEach(item => {
-        if (item.job_category === searchCategory) {
-          item.job_title.forEach(titles => {
-            if (titles == searchTitle) {
-              $('#title').append('<option value="' + titles + '"selected>' + titles + '</option>');
-            } else {
-              $('#title').append('<option value="' + titles + '">' + titles + '</option>');
-            }
-          });
-        }
-      });
-    }
-  });
 
-  $('#category').on('change', function() {
-    selectedcategory = $('#category').find(":selected").text();
+
+
+  $('.category').on('change', function() {
+    selectedcategory = $('.category').find(":selected").text();
     $('#title option').remove();
     if ($('#category').find(":selected").val() === 'none') {
       $('#subcategory').append("<option value='none'>-------------</option>");
