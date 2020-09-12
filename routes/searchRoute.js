@@ -11,27 +11,27 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
   var query = {};
   query.$and = [];
   param = {};
-  if (req.body.job_category !== ''  && req.body.job_category !== undefined &&  req.body.job_category!= 'none') {
+  if (req.body.job_category !== '' && req.body.job_category !== undefined && req.body.job_category != 'none') {
     param.job_category = req.body.job_category;
     query.$and.push({
       job_category: req.body.job_category
     });
   }
-  if (req.body.job_title !== '' && req.body.job_title !== undefined &&  req.body.job_title!= 'none') {
+  if (req.body.job_title !== '' && req.body.job_title !== undefined && req.body.job_title != 'none') {
     param.job_title = req.body.job_title;
     query.$and.push({
       job_title: req.body.job_title
     });
   }
-  if (req.body.job_location !== '' && req.body.job_location !== undefined &&  req.body.job_location!= 'none') {
-    param.job_location = req.body.job_location;
-    query.$and.push({
-      job_location: req.body.job_location
-    });
-  } else if (req.body.home == 'on') {
+  if (req.body.home == 'on') {
     param.home = req.body.home;
     query.$and.push({
       onsite: false
+    });
+  } else if (req.body.job_location !== '' && req.body.job_location !== undefined && req.body.job_location != 'none') {
+    param.job_location = req.body.job_location;
+    query.$and.push({
+      job_location: req.body.job_location
     });
   }
   if (req.body.internship == 'on') {
@@ -103,7 +103,7 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
   var query = {};
   query.$and = [];
   param = {};
-  if (req.body.job_category !== '' && req.body.job_category !== undefined &&  req.body.job_category!= 'none') {
+  if (req.body.job_category !== '' && req.body.job_category !== undefined && req.body.job_category != 'none') {
     param.job_category = req.body.job_category;
     query.$and.push({
       job_category: req.body.job_category
