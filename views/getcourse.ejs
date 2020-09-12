@@ -8,7 +8,6 @@
         <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
           <div class="MainCard">
             <div class="row">
-
               <div class="col-md-3 mx-auto">
                 <div class="card">
                   <div class="card-body">
@@ -17,23 +16,24 @@
                         <div>
                           <h5 class="card-title text-center">FILTERS</h5>
                           <label for="category">Category</label>
+                          <script>
+                            var coursetype = '<%=parameters.job_category%>'
+                          </script>
                           <%if (typeof(parameters.job_category) !='undefined'){%>
 
-                          <select name='job_category' value='<%=parameters.job_category%>' id="type" class="selectpicker" data-style="select-with-transition" data-size="7">
+                          <select name='job_category' value='<%=parameters.job_category%>' id="type" class="form-control selectpicker" data-style="select-with-transition" data-size="7">
 
                             <option value='<%=parameters.job_category%>' disabled> Choose Category</option>
                           </select>
                           <%} else {%>
 
-                          <select name='job_category' id="type" class="selectpicker" data-style="select-with-transition" title="Select course type" data-size="7" >
+                          <select name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7">
                             <option disabled> Choose Category</option>
 
                           </select>
                           <%}%>
-
                         </div>
                         <div>
-
                           <div>
                             <center><input type="submit" value="Search"></center>
                           </div>
@@ -44,73 +44,61 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
             <div class="row">
                 <div class="col-md-9 mx-auto">
 
                   <%jobs.forEach(job=>{%>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">COURSE</h5>
+                              <div class="container1">
+                                <form id="job<%=job._id%>" method='POST' action="/courses/view">
+                                  <input name='job_id' style='display:none' value='<%=job._id%>'>
+                                  <h4>Title: <%=job.job_title%></h4>
+                                  <h5>Company Name: <%=job.company_name%></h5>
+                                  <div class="float-container1">
 
-                            <div class="card">
-                              <div class="card-body">
+                                    <div class="float-child3">
+                                      <h4>Start Date</h4>
+                                      <div><%=job.start_date.toDateString()%></div>
+                                    </div>
 
-
-
-                                    <h5 class="card-title">COURSES</h5>
-
-                                <div class="container1">
-                                  <form id="job<%=job._id%>" method='POST' action="/courses/view">
-                                    <input name='job_id' style='display:none' value='<%=job._id%>'>
-                                    <h4>Title: <%=job.job_title%></h4>
-                                    <h5>Company Name: <%=job.company_name%></h5>
-                                    <div class="float-container1">
-
-                              <div class="float-child3">
-                                <h4>Start Date</h4>
-                                  <div><%=job.start_date.toDateString()%></div>
-                                </div>
-
-                                <div class="float-child3" >
-                                  <h4>Duration</h4>
-                                  <div><%=job.job_duration%></div>
-                                </div>
+                                    <div class="float-child3">
+                                      <h4>Duration</h4>
+                                      <div><%=job.job_duration%></div>
+                                    </div>
 
 
 
-                              <div class="float-child3">
-                                <h4>Apply By</h4>
-                                  <div><%=job.apply_last.toDateString()%>
-                                </div>
+                                    <div class="float-child3">
+                                      <h4>Apply By</h4>
+                                      <div><%=job.apply_last.toDateString()%>
+                                      </div>
+                                    </div>
+                                    <div class="float-child3">
+
+                                    </div>
+                                    <div id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
+                                  </div>
+
+                                </form>
                               </div>
-                              <div class="float-child3" >
-
-                              </div>
-                              <div  id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
                             </div>
-
-                        </form>
-                      </div>
+                          </div>
+                          <%})%>
+                        </div>
                     </div>
                   </div>
-
-                  <%})%>
-
-
                 </div>
+              </div>
             </div>
-
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    function details(input) {
-      document.getElementById("job" + input.id).submit();
-    }
-
-  </script>
-  <script src="/js/courseType.js" charset="utf-8"></script>
+          <script>
+            function details(input) {
+              document.getElementById("job" + input.id).submit();
+            }
+          </script>
+          <script src="/js/courseType.js" charset="utf-8"></script>
 </body>
 <%-include('partials/footer')%>

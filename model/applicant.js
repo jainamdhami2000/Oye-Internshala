@@ -29,6 +29,7 @@ const applicantSchema = new mongoose.Schema({
   Question1: String,
   Question2: String,
   Question3: String,
+  course_link:String,
   isCourse: Boolean,
 });
 

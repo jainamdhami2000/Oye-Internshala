@@ -5,6 +5,7 @@
   <option value='none'>-------------</option>
 </select>
  %>
+
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -21,20 +22,20 @@
                           <h5 class="card-title text-center">FILTERS</h5>
                           <label for="category">Category</label> <br>
                           <script>
-                              var searchCategory = '<%=parameters.job_category%>';
-                              var searchTitle = '<%=parameters.job_title%>';
-                              // console.log("first "+searchValues);
+                            var searchCategory = '<%=parameters.job_category%>';
+                            var searchTitle = '<%=parameters.job_title%>';
+                            // console.log("first "+searchValues);
                           </script>
 
-                              <select id="category" name='job_category' data-style="select-with-transition" title="Select course type" data-size="14" >
-                                <option disabled> Choose Category</option>
-                                <option value='none'>-------------</option>
-                              </select>
+                          <select id="category" name='job_category' data-style="select-with-transition" title="Select course type" data-size="14">
+                            <option disabled> Choose Category</option>
+                            <option value='none'>-------------</option>
+                          </select>
 
 
 
 
-                              <%# <select id="category" name='job_category'  data-style="select-with-transition" title="Select course type" data-size="14" >
+                          <%# <select id="category" name='job_category'  data-style="select-with-transition" title="Select course type" data-size="14" >
                                 <option disabled> Choose Category</option>
                                 <option value='none'>-------------</option>
                               </select> %>
@@ -115,47 +116,47 @@
 
                           <div class="card">
                             <div class="card-body">
-                            <% if (job.jobtype=='Internship'){%>
+                              <% if (job.jobtype=='Internship'){%>
                               <h5 class="card-title">INTERNSHIP</h5>
                               <%} else if (job.jobtype=='Job') {%>
-                                  <h5 class="card-title">JOB</h5>
+                              <h5 class="card-title">JOB</h5>
                               <%}%>
                               <div class="container1">
                                 <form id="job<%=job._id%>" method='POST' action="/internship/view">
-                                  <input name='job_id' style='display:none' value='<%=job._id%>'>
-                                  <h4>Title: <%=job.job_title%></h4>
-                                  <h5>Company Name: <%=job.company_name%></h5>
-                                  <div class="float-container1">
-                                    <%if (job.onsite==false){%>
-                                    <h5>Work from Home</h5>
-                                    <%} else {%>
-                                    <h5>Location: <%=job.job_location%></h5>
-                                    <%}%>
+                              <input name='job_id' style='display:none' value='<%=job._id%>'>
+                              <h4>Title: <%=job.job_title%></h4>
+                              <h5>Company Name: <%=job.company_name%></h5>
+                              <div class="float-container1">
+                                <%if (job.onsite==false){%>
+                                <h5>Work from Home</h5>
+                                <%} else {%>
+                                <h5>Location: <%=job.job_location%></h5>
+                                <%}%>
                             <div class="float-child3">
                               <h4>Start Date</h4>
                                 <div><%=job.start_date.toDateString()%></div>
-                              </div>
-                              <div class="float-child3">
-                                <h4>Duration</h4>
-                                <div><%=job.job_duration%></div>
-                              </div>
+                            </div>
+                            <div class="float-child3">
+                              <h4>Duration</h4>
+                              <div><%=job.job_duration%></div>
+                            </div>
 
-                              <div class="float-child3">
-                                <h4>Stipend</h4>
-                                <%if (job.paid==true){%>
-                                <div><%=job.job_stipened%></div>
-                                <%} else {%>
-                                <div>Unpaid</div>
-                                <%}%>
+                            <div class="float-child3">
+                              <h4>Stipend</h4>
+                              <%if (job.paid==true){%>
+                              <div><%=job.job_stipened%></div>
+                              <%} else {%>
+                              <div>Unpaid</div>
+                              <%}%>
                             </div>
 
                             <div class="float-child3">
                               <h4>Apply By</h4>
                                 <div><%=job.apply_last.toDateString()%>
-                              </div>
                             </div>
-                            <div class="div" id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
                           </div>
+                          <div class="div" id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
+                        </div>
 
                       </form>
                     </div>
@@ -177,50 +178,48 @@
       document.getElementById("job" + input.id).submit();
     }
     const URL = "/admin/jobtitles"
+    var resArray = []
     $.ajax({
-        url: URL,
-        method: "GET"
-    }).done(function(data){
-        console.log(data);
-        window.resArray = data;
-        data.forEach((item) => {
-            if (typeof(searchCategory) !='undefined') {
-
-                if (item.job_category == searchCategory){
-                    console.log("Entered the if");
-                    $('#category').append('<option value="' + item.job_category + '" selected>' + item.job_category + '</option>');
-
-                }
-                else{
-                    $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
-                }
-            }
-            else{
-                $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
-            }
-
-        });
+      url: URL,
+      method: "GET"
+    }).done(function(data) {
+      console.log(data);
+      window.resArray = data;
+      data.forEach((item) => {
+        if (typeof(searchCategory) != 'undefined') {
+          if (item.job_category == searchCategory) {
+            console.log("Entered the if");
+            $('#category').append('<option value="' + item.job_category + '" selected>' + item.job_category + '</option>');
+          } else {
+            $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+          }
+        } else {
+          $('#category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
+        }
+      });
     });
 
-    $(function() {
-        console.log(searchTitle);
-        if (searchTitle != ''){
-            console.log("I entered searchTitle")
-            resArray.forEach(item => {
-              if (item.job_category === searchCategory) {
-                item.job_title.forEach(titles => {
-                    if(item.job_title == searchTitle){
-                        $('#title').append('<option value="' + titles + '"selected>' + titles + '</option>');
-                    }
-                    else {
-                        $('#title').append('<option value="' + titles + '">' + titles + '</option>');
-                    }
-                });
+    $.ajax({
+      url: URL,
+      method: "GET"
+    }).done(function(data) {
+      console.log(searchTitle);
+      if (searchTitle != '') {
+        console.log("I entered searchTitle")
+        console.log(data)
+        data.forEach(item => {
+          if (item.job_category === searchCategory) {
+            item.job_title.forEach(titles => {
+              if (titles == searchTitle) {
+                $('#title').append('<option value="' + titles + '"selected>' + titles + '</option>');
+              } else {
+                $('#title').append('<option value="' + titles + '">' + titles + '</option>');
               }
             });
-        }
+          }
+        });
+      }
     });
-
 
     $('#category').on('change', function() {
       selectedcategory = $('#category').find(":selected").text();
@@ -237,7 +236,6 @@
         });
       }
     });
-
   </script>
 </body>
 <%-include('partials/footer')%>

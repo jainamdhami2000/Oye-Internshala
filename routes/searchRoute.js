@@ -87,7 +87,7 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
             unappliedjobs.push(job);
           }
         });
-        console.log(unappliedjobs)
+        console.log(unappliedjobs);
         res.render('getintern', {
           user: req.user,
           jobs: unappliedjobs,

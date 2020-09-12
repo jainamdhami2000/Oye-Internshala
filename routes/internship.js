@@ -213,7 +213,10 @@ router.post('/apply', isLoggedIn, (req, res) => {
       application.save();
       job.no_of_applicants += 1;
       job.save();
-      res.redirect('/internship/confirm');
+      res.render('application-confirm', {
+        user: req.user,
+        job:job
+      });
     } else {
       res.render('error', {
         user: req.user,
@@ -255,7 +258,10 @@ router.post('/intern-details', isLoggedIn, (req, res) => {
       application.save();
       job.no_of_applicants += 1;
       job.save();
-      res.redirect('/internship/confirm'); //MAKE APPLICATION POSTED FOR INTERNSHIP PAGE
+      res.render('application-confirm', {
+        user: req.user,
+        job:job
+      });
     }
   });
 });

@@ -82,7 +82,7 @@ router.post('/postcourse', isLoggedIn, (req, res) => {
     start_date: sanitize(req.body.start_date),
     apply_last: sanitize(req.body.apply_last),
     requirements: sanitize(req.body.requirements),
-    course_link: sanitize(req.body.course_link),
+    course_link: sanitize(req.body.job_link),
     jobtype: 'Course',
     user_id: req.user._id,
     company_name: req.user.CompanyName,
@@ -160,8 +160,9 @@ router.post('/apply', isLoggedIn, (req, res) => {
     var application = new Applicant({
       name: req.user.FirstName + ' ' + req.user.LastName,
       college: req.user.CollegeName,
-      job_category: req.body.job_category,
+      job_category: job.job_category,
       job_title: job.job_title,
+      course_link:job.course_link,
       user_id: req.user._id,
       company_name: job.company_name,
       job_id: job._id,
@@ -170,7 +171,10 @@ router.post('/apply', isLoggedIn, (req, res) => {
     application.save();
     job.no_of_applicants += 1;
     job.save();
-    res.redirect('/internship/confirm');
+    res.render('application-confirm',{
+      user:req.user,
+      job:job
+    });
   });
 });
 

@@ -81,6 +81,15 @@
                                 <input id='<%=applicant.resume.filename%>' type="button" value="Open Resume" onclick="openPdf(this)" />
                             </div>
                         </div>
+                        <%} else {%>
+                          <div class="row spacing">
+                              <div class="col-md-3">
+                                  <span class="Heading">Course Link</span>
+                              </div>
+                              <div class="col-md-9">
+                                  <%=applicant.course_link%>
+                              </div>
+                          </div>
                         <%}%>
 
             <div class="row spacing">
@@ -144,6 +153,7 @@
   </div>
   <script>
   function openPdf(input){
+    console.log(input.id)
     let omyFrame = document.getElementById("myFrame");
     omyFrame.style.display="block";
     omyFrame.src = '../'+input.id;

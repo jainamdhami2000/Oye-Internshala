@@ -45,9 +45,9 @@
         <div class="ml-auto mr-auto">
           <div class="card card-signup">
             <div class="card-body">
+              <%if (applications.length>0){%>
               <h2 class="card-title text-center">Applied Internships</h2>
               <div class="h3">
-                <%if (applications.length>0){%>
                 <table>
                   <tr class="h4">
                     <th>Company</th>
@@ -59,6 +59,7 @@
                     <th>Review Application</th>
                   </tr>
                   <% applications.forEach(application=>{%>
+                  <% if (application.job_type=='Internship'){%>
                   <tr class="h5">
                     <td><%=application.company_name%></td>
                     <td><%=application.job_title%></td>
@@ -79,6 +80,7 @@
                   color:red;" id='<%=application._id%>' onclick='details(this)'><a href="#">View Details</a></td>
                     </form>
                   </tr>
+                  <%}%>
                   <%})%>
                 </table>
                 <%} else {%>
@@ -95,6 +97,100 @@
                 </div>
                 <%}%>
                 </div>
+                <%if (applications.length>0){%>
+                <h2 class="card-title text-center">Applied Jobs</h2>
+                <div class="h3">
+                  <table>
+                    <tr class="h4">
+                      <th>Company</th>
+                      <th>Profile</th>
+                      <th>Employment Type</th>
+                      <th>Applied On</th>
+                      <th>No of Applicants</th>
+                      <th>Application Status</th>
+                      <th>Review Application</th>
+                    </tr>
+                    <% applications.forEach(application=>{%>
+                    <% if (application.job_type=='Job'){%>
+                    <tr class="h5">
+                      <td><%=application.company_name%></td>
+                      <td><%=application.job_title%></td>
+                      <td><%=application.job_type%></td>
+                      <td><%=application.applied_on.toDateString()%></td>
+                      <td><%=application.no_of_applicants%></td>
+                      <%if (application.is_accept){%>
+                      <td>Accepted</td>
+                      <%} else if (application.is_reject){%>
+                      <td>Rejected</td>
+                      <%} else if (!application.is_accept && !application.is_reject) {%>
+                      <td>Pending</td>
+                      <%}%>
+
+                                <form id="applicant<%=application._id%>" method='POST' action="/internship/studentapplicationdetails">
+                      <input name='applicant_id' style='display:none' value='<%=application._id%>'>
+                      <td style="text-decoration: underline;
+                    color:red;" id='<%=application._id%>' onclick='details(this)'><a href="#">View Details</a></td>
+                      </form>
+                    </tr>
+                    <%}%>
+                    <%})%>
+                  </table>
+                  <%} else {%>
+                  <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
+                    <center>
+                      <h1 class="display-4" style="text-align: center;">Sorry!</h1><br>
+                      <p class="lead">You've not applied for any internships yet</p>
+                      <hr class="my-4"><br>
+                      <p>Keep exploring for many such internships and keep learning!</p>
+                      <p class="lead" style="text-align: center">
+                        <a class="btn btn-info" href="/" role="button">Home Page</a>
+                      </p>
+                    </center>
+                  </div>
+                  <%}%>
+                  </div>
+                  <%if (applications.length>0){%>
+                  <h2 class="card-title text-center">Applied Courses</h2>
+                  <div class="h3">
+                    <table>
+                      <tr class="h4">
+                        <th>Company</th>
+                        <th>Profile</th>
+                        <th>Applied On</th>
+                        <th>No of Applicants</th>
+                        <th>Review Application</th>
+                      </tr>
+                      <% applications.forEach(application=>{%>
+                      <% if (application.job_type=='Course'){%>
+                      <tr class="h5">
+                        <td><%=application.company_name%></td>
+                        <td><%=application.job_title%></td>
+                        <td><%=application.applied_on.toDateString()%></td>
+                        <td><%=application.no_of_applicants%></td>
+
+                                  <form id="applicant<%=application._id%>" method='POST' action="/internship/studentapplicationdetails">
+                        <input name='applicant_id' style='display:none' value='<%=application._id%>'>
+                        <td style="text-decoration: underline;
+                      color:red;" id='<%=application._id%>' onclick='details(this)'><a href="#">View Details</a></td>
+                        </form>
+                      </tr>
+                      <%}%>
+                      <%})%>
+                    </table>
+                    <%} else {%>
+                    <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
+                      <center>
+                        <h1 class="display-4" style="text-align: center;">Sorry!</h1><br>
+                        <p class="lead">You''ve not applied for any internships yet</p>
+                        <hr class="my-4"><br>
+                        <p>Keep exploring for many such internships and keep learning!</p>
+                        <p class="lead" style="text-align: center">
+                          <a class="btn btn-info" href="/" role="button">Home Page</a>
+                        </p>
+                      </center>
+                    </div>
+                    <%}%>
+                    </div>
               </div>
             </div>
         </div>

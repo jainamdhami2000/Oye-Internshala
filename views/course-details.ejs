@@ -38,16 +38,12 @@
         </div>
       </div>
       <div style="padding: 20px;" class="">
-        <h3>About OYE India</h3>
-        <p>
-          <a href="/">Homepage</a><br>
-          <%=empuser.CompanyDescription%>
-        </p>
-        <h3>About the internship</h3>
+        <h3>About <%=job.company_name%></h3>
+        <h3>About the course</h3>
         <p>
           <%=job.job_content%>
         </p>
-        <form class="form" method='POST' action="/internship/intern-details">
+        <form class="form" method='POST' action="/courses/apply">
           <input style="display:none" name="job_id" value="<%=job._id%>">
           <center>
             <button style="margin-top: 30px" type="submit" class="btn btn-info mx-auto">APPLY NOW</button>

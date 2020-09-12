@@ -1,11 +1,13 @@
 //jshint esversion:6
 
-var loc = ['Delhi','Mumbai','Bangalore','Chennai','Hyderabad','Kolkata'];
+var loc = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 'Kolkata'];
 loc.forEach((cities) => {
-    $('#loc').append('<option value="'+cities+'">' + cities + '</option>');
-    }
-);
+  if (locationc == cities) {
+    $('#loc').append('<option value="' + cities + '" selected>' + cities + '</option>');
+  } else {
+    $('#loc').append('<option value="' + cities + '">' + cities + '</option>');
+  }
+});
 loc.forEach((cities) => {
-    $('#loc1').append('<option value="'+cities+'">' + cities + '</option>');
-    }
-);
+  $('#loc1').append('<option value="' + cities + '">' + cities + '</option>');
+});

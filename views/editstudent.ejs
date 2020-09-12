@@ -1,100 +1,106 @@
   <%-include('partials/header')%>
 
-<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="card card-signup">
-            <h2 class="card-title text-center">EDIT STUDENT</h2>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-5 ml-auto">
-                  <img src="/main/std-profile/std-sign.svg" alt="Edit Student" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
-                </div>
-                <div class="col-md-5 mr-auto">
-                  <form class="form" method="POST" action="/profile/updatestudent">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">face</i>
-                          </span>
-                        </div>
-                        <input value='<%=user.FirstName%>' required name="fname" type="text" class="form-control" placeholder="First Name...">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">face</i>
-                          </span>
-                        </div>
-                        <input value='<%=user.LastName%>' required name='lname' type="text" class="form-control" placeholder="Last Name...">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">face</i>
-                          </span>
-                        </div>
-                        <input value='<%=user.username%>' required name='username' type="text" class="form-control" placeholder="Username...">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">mail</i>
-                          </span>
-                        </div>
-                        <input value='<%=user.Email%>' readonly required name='email' type="email" class="form-control" placeholder="Email...">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">mail</i>
-                          </span>
-                        </div>
-                        <input value='<%=user.CollegeName%>' required name='college_name' type="text" class="form-control" placeholder="College Name...">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <i class="material-icons">mail</i>
-                          </span>
-                        </div>
-                        <textarea required name='skills' type="text" class="form-control" placeholder="Basic Skills..." rows="4" id="exampleInputTextarea"><%=user.BasicSkills%></textarea>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">
-                            <span class="material-icons">
-                              location_city
+  <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 ml-auto mr-auto">
+            <div class="card card-signup">
+              <h2 class="card-title text-center">EDIT STUDENT</h2>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-5 ml-auto">
+                    <img src="/main/std-profile/std-sign.svg" alt="Edit Student" class="img-responsive" style="float:left; padding-bottom:100px; margin-top: 10%;" width="90%" height="90%">
+                  </div>
+                  <div class="col-md-5 mr-auto">
+                    <form class="form" method="POST" action="/profile/updatestudent">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">face</i>
                             </span>
-                          </span>
+                          </div>
+                          <input value='<%=user.FirstName%>' required name="fname" type="text" class="form-control" placeholder="First Name...">
                         </div>
-                        <input value='<%=user.City%>' required name='city' type="text" class="form-control" placeholder="City...">
                       </div>
-                    </div>
-                    <div class="text-center">
-                      <button type='submit' class="btn btn-info btn-round">Get Started</button>
-                    </div>
-                  </form>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">face</i>
+                            </span>
+                          </div>
+                          <input value='<%=user.LastName%>' required name='lname' type="text" class="form-control" placeholder="Last Name...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">face</i>
+                            </span>
+                          </div>
+                          <input value='<%=user.username%>' required name='username' type="text" class="form-control" placeholder="Username...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">mail</i>
+                            </span>
+                          </div>
+                          <input value='<%=user.Email%>' readonly required name='email' type="email" class="form-control" placeholder="Email...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">mail</i>
+                            </span>
+                          </div>
+                          <input value='<%=user.CollegeName%>' required name='college_name' type="text" class="form-control" placeholder="College Name...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="material-icons">mail</i>
+                            </span>
+                          </div>
+                          <textarea required name='skills' type="text" class="form-control" placeholder="Basic Skills..." rows="4" id="exampleInputTextarea"><%=user.BasicSkills%></textarea>
+                        </div>
+                      </div>
+                      <script>
+                        var locationc = '<%=user.City%>'
+                      </script>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <span class="material-icons">
+                                location_city
+                              </span>
+                            </span>
+                          </div>
+                          <select required name='city' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Choose City" data-size="7">
+                            <option disabled> Choose City</option>
+                          </select>
+
+                        </div>
+                      </div>
+                      <div class="text-center">
+                        <button type='submit' class="btn btn-info btn-round">Edit</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,6 +108,6 @@
         </div>
       </div>
     </div>
-  </div>
-</body>
-<%-include('partials/footer')%>
+    <script src="/js/cities.js" charset="utf-8"></script>
+  </body>
+  <%-include('partials/footer')%>
