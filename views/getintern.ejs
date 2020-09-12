@@ -27,7 +27,7 @@
                             // console.log("first "+searchValues);
                           </script>
 
-                          <select id="category" name='job_category' data-style="select-with-transition" title="Select course type" data-size="14">
+                          <select id="category" name='job_category' data-style="select-with-transition" title="Select course type" data-size="7">
                             <option disabled> Choose Category</option>
                             <option value='none'>-------------</option>
                           </select>
@@ -43,13 +43,15 @@
                           <br><label for="title">Title</label><br>
                           <%if (typeof(parameters.job_title) !='undefined'){%>
 
-                          <select id="title" name="job_title">
-                            <option>
+                          <select id="title" name="job_title" data-style="select-with-transition" data-size="7">
+                          <option disabled> Choose Category</option>
+                          <option value='none'>-------------</option>
                           </select>
                           <%} else {%>
 
-                          <select id="title" name="job_title">
-
+                          <select id="title" name="job_title" data-style="select-with-transition" title="Select course type" data-size="7">
+                          <option disabled> Choose Category</option>
+                          <option value='none'>-------------</option>
                           </select>
                           <%}%>
                           <br><label for="location">Location</label>
