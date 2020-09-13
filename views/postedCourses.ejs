@@ -68,7 +68,7 @@
                     <td class="cen"><%=job.job_category%></td>
                     <td class="cen"><%=job.job_published.toDateString()%></td>
                     <td class="cen"><%=job.no_of_applicants%></td>
-                    
+
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
                       <input name='job_id' style='display:none' value='<%=job._id%>'>
                       <td class="cen Pointer" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
