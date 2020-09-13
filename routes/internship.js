@@ -380,6 +380,7 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
     Job.find({
       user_id: req.user._id
     }, {
+      job_category:1,
       job_title: 1,
       jobtype: 1,
       job_published: 1,
