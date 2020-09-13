@@ -1,9 +1,6 @@
 <%-include('partials/header')%>
-
 <style>
-
   table {
-
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -30,8 +27,8 @@
     cursor: pointer;
   }
 
-  .Pointer{
-      cursor: pointer;
+  .Pointer {
+    cursor: pointer;
   }
 
   .cen {
@@ -64,15 +61,14 @@
                     <th style="background-color: lightblue;" class="cen">Review Courses</th>
                   </tr>
                   <%jobs.forEach(job => {%>
-                      <% if (job.jobtype=='Course'){%>
+                  <% if (job.jobtype=='Course'){%>
 
                   <tr class="h5">
                     <td class="cen"><%=job.job_title%></td>
                     <td class="cen"><%=job.job_category%></td>
                     <td class="cen"><%=job.job_published.toDateString()%></td>
                     <td class="cen"><%=job.no_of_applicants%></td>
-
-                    <!-- <td class="cen"><a href="#">View</a></td> -->
+                    
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
                       <input name='job_id' style='display:none' value='<%=job._id%>'>
                       <td class="cen Pointer" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>

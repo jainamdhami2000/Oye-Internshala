@@ -20,16 +20,12 @@
                             var coursetype = '<%=parameters.job_category%>'
                           </script>
                           <%if (typeof(parameters.job_category) !='undefined'){%>
-
                           <select name='job_category' value='<%=parameters.job_category%>' id="type" class="form-control selectpicker" data-style="select-with-transition" data-size="7">
-
                             <option value='<%=parameters.job_category%>' disabled> Choose Category</option>
                           </select>
                           <%} else {%>
-
                           <select name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7">
                             <option disabled> Choose Category</option>
-
                           </select>
                           <%}%>
                         </div>
@@ -47,7 +43,6 @@
             </div>
             <div class="row">
                 <div class="col-md-9 mx-auto">
-
                   <%jobs.forEach(job=>{%>
                           <div class="card">
                             <div class="card-body">
@@ -69,19 +64,15 @@
                                       <div><%=job.job_duration%></div>
                                     </div>
 
-
-
                                     <div class="float-child3">
                                       <h4>Apply By</h4>
                                       <div><%=job.apply_last.toDateString()%>
                                       </div>
                                     </div>
                                     <div class="float-child3">
-
                                     </div>
                                     <div id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
                                   </div>
-
                                 </form>
                               </div>
                             </div>

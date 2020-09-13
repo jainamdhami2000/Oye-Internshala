@@ -14,10 +14,14 @@ router.get('/', function(req, res) {
 });
 
 router.get('/searchintern', function(req, res) {
-  if (req.user.isStudent) {
-    Applicant.find({
-      user_id: req.user._id
-    }, (err, applicants) => {
+  if (req.user == undefined || req.user.isStudent) {
+    q = {};
+    if (req.user) {
+      q = {
+        user_id: req.user._id
+      };
+    }
+    Applicant.find(q, (err, applicants) => {
       var appids = [];
       var unappliedjobs = [];
       applicants.forEach((applicant) => {
@@ -33,13 +37,17 @@ router.get('/searchintern', function(req, res) {
           }
         ]
       }, (err, jobs) => {
-        jobs.forEach(job => {
-          if (appids.includes(String(job._id))) {
+        if (req.user != undefined) {
+          jobs.forEach(job => {
+            if (appids.includes(String(job._id))) {
 
-          } else {
-            unappliedjobs.push(job);
-          }
-        });
+            } else {
+              unappliedjobs.push(job);
+            }
+          });
+        } else {
+          unappliedjobs = jobs;
+        }
         res.render('getintern', {
           user: req.user,
           jobs: unappliedjobs,
@@ -141,9 +149,9 @@ router.post('/postintern', isLoggedIn, (req, res) => {
       }
       job.save();
     }
-    res.render('postconfirm',{
-      user:req.user,
-      job:job
+    res.render('postconfirm', {
+      user: req.user,
+      job: job
     });
   } catch (e) {
     console.log(e);
@@ -215,7 +223,7 @@ router.post('/apply', isLoggedIn, (req, res) => {
       job.save();
       res.render('application-confirm', {
         user: req.user,
-        job:job
+        job: job
       });
     } else {
       res.render('error', {
@@ -260,7 +268,7 @@ router.post('/intern-details', isLoggedIn, (req, res) => {
       job.save();
       res.render('application-confirm', {
         user: req.user,
-        job:job
+        job: job
       });
     }
   });
@@ -333,29 +341,29 @@ router.get('/appliedinternship', isLoggedIn, (req, res) => {
           var i = 0;
           var j = 0;
           var c = 0;
-          result.forEach(application=>{
-            if (application.job_type=='Internship'){
-              i+=1;
-            } else if (application.job_type=='Job'){
-              j+=1;
-            } else if (application.job_type=='Course'){
-              c+=1;
+          result.forEach(application => {
+            if (application.job_type == 'Internship') {
+              i += 1;
+            } else if (application.job_type == 'Job') {
+              j += 1;
+            } else if (application.job_type == 'Course') {
+              c += 1;
             }
           });
           res.render('studentinternship', {
             user: req.user,
             applications: result,
-            internships:i,
-            jobs:j,
-            courses:c
+            internships: i,
+            jobs: j,
+            courses: c
           });
         } else {
           res.render('studentinternship', {
             user: req.user,
             applications: applications,
-            internships:0,
-            jobs:0,
-            courses:0
+            internships: 0,
+            jobs: 0,
+            courses: 0
           });
         }
       });
@@ -381,18 +389,18 @@ router.get('/postedjobs', isLoggedIn, (req, res) => {
       var i = 0;
       var j = 0;
       var c = 0;
-      jobs.forEach(application=>{
-        if (application.jobtype=='Internship'){
-          i+=1;
-        } else if (application.jobtype=='Job'){
-          j+=1;
+      jobs.forEach(application => {
+        if (application.jobtype == 'Internship') {
+          i += 1;
+        } else if (application.jobtype == 'Job') {
+          j += 1;
         }
       });
       res.render('postedjobs', {
         user: req.user,
         jobs: jobs,
-        internshiplength:i,
-        jobslength:j
+        internshiplength: i,
+        jobslength: j
       });
     });
   } else if (req.user.admin_reject) {
@@ -417,6 +425,8 @@ router.post('/jobapplications', isLoggedIn, (req, res) => {
   var job_id = req.body.job_id;
   Applicant.find({
     job_id: job_id,
+    is_accept:false,
+    is_reject:false
   }, (err, applicants) => {
     res.render('studentapplications', {
       user: req.user,

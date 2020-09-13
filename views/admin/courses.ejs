@@ -2,76 +2,73 @@
 <link rel="stylesheet" href="/css/getintern.css">
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
+          <div class="MainCard">
             <div class="row">
-                <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
-                    <div class="MainCard">
-                        <div class="row">
-                            <div class="col-md-9 ml-auto mr-auto">
-<%# /admin/unverifiedcourse %>
-                                <% if (jobs.length == 0) {%>
-                                    <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
-                                      <center>
-                                        <h1 class="display-4" style="text-align: center;">No Courses to be verified!</h1><br>
+              <div class="col-md-9 ml-auto mr-auto">
+                <% if (jobs.length == 0) {%>
+                <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
+                  <center>
+                    <h1 class="display-4" style="text-align: center;">No Courses to be verified!</h1><br>
 
-                                        <p class="lead" style="text-align: center">
-                                          <a class="btn btn-info" href="/admin/" role="button">Home Page</a>
-                                        </p>
-                                      </center>
-                                    </div>
-                                <%} else {%>
-                                    <h5 class="card-title" style="text-align:center">COURSES TO BE VERIFIED</h5>
-                                <%jobs.forEach(job=>{%>
-                                <div class="card">
-                                    <div class="card-body">
-                                    <div class="container1">
-                                      <form id="job<%=job._id%>" method='POST' action="/admin/unverifiedcourse">
-                                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                                        <h4>Title: <%=job.job_title%></h4>
-                                        <h5>Company Name: <%=job.company_name%></h5>
-                                        <div class="float-container1">
-
-                                  <div class="float-child3">
-                                    <h4>Start Date</h4>
-                                      <div><%=job.start_date.toDateString()%></div>
-                                    </div>
-
-                                    <div class="float-child3" >
-                                      <h4>Duration</h4>
-                                      <div><%=job.job_duration%></div>
-                                    </div>
-
-
-
-                                  <div class="float-child3">
-                                    <h4>Apply By</h4>
-                                      <div><%=job.apply_last.toDateString()%>
-                                    </div>
-                                  </div>
-                                  <div class="float-child3" >
-
-                                  </div>
-                                  <div  id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
-                                </div>
-
-                            </form>
-                          </div>
-                        </div>
-                    </div>
-                    <%})}%>
+                    <p class="lead" style="text-align: center">
+                      <a class="btn btn-info" href="/admin/" role="button">Home Page</a>
+                    </p>
+                  </center>
                 </div>
+                <%} else {%>
+                <h5 class="card-title" style="text-align:center">COURSES TO BE VERIFIED</h5>
+                <%jobs.forEach(job=>{%>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="container1">
+                      <form id="job<%=job._id%>" method='POST' action="/admin/unverifiedcourse">
+                        <input name='job_id' style='display:none' value='<%=job._id%>'>
+                        <h4>Title: <%=job.job_title%></h4>
+                        <h5>Company Name: <%=job.company_name%></h5>
+                        <div class="float-container1">
+
+                          <div class="float-child3">
+                            <h4>Start Date</h4>
+                            <div><%=job.start_date.toDateString()%></div>
+                          </div>
+
+                          <div class="float-child3">
+                            <h4>Duration</h4>
+                            <div><%=job.job_duration%></div>
+                          </div>
+                          
+                          <div class="float-child3">
+                            <h4>Apply By</h4>
+                            <div><%=job.apply_last.toDateString()%>
+                            </div>
+                          </div>
+                          <div class="float-child3">
+
+                          </div>
+                          <div id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <%})}%>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
+  </div>
 </body>
 <%-include('../partials/footer')%>
 <script>
-    function details(input) {
-        document.getElementById("job" + input.id).submit();
-    }
-    //  <h5 class="card-title">INTERNSHIPS</h5>
+  function details(input) {
+    document.getElementById("job" + input.id).submit();
+  }
+  //  <h5 class="card-title">INTERNSHIPS</h5>
 </script>

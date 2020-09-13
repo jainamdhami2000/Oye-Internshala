@@ -5,21 +5,12 @@ const bcrypt = require('bcrypt-nodejs');
 const jobSchema = new mongoose.Schema({
   job_title: String,
   job_duration: Number,
-  // image: Object,
   job_content: String,
   job_stipened: Number,
   user_id: {
     type: mongoose.Types.ObjectId,
     ref: 'User'
   },
-  // is_accept: {
-  //   type: Boolean,
-  //   default: false
-  // },
-  // is_reject: {
-  //   type: Boolean,
-  //   default: false
-  // },
   admin_accept: {
     type: Boolean,
     default: false

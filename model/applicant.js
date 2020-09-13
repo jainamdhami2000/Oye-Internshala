@@ -10,7 +10,6 @@ const applicantSchema = new mongoose.Schema({
   resume: Object,
   skills: String,
   city: String,
-  // study_year: Date,
   job_id: mongoose.Types.ObjectId,
   user_id: mongoose.Types.ObjectId,
   is_accept: {

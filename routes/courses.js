@@ -15,10 +15,14 @@ router.get('/', function(req, res) {
 });
 
 router.get('/searchcourse', function(req, res) {
-  if (req.user.isStudent) {
-    Applicant.find({
-      user_id: req.user._id
-    }, (err, applicants) => {
+  if (req.user == undefined || req.user.isStudent) {
+    q = {};
+    if (req.user) {
+      q = {
+        user_id: req.user._id
+      };
+    }
+    Applicant.find(q, (err, applicants) => {
       var appids = [];
       var unappliedjobs = [];
       applicants.forEach((applicant) => {
@@ -26,15 +30,19 @@ router.get('/searchcourse', function(req, res) {
       });
       Job.find({
         admin_accept: true,
-        jobtype:'Course'
+        jobtype: 'Course'
       }, (err, jobs) => {
-        jobs.forEach(job => {
-          if (appids.includes(String(job._id))) {
+        if (req.user != undefined) {
+          jobs.forEach(job => {
+            if (appids.includes(String(job._id))) {
 
-          } else {
-            unappliedjobs.push(job);
-          }
-        });
+            } else {
+              unappliedjobs.push(job);
+            }
+          });
+        } else {
+          unappliedjobs = jobs;
+        }
         res.render('getcourse', {
           user: req.user,
           jobs: unappliedjobs,
@@ -89,9 +97,9 @@ router.post('/postcourse', isLoggedIn, (req, res) => {
     job_published: Date.now(),
   });
   job.save();
-  res.render('postconfirm',{
-    user:req.user,
-    job:job
+  res.render('postconfirm', {
+    user: req.user,
+    job: job
   });
 });
 
@@ -99,7 +107,7 @@ router.get('/postedcourses', isLoggedIn, (req, res) => {
   if (req.user.isTrainer && req.user.admin_accept) {
     Job.find({
       user_id: req.user._id,
-      jobtype:'Course'
+      jobtype: 'Course'
     }, (err, jobs) => {
       res.render('postedCourses', {
         user: req.user,
@@ -124,7 +132,7 @@ router.get('/postedcourses', isLoggedIn, (req, res) => {
   }
 });
 
-router.post('/view', isLoggedIn, (req, res) => {  //
+router.post('/view', isLoggedIn, (req, res) => { //
   if (req.user.isStudent) {
     Job.findOne({
       _id: sanitize(req.body.job_id)
@@ -162,7 +170,7 @@ router.post('/apply', isLoggedIn, (req, res) => {
       college: req.user.CollegeName,
       job_category: job.job_category,
       job_title: job.job_title,
-      course_link:job.course_link,
+      course_link: job.course_link,
       user_id: req.user._id,
       company_name: job.company_name,
       job_id: job._id,
@@ -171,9 +179,9 @@ router.post('/apply', isLoggedIn, (req, res) => {
     application.save();
     job.no_of_applicants += 1;
     job.save();
-    res.render('application-confirm',{
-      user:req.user,
-      job:job
+    res.render('application-confirm', {
+      user: req.user,
+      job: job
     });
   });
 });
@@ -190,7 +198,7 @@ router.get('/appliedcourse', isLoggedIn, (req, res) => {
         var apps = [];
         if (applications.length > 0) {
           applications.forEach((application) => {
-            if(application.isCourse){
+            if (application.isCourse) {
               apps.push(application);
               jobids.push(application.job_id);
             }
@@ -204,8 +212,8 @@ router.get('/appliedcourse', isLoggedIn, (req, res) => {
             no_of_applicants: 1,
             jobtype: 1
           }, (err, job) => {
-            job.forEach(j=>{
-              if (j.jobtype=='Course'){
+            job.forEach(j => {
+              if (j.jobtype == 'Course') {
                 jobs.push(j);
               }
             });
@@ -246,7 +254,7 @@ router.get('/appliedcourse', isLoggedIn, (req, res) => {
   }
 });
 
-router.post('/viewcourse', isLoggedIn, (req, res) => {  //trainer side se view posted courses
+router.post('/viewcourse', isLoggedIn, (req, res) => { //trainer side se view posted courses
   var job_id = req.body.job_id;
   Job.findOne({
     _id: job_id,

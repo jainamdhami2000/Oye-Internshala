@@ -272,11 +272,6 @@ module.exports = function(passport) {
             newUser.facebook.id = profile.id; // set the users facebook id
             newUser.facebook.token = token; // we will save the token that facebook provides to the user
             newUser.loginType = 'facebook';
-            // newUser.IsActive = true;
-            // console.log(profile)
-            // name = profile.displayName.split(' ', 2);
-            // fname = name[0];
-            // lname = name[1];
             newUser.FirstName = profile.name.givenName;
             newUser.LastName = profile.name.familyName;
             newUser.isVerified = true;

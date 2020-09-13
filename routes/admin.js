@@ -61,9 +61,6 @@ router.get('/unverifiedemployers', (req, res) => {
     isVerified: true,
     isEmployer:true
   }, (err, employers) => {
-    // res.json({
-    //     unverifiedemployers: employers
-    // });
     res.render('admin/employer-verify', {
       unverifiedemployers: employers
     });
@@ -75,9 +72,6 @@ router.post('/unverifiedemployer', (req, res) => {
   User.findOne({
     _id: employer_id
   }, (err, employer) => {
-    // res.json({
-    //     unverifiedemployer: employer[0]
-    // });
     res.render('admin/emp-details', {
       unverifiedemployer: employer
     });
@@ -123,9 +117,6 @@ router.post('/unverifiedinternship', (req, res) => {
     User.findOne({
       _id: internship.user_id
     }, (err, user) => {
-      // res.json({
-      //     unverifiedinternship: internship[0]
-      // });
       res.render('admin/internship-details', {
         job: internship,
         user: user
@@ -220,9 +211,6 @@ router.post('/unverifiedjob', (req, res) => {
       User.findOne({
         _id: internship.user_id
       }, (err, user) => {
-        // res.json({
-        //     unverifiedinternship: internship[0]
-        // });
         res.render('admin/jobsdetails', {
           job: internship,
           user: user
@@ -269,7 +257,7 @@ router.post('/unverifiedtrainer', (req, res) => {
   User.findOne({
     _id: employer_id
   }, (err, employer) => {
-    res.render('admin/emp-details', {
+    res.render('admin/trainer-details', {
       unverifiedemployer: employer
     });
   });
@@ -291,52 +279,6 @@ router.post('/trainerverification', (req, res) => {
     res.redirect('/admin/home');
   });
 });
-
-router.get('/unverifiedtrainers', (req, res) => {
-  User.find({
-    admin_accept: false,
-    admin_reject: false,
-    isVerified: true,
-    isTrainer:true
-  }, (err, trainers) => {
-    res.render('admin/trainer-verify', {
-      unverifiedtrainers: trainers
-    });
-  });
-});
-
-router.post('/unverifiedtrainer', (req, res) => {
-  var trainer_id = req.body.trainer_id;
-  User.findOne({
-    _id: trainer_id
-  }, (err, trainer) => {
-    // res.json({
-    //     unverifiedemployer: employer[0]
-    // });
-    res.render('admin/trainer-details', {
-      unverifiedtrainer: trainer
-    });
-  });
-});
-
-router.post('/trainerverification', (req, res) => {
-  var accept = req.body.accept;
-  var reject = req.body.reject;
-  var trainer_id = req.body.trainer_id;
-  User.findOne({
-    _id: trainer_id
-  }, (err, trainer) => {
-    if (accept == 'Accept') {
-      trainer.admin_accept = true;
-    } else {
-      trainer.admin_reject = true;
-    }
-    trainer.save();
-    res.redirect('/admin/home');
-  });
-});
-
-
 
 router.get('/addjobtitle', (req, res) => {
   res.render('admin/addjobtitle');

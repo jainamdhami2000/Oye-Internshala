@@ -1,8 +1,4 @@
 <%-include('partials/header')%>
-<%#
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link href="assets/css/material-kit.css" rel="stylesheet" /> %>
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
@@ -16,15 +12,15 @@
                   <h1 class="display-4" style="text-align: center;">Thank You!</h1><br>
                   <p class="lead">You've successfully applied for the
                     <%if (job.jobtype=='Internship'){%>internship, you will notified of the results very soon.</p>
-                    <%} else if (job.jobtype=='Job'){%>job, you will notified of the results very soon.</p>
-                    <%} else {%>course,you can contact the course link from your courses section.</p>
-                    <%}%>
+                  <%} else if (job.jobtype=='Job'){%>job, you will notified of the results very soon.</p>
+                  <%} else {%>course,you can contact the course link from your courses section.</p>
+                  <%}%>
                   <hr class="my-4"><br>
                   <p>Keep exploring for many such
                   <%if (job.jobtype=='Internship'){%>internships and keep learning!</p>
                   <%} else if (job.jobtype=='Job'){%>jobs!</p>
-                    <%} else {%>
-                    <%}%>
+                  <%} else {%>
+                  <%}%>
                   <p class="lead" style="text-align: center">
                     <a class="btn btn-info" href="/" role="button">Home Page</a>
                   </p>

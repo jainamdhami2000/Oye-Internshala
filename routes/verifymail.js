@@ -4,13 +4,8 @@ require("dotenv").config();
 const express = require('express');
 const router = express.Router();
 const jwt = require('jwt-simple');
-
 const mail = require('../utils/mailer');
 const User = require('../model/user');
-// const {
-//   myFirebase,
-//   myFirestore
-// } = require('../config/firebaseNormal');
 
 //handling post request from signup page (registerandlogin.js)
 router.post('/verifyMail', function(req, res) {
@@ -52,7 +47,6 @@ router.post('/verifyMail', function(req, res) {
 router.get('/verifyMail/:id/:token', function(req, res) {
   var secret = 'fe1a1915a379f3be5394b64d14794932';
   var payload = jwt.decode(req.params.token, secret);
-  // user.findOneAndUpdate({_id:payload.id}, { isVerified: true });
   if (payload.endDate < Date.now()) {
     res.send('INVALID LINK');
   } else {
@@ -71,21 +65,5 @@ router.get('/verifyMail/:id/:token', function(req, res) {
     });
   }
 });
-
-// router.get('/addToChat', function(req, res) {
-//   myFirestore
-//     .collection('users')
-//     .doc(String(req.user._id))
-//     .set({
-//       id: String(req.user._id),
-//       nickname: req.user.local.username,
-//       contacts: []
-//     })
-//     .then(data =>
-//       console.log(data));
-//   res.render('profile.ejs', {
-//     user: req.user
-//   });
-// });
 
 module.exports = router;

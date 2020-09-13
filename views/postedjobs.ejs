@@ -51,8 +51,9 @@
   form {
     display: inline;
   }
-  .pointer{
-      cursor: pointer;
+
+  .pointer {
+    cursor: pointer;
   }
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
@@ -87,26 +88,31 @@
                     <td class="cen"><%=job.job_published.toDateString()%></td>
                     <td class="cen"><%=job.applicants_accepted%></td>
                     <td class="cen"><%=job.intake-job.applicants_accepted%></td>
-
+                    <%if ((job.intake-job.applicants_accepted)>0){%>
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
                       <input name='job_id' style='display:none' value='<%=job._id%>'>
                       <td class="cen pointer" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
                         View
                       </td>
                     </form>
+                    <%} else {%>
+                    <td class="cen" style="text-decoration: underline;color:white;">
+
+                    </td>
+                    <%}%>
                     <td class="cen">
                       <form id="view<%=job._id%>" method='POST' action="/internship/viewinternship">
-                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                        <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
-                      </form>
-                      <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
-                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                        <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
-                      </form>
-                      <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
-                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                        <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
-                      </form>
+                    <input name='job_id' style='display:none' value='<%=job._id%>'>
+                    <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
+                    </form>
+                    <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
+                      <input name='job_id' style='display:none' value='<%=job._id%>'>
+                      <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
+                    </form>
+                    <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
+                      <input name='job_id' style='display:none' value='<%=job._id%>'>
+                      <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
+                    </form>
                     </td>
                   </tr>
                   <%}})%>
@@ -138,26 +144,31 @@
                     <td class="cen"><%=job.job_published.toDateString()%></td>
                     <td class="cen"><%=job.applicants_accepted%></td>
                     <td class="cen"><%=job.intake-job.applicants_accepted%></td>
-                    <!-- <td class="cen"><a href="#">View</a></td> -->
+                    <%if ((job.intake-job.applicants_accepted)>0){%>
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
                       <input name='job_id' style='display:none' value='<%=job._id%>'>
                       <td class="cen pointer" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
                         View
                       </td>
                     </form>
+                    <%} else {%>
+                    <td class="cen" style="text-decoration: underline;color:white;">
+
+                    </td>
+                    <%}%>
                     <td class="cen">
                       <form id="view<%=job._id%>" method='POST' action="/internship/viewinternship">
-                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                        <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
-                      </form>
-                      <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
-                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                        <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
-                      </form>
-                      <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
-                        <input name='job_id' style='display:none' value='<%=job._id%>'>
-                        <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
-                      </form>
+                    <input name='job_id' style='display:none' value='<%=job._id%>'>
+                    <i id='<%=job._id%>' onclick='view(this)' style="color:black" class="far fa-eye options"></i>
+                    </form>
+                    <form id="edit<%=job._id%>" method='POST' action="/internship/editintershipview">
+                      <input name='job_id' style='display:none' value='<%=job._id%>'>
+                      <i id='<%=job._id%>' onclick='edit(this)' style="color:blue" class="far fa-edit options"></i>
+                    </form>
+                    <form id="delete<%=job._id%>" method='POST' action="/internship/deleteinternship">
+                      <input name='job_id' style='display:none' value='<%=job._id%>'>
+                      <i id='<%=job._id%>' onclick='del(this)' style="color:red" class="far fa-trash-alt options"></i>
+                    </form>
                     </td>
                   </tr>
                   <%}})%>

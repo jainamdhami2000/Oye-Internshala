@@ -1,39 +1,39 @@
 <%-include('../partials/admin-header')%>
 <style>
-    .hi {
-        text-align: left;
-        color: blue;
-        font-size: 20px;
-        text-decoration: underline;
-    }
+  .hi {
+    text-align: left;
+    color: blue;
+    font-size: 20px;
+    text-decoration: underline;
+  }
 
-    .h10 {
-        font-family: 'Courier New', Courier, monospace;
-        text-align: center;
-        text-decoration: underline;
-    }
+  .h10 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    text-decoration: underline;
+  }
 
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-    td,
-    th {
-        border-collapse: collapse;
-        text-align: left;
-        padding: 8px;
-    }
+  td,
+  th {
+    border-collapse: collapse;
+    text-align: left;
+    padding: 8px;
+  }
 
-    .h4 {
-        size: 100px;
-        background-color: lightblue;
-    }
+  .h4 {
+    size: 100px;
+    background-color: lightblue;
+  }
 
-    .h5 {
-        size: 50px;
-    }
+  .h5 {
+    size: 50px;
+  }
 </style>
 <link rel="stylesheet" type="text/css" href="css/custom.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -41,48 +41,45 @@
 <link href="assets/css/material-kit.css" rel="stylesheet" />
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-        <div class="container">
-            <div class="row">
-                <div class="ml-auto mr-auto">
-                    <div class="card card-signup">
-                        <div class="card-body">
-                            <h3 class="card-title text-center">Unverified Trainers</h3>
-                            <div class="h3">
-                                <table>
-                                    <tr class="h4">
-                                        <th style="background-color: lightblue;">Trainer Name</th>
-                                        <th style="background-color: lightblue;">Email</th>
-                                        <th style="background-color: lightblue;">Company Name</th>
-
-                                        <th style="background-color: lightblue;">More Info.</th>
-
-                                    </tr>
-                                    <%unverifiedemployers.forEach(employer=>{%>
-                                    <tr class="h5">
-                                        <td><%=employer.FirstName%> <%=employer.LastName%> </td>
-                                        <td><%=employer.Email%></td>
-                                        <td><%=employer.CompanyName%></td>
-
-                                        <form id="employer<%=employer._id%>" method='POST' action="/admin/unverifiedtrainer">
-                                            <input name='employer_id' style='display:none' value='<%=employer._id%>'>
-                                            <td style="text-decoration: underline;
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <div class="card-body">
+              <h3 class="card-title text-center">Unverified Trainers</h3>
+              <div class="h3">
+                <table>
+                  <tr class="h4">
+                    <th style="background-color: lightblue;">Trainer Name</th>
+                    <th style="background-color: lightblue;">Email</th>
+                    <th style="background-color: lightblue;">Company Name</th>
+                    <th style="background-color: lightblue;">More Info.</th>
+                  </tr>
+                  <%unverifiedemployers.forEach(employer=>{%>
+                  <tr class="h5">
+                    <td><%=employer.FirstName%> <%=employer.LastName%> </td>
+                    <td><%=employer.Email%></td>
+                    <td><%=employer.CompanyName%></td>
+                    <form id="employer<%=employer._id%>" method='POST' action="/admin/unverifiedtrainer">
+                      <input name='employer_id' style='display:none' value='<%=employer._id%>'>
+                      <td style="text-decoration: underline;
                       color:red;" id='<%=employer._id%>' onclick='details(this)'><a href="#">View details</a></td>
-                                        </form>
-                                    </tr>
-                                    <%})%>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </form>
+                  </tr>
+                  <%})%>
+                </table>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </body>
 <%-include('../partials/footer')%>
 <script>
-    function details(input) {
-        document.getElementById("employer" + input.id).submit();
-    }
+  function details(input) {
+    document.getElementById("employer" + input.id).submit();
+  }
 </script>

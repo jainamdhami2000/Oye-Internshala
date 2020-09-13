@@ -181,7 +181,6 @@ module.exports = function(app, passport) {
 
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      // successRedirect: '/profile',
       failureRedirect: '/login-stud'
     }),
     function(req, res) {
@@ -204,7 +203,6 @@ module.exports = function(app, passport) {
   // the callback after google has authenticated the user
   app.get('/auth/google/oye-internshala',
     passport.authenticate('google', {
-      // successRedirect: '/profile',
       failureRedirect: '/login-stud'
     }),
     function(req, res) {
@@ -227,7 +225,6 @@ module.exports = function(app, passport) {
   // the callback after github has authenticated the user
   app.get('/auth/github/callback',
     passport.authenticate('github', {
-      // successRedirect: '/profile',
       failureRedirect: '/login-stud'
     }),
     function(req, res) {
@@ -245,21 +242,22 @@ module.exports = function(app, passport) {
 
   app.get('/auth/linkedin', passport.authenticate('linkedin'));
 
-  app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-    // successRedirect: '/profile',
-    failureRedirect: '/login-stud'
-  }), function(req, res) {
-    // Successful authentication, redirect home.
-    if (req.flash('message') == 'Login') {
-      if (req.user.isEmployer) {
-        res.redirect('/profile/employer');
-      } else if (req.user.isStudent) {
-        res.redirect('/profile/student');
+  app.get('/auth/linkedin/callback',
+    passport.authenticate('linkedin', {
+      failureRedirect: '/login-stud'
+    }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      if (req.flash('message') == 'Login') {
+        if (req.user.isEmployer) {
+          res.redirect('/profile/employer');
+        } else if (req.user.isStudent) {
+          res.redirect('/profile/student');
+        }
+      } else {
+        res.redirect('/signup2-stud');
       }
-    } else {
-      res.redirect('/signup2-stud');
-    }
-  });
+    });
 };
 
 function isLoggedIn(req, res, next) {

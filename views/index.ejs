@@ -23,42 +23,6 @@
     <div class="section text-center">
       <div class="row">
         <div class="col-md-12 ml-auto mr-auto" style="margin-top:50px;">
-          <%# <div class="col-md-6 col-sm-12">
-          <a href="/internship">
-            <div class="card  mx-auto Card ">
-              <div class="card-body " style="text-align: center">
-                <img src="main/eng-internships.png" alt="" class="Img">
-                <p>Internships</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="card mx-auto Card">
-            <div class="card-body" style="text-align: center">
-              <img src="main/std-profile/Apply.svg" alt="" class="Img">
-              <p>Job Employment</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="card mx-auto Card">
-            <div class="card-body" style="text-align: center">
-              <img src="main/volunteer.png" alt="" class="Img">
-              <p>Volunteering Services</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <a href="/courses">
-            <div class="card mx-auto Card">
-              <div class="card-body" style="text-align: center">
-                <img src="main/teaching.png" alt="" class="Img">
-                <p>Courses</p>
-              </div>
-            </div>
-          </a>
-        </div> %>
           <div class="Card1">
             <h2 style="text-align:center"> Select the One Which Suits you Best </h2>
 
@@ -163,22 +127,22 @@
                     <form id='courseadvanced_excel' action="/search/course" method="post">
                       <div id='advanced_excel' onclick="course(this)"><a href="#"><img src="/main/home-img/advanced_excel.svg" width="100px" alt="advanced_excel" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Advanced Excel" style="display:none">
-                    <h5> Advanced Excel </h5>
+                      <h5> Advanced Excel </h5>
                     </form>
                     <form id='courseautocad' action="/search/course" method="post">
                       <div id='autocad' onclick="course(this)"><a href="#"><img src="/main/home-img/autocad.svg" width="100px" alt="autocad" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Autocad" style="display:none">
-                    <h5> Autocad </h5>
+                      <h5> Autocad </h5>
                     </form>
                     <form id='coursecreative_writing' action="/search/course" method="post">
                       <div id='creative_writing' onclick="course(this)"><a href="#"><img src="/main/home-img/creative_writing.svg" width="100px" alt="creative_writing" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Creative Writing" style="display:none">
-                    <h5> Creative Writing </h5>
+                      <h5> Creative Writing </h5>
                     </form>
                     <form id='coursedigital_marketing' action="/search/course" method="post">
                       <div id='digital_marketing' onclick="course(this)"><a href="#"><img src="/main/home-img/digital_marketing.svg" width="100px" alt="digital_marketing" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Digital Marketing" style="display:none">
-                    <h5> Digital Marketing </h5>
+                      <h5> Digital Marketing </h5>
                     </form>
                   </center>
                 </div>
@@ -189,22 +153,22 @@
                     <form id='courseethical_hacking' action="/search/course" method="post">
                       <div id='ethical_hacking' onclick="course(this)"><a href="#"><img src="/main/home-img/ethical_hacking.svg" width="100px" alt="ethical_hacking" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Ethical Hacking" style="display:none">
-                    <h5> Ethical Hacking </h5>
+                      <h5> Ethical Hacking </h5>
                     </form>
                     <form id='coursemachine_learning' action="/search/course" method="post">
                       <div id='machine_learning' onclick="course(this)"><a href="#"><img src="/main/home-img/machine_learning.svg" width="100px" alt="machine_learning" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Machine Learning" style="display:none">
-                    <h5> Machine Learning </h5>
+                      <h5> Machine Learning </h5>
                     </form>
                     <form id='courseprogramming_with_python' action="/search/course" method="post">
                       <div id='programming_with_python' onclick="course(this)"><a href="#"><img src="/main/home-img/programming_with_python.svg" width="100px" alt="programming_with_python" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Programming with Python" style="display:none">
-                    <h5> Programming with Python </h5>
+                      <h5> Programming with Python </h5>
                     </form>
                     <form id='courseweb_development' action="/search/course" method="post">
                       <div id='web_development' onclick="course(this)"><a href="#"><img src="/main/home-img/web_development.svg" width="100px" alt="web_development" class="clip-circle"></a></div>
                       <input type="text" id="category" name="job_category" value="Web Development" style="display:none">
-                    <h5> Web Development </h5>
+                      <h5> Web Development </h5>
                     </form>
                   </center>
                 </div>
@@ -225,7 +189,6 @@
     }
     document.getElementById("job" + input.id).submit();
   }
-
   function course(input) {
     document.getElementById("course" + input.id).submit();
   }

@@ -58,12 +58,6 @@ const userSchema = new mongoose.Schema({
   admin_reject: Boolean,
   CompanyDescription: String,
   resume:Object
-  // internapplications:[mongoose.Types.ObjectId],
-  // jobapplications:[mongoose.Types.ObjectId],
-  // acceptedinternships:[mongoose.Types.ObjectId],
-  // acceptedjobs:[mongoose.Types.ObjectId],
-  // postedinternships:[mongoose.Types.ObjectId],
-  // postedjobs:[mongoose.Types.ObjectId]
 });
 
 userSchema.methods.generateHash = function(password) {

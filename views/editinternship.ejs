@@ -1,9 +1,5 @@
 <%-include('partials/header')%>
 <style media="screen">
-  /*.bmd-form-group {*/
-  /*  padding-top: 20px*/
-  /*}*/
-
   .form-group {
     margin-bottom: 10px
   }
@@ -72,81 +68,80 @@
                         <input name="apply_last" type="text" class="form-control datepicker" value="<%= internship.apply_last.getUTCMonth()+1%>/<%= internship.apply_last.getUTCDate()%>/<%= internship.apply_last.getUTCFullYear()%>" readonly>
                       </div>
 
-                    <div class="form-group form-item">
-                      <h4>Requirements</h4>
-                      <div class="input-group ">
-                        <textarea required name='requirements' type="text" class="form-control" rows="4" readonly><%= internship.requirements %></textarea>
+                      <div class="form-group form-item">
+                        <h4>Requirements</h4>
+                        <div class="input-group ">
+                          <textarea required name='requirements' type="text" class="form-control" rows="4" readonly><%= internship.requirements %></textarea>
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="form-group form-item">
-                      <h4>Intake</h4>
-                      <div class="input-group ">
-                        <input name="intake" required type="number" class="form-control" value="<%= internship.intake %>">
+                      <div class="form-group form-item">
+                        <h4>Intake</h4>
+                        <div class="input-group ">
+                          <input name="intake" required type="number" class="form-control" value="<%= internship.intake %>">
+                        </div>
                       </div>
-                    </div>
 
-                    <%if (internship.paid){%>
+                      <%if (internship.paid){%>
 
-                    <div class="form-group form-item">
-                      <h4>Stipened</h4>
-                      <div class="input-group ">
-                        <input name="job_stipened" type="number" class="form-control" value="<%= internship.job_stipened %>" readonly>
+                      <div class="form-group form-item">
+                        <h4>Stipened</h4>
+                        <div class="input-group ">
+                          <input name="job_stipened" type="number" class="form-control" value="<%= internship.job_stipened %>" readonly>
+                        </div>
                       </div>
-                    </div>
 
-                    <%}%>
+                      <%}%>
 
                     <%if (internship.onsite){%>
 
-                    <div class="form-group form-item">
-                      <h4>Select Location</h4>
-                      <div class="input-group ">
-                        <select name='job_location' id="loc" class="form-control selectpicker" data-style="select-with-transition" data-size="7" value='<%=internship.job_location%>' selected readonly>
-                        </select>
+                      <div class="form-group form-item">
+                        <h4>Select Location</h4>
+                        <div class="input-group ">
+                          <select name='job_location' id="loc" class="form-control selectpicker" data-style="select-with-transition" data-size="7" value='<%=internship.job_location%>' selected readonly>
+                          </select>
+                        </div>
                       </div>
-                    </div>
 
-                    <%}%>
+                      <%}%>
 
 
                     <%if (typeof(internship.Question1) != 'undefined'){%>
 
-                    <div class="form-group form-item">
-                      <h4>Question 1</h4>
-                      <div class="input-group ">
-                        <input name="question1" type="text" class="form-control" value="<%= internship.Question1 %>" readonly>
+                      <div class="form-group form-item">
+                        <h4>Question 1</h4>
+                        <div class="input-group ">
+                          <input name="question1" type="text" class="form-control" value="<%= internship.Question1 %>" readonly>
+                        </div>
                       </div>
-                    </div>
 
-                    <%}%>
+                      <%}%>
 
                 <%if (typeof(internship.Question2) != 'undefined'){%>
 
-                    <div class="form-group form-item">
-                      <h4>Question 2</h4>
-                      <div class="input-group ">
-                        <input name="question2" type="text" class="form-control" value="<%= internship.Question2 %>" readonly>
+                      <div class="form-group form-item">
+                        <h4>Question 2</h4>
+                        <div class="input-group ">
+                          <input name="question2" type="text" class="form-control" value="<%= internship.Question2 %>" readonly>
+                        </div>
                       </div>
-                    </div>
 
-                    <%}%>
+                      <%}%>
 
                 <%if (typeof(internship.Question3) != 'undefined'){%>
 
-                    <div class="form-group form-item">
-                      <h4>Question 3</h4>
-                      <div class="input-group ">
-                        <input name="question3" type="text" class="form-control" value="<%= internship.Question3 %>" readonly>
+                      <div class="form-group form-item">
+                        <h4>Question 3</h4>
+                        <div class="input-group ">
+                          <input name="question3" type="text" class="form-control" value="<%= internship.Question3 %>" readonly>
+                        </div>
                       </div>
-                    </div>
 
-                    <%}%>
+                      <%}%>
 
               <div class="text-center">
                 <button type='submit' class="btn btn-info btn-round">EDIT</button>
               </div>
-
               </form>
             </div>
           </div>
@@ -160,6 +155,6 @@
 
 <script type="text/javascript">
     var city = '<%=internship.job_location%>';
-</script>
-<script src="/js/editinternship.js" charset="utf-8"></script>
-<%-include('partials/footer')%>
+                      </script>
+                      <script src="/js/editinternship.js" charset="utf-8"></script>
+                      <%-include('partials/footer')%>

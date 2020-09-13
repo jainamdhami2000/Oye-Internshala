@@ -15,54 +15,50 @@
                   <h5>Company Name: <%=job.company_name%></h5>
                   <div class="float-container1">
 
-                        <div class="float-child3">
-                          <h4>Start Date</h4>
-                            <div><%=job.start_date.toDateString()%>
+                    <div class="float-child3">
+                      <h4>Start Date</h4>
+                      <div><%=job.start_date.toDateString()%>
+                      </div>
+                    </div>
+                    <div class="float-child3">
+                      <h4>Duration</h4>
+                      <div><%=job.job_duration%></div>
+                    </div>
+                    <div class="float-child3">
+                      <h4>Salary</h4>
+                      <div><%=job.job_stipened%></div>
+                    </div>
+                    <div class="float-child3">
+                      <h4>Apply By</h4>
+                      <div><%=job.apply_last.toDateString()%>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="float-child3">
-                  <h4>Duration</h4>
-                  <div><%=job.job_duration%></div>
-                </div>
-
-                <div class="float-child3">
-                  <h4>Salary</h4>
-
-                  <div><%=job.job_stipened%></div>
-
-                        </div>
-
-                        <div class="float-child3">
-                          <h4>Apply By</h4>
-                            <div><%=job.apply_last.toDateString()%>
-                </div>
               </div>
+            </div>
+            <div style="padding: 20px;" class="">
+              <h3>About OYE India</h3>
+              <p>
+                <a href="/">Homepage</a><br>
+                <%=user.CompanyDescription%>
+              </p>
+              <h3>About the job</h3>
+              <p>
+                <%=job.job_content%>
+              </p>
+              <center>
+                <form action="/admin/jobverification" method="post">
+                  <input style='display:none' type="text" name="job_id" value="<%=job._id%>">
+                  <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
+                  <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
+                </form>
+              </center>
             </div>
           </div>
         </div>
       </div>
-      <div style="padding: 20px;" class="">
-        <h3>About OYE India</h3>
-        <p>
-          <a href="/">Homepage</a><br>
-          <%=user.CompanyDescription%>
-        </p>
-        <h3>About the job</h3>
-        <p>
-          <%=job.job_content%>
-        </p>
-        <center>
-          <form action="/admin/jobverification" method="post">
-            <input style='display:none' type="text" name="job_id" value="<%=job._id%>">
-            <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
-            <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
-          </form>
-        </center>
-      </div>
     </div>
-  </div>
-  </div>
-  </div>
   </div>
 </body>
 <%-include('../partials/footer')%>
