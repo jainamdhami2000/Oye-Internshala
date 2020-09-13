@@ -1,12 +1,33 @@
 <%-include('partials/header')%>
 
-<br>
-<br>
-<form action="verify/verifyMail" method="POST">
-  <label for="">You need to verify your Email-address</label>
-  <input type="hidden" name="email" value="<%= user.Email %>" />
-  <br>
-  <input type="submit" value="Verify mail" /><br>
-</form>
+<%-include('partials/header')%>
+
+<body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
+  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto mr-auto">
+          <div class="card card-signup">
+            <div class="card-body">
+                <div class="jumbotron" style="background-color: white; padding-top:10px; padding-bottom:10px; margin-bottom: 0">
+                  <h1 class="display-4" style="text-align:center">Almost done!</h1>
+                  <p class="lead">You need to verify your Email-address</p>
+                  <hr class="my-4">
+                  <p class="lead">
+                      <center>
+                          <form class="" action="verify/verifyMail" method="POST">
+                             <input type="hidden" name="email" value="<%= user.Email %>" />
+                             <input type="submit" class="btn btn-info btn-block" style="color:white" value="Verify mail">
+                          </form>
+                      </center>
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 
 <%-include('partials/footer')%>
