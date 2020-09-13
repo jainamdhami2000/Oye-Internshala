@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/searchcourse', isLoggedIn, function(req, res) {
+router.get('/searchcourse', function(req, res) {
   if (req.user.isStudent) {
     Applicant.find({
       user_id: req.user._id

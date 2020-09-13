@@ -6,8 +6,7 @@ const searchRouter = express.Router();
 const Job = require('../model/job');
 const Applicant = require('../model/applicant');
 
-searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
-  var q = req.body.searchInput;
+searchRouter.post('/internship', function(req, res, next) {
   var query = {};
   query.$and = [];
   param = {};
@@ -68,9 +67,13 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
     admin_accept: true
   });
   console.log(param);
-  Applicant.find({
-    user_id: req.user._id
-  }, (err, applicants) => {
+  var q = {};
+  if (req.user != undefined) {
+    q = {
+      user_id: req.user._id
+    };
+  }
+  Applicant.find(q, (err, applicants) => {
     var appids = [];
     var unappliedjobs = [];
     applicants.forEach((applicant) => {
@@ -80,13 +83,17 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
       if (err) {
         console.log(err);
       } else {
-        result.forEach(job => {
-          if (appids.includes(String(job._id))) {
+        if (req.user != undefined) {
+          result.forEach(job => {
+            if (appids.includes(String(job._id))) {
 
-          } else {
-            unappliedjobs.push(job);
-          }
-        });
+            } else {
+              unappliedjobs.push(job);
+            }
+          });
+        } else {
+          unappliedjobs = result;
+        }
         console.log(unappliedjobs);
         res.render('getintern', {
           user: req.user,
@@ -98,8 +105,7 @@ searchRouter.post('/internship', isLoggedIn, function(req, res, next) {
   });
 });
 
-searchRouter.post('/course', isLoggedIn, function(req, res, next) {
-  var q = req.body.searchInput;
+searchRouter.post('/course', function(req, res, next) {
   var query = {};
   query.$and = [];
   param = {};
@@ -114,9 +120,13 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
     jobtype: 'Course'
   });
   console.log(param);
-  Applicant.find({
-    user_id: req.user._id
-  }, (err, applicants) => {
+  var q = {};
+  if (req.user != undefined) {
+    q = {
+      user_id: req.user._id
+    };
+  }
+  Applicant.find(q, (err, applicants) => {
     var appids = [];
     var unappliedjobs = [];
     applicants.forEach((applicant) => {
@@ -126,13 +136,17 @@ searchRouter.post('/course', isLoggedIn, function(req, res, next) {
       if (err) {
         console.log(err);
       } else {
-        result.forEach(job => {
-          if (appids.includes(String(job._id))) {
+        if (req.user != undefined) {
+          result.forEach(job => {
+            if (appids.includes(String(job._id))) {
 
-          } else {
-            unappliedjobs.push(job);
-          }
-        });
+            } else {
+              unappliedjobs.push(job);
+            }
+          });
+        } else {
+          unappliedjobs = result;
+        }
         res.render('getcourse', {
           user: req.user,
           jobs: unappliedjobs,

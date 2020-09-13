@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/searchintern', isLoggedIn, function(req, res) {
+router.get('/searchintern', function(req, res) {
   if (req.user.isStudent) {
     Applicant.find({
       user_id: req.user._id
