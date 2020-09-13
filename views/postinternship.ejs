@@ -4,56 +4,10 @@
   /*  padding-top: 20px*/
   /*}*/
 
-  .form-group {
-    margin-bottom: 10px
-  }
 
-  h4 {
-    margin: auto 0;
-  }
-
-  .viewSite {
-    display: none;
-  }
-
-  .viewPaid {
-    display: none;
-  }
-  .noDisplay{
-      display: none;
-  }
-  .togglebutton label{
-      cursor: default;
-  }
-  .toggle{
-      cursor: pointer;
-  }
-  .bmd-form-group {
-    padding-top: 20px
-  }
-
-  .form-group {
-    margin-bottom: 10px
-  }
-
-  h4 {
-    margin: auto 0px;
-  }
-
-  .viewSite {
-    display: none;
-  }
-
-  .viewPaid {
-    display: none;
-  }
-
-  .Space{
-      margin:20px 0;
-  }
 
 </style>
-
+<link rel="stylesheet" type="text/css "href="/css/postinternship.css">
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
   <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
     <div class="container">
@@ -165,7 +119,7 @@
                           <div class="form-group form-item viewPaid">
                             <h4>Stipened</h4>
                             <div class="input-group ">
-                              <input name="job_stipened" type="number" class="form-control ">
+                              <input name="job_stipened" type="number" class="form-control stipendView">
                             </div>
                           </div>
 
@@ -355,68 +309,7 @@
 <script src="/js/cities.js" charset="utf-8"></script>
 <script type="text/javascript">
 
-var loc = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 'Kolkata'];
-loc.forEach((cities) => {
-  $('#loc1').append('<option value="' + cities + '">' + cities + '</option>');
-});
 
-    $("#MainToggle").on('click', function() {
-        $(".dispIntern").toggle();
-        $(".dispJob").toggle();
-    })
-    $(".togglebutton").off("click","**");
-
-  function details(input) {
-    document.getElementById("job" + input.id).submit();
-  }
-  const URL = "/admin/jobtitles"
-  var resArray = []
-  $.ajax({
-    url: URL,
-    method: "GET"
-  }).done(function(data) {
-    console.log(data);
-    window.resArray = data;
-    data.forEach((item) => {
-        $('.category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
-        $('.Category').append('<option value="' + item.job_category + '">' + item.job_category + '</option>');
-    })
-    });
-
-
-
-
-  $('.category').on('change', function() {
-    selectedcategory = $('.category').find(":selected").text();
-    $('.Title option').remove();
-    if ($('#category').find(":selected").val() === 'none') {
-      $('#subcategory').append("<option value='none'>-------------</option>");
-    } else {
-      resArray.forEach(item => {
-        if (item.job_category === selectedcategory) {
-          item.job_title.forEach(titles => {
-            $('.Title').append('<option value="' + titles + '">' + titles + '</option>');
-          });
-        }
-      });
-    }
-  });
-
-  $('.Category').on('change', function() {
-    selectedcategory = $('.Category').find(":selected").text();
-    $('.Title1 option').remove();
-    if ($('#category').find(":selected").val() === 'none') {
-      $('#subcategory').append("<option value='none'>-------------</option>");
-    } else {
-      resArray.forEach(item => {
-        if (item.job_category === selectedcategory) {
-          item.job_title.forEach(titles => {
-            $('.Title1').append('<option value="' + titles + '">' + titles + '</option>');
-          });
-        }
-      });
-    }
-  });
 </script>
 
 <%-include('partials/footer')%>

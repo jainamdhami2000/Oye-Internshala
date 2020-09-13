@@ -1,0 +1,61 @@
+/* .bmd-form-group {
+  padding-top: 20px
+}
+
+.form-group {
+  margin-bottom: 10px
+}
+
+h4 {
+  margin: auto 0px;
+}
+
+.viewSite {
+  display: none;
+}
+
+.viewPaid {
+  display: none;
+} */
+
+.form-group {
+  margin-bottom: 10px
+}
+
+h4 {
+  margin: auto 0;
+}
+
+
+.noDisplay{
+    display: none;
+}
+.togglebutton label{
+    cursor: default;
+}
+.toggle{
+    cursor: pointer;
+}
+.bmd-form-group {
+  padding-top: 20px
+}
+
+.form-group {
+  margin-bottom: 10px
+}
+
+h4 {
+  margin: auto 0px;
+}
+
+.viewSite {
+  display: none;
+}
+
+.viewPaid {
+  display: none;
+}
+
+.Space{
+    margin:20px 0;
+}
