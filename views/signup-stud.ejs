@@ -186,5 +186,11 @@
     </div>
   </div>
 </body>
+<script>
+var loc = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 'Kolkata'];
+loc.forEach((cities) => {
+  $('#loc1').append('<option value="' + cities + '">' + cities + '</option>');
+});
+</script>
 <script src="/js/cities.js" charset="utf-8"></script>
 <%-include('partials/footer')%>
