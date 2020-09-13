@@ -78,10 +78,14 @@
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text">
-                            <i class="material-icons">apartment</i>
+                            <span class="material-icons">
+                              location_city
+                            </span>
                           </span>
                         </div>
-                        <input required name='city' type="text" class="form-control" placeholder="City...">
+                        <select name='city' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Choose City" data-size="7">
+                          <option disabled> Choose City</option>
+                        </select>
                       </div>
                     </div>
                     <div class="text-center">
@@ -96,4 +100,6 @@
       </div>
     </div>
   </div>
+  <script src="/js/cities.js" charset="utf-8"></script>
+</body>
   <%-include('partials/footer')%>
