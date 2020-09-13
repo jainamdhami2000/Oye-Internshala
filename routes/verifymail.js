@@ -35,7 +35,9 @@ router.post('/verifyMail', function(req, res) {
         //For locally uncomment this
         let content = 'http://localhost:3000/verify/verifyMail/' + payload.id + '/' + token;
         mail(emailAddress, content);
-        res.send('Mail Sent Successfully');
+        res.render('mailSend',{
+          user:req.user
+        });
         val = true;
       }
     });
