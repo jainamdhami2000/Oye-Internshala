@@ -51,6 +51,9 @@
   form {
     display: inline;
   }
+  .pointer{
+      cursor: pointer;
+  }
 </style>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
@@ -84,10 +87,10 @@
                     <td class="cen"><%=job.job_published.toDateString()%></td>
                     <td class="cen"><%=job.applicants_accepted%></td>
                     <td class="cen"><%=job.intake-job.applicants_accepted%></td>
-                    <!-- <td class="cen"><a href="#">View</a></td> -->
+
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
                       <input name='job_id' style='display:none' value='<%=job._id%>'>
-                      <td class="cen" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
+                      <td class="cen pointer" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
                         View
                       </td>
                     </form>
@@ -138,7 +141,7 @@
                     <!-- <td class="cen"><a href="#">View</a></td> -->
                     <form id="job<%=job._id%>" method='POST' action="/internship/jobapplications">
                       <input name='job_id' style='display:none' value='<%=job._id%>'>
-                      <td class="cen" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
+                      <td class="cen pointer" style="text-decoration: underline;color:red;" id='<%=job._id%>' onclick='details(this)'>
                         View
                       </td>
                     </form>
