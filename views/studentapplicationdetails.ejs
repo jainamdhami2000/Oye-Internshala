@@ -37,11 +37,9 @@
                 <span class="Heading">College</span>
               </div>
               <div class="col-md-9">
-
                 <%=applicant.college%>
               </div>
             </div>
-
             <div class="row spacing">
               <div class="col-md-3">
                 <span class="Heading">City</span>
@@ -59,15 +57,9 @@
                   <div class="col-md-3">
                     <span class="Heading">Skills</span>
                   </div>
-
                   <div class="col-md-3">
                     <%=applicant.skills%> <br>
-                    <!-- Intermediate -->
                   </div>
-                  <!-- <div class="col-md-3">
-                HTML <br>
-                Intermediate
-              </div> -->
                 </div>
                 <%}%>
                         <%if(job.jobtype!='Course') {%>
@@ -92,7 +84,6 @@
                   </div>
                 </div>
                 <%}%>
-
             <div class="row spacing">
               <div class="col-md-3">
                 <span class="Heading">Applied on</span>
@@ -139,12 +130,7 @@
               <input type="submit" name="accept" id="accept" value="Accept" class="btn btn-success"></input>
               <input type="submit" name="reject" id="reject" value="Reject" class="btn btn-danger"></input>
             </form>
-            <%} else if (user.isStudent){%>
-
-            <%} else {%>
-
             <%}%>
-
             </center>
           </div>
         </div>

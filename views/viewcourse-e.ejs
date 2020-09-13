@@ -9,53 +9,49 @@
           <div class="MainCard">
             <div class="card">
               <div class="card-body">
-                  <% if (job.jobtype=='Internship'){%>
-                    <h5 class="card-title">INTERNSHIPS</h5>
-                    <%} else if (job.jobtype=='Job') {%>
-                        <h5 class="card-title">JOBS</h5>
-                    <%}%>
+                <% if (job.jobtype=='Internship'){%>
+                <h5 class="card-title">INTERNSHIPS</h5>
+                <%} else if (job.jobtype=='Job') {%>
+                <h5 class="card-title">JOBS</h5>
+                <%}%>
                 <h5>COURSE</h5>
                 <div class="container1">
                   <input name='job_id' style='display:none' value='<%=job._id%>'>
-                  <h4>Category: <%=job.job_category%></h4>
-                  <h4>Title: <%=job.job_title%></h4>
-                  <h5>University Name: <%=job.company_name%></h5>
-                  <div class="float-container1">
-
-                        <div class="float-child3">
-                          <h4>Start Date</h4>
-                            <div><%=job.start_date.toDateString()%></div>
-                </div>
-                <div class="float-child3">
-                  <h4>Duration</h4>
-                  <div><%=job.job_duration%></div>
-                </div>
-
-
-
-                        <div class="float-child3">
-                          <h4>Apply By</h4>
-                            <div><%=job.apply_last.toDateString()%>
+                <h4>Category: <%=job.job_category%></h4>
+                <h4>Title: <%=job.job_title%></h4>
+                <h5>University Name: <%=job.company_name%></h5>
+                <div class="float-container1">
+                  <div class="float-child3">
+                    <h4>Start Date</h4>
+                    <div><%=job.start_date.toDateString()%></div>
+                  </div>
+                  <div class="float-child3">
+                    <h4>Duration</h4>
+                    <div><%=job.job_duration%></div>
+                  </div>
+                  <div class="float-child3">
+                    <h4>Apply By</h4>
+                    <div><%=job.apply_last.toDateString()%>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div style="padding: 20px;" class="">
+            <h3>About OYE India</h3>
+            <p>
+              <a href="/">Homepage</a><br>
+              <%=user.CompanyDescription%>
+            </p>
+            <h3>About the course</h3>
+            <p>
+              <%=job.job_content%>
+            </p>
+          </div>
         </div>
       </div>
-      <div style="padding: 20px;" class="">
-        <h3>About OYE India</h3>
-        <p>
-          <a href="/">Homepage</a><br>
-          <%=user.CompanyDescription%>
-        </p>
-        <h3>About the course</h3>
-        <p>
-          <%=job.job_content%>
-        </p>
-      </div>
     </div>
-  </div>
-  </div>
   </div>
   </div>
 </body>
