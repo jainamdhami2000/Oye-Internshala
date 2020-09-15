@@ -63,6 +63,12 @@ searchRouter.post('/internship', function(req, res, next) {
       job_duration: req.body.duration
     });
   }
+  if (req.body.parttime == 'on') {
+    param.parttime = req.body.parttime;
+    query.$and.push({
+      parttime: true
+    });
+  }
   query.$and.push({
     admin_accept: true
   });

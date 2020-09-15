@@ -117,6 +117,11 @@ router.post('/postintern', isLoggedIn, (req, res) => {
       if (req.body.paid != 'on') {
         job.paid = true;
       }
+      if (req.body.parttime == 'on') {
+        job.parttime = true;
+      } else {
+        job.parttime = false;
+      }
       job.save();
     } else {
       job = new Job({
@@ -221,6 +226,9 @@ router.post('/apply', isLoggedIn, (req, res) => {
       if (typeof(job.Question3) != "undefined") {
         application.Question3 = sanitize(req.body.question3);
       }
+      if (job.jobtype == 'Job'){
+        application.parttime = job.parttime;
+      }
       application.save();
       job.no_of_applicants += 1;
       job.save();
@@ -265,6 +273,9 @@ router.post('/intern-details', isLoggedIn, (req, res) => {
       });
       if (job.onsite == true) {
         application.city = job.job_location;
+      }
+      if (job.jobtype == 'Job'){
+        application.parttime = job.parttime;
       }
       application.save();
       job.no_of_applicants += 1;
@@ -516,6 +527,7 @@ router.post('/editintership', isLoggedIn, (req, res) => {
       'start_date': req.body.start_date,
       'apply_last': req.body.apply_last,
       'requirements': req.body.requirements,
+      'parttime': req.body.parttime,
       'intake': req.body.intake,
       'job_stipened': req.body.job_stipened,
       'job_location': req.body.job_location,
