@@ -114,6 +114,9 @@ router.post('/postintern', isLoggedIn, (req, res) => {
       if (req.body.question3 != "") {
         job.Question3 = sanitize(req.body.question3);
       }
+      if (req.body.paid != 'on') {
+        job.paid = true;
+      }
       job.save();
     } else {
       job = new Job({

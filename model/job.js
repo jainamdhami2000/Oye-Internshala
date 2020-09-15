@@ -51,6 +51,7 @@ const jobSchema = new mongoose.Schema({
   Question2: String,
   Question3: String,
   course_link: String,
+  parttime:Boolean
 });
 
 module.exports = mongoose.model("Job", jobSchema);

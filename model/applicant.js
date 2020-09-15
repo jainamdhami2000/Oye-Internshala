@@ -30,6 +30,7 @@ const applicantSchema = new mongoose.Schema({
   Question3: String,
   course_link:String,
   isCourse: Boolean,
+  parttime:Boolean
 });
 
 module.exports = mongoose.model("Applicant", applicantSchema);
