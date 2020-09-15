@@ -9,7 +9,11 @@
           <div class="MainCard">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">INTERNSHIPS</h5>
+                  <% if (job.jobtype=='Internship'){%>
+                  <h5 class="card-title">INTERNSHIP</h5>
+                  <%} else if (job.jobtype=='Job') {%>
+                  <h5 class="card-title">JOB</h5>
+                  <%}%>
                 <div class="container1">
                   <input name='job_id' style='display:none' value='<%=job._id%>'>
                   <h4>Category: <%=job.job_category%></h4>
@@ -31,7 +35,12 @@
                 </div>
 
                 <div class="float-child3">
-                  <h4>Stipend</h4>
+
+                  <% if (job.jobtype=='Internship'){%>
+                 <h4>Stipend</h4>
+                  <%} else if (job.jobtype=='Job') {%>
+                  <h4>Salary</h4>
+                  <%}%>
                   <%if (job.paid==true){%>
                   <div><%=job.job_stipened%></div>
                   <%} else {%>
@@ -54,7 +63,11 @@
           <a href="/">Homepage</a><br>
           <%=empuser.CompanyDescription%>
         </p>
-        <h3>About the internship</h3>
+        <% if (job.jobtype=='Internship'){%>
+       <h3>About the internship</h3>
+        <%} else if (job.jobtype=='Job') {%>
+        <h3>About the job</h3>
+        <%}%>
         <p>
           <%=job.job_content%>
         </p>
