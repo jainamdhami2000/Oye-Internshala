@@ -1,19 +1,14 @@
 // jshint esversion:6
 
 require("dotenv").config();
-const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
-const morgan = require('morgan');
 const session = require('express-session');
-const http = require('http');
-const sanitize = require('mongo-sanitize');
 const configDB = require('./config/database');
 const verifymail = require('./routes/verifymail');
 const admin = require('./routes/admin');
@@ -44,7 +39,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
 app.use(session({
-  secret: process.env.SESSION_SECRET
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized:false,
+  resave:false
 }));
 
 app.use(passport.initialize());
@@ -60,44 +57,6 @@ app.use('/internship', internship);
 app.use('/courses', courses);
 app.use('/profile', profile);
 app.use('/search', search);
-
-// app.get('/profile-emp', function(req, res) {
-//   res.render('profile_emp');
-// });
-//
-// app.get('/profile-ngo', function(req, res) {
-//   res.render('profile_ngo');
-// });
-
-// app.get('/profile-stud', function(req, res) {
-//   res.render('profile_stud');
-// });
-
-// app.get('/hi', function(req, res) {
-//     if (req.user.isStudent) {
-//       Job.find({
-//         admin_accept: false,
-//       }, (err, jobs) => {
-//         res.render('getintern', {
-//           user: req.user,
-//           jobs: jobs
-//         });
-//       });
-//     } else {
-//       res.send('Login as Student');
-//     };
-// });
-
-app.get('/test', function(req, res) {
-  res.render('homepage');
-});
-app.get('/test2', function(req, res) {
-  res.render('postcourse');
-});
-app.get('/test3', function(req, res) {
-  res.render('getcourse');
-});
-
 
 app.listen(3000, function(err) {
   console.log('Server started on 3000');
