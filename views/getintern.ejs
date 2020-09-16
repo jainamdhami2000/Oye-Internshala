@@ -50,46 +50,52 @@
                           </select>
 
                         </div>
+                        <br>
                         <div>
-                          <div>
-                            <label for="work">Work from Home</label>
+                          <div class="Spacing1">
+
                             <%if (typeof(parameters.home) !='undefined' && parameters.home=='on'){%>
                             <input type="checkbox" name='home' id="home" checked>
                             <%} else {%>
                             <input type="checkbox" name='home'>
                             <%}%>
+                            <label class="Spacing2" for="work">Work from Home</label>
                           </div>
-                          <div>
-                            <label for="work">Internship</label>
+                          <div class="Spacing1">
+
                             <%if (typeof(parameters.internship) !='undefined' && parameters.internship=='on'){%>
                             <input type="checkbox" name='internship' id="internship" checked>
                             <%} else {%>
                             <input type="checkbox" name='internship'>
                             <%}%>
+                            <label class="Spacing2" for="work">Internship</label>
                           </div>
-                          <div>
-                            <label for="work">Job</label>
+                          <div class="Spacing1">
+
                             <%if (typeof(parameters.job) !='undefined' && parameters.job=='on'){%>
                             <input type="checkbox" name='job' id="job" checked>
                             <%} else {%>
                             <input type="checkbox" name='job'>
                             <%}%>
+                            <label class="Spacing2" for="work">Job</label>
                           </div>
-                          <div>
-                            <label for="parttime">Parttime</label>
+                          <div class="Spacing1">
+
                             <%if (typeof(parameters.parttime) !='undefined' && parameters.parttime=='on'){%>
                             <input type="checkbox" name='parttime' id="parttime" checked>
                             <%} else {%>
                             <input type="checkbox" name='parttime'>
                             <%}%>
+                            <label class="Spacing2" for="parttime">Parttime</label>
                           </div>
-                          <div>
-                            <label for="months">Duration</label>
+                          <div class="Spacing1">
+                            <label class="Spacing2" for="months">Duration</label>
                             <%if (typeof(parameters.duration) !='undefined'){%>
                             <input type="text" id="duration" name="duration" placeholder="State duration(in months)" value='<%=parameters.duration%>'>
                             <%} else {%>
                             <input type="text" id="duration" name="duration" placeholder="State duration(in months)">
                             <%}%>
+
                           </div>
                           <div>
                             <label for="date">Starting Date(or after)</label>
@@ -100,6 +106,7 @@
                             <%}%>
                           </div>
                           <div>
+                              <br>
                             <center><input type="submit" value="Search"></center>
                           </div>
                         </div>

@@ -7,6 +7,14 @@
   padding: 20px 20px;
 }
 
+.Spacing1{
+    margin: 10px 0;
+}
+
+.Spacing2{
+    margin-left: 5px;
+}
+
 .float-child {
   width: 20%;
   float: left;
