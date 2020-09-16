@@ -76,6 +76,14 @@
                             <%}%>
                           </div>
                           <div>
+                            <label for="parttime">Parttime</label>
+                            <%if (typeof(parameters.parttime) !='undefined' && parameters.parttime=='on'){%>
+                            <input type="checkbox" name='parttime' id="parttime" checked>
+                            <%} else {%>
+                            <input type="checkbox" name='parttime'>
+                            <%}%>
+                          </div>
+                          <div>
                             <label for="months">Duration</label>
                             <%if (typeof(parameters.duration) !='undefined'){%>
                             <input type="text" id="duration" name="duration" placeholder="State duration(in months)" value='<%=parameters.duration%>'>
@@ -171,7 +179,11 @@
                                       </div>
                                       <div class="float-child4">
                                         <h4>Type</h4>
-                                        <div><%=job.parttime%></div>
+                                        <%if (job.parttime==true){%>
+                                        <div>Part Time</div>
+                                        <%} else {%>
+                                        <div>Full Time</div>
+                                        <%}%>
                                       </div>
                                       <div class="float-child4">
                                           <h4>Apply By</h4>
