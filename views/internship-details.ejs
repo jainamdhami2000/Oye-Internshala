@@ -25,32 +25,62 @@
                     <%} else {%>
                     <h5>Location: <%=job.job_location%></h5>
                     <%}%>
-                        <div class="float-child3">
-                          <h4>Start Date</h4>
+                    <%if (job.jobtype=='Internship'){%>
+                    <div class="float-child3">
+                        <h4>Start Date</h4>
+                        <div><%=job.start_date.toDateString()%></div>
+                    </div>
+                    <div class="float-child3">
+                      <h4>Duration</h4>
+                      <div><%=job.job_duration%></div>
+                    </div>
+                    <div class="float-child3">
+                        <% if (job.jobtype=='Internship'){%>
+                       <h4>Stipend</h4>
+                        <%} else if (job.jobtype=='Job') {%>
+                        <h4>Salary</h4>
+                        <%}%>
+                      <%if (job.paid==true){%>
+                      <div><%=job.job_stipened%></div>
+                      <%} else {%>
+                      <div>Unpaid</div>
+                      <%}%>
+                    </div>
+                    <div class="float-child3">
+                        <h4>Apply By</h4>
+                    <div><%=job.apply_last.toDateString()%>
+
+                    <%} else {%>
+
+                        <div class="float-child4">
+                            <h4>Start Date</h4>
                             <div><%=job.start_date.toDateString()%></div>
-                </div>
-                <div class="float-child3">
-                  <h4>Duration</h4>
-                  <div><%=job.job_duration%></div>
-                </div>
-
-                <div class="float-child3">
-
-                  <% if (job.jobtype=='Internship'){%>
-                 <h4>Stipend</h4>
-                  <%} else if (job.jobtype=='Job') {%>
-                  <h4>Salary</h4>
-                  <%}%>
-                  <%if (job.paid==true){%>
-                  <div><%=job.job_stipened%></div>
-                  <%} else {%>
-                  <div>Unpaid</div>
-                  <%}%>
                         </div>
+                        <div class="float-child4">
+                          <h4>Duration</h4>
+                          <div><%=job.job_duration%></div>
+                        </div>
+                        <div class="float-child4">
+                          <h4>Salary</h4>
+                          <%if (job.paid==true){%>
+                          <div><%=job.job_stipened%></div>
+                          <%} else {%>
+                          <div>Unpaid</div>
+                          <%}%>
+                        </div>
+                        <div class="float-child4">
+                          <h4>Type</h4>
+                          <%if (job.parttime==true){%>
+                          <div>Part Time</div>
+                          <%} else {%>
+                          <div>Full Time</div>
+                          <%}%>
+                        </div>
+                        <div class="float-child4">
+                            <h4>Apply By</h4>
+                        <div><%=job.apply_last.toDateString()%>
 
-                        <div class="float-child3">
-                          <h4>Apply By</h4>
-                            <div><%=job.apply_last.toDateString()%>
+                    <%}%>
                 </div>
               </div>
             </div>
