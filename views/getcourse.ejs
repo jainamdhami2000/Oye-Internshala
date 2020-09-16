@@ -21,7 +21,9 @@
                           </script>
                           <%if (typeof(parameters.job_category) !='undefined'){%>
                           <select name='job_category' value='<%=parameters.job_category%>' id="type" class="form-control selectpicker" data-style="select-with-transition" data-size="7">
-                            <option value='<%=parameters.job_category%>' disabled> Choose Category</option>
+
+                            <option value='<%=parameters.job_category%>'> Choose Category</option>
+                            <option value='none'>---------------------</option>
                           </select>
                           <%} else {%>
                           <select name='job_category' id="type" class="form-control selectpicker" data-style="select-with-transition" title="Select course type" data-size="7">
@@ -43,7 +45,12 @@
             </div>
             <div class="row">
                 <div class="col-md-9 mx-auto">
-                  <%jobs.forEach(job=>{%>
+                  <%if (jobs.length==0){%>
+                          <div class='card' style='text-align:center'>
+                            <h1>No results to display</h1>
+                          </div>
+                          <%} else {%>
+                          <%jobs.forEach(job=>{%>
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title">COURSE</h5>
@@ -80,7 +87,7 @@
                               </div>
                             </div>
                           </div>
-                          <%})%>
+                          <%})}%>
                         </div>
                     </div>
                   </div>

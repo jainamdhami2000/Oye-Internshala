@@ -20,7 +20,6 @@
                             var searchCategory = '<%=parameters.job_category%>';
                             var searchTitle = '<%=parameters.job_title%>';
                           </script>
-
                           <select id="category" name='job_category' data-style="select-with-transition" title="Select course type" data-size="7">
                             <option disabled> Choose Category</option>
                             <option value='none'>-------------</option>
@@ -45,16 +44,16 @@
                           </script>
                           <%if (typeof(parameters.job_location) !='undefined'){%>
 
-                            <select name="job_location" id="loc" data-style="select-with-transition" title="Choose City" data-size="7">
-                              <option disabled> Choose City</option>
-                              <option value='none'>-------------</option>
-                            </select>
+                          <select name="job_location" id="loc" data-style="select-with-transition" title="Choose City" data-size="7">
+                            <option disabled> Choose City</option>
+                            <option value='none'>-------------</option>
+                          </select>
                           <%} else {%>
 
-                            <select name="job_location" id="loc1" data-style="select-with-transition" title="Choose City" data-size="7">
-                              <option disabled> Choose City</option>
-                              <option value='none'>-------------</option>
-                            </select>
+                          <select name="job_location" id="loc1" data-style="select-with-transition" title="Choose City" data-size="7">
+                            <option disabled> Choose City</option>
+                            <option value='none'>-------------</option>
+                          </select>
                           <%}%>
 
 
@@ -64,55 +63,55 @@
                           <div class="Spacing1">
 
                             <%if (typeof(parameters.home) !='undefined' && parameters.home=='on'){%>
-                            <input type="checkbox" name='home' id="home" checked>
-                            <%} else {%>
-                            <input type="checkbox" name='home'>
-                            <%}%>
+                          <input type="checkbox" name='home' id="home" checked>
+                          <%} else {%>
+                          <input type="checkbox" name='home'>
+                          <%}%>
                             <label class="Spacing2" for="work">Work from Home</label>
                           </div>
                           <div class="Spacing1">
 
                             <%if (typeof(parameters.internship) !='undefined' && parameters.internship=='on'){%>
-                            <input type="checkbox" name='internship' id="internship" checked>
-                            <%} else {%>
-                            <input type="checkbox" name='internship'>
-                            <%}%>
+                          <input type="checkbox" name='internship' id="internship" checked>
+                          <%} else {%>
+                          <input type="checkbox" name='internship'>
+                          <%}%>
                             <label class="Spacing2" for="work">Internship</label>
                           </div>
                           <div class="Spacing1">
 
                             <%if (typeof(parameters.job) !='undefined' && parameters.job=='on'){%>
-                            <input type="checkbox" name='job' id="job" checked>
-                            <%} else {%>
-                            <input type="checkbox" name='job'>
-                            <%}%>
+                          <input type="checkbox" name='job' id="job" checked>
+                          <%} else {%>
+                          <input type="checkbox" name='job'>
+                          <%}%>
                             <label class="Spacing2" for="work">Job</label>
                           </div>
                           <div class="Spacing1">
 
                             <%if (typeof(parameters.parttime) !='undefined' && parameters.parttime=='on'){%>
-                            <input type="checkbox" name='parttime' id="parttime" checked>
-                            <%} else {%>
-                            <input type="checkbox" name='parttime'>
-                            <%}%>
+                          <input type="checkbox" name='parttime' id="parttime" checked>
+                          <%} else {%>
+                          <input type="checkbox" name='parttime'>
+                          <%}%>
                             <label class="Spacing2" for="parttime">Parttime</label>
                           </div>
                           <div class="Spacing1">
                             <label class="Spacing2" for="months">Duration</label>
                             <%if (typeof(parameters.duration) !='undefined'){%>
-                            <input type="text" id="duration" name="duration" placeholder="State duration(in months)" value='<%=parameters.duration%>'>
-                            <%} else {%>
-                            <input type="text" id="duration" name="duration" placeholder="State duration(in months)">
-                            <%}%>
+                          <input type="text" id="duration" name="duration" placeholder="State duration(in months)" value='<%=parameters.duration%>'>
+                          <%} else {%>
+                          <input type="text" id="duration" name="duration" placeholder="State duration(in months)">
+                          <%}%>
 
                           </div>
                           <div>
                             <label for="date">Starting Date(or after)</label>
                             <%if (typeof(parameters.start_date) !='undefined' && parameters.start_date){%>
-                            <input type="date" id="date" name="start_date" placeholder="Choose date" value='<%=parameters.start_date%>'>
-                            <%} else {%>
-                            <input type="date" id="date" name="start_date" placeholder="Choose date">
-                            <%}%>
+                          <input type="date" id="date" name="start_date" placeholder="Choose date" value='<%=parameters.start_date%>'>
+                          <%} else {%>
+                          <input type="date" id="date" name="start_date" placeholder="Choose date">
+                          <%}%>
                           </div>
                           <div>
                               <br>
@@ -127,49 +126,50 @@
               </div>
               <div class="col-md-9">
                 <%if (jobs.length==0){%>
-                            <div class='card' style='text-align:center'>
-                              <h1>No results to display</h1>
-                            </div>
-                            <%} else {%>
-                            <%jobs.forEach(job=>{%>
-                            <div class="card">
-                              <div class="card-body">
-                                <% if (job.jobtype=='Internship'){%>
-                                <h5 class="card-title">INTERNSHIP</h5>
-                                <%} else if (job.jobtype=='Job') {%>
-                                <h5 class="card-title">JOB</h5>
-                                <%}%>
+                          <div class='card' style='text-align:center'>
+                            <h1>No results to display</h1>
+                          </div>
+                          <%} else {%>
+                          <%jobs.forEach(job=>{%>
+                          <%if (job.jobtype!='Course'){%>
+                          <div class="card">
+                            <div class="card-body">
+                              <% if (job.jobtype=='Internship'){%>
+                              <h5 class="card-title">INTERNSHIP</h5>
+                              <%} else if (job.jobtype=='Job') {%>
+                              <h5 class="card-title">JOB</h5>
+                              <%}%>
                                 <div class="container1">
                                   <form id="job<%=job._id%>" method='POST' action="/internship/view">
-                                <input name='job_id' style='display:none' value='<%=job._id%>'>
-                                <h4>Title: <%=job.job_title%></h4>
-                                <h5>Company Name: <%=job.company_name%></h5>
-                                <div class="float-container1">
-                                  <%if (job.onsite==false){%>
-                                  <h5>Work from Home</h5>
-                                  <%} else {%>
-                                  <h5>Location: <%=job.job_location%></h5>
-                                  <%}%>
+                              <input name='job_id' style='display:none' value='<%=job._id%>'>
+                              <h4>Title: <%=job.job_title%></h4>
+                              <h5>Company Name: <%=job.company_name%></h5>
+                              <div class="float-container1">
+                                <%if (job.onsite==false){%>
+                                <h5>Work from Home</h5>
+                                <%} else {%>
+                                <h5>Location: <%=job.job_location%></h5>
+                                <%}%>
                                   <%if (job.jobtype=='Internship'){%>
-                                  <div class="float-child3">
-                                      <h4>Start Date</h4>
-                                      <div><%=job.start_date.toDateString()%></div>
-                                  </div>
-                                  <div class="float-child3">
-                                    <h4>Duration</h4>
-                                    <div><%=job.job_duration%></div>
-                                  </div>
-                                  <div class="float-child3">
-                                      <% if (job.jobtype=='Internship'){%>
-                                     <h4>Stipend</h4>
-                                      <%} else if (job.jobtype=='Job') {%>
-                                      <h4>Salary</h4>
-                                      <%}%>
+                                <div class="float-child3">
+                                  <h4>Start Date</h4>
+                                  <div><%=job.start_date.toDateString()%></div>
+                                </div>
+                                <div class="float-child3">
+                                  <h4>Duration</h4>
+                                  <div><%=job.job_duration%></div>
+                                </div>
+                                <div class="float-child3">
+                                  <% if (job.jobtype=='Internship'){%>
+                                  <h4>Stipend</h4>
+                                  <%} else if (job.jobtype=='Job') {%>
+                                  <h4>Salary</h4>
+                                  <%}%>
                                     <%if (job.paid==true){%>
-                                    <div><%=job.job_stipened%></div>
-                                    <%} else {%>
-                                    <div>Unpaid</div>
-                                    <%}%>
+                                  <div><%=job.job_stipened%></div>
+                                  <%} else {%>
+                                  <div>Unpaid</div>
+                                  <%}%>
                                   </div>
                                   <div class="float-child3">
                                       <h4>Apply By</h4>
@@ -177,45 +177,45 @@
 
                                   <%} else {%>
 
-                                      <div class="float-child4">
-                                          <h4>Start Date</h4>
-                                          <div><%=job.start_date.toDateString()%></div>
-                                      </div>
-                                      <div class="float-child4">
-                                        <h4>Duration</h4>
-                                        <div><%=job.job_duration%></div>
-                                      </div>
-                                      <div class="float-child4">
-                                        <h4>Salary</h4>
-                                        <%if (job.paid==true){%>
-                                        <div><%=job.job_stipened%></div>
-                                        <%} else {%>
-                                        <div>Unpaid</div>
-                                        <%}%>
+                                  <div class="float-child4">
+                                    <h4>Start Date</h4>
+                                    <div><%=job.start_date.toDateString()%></div>
+                                  </div>
+                                  <div class="float-child4">
+                                    <h4>Duration</h4>
+                                    <div><%=job.job_duration%></div>
+                                  </div>
+                                  <div class="float-child4">
+                                    <h4>Salary</h4>
+                                    <%if (job.paid==true){%>
+                                    <div><%=job.job_stipened%></div>
+                                    <%} else {%>
+                                    <div>Unpaid</div>
+                                    <%}%>
                                       </div>
                                       <div class="float-child4">
                                         <h4>Type</h4>
                                         <%if (job.parttime==true){%>
-                                        <div>Part Time</div>
-                                        <%} else {%>
-                                        <div>Full Time</div>
-                                        <%}%>
+                                    <div>Part Time</div>
+                                    <%} else {%>
+                                    <div>Full Time</div>
+                                    <%}%>
                                       </div>
                                       <div class="float-child4">
                                           <h4>Apply By</h4>
                                       <div><%=job.apply_last.toDateString()%>
 
-                                  <%}%>
+                                    <%}%>
                                   </div>
                                   </div>
-                                  <div class="div" id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a></div>
-                          </div>
+                                  <div class="div" id='<%=job._id%>' onclick='details(this)'><a href="#">View details ></a>
+                                  </div>
+                                </div>
                       </form>
                     </div>
                   </div>
                 </div>
-                <%})%>
-                <%}%>
+                <%}})}%>
               </div>
             </div>
           </div>
