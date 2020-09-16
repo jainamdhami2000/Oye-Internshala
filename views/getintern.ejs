@@ -43,11 +43,20 @@
                           <script>
                             var locationc = '<%=parameters.job_location%>'
                           </script>
+                          <%if (typeof(parameters.job_location) !='undefined'){%>
 
-                          <select name="job_location" id="loc" data-style="select-with-transition" title="Choose City" data-size="7">
-                            <option disabled> Choose City</option>
-                            <option value='none'>-------------</option>
-                          </select>
+                            <select name="job_location" id="loc" data-style="select-with-transition" title="Choose City" data-size="7">
+                              <option disabled> Choose City</option>
+                              <option value='none'>-------------</option>
+                            </select>
+                          <%} else {%>
+
+                            <select name="job_location" id="loc1" data-style="select-with-transition" title="Choose City" data-size="7">
+                              <option disabled> Choose City</option>
+                              <option value='none'>-------------</option>
+                            </select>
+                          <%}%>
+
 
                         </div>
                         <br>

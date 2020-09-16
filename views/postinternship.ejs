@@ -310,8 +310,10 @@
         loc.forEach((cities) => {
             $('#loc1').append('<option value="' + cities + '">' + cities + '</option>');
         });
+        loc.forEach((cities) => {
+            $('#loc').append('<option value="' + cities + '">' + cities + '</option>');
+        });
     </script>
     <script src="/js/postintern.js" charset="utf-8"></script>
-    <script src="/js/cities.js" charset="utf-8"></script>
 </body>
 <%-include('partials/footer')%>
