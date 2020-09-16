@@ -91,6 +91,7 @@ router.post('/postcourse', isLoggedIn, (req, res) => {
     apply_last: sanitize(req.body.apply_last),
     requirements: sanitize(req.body.requirements),
     course_link: sanitize(req.body.job_link),
+    job_stipened:sanitize(req.body.price),
     jobtype: 'Course',
     user_id: req.user._id,
     company_name: req.user.CompanyName,
@@ -289,6 +290,7 @@ router.post('/editcourse', isLoggedIn, (req, res) => {
       'job_duration': req.body.job_duration,
       'start_date': req.body.start_date,
       'apply_last': req.body.apply_last,
+      'job_stipened': req.body.price,
       'requirements': req.body.requirements,
     }
   }, {
