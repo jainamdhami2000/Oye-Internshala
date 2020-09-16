@@ -26,6 +26,10 @@
                       <div><%=job.job_duration%></div>
                     </div>
                     <div class="float-child3">
+                      <h4>Price</h4>
+                      <div><%=job.job_stipened%></div>
+                    </div>
+                    <div class="float-child3">
                       <h4>Apply By</h4>
                       <div><%=job.apply_last.toDateString()%></div>
                     </div>
@@ -34,11 +38,6 @@
               </div>
             </div>
             <div style="padding: 20px;" class="">
-              <h3>About OYE India</h3>
-              <p>
-                <a href="/">Homepage</a><br>
-                <%=user.CompanyDescription%>
-              </p>
               <h3>About the Course</h3>
               <p>
                 <%=job.job_content%>
