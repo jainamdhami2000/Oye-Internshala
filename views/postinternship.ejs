@@ -3,313 +3,315 @@
 <link rel="stylesheet" type="text/css " href="/css/postinternship.css">
 
 <body class="signup-page sidebar-collapse" style="background-color:#848ccf;">
-  <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 ml-auto mr-auto">
-          <div class="card card-signup">
-            <div class="togglebutton hi">
-              <center>
-                <label class="hi" style="">
-                  Internships
-                  <input name='paid' type="checkbox">
-                  <span class="toggle" id="MainToggle"></span>
-                  Jobs
-                </label>
-              </center>
-            </div>
-            <div class="dispIntern">
-              <h2 class="card-title text-center">Add an Internship</h2>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-5 ml-auto">
-                    <img src="/main/postintern.png" alt="Post Internship" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
-                  </div>
-                  <div class="col-md-5 mr-auto">
-                    <form class="form" method="POST" action="/internship/postintern">
-                      <input type="text" name="job_type" value="Internship" style="display:none">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group form-item">
-                            <h4>Internship category</h4>
-                            <div class="input-group ">
-                              <select name='job_category' required class="Space category" data-style="select-with-transition" data-size="7">
-                                <option disabled> Choose Category</option>
-                              </select>
+    <div class="page-header header-filter" style=" background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div class="card card-signup">
+                        <div class="togglebutton hi">
+                            <center>
+                                <label class="hi" style="">
+                                    Internships
+                                    <input name='paid' type="checkbox">
+                                    <span class="toggle" id="MainToggle"></span>
+                                    Jobs
+                                </label>
+                            </center>
+                        </div>
+                        <div class="dispIntern">
+                            <h2 class="card-title text-center">Add an Internship</h2>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5 ml-auto">
+                                        <img src="/main/postintern.png" alt="Post Internship" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
+                                    </div>
+                                    <div class="col-md-5 mr-auto">
+                                        <form class="form" method="POST" action="/internship/postintern">
+                                            <input type="text" name="job_type" value="Internship" style="display:none">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-item">
+                                                        <h4>Internship category</h4>
+                                                        <div class="input-group ">
+                                                            <select name='job_category' required class="Space category" data-style="select-with-transition" data-size="7">
+                                                                <option disabled> Choose Category</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-item">
+                                                        <h4>Internship name</h4>
+                                                        <div class="input-group ">
+                                                            <select name='job_title' required class="Space Title" data-style="select-with-transition" data-size="7">
+                                                                <option disabled> Choose Category</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Description</h4>
+                                                <div class="input-group ">
+                                                    <input name="job_content" required type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4 style="margin-bottom:0;">Duration</h4>
+                                                (in months)
+                                                <div class="input-group ">
+                                                    <input name="job_duration" required type="number" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Start Date</h4>
+                                                <div class="input-group ">
+                                                    <input name="start_date" type="text" class="form-control datepicker">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Last date to apply</h4>
+                                                <div class="input-group ">
+                                                    <input name="apply_last" type="text" class="form-control datepicker">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Requirements</h4>
+                                                <div class="input-group ">
+                                                    <textarea required name='requirements' type="text" class="form-control" rows="4" id="exampleInputTextarea"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Intake</h4>
+                                                <div class="input-group ">
+                                                    <input name="intake" required type="number" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Type</h4>
+                                                <div class="togglebutton">
+                                                    <label>
+                                                        UnPaid
+                                                        <input name='paid' type="checkbox">
+                                                        <span class="toggle" id="PaidToggle"></span>
+                                                        Paid
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item viewPaid">
+                                                <h4>Stipened</h4>
+                                                <div class="input-group ">
+                                                    <input name="job_stipened" type="number" class="form-control stipendView">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Location</h4>
+                                                <div class="togglebutton">
+                                                    <label>
+                                                        Work From Home
+                                                        <input name='onsite' type="checkbox">
+                                                        <span class="toggle" id="SiteToggle"></span>
+                                                        Onsite
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item viewSite">
+                                                <h4>Select Location</h4>
+                                                <div class="input-group ">
+                                                    <select name='job_location' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                                                        <option disabled> Choose City</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Question 1</h4>
+                                                <div class="input-group ">
+                                                    <input name="question1" type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Question 2</h4>
+                                                <div class="input-group ">
+                                                    <input name="question2" type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Question 3</h4>
+                                                <div class="input-group ">
+                                                    <input name="question3" type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button type='submit' class="btn btn-info btn-round">ADD</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                        <div class="col-md-6">
-                          <div class="form-group form-item">
-                            <h4>Internship name</h4>
-                            <div class="input-group ">
-                              <select name='job_title' required class="Space Title" data-style="select-with-transition" data-size="7">
-                                <option disabled> Choose Category</option>
-                              </select>
+                        <div class="dispJob noDisplay">
+                            <h2 class="card-title text-center">Add a Job</h2>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5 ml-auto">
+                                        <form class="form" method="POST" action="/internship/postintern">
+                                            <input type="text" name="job_type" value="Job" style="display:none">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-item">
+                                                        <h4>Job category</h4>
+                                                        <div class="input-group ">
+                                                            <select name='job_category' required class="Space Category" data-style="select-with-transition" data-size="7">
+                                                                <option disabled> Choose Category</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group form-item">
+                                                        <h4>Job name</h4>
+                                                        <div class="input-group ">
+
+                                                            <select name='job_title' required class="Space Title1" data-style="select-with-transition" data-size="7">
+                                                                <option disabled> Choose Category</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Description</h4>
+                                                <div class="input-group ">
+                                                    <input name="job_content" required type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4 style="margin-bottom:0;">Duration</h4>
+                                                (in years)
+                                                <div class="input-group ">
+                                                    <input name="job_duration" required type="number" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Start Date</h4>
+                                                <div class="input-group ">
+                                                    <input name="start_date" required type="text" class="form-control datepicker">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Last date to apply</h4>
+                                                <div class="input-group ">
+                                                    <input name="apply_last" required type="text" class="form-control datepicker">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Requirements</h4>
+                                                <div class="input-group ">
+                                                    <textarea required name='requirements' type="text" class="form-control" rows="4" id="exampleInputTextarea"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Intake</h4>
+                                                <div class="input-group ">
+                                                    <input name="intake" required type="number" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Salary</h4>
+                                                <div class="input-group ">
+                                                    <input name="job_stipened" required type="number" class="form-control ">
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-group form-item">
+                                                <h4>Select Location</h4>
+                                                <div class="input-group ">
+                                                    <select name='job_location' required id="loc1" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                                                        <option disabled> Choose City</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item" style="padding-top:20px">
+                                                <h4>Type</h4>
+                                                <div class="togglebutton">
+                                                    <label>
+                                                        Full Time
+                                                        <input name='parttime' type="checkbox">
+                                                        <span class="toggle"></span>
+                                                        Part Time
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Question 1</h4>
+                                                <div class="input-group ">
+                                                    <input name="question1" type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Question 2</h4>
+                                                <div class="input-group ">
+                                                    <input name="question2" type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-item">
+                                                <h4>Question 3</h4>
+                                                <div class="input-group ">
+                                                    <input name="question3" type="text" class="form-control ">
+                                                </div>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button type='submit' class="btn btn-info btn-round">ADD</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-5 mr-auto">
+                                        <center>
+                                            <img src="/main/post-job.svg" alt="Post Internship" class="img-responsive" style="padding-bottom:100px;padding-top: 100px;margin-top: 10%;width:375px;">
+                                        </center>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Description</h4>
-                        <div class="input-group ">
-                          <input name="job_content" required type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4 style="margin-bottom:0;">Duration</h4>
-                        (in months)
-                        <div class="input-group ">
-                          <input name="job_duration" required type="number" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Start Date</h4>
-                        <div class="input-group ">
-                          <input name="start_date" type="text" class="form-control datepicker">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Last date to apply</h4>
-                        <div class="input-group ">
-                          <input name="apply_last" type="text" class="form-control datepicker">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Requirements</h4>
-                        <div class="input-group ">
-                          <textarea required name='requirements' type="text" class="form-control" rows="4" id="exampleInputTextarea"></textarea>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Intake</h4>
-                        <div class="input-group ">
-                          <input name="intake" required type="number" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Type</h4>
-                        <div class="togglebutton">
-                          <label>
-                            UnPaid
-                            <input name='paid' type="checkbox">
-                            <span class="toggle" id="PaidToggle"></span>
-                            Paid
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item viewPaid">
-                        <h4>Stipened</h4>
-                        <div class="input-group ">
-                          <input name="job_stipened" type="number" class="form-control stipendView">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Location</h4>
-                        <div class="togglebutton">
-                          <label>
-                            Work From Home
-                            <input name='onsite' type="checkbox">
-                            <span class="toggle" id="SiteToggle"></span>
-                            Onsite
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item viewSite">
-                        <h4>Select Location</h4>
-                        <div class="input-group ">
-                          <select name='job_location' id="loc" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
-                            <option disabled> Choose City</option>
-
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Question 1</h4>
-                        <div class="input-group ">
-                          <input name="question1" type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Question 2</h4>
-                        <div class="input-group ">
-                          <input name="question2" type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Question 3</h4>
-                        <div class="input-group ">
-                          <input name="question3" type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="text-center">
-                        <button type='submit' class="btn btn-info btn-round">ADD</button>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="dispJob noDisplay">
-              <h2 class="card-title text-center">Add a Job</h2>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-5 ml-auto">
-                    <img src="/main/postintern.png" alt="Post Internship" class="img-responsive" style="float:left; padding-bottom:100px;padding-top: 100px;margin-top: 10%;">
-                  </div>
-                  <div class="col-md-5 mr-auto">
-                    <form class="form" method="POST" action="/internship/postintern">
-                      <input type="text" name="job_type" value="Job" style="display:none">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group form-item">
-                            <h4>Job category</h4>
-                            <div class="input-group ">
-                              <select name='job_category' required class="Space Category" data-style="select-with-transition" data-size="7">
-                                <option disabled> Choose Category</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group form-item">
-                            <h4>Job name</h4>
-                            <div class="input-group ">
-
-                              <select name='job_title' required class="Space Title1" data-style="select-with-transition" data-size="7">
-                                <option disabled> Choose Category</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Description</h4>
-                        <div class="input-group ">
-                          <input name="job_content" required type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4 style="margin-bottom:0;">Duration</h4>
-                        (in years)
-                        <div class="input-group ">
-                          <input name="job_duration" required type="number" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Start Date</h4>
-                        <div class="input-group ">
-                          <input name="start_date" required type="text" class="form-control datepicker">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Last date to apply</h4>
-                        <div class="input-group ">
-                          <input name="apply_last" required type="text" class="form-control datepicker">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Requirements</h4>
-                        <div class="input-group ">
-                          <textarea required name='requirements' type="text" class="form-control" rows="4" id="exampleInputTextarea"></textarea>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Intake</h4>
-                        <div class="input-group ">
-                          <input name="intake" required type="number" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Salary</h4>
-                        <div class="input-group ">
-                          <input name="job_stipened" required type="number" class="form-control ">
-                        </div>
-                      </div>
-                      <br>
-                      <div class="form-group form-item">
-                        <h4>Select Location</h4>
-                        <div class="input-group ">
-                          <select name='job_location' required id="loc1" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
-                            <option disabled> Choose City</option>
-                          </select>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item" style="padding-top:20px">
-                        <h4>Type</h4>
-                        <div class="togglebutton">
-                          <label>
-                            Full Time
-                            <input name='parttime' type="checkbox">
-                            <span class="toggle"></span>
-                            Part Time
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Question 1</h4>
-                        <div class="input-group ">
-                          <input name="question1" type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Question 2</h4>
-                        <div class="input-group ">
-                          <input name="question2" type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="form-group form-item">
-                        <h4>Question 3</h4>
-                        <div class="input-group ">
-                          <input name="question3" type="text" class="form-control ">
-                        </div>
-                      </div>
-
-                      <div class="text-center">
-                        <button type='submit' class="btn btn-info btn-round">ADD</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <script>
-  var loc = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 'Kolkata'];
-  loc.forEach((cities) => {
-    $('#loc1').append('<option value="' + cities + '">' + cities + '</option>');
-  });
-  </script>
-  <script src="/js/postintern.js" charset="utf-8"></script>
-  <script src="/js/cities.js" charset="utf-8"></script>
+    <script>
+        var loc = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Hyderabad', 'Kolkata'];
+        loc.forEach((cities) => {
+            $('#loc1').append('<option value="' + cities + '">' + cities + '</option>');
+        });
+    </script>
+    <script src="/js/postintern.js" charset="utf-8"></script>
+    <script src="/js/cities.js" charset="utf-8"></script>
 </body>
 <%-include('partials/footer')%>

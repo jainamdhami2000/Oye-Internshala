@@ -28,6 +28,13 @@
 
 }
 
+.float-child4 {
+  width: 20%;
+  float: left;
+  padding: 20px;
+
+}
+
 label {
   margin-bottom: 15px;
 }
