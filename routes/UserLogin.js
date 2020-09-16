@@ -186,7 +186,9 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-        if (req.user.resume == undefined) {
+        if(!req.user.isVerified){
+          res.redirect('/verify');
+        } else if (req.user.resume == undefined) {
           res.redirect('/signup2-stud');
         } else {
           if (req.user.isEmployer) {
@@ -212,7 +214,9 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-        if (req.user.resume == undefined) {
+        if(!req.user.isVerified){
+          res.redirect('/verify');
+        } else if (req.user.resume == undefined) {
           res.redirect('/signup2-stud');
         } else {
           if (req.user.isEmployer) {
@@ -238,7 +242,9 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-        if (req.user.resume == undefined) {
+        if(!req.user.isVerified){
+          res.redirect('/verify');
+        } else if (req.user.resume == undefined) {
           res.redirect('/signup2-stud');
         } else {
           if (req.user.isEmployer) {
@@ -261,7 +267,9 @@ module.exports = function(app, passport) {
     function(req, res) {
       // Successful authentication, redirect home.
       if (req.flash('message') == 'Login') {
-        if (req.user.resume == undefined) {
+        if(!req.user.isVerified){
+          res.redirect('/verify');
+        } else if (req.user.resume == undefined) {
           res.redirect('/signup2-stud');
         } else {
           if (req.user.isEmployer) {
